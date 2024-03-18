@@ -1,34 +1,39 @@
 const express = require("express");
-const socketIO = require("socket.io");
-const http = require("http");
-const port = process.env.PORT || 8888;
-var app = express();
-let server = http.createServer(app);
-var io = socketIO(server);
+const app = express();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "http://localhost:3000", // Adjusted to frontend's URL
+    methods: ["GET", "POST"], // Allowed HTTP methods
+  },
+});
 
-// make connection with user from server side
+// Middleware for serving static files, if necessary (e.g., public directory)
+app.use(express.static("public"));
+
 io.on("connection", (socket) => {
-  console.log("New user connected");
-  //emit message from server to user
-  socket.emit("newMessage", {
-    from: "jen@mds",
-    text: "hepppp",
-    createdAt: 123,
+  console.log("A user connected");
+
+  // Handle incoming chat messages
+  socket.on("chat message", (msg) => {
+    console.log(`Message: ${msg}`);
+    // Broadcast message to all connected clients
+    io.emit("chat message", msg);
   });
 
-  // listen for message from user
-  socket.on("createMessage", (newMessage) => {
-    console.log("newMessage", newMessage);
-  });
-
-  // when server disconnects from user
+  // Handle socket disconnect
   socket.on("disconnect", () => {
-    console.log("disconnected from user");
+    console.log("A user disconnected");
   });
 });
 
+// Define a route for HTTP GET requests to the root ("/")
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/client-side.html");
+  res.send("<h1>Hello World</h1>"); // Placeholder response, adjust as needed
 });
 
-server.listen(port);
+// Start the server
+const PORT = 8888;
+http.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
