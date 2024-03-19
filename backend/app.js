@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
+app.use(express.json());
 const axios = require("axios");
 const http = require("http").createServer(app);
 const io = require("socket.io")(http, {
@@ -10,6 +11,10 @@ const io = require("socket.io")(http, {
     methods: ["GET", "POST"], // Allowed HTTP methods
   },
 });
+
+const connectDatabase = require("./utils/database");
+const authRoutes = require("./routes/authRoute");
+const { authenticate } = require("./middleware/authenticate");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -20,6 +25,9 @@ app.use((req, res, next) => {
 
 // Middleware for serving static files, if necessary (e.g., public directory)
 app.use(express.static("public"));
+
+connectDatabase();
+app.use("/api/auth", authRoutes);
 
 io.on("connection", (socket) => {
   console.log("A user connected");
