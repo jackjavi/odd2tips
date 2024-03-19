@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div>
+      <div className="bg-gray-300 max-w-[50vw] mx-auto text-black flex flex-col items-center justify-center">
         <h1>Welcome to the Chat Room!</h1>
         <Chat />
         <SportsMonk />

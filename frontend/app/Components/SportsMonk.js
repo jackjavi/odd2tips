@@ -23,7 +23,7 @@ const SportsMonk = () => {
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4">Football Fixtures</h2>
-      <ul className="text-white">
+      <ul className="text-gray-900">
         {fixtures.map((fixture) => (
           <li key={fixture.id} className="mb-2">
             <span className="font-semibold">{fixture.name}</span> -{" "}

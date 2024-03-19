@@ -27,12 +27,15 @@ const Chat = () => {
 
   return (
     <div className="chat-container">
-      <h2>Chat Room</h2>
-      <ul>
-        {messages.map((msg, index) => (
-          <li key={index}>{msg}</li>
-        ))}
-      </ul>
+      <h2 className="bg-red-500 text-white">Chat Room</h2>
+      <div>
+        <ul>
+          {messages.map((msg, index) => (
+            <li key={index}>{msg}</li>
+          ))}
+        </ul>
+      </div>
+
       <form onSubmit={handleSendMessage}>
         <input
           className="text-black"
