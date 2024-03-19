@@ -1,4 +1,3 @@
-// pages/index.js
 import React from "react";
 import Chat from "./Components/Chat";
 import Navbar from "./Components/Navbar";
@@ -8,10 +7,20 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-300 max-w-[50vw] mx-auto text-black flex flex-col items-center justify-center">
-        <h1>Welcome to the Chat Room!</h1>
-        <Chat />
-        <SportsMonk />
+      <div className="bg-gray-100 px-4 py-8">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">
+            Welcome to Odd2Tips!
+          </h1>
+          <div className="flex flex-col md:flex-row gap-8">
+            <div className="md:w-1/2">
+              <Chat />
+            </div>
+            <div className="md:w-1/2">
+              <SportsMonk />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
