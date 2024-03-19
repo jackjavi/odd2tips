@@ -5,7 +5,12 @@ let socket;
 
 export const connectSocket = () => {
   console.log("Connecting to socket...");
-  socket = io("http://localhost:8888"); // Adjust your server URL/port accordingly
+
+  const token = localStorage.getItem("token");
+
+  socket = io("http://localhost:8888", {
+    query: { token },
+  });
 
   socket.on("connect", () => {
     console.log("Connected to socket server");

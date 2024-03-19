@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import axios from "axios";
-import Navbar from "../../Components/Navbar";
-import Footer from "../../Components/Footer"; // Adjust the path based on your project structure
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer"; // Adjust the path based on your project structure
 import { useRouter } from "next/router";
 
 export default function Register() {

@@ -9,7 +9,7 @@ const Chat = () => {
   const messagesEndRef = useRef(null);
 
   // Connect to socket when component mounts
-  useState(() => {
+  useEffect(() => {
     connectSocket();
   }, []);
 
@@ -41,7 +41,7 @@ const Chat = () => {
       <div
         className="flex-1 p-4 overflow-y-auto bg-gray-100"
         style={{
-          backgroundImage: "url('/path-to-your-sport-background-image.jpg')",
+          backgroundImage: "url('/football_bg.jpg')",
           backgroundSize: "cover",
         }}
       >
@@ -51,7 +51,7 @@ const Chat = () => {
               key={index}
               className="bg-white text-gray-900 rounded-md p-2 mb-2 shadow"
             >
-              {msg}
+              {msg.content}
             </li>
           ))}
           <div ref={messagesEndRef} />
