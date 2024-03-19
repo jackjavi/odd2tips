@@ -6,6 +6,8 @@ const User = require("../models/User");
 const userService = require("../services/userService");
 const tokenService = require("../services/tokenService");
 
+const sessionsFile = path.join(__dirname, "..", "sessions.json");
+
 exports.register = async (req, res) => {
   const { email, password } = req.body;
   const user = await userService.createUser(email, password);
@@ -53,5 +55,27 @@ exports.login = async (request, response) => {
   } catch (error) {
     console.error("Login error:", error);
     response.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.logout = (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+
+  // Remove token from sessions file
+  if (fs.existsSync(sessionsFile)) {
+    const sessions = JSON.parse(
+      fs.readFileSync(sessionsFile, { encoding: "utf-8" })
+    );
+    const userId = Object.keys(sessions).find((key) => sessions[key] === token);
+
+    if (userId) {
+      delete sessions[userId];
+      fs.writeFileSync(sessionsFile, JSON.stringify(sessions, null, 2));
+      res.status(200).send({ message: "Logged out successfully" });
+    } else {
+      res.status(404).send({ message: "Session not found" });
+    }
+  } else {
+    res.status(500).send({ message: "Internal server error" });
   }
 };

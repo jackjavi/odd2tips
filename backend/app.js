@@ -35,37 +35,48 @@ app.use("/api/", authenticate, sportMonksRoutes);
 io.on("connection", (socket) => {
   console.log("A user connected");
 
-  // Extract and verify token right upon connection
+  // Extract token from handshake query
   const token = socket.handshake.query.token;
-  const userId = verifyToken(token).userId;
 
-  if (userId) {
-    socket.userId = userId;
-    console.log(
-      "Authenticated socket connection",
-      socket.id,
-      "User ID:",
-      userId
-    );
+  if (token) {
+    // Safely attempt to verify the token
+    const verificationResult = verifyToken(token);
+
+    if (verificationResult) {
+      // Token is valid, set userId for the socket session
+      const { userId } = verificationResult;
+      socket.userId = userId;
+      console.log(
+        "Authenticated socket connection",
+        socket.id,
+        "User ID:",
+        userId
+      );
+    } else {
+      // Token verification failed, log the error and disconnect the socket
+      console.log("Token verification failed, disconnecting socket.");
+      socket.disconnect(true);
+      return;
+    }
   } else {
-    console.log("Authentication failed, disconnecting socket.");
+    // No token provided, disconnect the socket
+    console.log("No token provided, disconnecting socket.");
     socket.disconnect(true);
     return;
   }
 
   socket.on("chat message", async (msgContent) => {
-    try {
-      if (!socket.userId) {
-        console.log("No user ID found for socket, ignoring message.");
-        return;
-      }
+    if (!socket.userId) {
+      console.log("No user ID found for socket, ignoring message.");
+      return;
+    }
 
+    try {
       const message = new Message({
         user: socket.userId,
         content: msgContent,
       });
       await message.save();
-
       io.emit("chat message", message);
     } catch (error) {
       console.error("Error saving message:", error);
