@@ -44,7 +44,12 @@ exports.login = async (request, response) => {
       JSON.stringify({ userId: user._id.toString() })
     );
 
-    response.status(200).json({ token });
+    const userData = {
+      email: user.email,
+      id: user._id.toString(),
+    };
+
+    response.status(200).json({ token, userData });
   } catch (error) {
     console.error("Login error:", error);
     response.status(500).json({ error: "Internal Server Error" });
