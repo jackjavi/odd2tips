@@ -15,3 +15,5 @@ const authenticate = (req, res, next) => {
   req.user = decoded; // Add the decoded user data to the request object
   next();
 };
+
+module.exports = authenticate;

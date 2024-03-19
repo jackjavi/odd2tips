@@ -3,7 +3,6 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 app.use(express.json());
-const axios = require("axios");
 const http = require("http").createServer(app);
 const io = require("socket.io")(http, {
   cors: {
@@ -14,7 +13,8 @@ const io = require("socket.io")(http, {
 
 const connectDatabase = require("./utils/database");
 const authRoutes = require("./routes/authRoute");
-const { authenticate } = require("./middleware/authenticate");
+const sportMonksRoutes = require("./routes/sportMonksRoute");
+const authenticate = require("./middleware/authenticate");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -28,6 +28,7 @@ app.use(express.static("public"));
 
 connectDatabase();
 app.use("/api/auth", authRoutes);
+app.use("/api/", authenticate, sportMonksRoutes);
 
 io.on("connection", (socket) => {
   console.log("A user connected");
@@ -48,26 +49,6 @@ io.on("connection", (socket) => {
 // Define a route for HTTP GET requests to the root ("/")
 app.get("/", (req, res) => {
   res.send("<h1>Hello World</h1>"); // Placeholder response, adjust as needed
-});
-
-app.get("/api/fixtures", async (req, res) => {
-  const apiToken = process.env.SPORTMONKS_API_TOKEN;
-
-  if (!apiToken) {
-    console.error("Error: Missing Sportmonks API token");
-    return res.status(500).json({ message: "Missing API token" });
-  }
-
-  try {
-    const response = await axios.get(
-      `https://api.sportmonks.com/v3/football/fixtures?api_token=${apiToken}`
-    );
-    console.log(response.data);
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error fetching data from Sportmonks:", error);
-    res.status(500).json({ message: "Failed to fetch data" });
-  }
 });
 
 // Start the server

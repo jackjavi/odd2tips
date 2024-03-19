@@ -18,28 +18,33 @@ exports.login = async (request, response) => {
 
   try {
     const user = await User.findOne({ email });
-
-    if (!user || !(await user.validatePassword(password))) {
+    if (!user || !(await bcrypt.compare(password, user.password))) {
       return response.status(401).json({ error: "Unauthorized" });
     }
 
+    // Generate a unique session ID
+    const sessionId = uuidv4();
+    // Generate JWT that includes both userId and sessionId
+    const token = tokenService.generateToken({
+      userId: user._id.toString(),
+      sessionId,
+    });
+
+    // Prepare the sessions directory
     const sessionsDir = path.join(__dirname, "..", "sessions");
     if (!fs.existsSync(sessionsDir)) {
       fs.mkdirSync(sessionsDir, { recursive: true });
     }
 
-    const sessionId = uuidv4();
-
+    // Create a session file named after the sessionId
     const sessionPath = path.join(sessionsDir, `${sessionId}.json`);
-    const userData = {
-      [sessionId]: user._id.toString(),
-    };
+    // Store the user ID in the session file
+    fs.writeFileSync(
+      sessionPath,
+      JSON.stringify({ userId: user._id.toString() })
+    );
 
-    fs.writeFileSync(sessionPath, JSON.stringify(userData));
-
-    request.sessionId = sessionId;
-
-    response.status(200).json({ token: sessionId });
+    response.status(200).json({ token });
   } catch (error) {
     console.error("Login error:", error);
     response.status(500).json({ error: "Internal Server Error" });
