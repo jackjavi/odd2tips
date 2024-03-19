@@ -9,7 +9,16 @@ const SportsMonk = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8888/api/fixtures");
+        const token = localStorage.getItem("token");
+        if (token) {
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        }
+
+        const response = await axios.get("http://localhost:8888/api/fixtures", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setFixtures(response.data.data);
         console.log(response.data.data);
       } catch (error) {

@@ -6,8 +6,9 @@ app.use(express.json());
 const http = require("http").createServer(app);
 const io = require("socket.io")(http, {
   cors: {
-    origin: "http://localhost:3000", // Adjusted to frontend's URL
-    methods: ["GET", "POST"], // Allowed HTTP methods
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   },
 });
 
@@ -22,10 +23,10 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 });
 
-// Middleware for serving static files, if necessary (e.g., public directory)
 app.use(express.static("public"));
 
 connectDatabase();
@@ -35,15 +36,12 @@ app.use("/api/", authenticate, sportMonksRoutes);
 io.on("connection", (socket) => {
   console.log("A user connected");
 
-  // Extract token from handshake query
   const token = socket.handshake.query.token;
 
   if (token) {
-    // Safely attempt to verify the token
     const verificationResult = verifyToken(token);
 
     if (verificationResult) {
-      // Token is valid, set userId for the socket session
       const { userId } = verificationResult;
       socket.userId = userId;
       console.log(
@@ -53,13 +51,11 @@ io.on("connection", (socket) => {
         userId
       );
     } else {
-      // Token verification failed, log the error and disconnect the socket
       console.log("Token verification failed, disconnecting socket.");
       socket.disconnect(true);
       return;
     }
   } else {
-    // No token provided, disconnect the socket
     console.log("No token provided, disconnecting socket.");
     socket.disconnect(true);
     return;
@@ -88,12 +84,10 @@ io.on("connection", (socket) => {
   });
 });
 
-// Define a route for HTTP GET requests to the root ("/")
 app.get("/", (req, res) => {
-  res.send("<h1>Hello World</h1>"); // Placeholder response, adjust as needed
+  res.send("<h1>Hello World</h1>");
 });
 
-// Start the server
 const PORT = 8888;
 http.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
