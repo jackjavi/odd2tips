@@ -21,13 +21,21 @@ const SportsMonk = () => {
   }, []);
 
   return (
-    <div className="mt-8 h-[70vh] text-gray-900">
-      <h2 className="text-2xl font-bold mb-4">Football Fixtures</h2>
-      <ul className="text-gray-900">
+    <div className="h-[50vh] overflow-auto bg-gray-100 rounded-lg shadow-lg px-4">
+      <h2 className="text-3xl font-bold mb-4 text-center text-green-600 bg-gray-200 rounded-md p-2 shadow">
+        Football Fixtures
+      </h2>
+      <ul className="space-y-2">
         {fixtures.map((fixture) => (
-          <li key={fixture.id} className="mb-2 text-gray-900">
-            <span className="font-semibold">{fixture.name}</span> -{" "}
-            <span>{new Date(fixture.starting_at).toLocaleString()}</span>
+          <li
+            key={fixture.id}
+            className="bg-white border border-gray-200 rounded-md p-3 shadow-sm flex justify-between items-center"
+          >
+            <span className="font-semibold text-blue-600">{fixture.name}</span>
+            <span className="text-sm text-gray-600 bg-green-200 rounded-full px-3 py-1">
+              {new Date(fixture.starting_at).toLocaleDateString()} -{" "}
+              {new Date(fixture.starting_at).toLocaleTimeString()}
+            </span>
           </li>
         ))}
       </ul>
