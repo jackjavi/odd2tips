@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ODD2TIPS",
+  title: "Odd2tips",
   description:
     "Your premier destination for sports predictions and live chat. Engage, predict, and win!",
 };
