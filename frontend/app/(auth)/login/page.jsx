@@ -20,7 +20,6 @@ export default function Login() {
         { email, password }
       );
       localStorage.setItem("token", JSON.stringify(response.data.token));
-      alert(`Logged in successfully ${response.data.userData.email}`);
       router.push("/");
     } catch (err) {
       setError(err.response?.data.error || "Error logging in");
