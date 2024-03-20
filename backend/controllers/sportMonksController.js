@@ -1,4 +1,4 @@
-// const axios = require("axios");
+const axios = require("axios");
 const fixturesData = require("../storage/fixturesData");
 
 exports.getFixtures = async (req, res) => {
@@ -12,8 +12,9 @@ exports.getFixtures = async (req, res) => {
   try {
     /*const response = await axios.get(
       `https://api.sportmonks.com/v3/football/fixtures?api_token=${apiToken}`
-    );*/
+    );
 
+    res.json(response.data);*/
     res.json(fixturesData);
   } catch (error) {
     console.error("Error fetching data from Sportmonks:", error);
