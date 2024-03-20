@@ -16,8 +16,6 @@ const connectDatabase = require("./utils/database");
 const authRoutes = require("./routes/authRoute");
 const sportMonksRoutes = require("./routes/sportMonksRoute");
 const authenticate = require("./middleware/authenticate");
-const Message = require("./models/Message");
-const { verifyToken } = require("./services/tokenService");
 const socketHandler = require("./sockets/socketHandler");
 
 app.use((req, res, next) => {
