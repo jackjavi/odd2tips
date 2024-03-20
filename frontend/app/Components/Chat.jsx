@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, use } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { connectSocket, sendMessage, useSocket } from "../utils/socket";
 
@@ -21,10 +21,8 @@ const Chat = () => {
             },
           }
         );
-        console.log(response.data);
-        return;
+
         setMessages(response.data);
-        console.log("Messages fetched:", response.data);
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
