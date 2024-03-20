@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.bg-football {
+  background-image: url("/football_bg.jpg");
+}

@@ -8,9 +8,13 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-100 px-4 py-8">
+      {/* Main section with background image */}
+      <div
+        className="bg-gray-100 px-4 py-8 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/garnacho-home_hero.jpeg')" }}
+      >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 bg-white bg-opacity-75 rounded-lg p-6 shadow-lg">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 animate-pulse">
               Welcome to Odd2Tips!
             </h1>
@@ -27,7 +31,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-8">
+          <div className="flex flex-col md:flex-row gap-8 mt-8">
             <div className="md:w-1/2">
               <Chat />
             </div>

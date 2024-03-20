@@ -32,7 +32,7 @@ app.use(express.static("public"));
 connectDatabase();
 app.use("/api/auth", authRoutes);
 app.use("/api/", authenticate, sportMonksRoutes);
-app.use("/api/chat", chatRoutes);
+app.use("/api/chat", authenticate, chatRoutes);
 
 socketHandler(io);
 
