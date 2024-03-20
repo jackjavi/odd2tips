@@ -10,7 +10,6 @@ const Home = () => {
       <Navbar />
       <div className="bg-gray-100 px-4 py-8">
         <div className="max-w-7xl mx-auto">
-          {/* Enhanced Welcome Section */}
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 animate-pulse">
               Welcome to Odd2Tips!
