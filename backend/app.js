@@ -18,6 +18,7 @@ const sportMonksRoutes = require("./routes/sportMonksRoute");
 const authenticate = require("./middleware/authenticate");
 const Message = require("./models/Message");
 const { verifyToken } = require("./services/tokenService");
+const socketHandler = require("./sockets/socketHandler");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -33,58 +34,9 @@ connectDatabase();
 app.use("/api/auth", authRoutes);
 app.use("/api/", authenticate, sportMonksRoutes);
 
-io.on("connection", (socket) => {
-  console.log("A user connected");
+socketHandler(io);
 
-  const token = socket.handshake.query.token;
-
-  if (token) {
-    const verificationResult = verifyToken(token);
-
-    if (verificationResult) {
-      const { userId } = verificationResult;
-      socket.userId = userId;
-      console.log(
-        "Authenticated socket connection",
-        socket.id,
-        "User ID:",
-        userId
-      );
-    } else {
-      console.log("Token verification failed, disconnecting socket.");
-      socket.disconnect(true);
-      return;
-    }
-  } else {
-    console.log("No token provided, disconnecting socket.");
-    socket.disconnect(true);
-    return;
-  }
-
-  socket.on("chat message", async (msgContent) => {
-    if (!socket.userId) {
-      console.log("No user ID found for socket, ignoring message.");
-      return;
-    }
-
-    try {
-      const message = new Message({
-        user: socket.userId,
-        content: msgContent,
-      });
-      await message.save();
-      io.emit("chat message", message);
-    } catch (error) {
-      console.error("Error saving message:", error);
-    }
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User disconnected", "User ID:", socket.userId);
-  });
-});
-
-app.get("/", (req, res) => {
+app.get("/", authenticate, (req, res) => {
   res.send("<h1>Hello World</h1>");
 });
 

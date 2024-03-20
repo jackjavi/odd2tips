@@ -1,7 +1,7 @@
 // utils/tokenService.js
 const jwt = require("jsonwebtoken");
 
-const secretKey = process.env.JWT_SECRET_KEY || "your_secret_key"; // Ensure you have a secure key in your environment variables
+const secretKey = process.env.JWT_SECRET_KEY || "your_secret_key";
 
 const generateToken = (userData) => {
   return jwt.sign(userData, secretKey, { expiresIn: "1h" });
