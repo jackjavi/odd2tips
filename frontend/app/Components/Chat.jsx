@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, use } from "react";
+import axios from "axios";
 import { connectSocket, sendMessage, useSocket } from "../utils/socket";
 
 const Chat = () => {
@@ -8,6 +9,28 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState("");
   const messagesEndRef = useRef(null);
 
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const token = JSON.parse(localStorage.getItem("token"));
+        const response = await axios.get(
+          "http://localhost:8888/api/chat/messages",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response.data);
+        return;
+        setMessages(response.data);
+        console.log("Messages fetched:", response.data);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+    fetchMessages();
+  }, []);
   useEffect(() => {
     connectSocket();
   }, []);
