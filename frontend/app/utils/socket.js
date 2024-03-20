@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import io from "socket.io-client";
 
 let socket;
@@ -6,7 +6,7 @@ let socket;
 export const connectSocket = () => {
   console.log("Connecting to socket...");
 
-  const token = localStorage.getItem("token");
+  const token = JSON.parse(localStorage.getItem("token"));
 
   socket = io("http://localhost:8888", {
     query: { token },
@@ -24,10 +24,8 @@ export const useSocket = (eventName, cb) => {
       return;
     }
 
-    // Listen for socket event
     socket.on(eventName, cb);
 
-    // Cleanup on unmount
     return () => {
       socket.off(eventName, cb);
     };

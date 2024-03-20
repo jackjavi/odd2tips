@@ -4,13 +4,13 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,10 +19,9 @@ export default function Login() {
         "http://localhost:8888/api/auth/login",
         { email, password }
       );
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", JSON.stringify(response.data.token));
       window.alert(`Logged in successfully ${response.data.userData.email}`);
-      // router.push("/"); // Redirect to the homepage or dashboard
-      window.location.replace("/");
+      router.push("/");
     } catch (err) {
       setError(err.response.data.error || "Error logging in");
       console.error(err);

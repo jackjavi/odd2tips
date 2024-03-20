@@ -8,17 +8,14 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState("");
   const messagesEndRef = useRef(null);
 
-  // Connect to socket when component mounts
   useEffect(() => {
     connectSocket();
   }, []);
 
-  // Handle incoming messages
   useSocket("chat message", (msg) => {
     setMessages((prevMessages) => [...prevMessages, msg]);
   });
 
-  // Scroll to the bottom every time messages update
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -34,7 +31,7 @@ const Chat = () => {
   return (
     <div className="flex flex-col h-[50vh] max-w-md mx-auto border border-gray-300 rounded-lg shadow-lg overflow-hidden">
       <div className="bg-green-600 p-4 text-white text-lg font-bold flex justify-between items-center">
-        <span>Chat Room</span>
+        <span>Fan Zone</span>
         <span className="text-sm">Live</span>
       </div>
 
