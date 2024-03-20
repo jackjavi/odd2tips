@@ -4,7 +4,7 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation"; // Correcting import from 'next/navigation' to 'next/router'
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -32,7 +32,6 @@ export default function Login() {
     <>
       <Navbar />
       <div className="flex min-h-screen bg-gray-100">
-        {/* Form Side with Gradient Background */}
         <div className="flex flex-col justify-center w-full md:w-1/2 p-12 bg-gradient-to-r from-green-500 to-blue-600 text-white">
           <div className="max-w-md mx-auto">
             <h1 className="text-3xl font-semibold text-center mb-8">Login</h1>
@@ -78,13 +77,10 @@ export default function Login() {
           </div>
         </div>
 
-        {/* Image Side */}
         <div
           className="w-1/2 bg-cover bg-no-repeat bg-center hidden md:block"
           style={{ backgroundImage: "url('/football_bg.jpg')" }}
-        >
-          {/* This side will display the image */}
-        </div>
+        ></div>
       </div>
       <Footer />
     </>
