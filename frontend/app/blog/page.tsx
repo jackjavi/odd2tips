@@ -30,17 +30,16 @@ export default function Index() {
         {heroPost && (
           <HeroPost
             title={heroPost.title}
-            coverImagePath={heroPost.coverImagePath} // Adjusted to use the new property name
+            coverImagePath={heroPost.coverImagePath}
             date={new Date(heroPost.date).toLocaleDateString("en-US", {
-              // Formatted date string
               year: "numeric",
               month: "long",
               day: "numeric",
             })}
-            excerpt={heroPost.content.substring(0, 200)} // Using a part of content as an excerpt
-            authorName={heroPost.authorName} // Now directly using the authorName
-            authorImagePath={heroPost.authorImagePath} // Using the new path for the author's image
-            slug={heroPost._id} // Assuming _id is used as a unique identifier for routing
+            excerpt={heroPost.content.substring(0, 200)}
+            authorName={heroPost.authorName}
+            authorImagePath={heroPost.authorImagePath}
+            slug={heroPost._id}
           />
         )}
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
