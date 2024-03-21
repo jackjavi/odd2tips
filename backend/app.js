@@ -9,6 +9,7 @@ app.use(cors());
 const connectDatabase = require("./utils/database");
 const authRoutes = require("./routes/authRoute");
 const uploadRoutes = require("./routes/uploadRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 const sportMonksRoutes = require("./routes/sportMonksRoute");
 const authenticate = require("./middleware/authenticate");
 const socketHandler = require("./sockets/socketHandler");
@@ -35,6 +36,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/", authenticate, sportMonksRoutes);
 app.use("/api/chat", authenticate, chatRoutes);
 app.use("/api/blog", uploadRoutes);
+app.use("/api/blog", blogRoutes);
 
 socketHandler(io);
 
