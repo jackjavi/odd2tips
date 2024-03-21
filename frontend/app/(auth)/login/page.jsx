@@ -1,6 +1,6 @@
 "use client";
 
-import Navbar from "../../Components/Navbar";
+// import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import { useState } from "react";
 import axios from "axios";
@@ -29,6 +29,7 @@ export default function Login() {
 
   return (
     <>
+      //
       <Navbar />
       <div className="flex min-h-screen bg-gray-100">
         <div className="flex flex-col justify-center w-full md:w-1/2 p-12 bg-gradient-to-r from-green-500 to-blue-600 text-white">
