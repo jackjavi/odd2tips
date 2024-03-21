@@ -1,1 +1,1 @@
-# ODD2TIPS frontend
+# ODD2TIPS
