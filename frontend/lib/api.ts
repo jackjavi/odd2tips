@@ -1,28 +1,41 @@
+import axios from "axios";
 import { Post } from "@/interfaces/post";
-import fs from "fs";
-import matter from "gray-matter";
-import { join } from "path";
 
-const postsDirectory = join(process.cwd(), "_posts");
+const BASE_URL = "http://localhost:8888/api/blog";
 
-export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+function getAuthorizationHeader() {
+  const tokenString = localStorage.getItem("token");
+  if (!tokenString) {
+    return undefined; // No token stored
+  }
+
+  try {
+    const token = JSON.parse(tokenString);
+    return { Authorization: `Bearer ${token}` };
+  } catch (error) {
+    console.error("Error parsing token:", error);
+    return undefined;
+  }
 }
 
-export function getPostBySlug(slug: string) {
-  const realSlug = slug.replace(/\.md$/, "");
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
-
-  return { ...data, slug: realSlug, content } as Post;
+export async function getAllPosts(): Promise<Post[]> {
+  try {
+    const headers = getAuthorizationHeader();
+    const response = await axios.get(`${BASE_URL}/posts`, { headers });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return [];
+  }
 }
 
-export function getAllPosts(): Post[] {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-  return posts;
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  try {
+    const headers = getAuthorizationHeader();
+    const response = await axios.get(`${BASE_URL}/posts/${slug}`, { headers });
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching post by slug (${slug}):`, error);
+    return null;
+  }
 }
