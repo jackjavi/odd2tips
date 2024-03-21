@@ -29,8 +29,7 @@ export default function Login() {
 
   return (
     <>
-      //
-      <Navbar />
+      {/*<Navbar />*/}
       <div className="flex min-h-screen bg-gray-100">
         <div className="flex flex-col justify-center w-full md:w-1/2 p-12 bg-gradient-to-r from-green-500 to-blue-600 text-white">
           <div className="max-w-md mx-auto">
