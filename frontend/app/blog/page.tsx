@@ -7,6 +7,7 @@ import { Intro } from "@/app/blog/_components/intro";
 import { MoreStories } from "@/app/blog/_components/more-stories";
 import { getAllPosts } from "@/lib/api";
 import { Post } from "@/interfaces/post";
+
 export default function Index() {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
 
@@ -14,7 +15,6 @@ export default function Index() {
     const fetchPosts = async () => {
       const posts = await getAllPosts();
       setAllPosts(posts);
-      console.log(posts);
     };
 
     fetchPosts();
@@ -25,25 +25,26 @@ export default function Index() {
 
   return (
     <main>
-      <h1>Hello</h1>
-      {/*<Container>
+      <Container>
         <Intro />
         {heroPost && (
           <HeroPost
             title={heroPost.title}
-            coverImage={heroPost.coverImagePath}
-            date={heroPost.date}
-            excerpt={heroPost.content.substring(0, 200)} // Using content for excerpt
-            author={{
-              name: heroPost.authorName,
-              picture: heroPost.authorImagePath,
-            }}
-            slug={heroPost.slug} // Ensure this is correctly handled based on your data
-            ogImage={{ url: heroPost.coverImagePath }} // Example, adjust as needed
+            coverImagePath={heroPost.coverImagePath} // Adjusted to use the new property name
+            date={new Date(heroPost.date).toLocaleDateString("en-US", {
+              // Formatted date string
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+            excerpt={heroPost.content.substring(0, 200)} // Using a part of content as an excerpt
+            authorName={heroPost.authorName} // Now directly using the authorName
+            authorImagePath={heroPost.authorImagePath} // Using the new path for the author's image
+            slug={heroPost._id} // Assuming _id is used as a unique identifier for routing
           />
         )}
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-          </Container>*/}
+      </Container>
     </main>
   );
 }
