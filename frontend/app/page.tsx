@@ -8,7 +8,6 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      {/* Main section with background image */}
       <div
         className="bg-gray-100 px-4 py-8 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/garnacho-home_hero.jpeg')" }}
@@ -16,7 +15,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 bg-white bg-opacity-75 rounded-lg p-6 shadow-lg">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 animate-pulse">
-              Welcome to Odd2Tips!
+              Welcome to Odd2Tips
             </h1>
             <p className="mt-4 text-xl text-gray-700">
               The ultimate sports prediction platform.
