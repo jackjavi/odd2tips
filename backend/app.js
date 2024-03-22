@@ -14,14 +14,13 @@ const sportMonksRoutes = require("./routes/sportMonksRoute");
 const authenticate = require("./middleware/authenticate");
 const socketHandler = require("./sockets/socketHandler");
 const chatRoutes = require("./routes/chatRoutes");
+const allowedOrigins = ["http://localhost:3000", "https://odd2tips.vercel.app"];
 const io = require("socket.io")(http, {
   cors: {
-    origin: "http://localhost:3000",
-
+    origin: allowedOrigins,
     credentials: true,
   },
 });
-const allowedOrigins = ["http://localhost:3000", "https://odd2tips.vercel.app"];
 
 app.use(
   cors({
