@@ -21,6 +21,7 @@ export function MoreStories({ posts }: Props) {
             coverImagePath={post.coverImagePath}
             date={post.date}
             excerpt={post.excerpt}
+            content={post.content}
             authorName={post.authorName}
             authorImagePath={post.authorImagePath}
             slug={post.slug}
