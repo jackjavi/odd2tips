@@ -16,21 +16,28 @@ const socketHandler = require("./sockets/socketHandler");
 const chatRoutes = require("./routes/chatRoutes");
 const io = require("socket.io")(http, {
   cors: {
-    origin: "https://odd2tips.vercel.app/, http://localhost:3000",
+    origin: "http://localhost:3000",
 
     credentials: true,
   },
 });
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://odd2tips.vercel.app/, http://localhost:3000"
-  );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
-});
+const allowedOrigins = ["http://localhost:3000", "https://odd2tips.vercel.app"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        var msg =
+          "The CORS policy for this site does not " +
+          "allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
 
 app.use(express.static("public"));
 
