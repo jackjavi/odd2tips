@@ -1,5 +1,4 @@
 export type Post = {
-  _id: string;
   title: string;
   date: string;
   excerpt: string;

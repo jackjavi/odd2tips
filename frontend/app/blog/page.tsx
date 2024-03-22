@@ -37,9 +37,10 @@ export default function Index() {
               day: "numeric",
             })}
             excerpt={heroPost.content.substring(0, 200)}
+            content={heroPost.content}
             authorName={heroPost.authorName}
             authorImagePath={heroPost.authorImagePath}
-            slug={heroPost._id}
+            slug={heroPost.slug}
           />
         )}
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
