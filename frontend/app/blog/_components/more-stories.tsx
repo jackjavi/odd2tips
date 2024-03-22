@@ -1,3 +1,5 @@
+// MoreStories component
+import React from "react";
 import { Post } from "@/interfaces/post";
 import { PostPreview } from "./post-preview";
 
@@ -14,13 +16,14 @@ export function MoreStories({ posts }: Props) {
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
         {posts.map((post) => (
           <PostPreview
-            key={post.slug}
+            key={post._id} // Using _id for key
             title={post.title}
-            coverImage={post.coverImage}
+            coverImagePath={post.coverImagePath}
             date={post.date}
-            author={post.author}
-            slug={post.slug}
-            excerpt={post.excerpt}
+            excerpt={post.excerpt} // Assuming excerpt is a part of your content
+            authorName={post.authorName}
+            authorImagePath={post.authorImagePath}
+            slug={post._id} // Assuming _id as slug, adjust as necessary
           />
         ))}
       </div>
