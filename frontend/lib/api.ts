@@ -6,7 +6,7 @@ const BASE_URL = "http://localhost:8888/api/blog";
 function getAuthorizationHeader() {
   const tokenString = localStorage.getItem("token");
   if (!tokenString) {
-    return undefined; // No token stored
+    return undefined;
   }
 
   try {

@@ -3,8 +3,7 @@ import DateFormatter from "./date-formatter";
 import Link from "next/link";
 import { Post } from "@/interfaces/post";
 
-// Adjusting Props to directly use the Post interface
-type Props = Post; // If you have adjusted your Post interface accordingly
+type Props = Post;
 
 export function HeroPost({
   title,
@@ -15,7 +14,6 @@ export function HeroPost({
   authorImagePath,
   slug,
 }: Props) {
-  // Prepending the base path to image paths if not already an absolute URL
   const fullCoverImagePath = coverImagePath.startsWith("http")
     ? coverImagePath
     : `${process.env.NEXT_PUBLIC_BASE_PATH}${coverImagePath}`;

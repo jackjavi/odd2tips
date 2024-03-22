@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 import Alert from "@/app/blog/_components/alert";
 import Container from "@/app/blog/_components/container";
 import Header from "@/app/blog/_components/header";
@@ -12,8 +12,7 @@ import { Post as PostType } from "@/interfaces/post";
 
 const PostPage = () => {
   const [post, setPost] = useState<PostType | null>(null);
-  const router = useRouter();
-  const { slug } = router.query;
+  const { slug } = useParams();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -33,7 +32,6 @@ const PostPage = () => {
 
   return (
     <main>
-      {/*<Alert preview={post.preview} />*/}
       <Container>
         <Header />
         <article className="mb-32">
