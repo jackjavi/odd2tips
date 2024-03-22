@@ -1,4 +1,5 @@
-// Assuming these imports are correct and exist
+"use client";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Alert from "@/app/blog/_components/alert";
@@ -25,11 +26,10 @@ const PostPage = () => {
   }, [slug]);
 
   if (!post) {
-    return <div>Loading...</div>; // Or any other loading state
+    return <div>Loading...</div>;
   }
 
-  // Assume markdownToHtml is adjusted or replaced as needed
-  const content = post.content; // Directly using the fetched content
+  const content = post.content;
 
   return (
     <main>

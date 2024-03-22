@@ -44,7 +44,7 @@ app.get("/", authenticate, (req, res) => {
   res.send("<h1>Hello World</h1>");
 });
 
-const PORT = 8888;
+const PORT = process.env.PORT || 8888;
 http.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
