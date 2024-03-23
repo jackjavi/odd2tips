@@ -10,6 +10,7 @@ import Daily2Odds from "./Components/Daily2Odds";
 import { HeroPost } from "./blog/_components/hero-post";
 import { getAllPosts } from "@/lib/api";
 import Link from "next/link";
+import { Post } from "@/interfaces/post";
 
 const Home = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
