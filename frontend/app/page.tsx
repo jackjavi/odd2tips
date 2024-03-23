@@ -66,40 +66,37 @@ const Home = () => {
             <div className="flex flex-col md:flex-row gap-8 mt-8 items-center justify-center">
               <div className="md:w-1/2">
                 <Chat />
-                {heroPost && (
-                  <div className="bg-slate-800 p-4 rounded-md my-8 ">
-                    <HeroPost
-                      title={heroPost.title}
-                      coverImagePath={heroPost.coverImagePath}
-                      date={new Date(heroPost.date).toLocaleDateString(
-                        "en-US",
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        }
-                      )}
-                      excerpt={heroPost.content.substring(0, 200)}
-                      content={heroPost.content}
-                      authorName={heroPost.authorName}
-                      authorImagePath={heroPost.authorImagePath}
-                      slug={heroPost.slug}
-                    />
-                    <div className="flex flex-col items-center gap-4">
-                      <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight text-[whitesmoke]">
-                        More Stories
-                      </h2>
-                      <Link href="/blog">
-                        <FaArrowRotateRight color="blue" />
-                      </Link>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
         </div>
       </div>
+      {heroPost && (
+        <div className="bg-slate-800 p-4 py-8 ">
+          <HeroPost
+            title={heroPost.title}
+            coverImagePath={heroPost.coverImagePath}
+            date={new Date(heroPost.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+            excerpt={heroPost.content.substring(0, 200)}
+            content={heroPost.content}
+            authorName={heroPost.authorName}
+            authorImagePath={heroPost.authorImagePath}
+            slug={heroPost.slug}
+          />
+          <div className="flex flex-col items-center gap-4">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight text-[whitesmoke]">
+              More Stories
+            </h2>
+            <Link href="/blog">
+              <FaArrowRotateRight color="blue" />
+            </Link>
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );
