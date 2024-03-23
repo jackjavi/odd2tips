@@ -44,7 +44,7 @@ const Navbar = () => {
         Predictions
       </Link>
       <Link
-        href="/news"
+        href="/blog"
         scroll={false}
         className="block px-4 py-2 rounded-md hover:bg-green-700 transition-all ease-in-out duration-200 md:text-white md:hover:bg-transparent"
         onClick={() => setIsModalOpen(false)}
