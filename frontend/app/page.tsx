@@ -15,8 +15,8 @@ const Home = () => {
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 bg-gradient-to-r from-green-500 to-blue-600 bg-opacity-50 bg-cover bg-center bg-no-repeat rounded-lg p-6 shadow-lg">
-            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8 animate-pulse">
-              Odd2Tips
+            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8 animate-pulse text-[whitesmoke]">
+              ODD2TIPS
             </h1>
             <p className="mt-4 text-xl text-[whitesmoke] animate-pulse">
               The ultimate sports prediction platform
