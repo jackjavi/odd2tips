@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { logout } from "../utils/auth";
+import { ImMenu } from "react-icons/im";
 
 const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -26,9 +27,11 @@ const Navbar = () => {
   return (
     <nav className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-4 shadow-lg relative flex justify-center h-[15vh]">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-xl md:text-2xl font-bold">Odd2Tips</div>
-        <button onClick={toggleModal} className="md:hidden z-30">
-          Menu
+        <div className="text-xl md:text-2xl font-bold text-blue-700 font-mono">
+          Odd2Tips
+        </div>
+        <button onClick={toggleModal} className="md:hidden z-30 text-gray-700 ">
+          <ImMenu />
         </button>
         {isModalOpen && (
           <div
