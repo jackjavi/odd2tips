@@ -1,11 +1,29 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { FaArrowRotateRight } from "react-icons/fa6";
 import Chat from "./Components/Chat";
 import Navbar from "./Components/Navbar";
 // import SportsMonk from "./Components/SportsMonk";
 import Footer from "./Components/Footer";
 import Daily2Odds from "./Components/Daily2Odds";
+import { HeroPost } from "./blog/_components/hero-post";
+import { getAllPosts } from "@/lib/api";
+import Link from "next/link";
 
 const Home = () => {
+  const [allPosts, setAllPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const posts = await getAllPosts();
+      setAllPosts(posts);
+    };
+
+    fetchPosts();
+  }, []);
+
+  const heroPost = allPosts.length > 0 ? allPosts[0] : null;
   return (
     <>
       <Navbar />
@@ -47,6 +65,35 @@ const Home = () => {
             <div className="flex flex-col md:flex-row gap-8 mt-8 items-center justify-center">
               <div className="md:w-1/2">
                 <Chat />
+                {heroPost && (
+                  <div className="bg-slate-800 p-4 rounded-md my-8 ">
+                    <HeroPost
+                      title={heroPost.title}
+                      coverImagePath={heroPost.coverImagePath}
+                      date={new Date(heroPost.date).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }
+                      )}
+                      excerpt={heroPost.content.substring(0, 200)}
+                      content={heroPost.content}
+                      authorName={heroPost.authorName}
+                      authorImagePath={heroPost.authorImagePath}
+                      slug={heroPost.slug}
+                    />
+                    <div className="flex flex-col items-center gap-4">
+                      <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
+                        More Stories
+                      </h2>
+                      <Link href="/blog">
+                        <FaArrowRotateRight color="blue" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
