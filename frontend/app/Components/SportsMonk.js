@@ -5,6 +5,7 @@ import axios from "axios";
 
 const SportsMonk = () => {
   const [fixtures, setFixtures] = useState([]);
+  const BASE_URL = `https://odd2tips.onrender.com/api/`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,7 +13,7 @@ const SportsMonk = () => {
         const token = JSON.parse(localStorage.getItem("token"));
         console.log("Token: ", token);
 
-        const response = await axios.get("http://localhost:8888/api/fixtures", {
+        const response = await axios.get(`${BASE_URL}fixtures`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -8,19 +8,17 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const messagesEndRef = useRef(null);
+  const BASE_URL = `https://odd2tips.onrender.com/api/`;
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const token = JSON.parse(localStorage.getItem("token"));
-        const response = await axios.get(
-          "http://localhost:8888/api/chat/messages",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${BASE_URL}chat/messages`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setMessages(response.data);
       } catch (error) {

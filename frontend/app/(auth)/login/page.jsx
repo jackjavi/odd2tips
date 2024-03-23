@@ -11,14 +11,15 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const BASE_URL = `https://odd2tips.onrender.com/api/`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8888/api/auth/login",
-        { email, password }
-      );
+      const response = await axios.post(`${BASE_URL}auth/login`, {
+        email,
+        password,
+      });
       localStorage.setItem("token", JSON.stringify(response.data.token));
       router.push("/");
     } catch (err) {

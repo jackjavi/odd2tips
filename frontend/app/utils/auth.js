@@ -2,10 +2,12 @@ import axios from "axios";
 
 export const logout = async () => {
   const token = localStorage.getItem("token");
+  const BASE_URL = `https://odd2tips.onrender.com/api/`;
+
   if (token) {
     try {
       await axios.post(
-        "http://localhost:8888/api/auth/logout",
+        `${BASE_URL}auth/logout`,
         {},
         {
           headers: {

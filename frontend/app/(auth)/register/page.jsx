@@ -11,14 +11,15 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const BASE_URL = `https://odd2tips.onrender.com/api/`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8888/api/auth/register",
-        { email, password }
-      );
+      const response = await axios.post(`${BASE_URL}}auth/register`, {
+        email,
+        password,
+      });
 
       localStorage.setItem("token", JSON.stringify(response.data.token));
       alert(`Registration successful. Please log in.`);

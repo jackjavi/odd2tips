@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Post } from "@/interfaces/post";
 
-const BASE_URL = "http://localhost:8888/api/blog";
+const BASE_URL = `https://odd2tips.onrender.com/api/`;
 
 function getAuthorizationHeader() {
   const tokenString = localStorage.getItem("token");
@@ -21,7 +21,9 @@ function getAuthorizationHeader() {
 export async function getAllPosts(): Promise<Post[]> {
   try {
     const headers = getAuthorizationHeader();
-    const response = await axios.get(`${BASE_URL}/posts`);
+    console.log(BASE_URL);
+    const response = await axios.get(`${BASE_URL}blog/posts`);
+
     return response.data;
   } catch (error) {
     console.error("Error fetching posts:", error);
@@ -32,7 +34,7 @@ export async function getAllPosts(): Promise<Post[]> {
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
     const headers = getAuthorizationHeader();
-    const response = await axios.get(`${BASE_URL}/posts/${slug}`, { headers });
+    const response = await axios.get(`${BASE_URL}blog/posts/${slug}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching post by slug (${slug}):`, error);
