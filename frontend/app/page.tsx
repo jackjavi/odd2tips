@@ -3,6 +3,7 @@ import Chat from "./Components/Chat";
 import Navbar from "./Components/Navbar";
 import SportsMonk from "./Components/SportsMonk";
 import Footer from "./Components/Footer";
+import Daily2Odds from "./Components/Daily2Odds";
 
 const Home = () => {
   return (
@@ -31,6 +32,9 @@ const Home = () => {
           </div>
 
           <div>
+            <div>
+              <Daily2Odds />
+            </div>
             <div className="flex flex-col md:flex-row gap-8 mt-8">
               <div className="md:w-1/2">
                 <SportsMonk />
