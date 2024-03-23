@@ -1,5 +1,3 @@
-// components/Daily2Odds.tsx
-
 import React from "react";
 import { GameData } from "@/interfaces/gameData";
 import { format } from "date-fns";
@@ -39,20 +37,22 @@ const Daily2Odds: React.FC = () => {
           {format(defaultDate, "iiii, MMMM do, yyyy")}
         </p>
       </div>
-      {games.map((game, index) => (
+      {games.map((game) => (
         <div
-          key={index}
-          className="flex justify-between items-center border-b border-gray-700 p-2 hover:bg-gray-700 transition-colors"
+          key={game.id}
+          className="grid grid-cols-12 items-center border-b border-gray-700 p-2 hover:bg-gray-700 transition-colors"
         >
-          <div className="flex items-center">
-            <span className="text-xs font-medium mr-2">
+          <div className="col-span-3">
+            <span className="text-xs font-medium">
               {format(new Date(game.startTime), "MMMM d p")}
             </span>
+          </div>
+          <div className="col-span-6 flex ">
             <span className="font-semibold">{game.homeTeam}</span>
             <span className="mx-2">vs</span>
             <span className="font-semibold"> {game.awayTeam}</span>
           </div>
-          <div className="flex items-center justify-center">
+          <div className="col-span-3 flex justify-end">
             <span className="w-12 text-center text-sm bg-blue-500 rounded-full py-1">
               {game.odd.toFixed(2)}
             </span>
