@@ -30,7 +30,7 @@ const totalOdds = games.reduce(
 
 const Daily2Odds: React.FC = () => {
   return (
-    <div className="bg-gray-800 p-4 text-white rounded-lg">
+    <div className="bg-slate-800 p-4 text-white rounded-lg">
       <div className="mb-4">
         <h2 className="text-xl font-bold text-center mb-2">DAILY 2 ODDS</h2>
         <p className="text-center text-sm">

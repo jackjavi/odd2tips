@@ -83,7 +83,15 @@ const Navbar = () => {
     <nav className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-4 shadow-lg relative flex justify-center h-[15vh]">
       <div className="container mx-auto flex justify-between items-center">
         <div>
-          <Image src="/logo.png" alt="Logo-SVG" width={70} height={70} />
+          <Link href="/">
+            <Image
+              src="/logo.png"
+              className="cursor-pointer"
+              alt="Logo-SVG"
+              width={70}
+              height={70}
+            />
+          </Link>
         </div>
         {/*<div className="text-xl md:text-2xl font-bold text-blue-700 font-mono">
           Odd2Tips

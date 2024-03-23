@@ -36,7 +36,7 @@ const PostPage = () => {
       <Header />
       <main>
         <Container>
-          <article className="mb-32 mt-4">
+          <article className="pb-32 pt-4">
             <PostHeader
               title={post.title}
               coverImage={post.coverImagePath}

@@ -32,8 +32,8 @@ export function PostPreview({
         />
       </div>
       <h3 className="text-3xl mb-3 leading-snug">
-        <Link href={`/posts/${slug}`}>
-          <a className="hover:underline">{title}</a>
+        <Link className="hover:underline" href={`/posts/${slug}`}>
+          {title}
         </Link>
       </h3>
       <div className="text-lg mb-4">
@@ -46,7 +46,7 @@ export function PostPreview({
           alt={authorName}
           className="w-10 h-10 rounded-full mr-4"
         />
-        <span className="text-gray-700">{authorName}</span>
+        <span className="text-slate-400">{authorName}</span>
       </div>
     </div>
   );

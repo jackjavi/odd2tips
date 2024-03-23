@@ -2,20 +2,20 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white h-full md:h-[30vh]">
+    <footer className="bg-slate-800 text-white h-full md:h-[30vh]">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Section */}
-          <div>
+          <div className="flex flex-col text-slate-200 justify-center items-center">
             <Image src="/logo.png" alt="Logo-SVG" width={100} height={100} />
-            <p>
+            <p className="text-center">
               Your premier destination for sports predictions and live chat.
               Engage, predict, and win!
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="flex flex-col text-slate-200 justify-center items-center">
             <h2 className="font-bold text-lg mb-2">Quick Links</h2>
             <ul>
               <li>
@@ -42,7 +42,7 @@ const Footer = () => {
           </div>
 
           {/* Social Media */}
-          <div>
+          <div className="flex flex-col text-slate-200 justify-center items-center">
             <h2 className="font-bold text-lg mb-2">Follow Us</h2>
             <div className="flex space-x-4">
               <a
@@ -73,7 +73,7 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="flex flex-col text-slate-200 justify-center items-center">
             <h2 className="font-bold text-lg mb-2">Contact Us</h2>
             <ul>
               <li>Email: odd2tips@gmail.com</li>
