@@ -37,6 +37,7 @@ const Navbar = () => {
       </Link>
       <Link
         href="/predictions"
+        scroll={false}
         className="block px-4 py-2 rounded-md hover:bg-blue-700 transition-all ease-in-out duration-200 md:text-white md:hover:bg-transparent"
         onClick={() => setIsModalOpen(false)}
       >
@@ -44,6 +45,7 @@ const Navbar = () => {
       </Link>
       <Link
         href="/news"
+        scroll={false}
         className="block px-4 py-2 rounded-md hover:bg-green-700 transition-all ease-in-out duration-200 md:text-white md:hover:bg-transparent"
         onClick={() => setIsModalOpen(false)}
       >
@@ -51,6 +53,7 @@ const Navbar = () => {
       </Link>
       <Link
         href="/chat"
+        scroll={false}
         className="block px-4 py-2 rounded-md hover:bg-blue-700 transition-all ease-in-out duration-200 md:text-white md:hover:bg-transparent"
         onClick={() => setIsModalOpen(false)}
       >
@@ -66,6 +69,7 @@ const Navbar = () => {
       ) : (
         <Link
           href="/login"
+          scroll={false}
           className="block px-4 py-2 rounded-md bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-200 md:text-white md:bg-transparent md:hover:bg-transparent"
           onClick={() => setIsModalOpen(false)}
         >
