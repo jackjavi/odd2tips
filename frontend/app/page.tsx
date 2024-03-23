@@ -1,7 +1,7 @@
 import React from "react";
 import Chat from "./Components/Chat";
 import Navbar from "./Components/Navbar";
-import SportsMonk from "./Components/SportsMonk";
+// import SportsMonk from "./Components/SportsMonk";
 import Footer from "./Components/Footer";
 import Daily2Odds from "./Components/Daily2Odds";
 
@@ -35,14 +35,14 @@ const Home = () => {
             <div>
               <Daily2Odds />
             </div>
-            <div className="flex flex-col md:flex-row gap-8 mt-8">
+            {/*<div className="flex flex-col md:flex-row gap-8 mt-8">
               <div className="md:w-1/2">
                 <SportsMonk />
               </div>
               <div className="md:w-1/2">
                 <SportsMonk />
               </div>
-            </div>
+  </div>*/}
 
             <div className="flex flex-col md:flex-row gap-8 mt-8 items-center justify-center">
               <div className="md:w-1/2">
