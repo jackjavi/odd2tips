@@ -32,7 +32,7 @@ export function HeroPost({
           className="cover-image"
         />
       </div>
-      <h3 className="md:text-4xl text-lg md:font-bold font-semibold leading-snug">
+      <h3 className="md:text-4xl text-lg md:font-bold font-semibold leading-snug text-[whitesmoke]">
         <Link className="hover:underline" href={`/posts/${slug}`}>
           {title}
         </Link>
