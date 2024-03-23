@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Alert from "@/app/blog/_components/alert";
 import Container from "@/app/blog/_components/container";
-import Header from "@/app/blog/_components/header";
+import Header from "@/app/Components/Navbar";
+import Footer from "@/app/Components/Footer";
 import { PostBody } from "@/app/blog/_components/post-body";
 import { PostHeader } from "@/app/blog/_components/post-header";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
@@ -31,20 +32,23 @@ const PostPage = () => {
   const content = post.content;
 
   return (
-    <main>
-      <Container>
-        <Header />
-        <article className="mb-32">
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImagePath}
-            date={new Date(post.date).toLocaleDateString()}
-            author={{ name: post.authorName, picture: post.authorImagePath }}
-          />
-          <PostBody content={content} />
-        </article>
-      </Container>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Container>
+          <article className="mb-32 mt-4">
+            <PostHeader
+              title={post.title}
+              coverImage={post.coverImagePath}
+              date={new Date(post.date).toLocaleDateString()}
+              author={{ name: post.authorName, picture: post.authorImagePath }}
+            />
+            <PostBody content={content} />
+          </article>
+        </Container>
+      </main>
+      <Footer />
+    </>
   );
 };
 
