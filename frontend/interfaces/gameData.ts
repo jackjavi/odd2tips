@@ -1,4 +1,4 @@
-export type GameData {
+export type GameData = {
   id: number;
   oddTitle: string;
   startTime: string;
@@ -6,4 +6,4 @@ export type GameData {
   awayTeam: string;
   prediction: string;
   odd: number;
-}
+};
