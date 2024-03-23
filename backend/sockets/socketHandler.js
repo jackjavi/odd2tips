@@ -25,17 +25,13 @@ const socketHandler = (io) => {
         return;
       }
     } else {
-      console.log("No token provided, disconnecting socket.");
-      socket.disconnect(true);
-      return;
-    }
-
-    socket.on("chat message", async (msgContent) => {
       if (!socket.userId) {
         console.log("No user ID found for socket, ignoring message.");
         return;
       }
+    }
 
+    socket.on("chat message", async (msgContent) => {
       try {
         const message = new Message({
           user: socket.userId,
