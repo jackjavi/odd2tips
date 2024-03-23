@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white h-full md:h-[30vh]">
@@ -5,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Section */}
           <div>
-            <h2 className="font-bold text-lg mb-2">Odd2Tips</h2>
+            <Image src="/logo.png" alt="Logo-SVG" width={100} height={100} />
             <p>
               Your premier destination for sports predictions and live chat.
               Engage, predict, and win!

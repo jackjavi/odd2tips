@@ -15,11 +15,11 @@ const Home = () => {
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 bg-white bg-opacity-75 rounded-lg p-6 shadow-lg">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 animate-pulse">
-              Welcome to Odd2Tips
+            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8 animate-bounce">
+              Odd2Tips
             </h1>
-            <p className="mt-4 text-xl text-gray-700">
-              The ultimate sports prediction platform.
+            <p className="mt-4 text-xl text-gray-700 animate-bounce">
+              The ultimate sports prediction platform
             </p>
             <div className="mt-4">
               <a
