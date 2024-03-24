@@ -11,6 +11,7 @@ import { HeroPost } from "./blog/_components/hero-post";
 import { getAllPosts } from "@/lib/api";
 import Link from "next/link";
 import { Post } from "@/interfaces/post";
+import Container from "@/app/blog/_components/container";
 
 const Home = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -72,30 +73,32 @@ const Home = () => {
         </div>
       </div>
       {heroPost && (
-        <div className="bg-slate-800 p-4 py-8 ">
-          <HeroPost
-            title={heroPost.title}
-            coverImagePath={heroPost.coverImagePath}
-            date={new Date(heroPost.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-            excerpt={heroPost.content.substring(0, 200)}
-            content={heroPost.content}
-            authorName={heroPost.authorName}
-            authorImagePath={heroPost.authorImagePath}
-            slug={heroPost.slug}
-          />
-          <div className="flex flex-col items-center gap-4">
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight text-[whitesmoke]">
-              More Stories
-            </h2>
-            <Link href="/blog">
-              <FaArrowRotateRight color="blue" />
-            </Link>
+        <Container>
+          <div className="py-8 ">
+            <HeroPost
+              title={heroPost.title}
+              coverImagePath={heroPost.coverImagePath}
+              date={new Date(heroPost.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+              excerpt={heroPost.content.substring(0, 200)}
+              content={heroPost.content}
+              authorName={heroPost.authorName}
+              authorImagePath={heroPost.authorImagePath}
+              slug={heroPost.slug}
+            />
+            <div className="flex flex-col items-center gap-4 py-24">
+              <h2 className="text-3xl md:text-7xl font-bold tracking-tighter leading-tight text-[whitesmoke]">
+                More Stories
+              </h2>
+              <Link href="/blog">
+                <FaArrowRotateRight color="blue" size={28} />
+              </Link>
+            </div>
           </div>
-        </div>
+        </Container>
       )}
       <Footer />
     </>
