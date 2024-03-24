@@ -90,7 +90,7 @@ const Home = () => {
               slug={heroPost.slug}
             />
             <div className="flex flex-col items-center gap-4 py-24">
-              <h2 className="text-3xl md:text-7xl font-bold tracking-tighter leading-tight text-[whitesmoke]">
+              <h2 className="text-3xl md:text-7xl font-bold tracking-tighter leading-tight text-slate-800">
                 More Stories
               </h2>
               <Link href="/blog">
