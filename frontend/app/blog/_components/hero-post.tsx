@@ -1,5 +1,4 @@
 import React from "react";
-import DateFormatter from "./date-formatter";
 import Link from "next/link";
 import { Post } from "@/interfaces/post";
 
@@ -21,8 +20,6 @@ export function HeroPost({
     ? authorImagePath
     : `${process.env.NEXT_PUBLIC_BASE_PATH}${authorImagePath}`;
 
-  console.log("fullCoverImagePath", fullCoverImagePath);
-
   return (
     <section className="hero-post">
       <div className="mb-8">
@@ -38,7 +35,7 @@ export function HeroPost({
         </Link>
       </h3>
       <div className="text-lg mb-4">
-        <DateFormatter dateString={date} />
+        {date}
         <p className="text-slate-500">{excerpt}</p>
         <div className="author flex items-center mt-4">
           <img

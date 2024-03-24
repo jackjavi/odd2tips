@@ -40,7 +40,11 @@ const PostPage = () => {
             <PostHeader
               title={post.title}
               coverImage={post.coverImagePath}
-              date={new Date(post.date).toLocaleDateString()}
+              date={new Date(post.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
               author={{ name: post.authorName, picture: post.authorImagePath }}
             />
             <PostBody content={content} />
