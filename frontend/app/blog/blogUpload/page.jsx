@@ -12,6 +12,7 @@ export default function BlogUpload() {
   const [authorName, setAuthorName] = useState("");
   const [coverImage, setCoverImage] = useState(null);
   const [authorImage, setAuthorImage] = useState(null);
+  const BASE_URL = `https://odd2tips.onrender.com/api/`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,16 +31,12 @@ export default function BlogUpload() {
         alert("Please login to upload a blog");
         return;
       }
-      const response = await axios.post(
-        "http://localhost:8888/api/blog/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.post(`${BASE_URL}blog/upload`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response.data);
       alert("Blog uploaded successfully");
       setTitle("");
