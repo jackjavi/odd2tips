@@ -3,8 +3,8 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="bg-black text-white h-full ">
-      <hr className="border-neutral-200 mb-8" />
       <div className="container mx-auto px-4 py-8">
+        <hr className="border-gray-700 mb-8" />
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Section */}
           <div className="flex flex-col text-slate-200 justify-center items-center">
