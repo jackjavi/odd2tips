@@ -16,7 +16,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${BASE_URL}}auth/register`, {
+      const response = await axios.post(`${BASE_URL}auth/register`, {
         email,
         password,
       });
