@@ -64,9 +64,10 @@ const Chat = () => {
       <div className="flex flex-col h-[50vh] max-w-lg mx-auto rounded-lg shadow overflow-hidden border border-gray-200">
         <div className="bg-gradient-to-r from-blue-600 to-teal-400 p-4 text-white font-semibold flex justify-between items-center">
           <span>Fan Zone</span>
-          <span className="bg-white text-blue-800 rounded-full px-3 py-1 text-xs font-bold">
-            Live
-          </span>
+          <div className="flex items-center bg-white text-blue-800 rounded-full px-3 py-1 text-xs font-bold">
+            <span className="text-sm md:text-md p-1">Live</span>
+            <span className="animate-pulse bg-red-500 rounded-full w-3 h-3 mr-2"></span>
+          </div>
         </div>
 
         <div
