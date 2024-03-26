@@ -42,44 +42,47 @@ const Daily2Odds: React.FC = () => {
   const totalOdds = games.reduce((acc, game) => acc * game.odd, 1);
 
   return (
-    <div className="bg-slate-800 p-4 text-white rounded-lg">
-      <div className="mb-4">
-        <h2 className="text-xl font-bold text-center mb-2">DAILY 2 ODDS</h2>
-        <p className="text-center text-sm">
+    <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 rounded-lg shadow-lg">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-center text-white mb-4">
+          DAILY 2 ODDS
+        </h2>
+        <p className="text-center text-md text-blue-200">
           {format(defaultDate, "iiii, MMMM do, yyyy")}
         </p>
       </div>
       {games.map((game) => (
         <div
           key={game._id}
-          className="border-b border-gray-700 p-2 hover:bg-gray-700 transition-colors"
+          className="border-b border-blue-300 p-4 hover:bg-blue-600 hover:bg-opacity-25 transition-colors rounded-lg mb-4"
         >
-          <div className="mb-2">
-            {/* Game title and start time */}
-            <span className="text-lg font-semibold">{game.gameTitle}</span>
-            <span className="ml-4 text-xs font-medium">
+          <div className="mb-4">
+            <span className="text-lg font-semibold text-yellow-200">
+              {game.gameTitle}
+            </span>
+            <span className="ml-4 text-sm font-medium text-blue-100">
               {format(new Date(game.startTime), "MMMM d, p")}
             </span>
           </div>
           <div className="flex justify-between items-center">
-            {/* Teams */}
             <div>
-              <span className="font-semibold">{game.homeTeam}</span>
-              <span className="mx-2">vs</span>
-              <span className="font-semibold">{game.awayTeam}</span>
+              <span className="font-semibold text-white">{game.homeTeam}</span>
+              <span className="mx-2 text-white">vs</span>
+              <span className="font-semibold text-white">{game.awayTeam}</span>
             </div>
-            {/* Prediction @ Odd */}
             <div>
-              <span className="text-sm">{`${
-                game.prediction
-              } @ ${game.odd.toFixed(2)}`}</span>
+              <span className="text-sm bg-yellow-400 text-gray-800 py-1 px-3 rounded-full">
+                {`${game.prediction} @ ${game.odd.toFixed(2)}`}
+              </span>
             </div>
           </div>
         </div>
       ))}
-      <div className="mt-4 p-2 text-right">
-        <span className="text-lg font-bold">Total Odds:</span>
-        <span className="text-lg"> {totalOdds.toFixed(2)}</span>
+      <div className="mt-4 p-4 text-right">
+        <span className="text-lg font-bold text-white">Total Odds:</span>
+        <span className="text-lg text-yellow-200 ml-2">
+          {totalOdds.toFixed(2)}
+        </span>
       </div>
     </div>
   );
