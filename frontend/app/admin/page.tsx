@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GameData } from "@/interfaces/gameData";
+import { useRouter } from "next/navigation";
 
 const AdminPage: React.FC = () => {
   const [gameData, setGameData] = useState<GameData[]>([]);
+  const router = useRouter();
   const [formData, setFormData] = useState<GameData>({
     gameTitle: "",
     predictionType: "",
@@ -30,10 +32,21 @@ const AdminPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const url = "http://localhost:8888/api/games/gameData";
+    const BASE_URL = "http://localhost:8888/api/";
 
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.log("No token found, redirecting to login...");
+
+      return;
+    }
     try {
-      const response = await axios.post(url, formData);
+      const response = await axios.post(`${BASE_URL}games/gameData`, formData, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      });
 
       console.log("Form submission successful:", response.data);
     } catch (error) {

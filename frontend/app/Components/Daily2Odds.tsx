@@ -4,17 +4,35 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GameData } from "@/interfaces/gameData";
 import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 
 const Daily2Odds: React.FC = () => {
   const [games, setGames] = useState<GameData[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchGames = async () => {
+      const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+      const token = localStorage.getItem("token");
+      console.log(process.env.NEXT_PUBLIC_API_URL);
+
+      if (!token) {
+        console.log("No token found, redirecting to login...");
+
+        return;
+      }
       try {
         const response = await axios.get<GameData[]>(
-          "http://localhost:8888/api/games"
+          "http://localhost:8888/api/games/gameData",
+          {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+          }
         );
         setGames(response.data);
+        console.log("Games data fetched successfully:", response.data);
       } catch (error) {
         console.error("Error fetching games data", error);
       }

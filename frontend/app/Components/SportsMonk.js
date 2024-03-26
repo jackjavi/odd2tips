@@ -11,7 +11,6 @@ const SportsMonk = () => {
     const fetchData = async () => {
       try {
         const token = JSON.parse(localStorage.getItem("token"));
-        console.log("Token: ", token);
 
         const response = await axios.get(`${BASE_URL}fixtures`, {
           headers: {
