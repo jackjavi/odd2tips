@@ -3,7 +3,10 @@ const { promisify } = require("util");
 
 const RedisClient = class RedisClient {
   constructor() {
-    this.myClient = createClient();
+    this.myClient = createClient({
+      url: process.env.REDIS_URL,
+      legacyMode: true,
+    });
     this.myClient.on("error", (error) => {
       console.error("Redis Error:", error);
     });
