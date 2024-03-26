@@ -24,7 +24,7 @@ const Daily2Odds: React.FC = () => {
       }
       try {
         const response = await axios.get<GameData[]>(
-          "http://localhost:8888/api/games/gameData",
+          "https://odd2tips.onrender.com/api/games/gameData",
           {
             headers: {
               Authorization: `Bearer ${JSON.parse(token)}`,
