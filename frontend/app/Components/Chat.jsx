@@ -61,14 +61,16 @@ const Chat = () => {
   return (
     <>
       {showLoginModal && <LoginModal onClose={handleModalClose} />}
-      <div className="flex flex-col h-[50vh] max-w-md mx-auto border border-gray-300 rounded-lg shadow-lg overflow-hidden">
-        <div className="bg-green-600 p-4 text-white text-lg font-bold flex justify-between items-center">
+      <div className="flex flex-col h-[50vh] max-w-lg mx-auto rounded-lg shadow overflow-hidden border border-gray-200">
+        <div className="bg-gradient-to-r from-blue-600 to-teal-400 p-4 text-white font-semibold flex justify-between items-center">
           <span>Fan Zone</span>
-          <span className="text-sm">Live</span>
+          <span className="bg-white text-blue-800 rounded-full px-3 py-1 text-xs font-bold">
+            Live
+          </span>
         </div>
 
         <div
-          className="flex-1 p-4 overflow-y-auto bg-gray-100"
+          className="flex-1 p-4 overflow-y-auto"
           style={{
             backgroundImage: "url('/football_bg.jpg')",
             backgroundSize: "cover",
@@ -78,7 +80,7 @@ const Chat = () => {
             {messages.map((msg, index) => (
               <li
                 key={index}
-                className="bg-white text-gray-900 rounded-md p-2 mb-2 shadow"
+                className="bg-white text-green-600 rounded-lg p-3 mb-2 shadow-sm"
               >
                 {msg.content}
               </li>
@@ -87,17 +89,22 @@ const Chat = () => {
           </ul>
         </div>
 
-        <form onSubmit={handleSendMessage} className="p-4 bg-white border-t">
-          <input
-            className="border p-2 w-full rounded-md text-gray-900"
-            type="text"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Type your message..."
-          />
-          <button type="submit" className="hidden">
-            Send
-          </button>
+        <form onSubmit={handleSendMessage} className="p-4 bg-gray-50">
+          <div className="flex items-center space-x-3">
+            <input
+              className="flex-1 border p-2 w-full rounded-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              type="text"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              placeholder="Type your message here..."
+            />
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg shadow"
+            >
+              Send
+            </button>
+          </div>
         </form>
       </div>
     </>
