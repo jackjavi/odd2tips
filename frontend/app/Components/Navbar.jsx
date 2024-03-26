@@ -71,7 +71,7 @@ const Navbar = () => {
           <Link
             href="/login"
             scroll={false}
-            className="block px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-green-600 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+            className="block px-4 py-2 rounded-md hover:bg-blue-500 text-white bg-green-600 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
             onClick={() => setIsModalOpen(false)}
           >
             Login
