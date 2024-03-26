@@ -25,12 +25,11 @@ const Navbar = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  // Separate navigation links into a variable for cleaner JSX
   const navLinks = (
     <>
       <Link
         href="/"
-        className="block px-4 py-2 rounded-md hover:bg-green-700 transition-all ease-in-out duration-200 md:text-white md:hover:bg-transparent"
+        className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Home
@@ -38,15 +37,16 @@ const Navbar = () => {
       <Link
         href="/predictions"
         scroll={false}
-        className="block px-4 py-2 rounded-md hover:bg-blue-700 transition-all ease-in-out duration-200 md:text-white md:hover:bg-transparent"
+        className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Predictions
       </Link>
+
       <Link
         href="/blog"
         scroll={false}
-        className="block px-4 py-2 rounded-md hover:bg-green-700 transition-all ease-in-out duration-200 md:text-white md:hover:bg-transparent"
+        className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg"
         onClick={() => setIsModalOpen(false)}
       >
         News
@@ -54,7 +54,7 @@ const Navbar = () => {
       <Link
         href="/chat"
         scroll={false}
-        className="block px-4 py-2 rounded-md hover:bg-blue-700 transition-all ease-in-out duration-200 md:text-white md:hover:bg-transparent"
+        className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg"
         onClick={() => setIsModalOpen(false)}
       >
         Chat
@@ -62,19 +62,29 @@ const Navbar = () => {
       {isAuthenticated ? (
         <button
           onClick={handleLogout}
-          className="block px-4 py-2 rounded-md bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-200 md:text-white md:bg-transparent md:hover:bg-transparent"
+          className="block px-4 py-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
         >
           Logout
         </button>
       ) : (
-        <Link
-          href="/login"
-          scroll={false}
-          className="block px-4 py-2 rounded-md bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-200 md:text-white md:bg-transparent md:hover:bg-transparent"
-          onClick={() => setIsModalOpen(false)}
-        >
-          Login
-        </Link>
+        <>
+          <Link
+            href="/login"
+            scroll={false}
+            className="block px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-600 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+            onClick={() => setIsModalOpen(false)}
+          >
+            Login
+          </Link>
+          <Link
+            href="/register"
+            scroll={false}
+            className="block px-4 py-2 mt-2 md:mt-0 rounded-md bg-blue-500 text-white hover:bg-yellow-600 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+            onClick={() => setIsModalOpen(false)}
+          >
+            Register
+          </Link>
+        </>
       )}
     </>
   );
@@ -93,9 +103,6 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        {/*<div className="text-xl md:text-2xl font-bold text-blue-700 font-mono">
-          Odd2Tips
-  </div>*/}
         <button
           onClick={toggleModal}
           className="md:hidden z-30 text-white focus:outline-none"
@@ -106,9 +113,14 @@ const Navbar = () => {
         {isModalOpen && (
           <div
             className={`fixed top-0 right-0 md:hidden w-3/4 bg-white text-black p-4 rounded-md shadow-lg z-20 transition-transform duration-300 ease-in-out ${
-              isModalOpen ? "translate-x-0" : "translate-x-full"
+              isModalOpen
+                ? "translate-x-0 bg-cover bg-no-repeat bg-center"
+                : "translate-x-full"
             }`}
-            style={{ marginTop: `calc(10vh + 1rem)` }}
+            style={{
+              marginTop: `calc(10vh + 1rem)`,
+              backgroundImage: "url('/logo.png')",
+            }}
           >
             {navLinks}
           </div>
