@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const logout = async () => {
-  const token = localStorage.getItem("token");
+  const token = JSON.parse(localStorage.getItem("token"));
   const BASE_URL = `https://odd2tips.onrender.com/api/`;
 
   if (token) {
@@ -15,12 +15,11 @@ export const logout = async () => {
           },
         }
       );
+      localStorage.removeItem("token");
+
+      window.location.href = "/login";
     } catch (error) {
-      console.error("Logout failed:", error);
+      console.error("Logout failed:", error.message);
     }
-
-    localStorage.removeItem("token");
-
-    window.location.href = "/login";
   }
 };
