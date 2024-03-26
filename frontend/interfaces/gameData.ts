@@ -1,6 +1,7 @@
 export type GameData = {
-  id: number;
-  oddTitle: string;
+  _id?: string;
+  gameTitle: string;
+  predictionType: string;
   startTime: string;
   homeTeam: string;
   awayTeam: string;
