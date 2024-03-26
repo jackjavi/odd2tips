@@ -47,10 +47,10 @@ app.use("/api", AppController);
 app.use("/api/chat", chatRoutes);
 app.use("/api/blog", uploadRoutes);
 app.use("/api/blog", blogRoutes);
-app.use("/api/games", gameDataRoutes);
 
 const authenticate = require("./middleware/authenticate");
 app.use("/api/", authenticate, sportMonksRoutes);
+app.use("/api/games", authenticate, gameDataRoutes);
 
 socketHandler(io);
 
