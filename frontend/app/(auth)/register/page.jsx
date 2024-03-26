@@ -21,7 +21,7 @@ export default function Register() {
         password,
       });
 
-      localStorage.setItem("token", JSON.stringify(response.data.token));
+      // localStorage.setItem("token", JSON.stringify(response.data.token));
       alert(`Registration successful. Please log in.`);
       router.push("/login");
     } catch (err) {
