@@ -32,7 +32,7 @@ const AdminPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const BASE_URL = "http://localhost:8888/api/";
+    const BASE_URL = "https://odd2tips.onrender.com/api/";
 
     const token = localStorage.getItem("token");
 
