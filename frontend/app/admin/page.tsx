@@ -48,7 +48,7 @@ const AdminPage: React.FC = () => {
         },
       });
 
-      console.log("Form submission successful:", response.data);
+      alert(`Form submission successful: ${response.data.gameTitle}`);
       router.push("/admin");
     } catch (error) {
       console.error("Failed to submit form:", error);
