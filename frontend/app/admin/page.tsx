@@ -49,6 +49,7 @@ const AdminPage: React.FC = () => {
       });
 
       console.log("Form submission successful:", response.data);
+      router.push("/admin");
     } catch (error) {
       console.error("Failed to submit form:", error);
     }
