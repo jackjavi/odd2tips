@@ -21,7 +21,7 @@ export default function Login() {
         password,
       });
       localStorage.setItem("token", JSON.stringify(response.data.token));
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("user", JSON.stringify(response.data.userData));
       router.push("/");
     } catch (err) {
       setError(err.response?.data.error || "Error logging in");
