@@ -1,16 +1,32 @@
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const User = require("../models/User");
-const userService = require("../services/userService");
 const tokenService = require("../services/tokenService");
 const redisClient = require("../utils/redis");
+const cloudinary = require("../utils/cloudinaryConfig");
 
 exports.register = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
+  console.log(email, password, name);
+  let profilePictureUrl = null;
+
   try {
-    const user = await userService.createUser(email, password);
-    const token = tokenService.generateToken({ id: user._id.toString() });
-    res.json({ user, token });
+    if (req.files) {
+      profilePictureUrl = req.files.profilePicture[0].path;
+      const result = await cloudinary.uploader.upload(profilePictureUrl);
+      profilePictureUrl = result.url;
+    }
+
+    const user = new User({
+      email,
+      password,
+      name,
+      profilePicture: profilePictureUrl,
+    });
+    await user.save();
+
+    // const token = tokenService.generateToken({ id: user._id.toString() });
+    res.json({ user });
   } catch (error) {
     console.error("Register error:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -40,6 +56,8 @@ exports.login = async (req, res) => {
     const userData = {
       email: user.email,
       id: user._id.toString(),
+      name: user.name,
+      profilePicture: user.profilePicture,
     };
 
     res.status(200).json({ token, userData });

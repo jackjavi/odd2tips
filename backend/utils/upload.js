@@ -20,10 +20,11 @@ const upload = multer({
 }).fields([
   { name: "coverImage", maxCount: 1 },
   { name: "authorImage", maxCount: 1 },
+  { name: "profilePicture", maxCount: 1 },
 ]);
 
 function checkFileType(file, cb) {
-  const filetypes = /jpeg|jpg|png|gif|webp/;
+  const filetypes = /jpeg|jpg|png|gif|svg|webp/;
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   const mimetype = filetypes.test(file.mimetype);
 
