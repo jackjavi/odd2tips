@@ -1,5 +1,6 @@
 const { verifyToken } = require("../services/tokenService");
 const Message = require("../models/Message");
+const User = require("../models/User");
 
 const socketHandler = (io) => {
   io.on("connection", (socket) => {
@@ -33,8 +34,16 @@ const socketHandler = (io) => {
 
     socket.on("chat message", async (msgContent) => {
       try {
+        const user = await User.findById(socket.userId);
+        if (!user) {
+          console.error("User not found");
+          return;
+        }
+
         const message = new Message({
-          user: socket.userId,
+          user: user._id,
+          userName: user.name,
+          userProfilePicture: user.profilePicture,
           content: msgContent,
         });
         await message.save();

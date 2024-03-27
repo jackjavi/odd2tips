@@ -81,11 +81,18 @@ const Chat = () => {
             {messages.map((msg, index) => (
               <li
                 key={index}
-                className="bg-white text-green-600 rounded-lg p-3 mb-2 shadow-sm"
+                className="bg-white text-gray-900 rounded-md p-2 mb-2 shadow flex items-center"
               >
+                <img
+                  src={msg.profilePicture}
+                  alt="Profile"
+                  className="rounded-full w-8 h-8 mr-2"
+                />
+                <span className="font-semibold mr-2">{msg.userName}:</span>
                 {msg.content}
               </li>
             ))}
+
             <div ref={messagesEndRef} />
           </ul>
         </div>
