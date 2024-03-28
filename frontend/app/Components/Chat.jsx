@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { connectSocket, sendMessage, useSocket } from "../utils/socket";
 import LoginModal from "./LoginModal";
+import { CgProfile } from "react-icons/cg";
 
 const Chat = () => {
   const [token, setToken] = useState(null);
@@ -80,17 +81,28 @@ const Chat = () => {
         >
           <ul>
             {messages.map((msg, index) => (
-              <li
-                key={index}
-                className="bg-white text-gray-900 rounded-md p-2 mb-2 shadow flex items-center"
-              >
-                <img
-                  src={msg.userProfilePicture}
-                  alt="Profile"
-                  className="rounded-full w-8 h-8 mr-2"
-                />
-                <span className="font-semibold mr-2">{msg.userName}:</span>
-                {msg.content}
+              <li key={index} className="bg-white rounded-md mb-2 shadow">
+                <div className="flex items-center p-2">
+                  {msg.userProfilePicture ? (
+                    <img
+                      src={msg.userProfilePicture}
+                      alt={msg.userName || "User"}
+                      className="rounded-full w-8 h-8 mr-2"
+                    />
+                  ) : (
+                    <CgProfile className="w-8 h-8 mr-2 text-blue-500" />
+                  )}
+                  <span className="font-semibold mr-2 text-blue-500">
+                    {msg.userName || msg.user}
+                  </span>
+                  <span className="ml-auto text-xs text-gray-500">
+                    {new Date(msg.createdAt).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
+                </div>
+                <div className="px-2 pb-2 text-gray-600">{msg.content}</div>
               </li>
             ))}
 
