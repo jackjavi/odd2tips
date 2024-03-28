@@ -22,7 +22,7 @@ const Daily2Odds: React.FC = () => {
 
     if (!token) {
       console.log("No token found, redirecting to login...");
-      // Implement redirect to login if needed
+
       return;
     }
 
