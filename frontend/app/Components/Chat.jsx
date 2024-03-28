@@ -120,6 +120,11 @@ const Chat = () => {
                   </span>
                   {msg.createdAt ? (
                     <span className="ml-auto text-xs text-gray-500">
+                      {new Date(msg.createdAt).toLocaleDateString("en-US", {
+                        month: "long",
+                        day: "numeric",
+                      })}{" "}
+                      at{" "}
                       {new Date(msg.createdAt).toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",
