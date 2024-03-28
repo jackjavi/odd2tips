@@ -18,20 +18,9 @@ const Daily2Odds: React.FC = () => {
   const BASE_URL = "https://odd2tips.onrender.com/api/";
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      console.log("No token found, redirecting to login...");
-
-      return;
-    }
-
     const fetchGames = async () => {
       const { data } = await axios.get<GameData[]>(
-        `${BASE_URL}games/gameDataCollect`,
-        {
-          headers: { Authorization: `Bearer ${JSON.parse(token)}` },
-        }
+        `${BASE_URL}games/gameDataCollect`
       );
       setGames(data);
     };
