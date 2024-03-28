@@ -28,7 +28,7 @@ const Daily2Odds: React.FC = () => {
 
     const fetchGames = async () => {
       const { data } = await axios.get<GameData[]>(
-        `${BASE_URL}games/gameData`,
+        `${BASE_URL}games/gameDataCollect`,
         {
           headers: { Authorization: `Bearer ${JSON.parse(token)}` },
         }
