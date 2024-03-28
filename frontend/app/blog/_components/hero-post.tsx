@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { Post } from "@/interfaces/post";
+import Image from "next/image";
+import cn from "classnames";
 
 type Props = Post;
 
@@ -23,10 +25,14 @@ export function HeroPost({
   return (
     <section className="hero-post">
       <div className="mb-8">
-        <img
+        <Image
           src={fullCoverImagePath}
           alt={`Cover Image for ${title}`}
-          className="cover-image"
+          className={cn("shadow-sm w-full", {
+            "hover:shadow-lg transition-shadow duration-200": slug,
+          })}
+          width={1300}
+          height={630}
         />
       </div>
       <h3 className="md:text-4xl text-lg md:font-bold font-semibold leading-snug text-[whitesmoke]">
