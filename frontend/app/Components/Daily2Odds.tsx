@@ -14,7 +14,7 @@ interface GameData {
 
 const Daily2Odds: React.FC = () => {
   const [games, setGames] = useState<GameData[]>([]);
-  const defaultDate = new Date(2024, 2, 23);
+  const defaultDate = new Date();
   const BASE_URL = "https://odd2tips.onrender.com/api/";
 
   useEffect(() => {
