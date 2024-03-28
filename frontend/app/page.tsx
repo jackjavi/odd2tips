@@ -89,7 +89,7 @@ const Home = () => {
               authorImagePath={heroPost.authorImagePath}
               slug={heroPost.slug}
             />
-            <div className="flex flex-col items-center gap-4 py-24">
+            <div className="flex flex-col items-center gap-4 md:py-24">
               <h2 className="text-3xl md:text-7xl font-bold tracking-tighter leading-tight text-[whitesmoke]">
                 More Stories
               </h2>
