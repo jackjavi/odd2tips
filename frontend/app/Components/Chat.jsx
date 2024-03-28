@@ -118,12 +118,18 @@ const Chat = () => {
                   <span className="font-semibold mr-2 text-blue-500">
                     {msg.userName || msg.user}
                   </span>
-                  <span className="ml-auto text-xs text-gray-500">
-                    {new Date(msg.createdAt).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </span>
+                  {msg.createdAt ? (
+                    <span className="ml-auto text-xs text-gray-500">
+                      {new Date(msg.createdAt).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                  ) : (
+                    <span className="ml-auto text-xs text-gray-500">
+                      A long time ago
+                    </span>
+                  )}
                 </div>
                 <div className="px-2 pb-2 text-gray-600">{msg.content}</div>
               </li>
