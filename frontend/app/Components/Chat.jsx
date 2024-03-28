@@ -10,6 +10,9 @@ const Chat = () => {
   const [token, setToken] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const { IoMdArrowDropdown } = require("react-icons/io");
   const [showLoginModal, setShowLoginModal] = useState(false);
   const messagesEndRef = useRef(null);
   const BASE_URL = `https://odd2tips.onrender.com/api/`;
@@ -18,20 +21,25 @@ const Chat = () => {
     const fetchMessages = async () => {
       try {
         setToken(JSON.parse(localStorage.getItem("token")));
-        const response = await axios.get(`${BASE_URL}chat/messages`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `http://localhost:8888/api/chat/messages?page=${currentPage}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-        setMessages(response.data);
-        console.log(response.data);
+        setMessages(response.data.messages.concat(messages));
+        if (!response.data.hasMore) {
+          setHasMore(false);
+        }
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
     };
     fetchMessages();
-  }, []);
+  }, [currentPage]);
   useEffect(() => {
     connectSocket();
   }, []);
@@ -60,6 +68,12 @@ const Chat = () => {
     setShowLoginModal(false);
   };
 
+  const loadMoreMessages = () => {
+    if (hasMore) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
   return (
     <>
       {showLoginModal && <LoginModal onClose={handleModalClose} />}
@@ -79,6 +93,15 @@ const Chat = () => {
             backgroundSize: "cover",
           }}
         >
+          {hasMore && (
+            <button
+              onClick={loadMoreMessages}
+              className="mx-auto my-2 text-white bg-blue-500 hover:bg-blue-600 font-semibold py-1 px-4 rounded inline-flex items-center"
+            >
+              <IoMdArrowDropdown className="mr-2" />
+              Load more messages
+            </button>
+          )}
           <ul>
             {messages.map((msg, index) => (
               <li key={index} className="bg-white rounded-md mb-2 shadow">
