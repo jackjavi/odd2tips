@@ -22,7 +22,7 @@ const Chat = () => {
       try {
         setToken(JSON.parse(localStorage.getItem("token")));
         const response = await axios.get(
-          `http://localhost:8888/api/chat/messages?page=${currentPage}`,
+          `${BASE_URL}chat/messages?page=${currentPage}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
