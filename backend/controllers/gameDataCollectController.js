@@ -1,10 +1,11 @@
-// gameDataCollectController.js
-
 const GameData = require("../models/GameData");
 const RequestCount = require("../models/requestCount");
+const moment = require("moment");
 
 exports.getGameData = async (req, res) => {
   const endpoint = "gameDataCollect";
+  const todayStart = moment().startOf("day");
+  const todayEnd = moment().endOf("day");
 
   try {
     const requestCounter = await RequestCount.findOneAndUpdate(
@@ -14,7 +15,12 @@ exports.getGameData = async (req, res) => {
     );
     console.log("Request count:", requestCounter.count);
 
-    const gameData = await GameData.find();
+    const gameData = await GameData.find({
+      startTime: {
+        $gte: todayStart.toDate(),
+        $lte: todayEnd.toDate(),
+      },
+    });
 
     res.json(gameData);
   } catch (error) {
