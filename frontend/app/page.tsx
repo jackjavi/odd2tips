@@ -30,10 +30,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div
-        className="bg-gray-100 px-4 py-8 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/hero-bg.webp')" }}
-      >
+      <div className="bg-black px-4 py-8 bg-cover bg-center bg-no-repeat">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 bg-gradient-to-r from-green-500 to-blue-600 bg-opacity-20 bg-cover bg-center bg-no-repeat rounded-lg p-6 shadow-lg">
             <h1 className="text-5xl md:text-8xl font-bold tracking-wide leading-10 md:pr-8 animate-pulse text-[whitesmoke]">
