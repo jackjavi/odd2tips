@@ -10,12 +10,11 @@ exports.getFixtures = async (req, res) => {
   }
 
   try {
-    /*const response = await axios.get(
-      `https://api.sportmonks.com/v3/football/fixtures?api_token=${apiToken}`
+    const response = await axios.get(
+      `https://api.sportmonks.com/v3/football/seasons?api_token=${apiToken}`
     );
 
-    res.json(response.data);*/
-    res.json(fixturesData);
+    res.json(response.data);
   } catch (error) {
     console.error("Error fetching data from Sportmonks:", error);
     res.status(500).json({ message: "Failed to fetch data" });
