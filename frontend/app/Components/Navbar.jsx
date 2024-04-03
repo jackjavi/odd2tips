@@ -35,12 +35,12 @@ const Navbar = () => {
         Home
       </Link>
       <Link
-        href="/#predictions"
+        href="/investments"
         scroll={false}
         className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
-        Predictions
+        Investments
       </Link>
 
       <Link
