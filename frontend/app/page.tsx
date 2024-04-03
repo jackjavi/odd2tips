@@ -12,6 +12,7 @@ import { getAllPosts } from "@/lib/api";
 import Link from "next/link";
 import { Post } from "@/interfaces/post";
 import Container from "@/app/blog/_components/container";
+import Investments from "@/app/Components/investmentsPlay";
 
 const Home = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -72,6 +73,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Investments />
       {heroPost && (
         <Container>
           <div className="py-8 ">
