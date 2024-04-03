@@ -3,12 +3,11 @@ const redisClient = require("../utils/redis");
 
 exports.getGameData = async (req, res) => {
   const requestCountKey = "gameDataCollectRequestCount";
-  let requestCount;
 
   try {
-    requestCount = await redisClient.myClient.incr(requestCountKey);
+    await redisClient.myClient.incr(requestCountKey);
+    requestCount = await redisClient.myClient.get(requestCountKey);
     console.log("Request count:", requestCount);
-
     const gameData = await GameData.find();
 
     res.json(gameData);
