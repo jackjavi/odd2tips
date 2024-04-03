@@ -1,18 +1,26 @@
+// gameDataCollectController.js
+
 const GameData = require("../models/GameData");
-const redisClient = require("../utils/redis");
+const RequestCount = require("../models/requestCount");
 
 exports.getGameData = async (req, res) => {
-  const requestCountKey = "gameDataCollectRequestCount";
+  const endpoint = "gameDataCollect";
 
   try {
-    await redisClient.myClient.incr(requestCountKey);
-    requestCount = await redisClient.myClient.get(requestCountKey);
-    console.log("Request count:", requestCount);
+    const requestCounter = await RequestCount.findOneAndUpdate(
+      { endpoint },
+      { $inc: { count: 1 } },
+      { new: true, upsert: true }
+    );
+    console.log("Request count:", requestCounter.count);
+
     const gameData = await GameData.find();
 
     res.json(gameData);
   } catch (error) {
     console.error("Error getting game data:", error);
-    res.status(500).json({ message: "Failed to fetch game data" });
+    res
+      .status(500)
+      .json({ message: "Failed to fetch game data or update request count" });
   }
 };

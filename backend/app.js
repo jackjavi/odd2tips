@@ -14,6 +14,7 @@ const sportMonksRoutes = require("./routes/sportMonksRoute");
 const AppController = require("./routes/appRoutes");
 const gameDataCollectRoutes = require("./routes/gameDataCollectRoutes");
 const gameDataRoutes = require("./routes/gameDataRoutes");
+const requestCounterRoutes = require("./routes/requestCounterRoute");
 const socketHandler = require("./sockets/socketHandler");
 const chatRoutes = require("./routes/chatRoutes");
 const allowedOrigins = ["http://localhost:3000", "https://odd2tips.vercel.app"];
@@ -50,6 +51,7 @@ app.use("/api/blog", uploadRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/games", gameDataCollectRoutes);
 app.use("/api/games", sportMonksRoutes);
+app.use("/api", requestCounterRoutes);
 
 const authenticate = require("./middleware/authenticate");
 app.use("/api/games", authenticate, gameDataRoutes);
