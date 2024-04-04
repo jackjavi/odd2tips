@@ -52,7 +52,7 @@ const Navbar = () => {
         News
       </Link>
       <Link
-        href="/chat"
+        href="/#chat"
         scroll={false}
         className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg"
         onClick={() => setIsModalOpen(false)}
