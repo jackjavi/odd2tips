@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
@@ -22,7 +24,10 @@ const page = () => {
                     for newcomers to the investment game.
                   </p>
                   <div className="text-4xl font-bold mb-4">$100</div>
-                  <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                  <button
+                    onClick={() => alert("Coming soon!")}
+                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                  >
                     Choose Plan
                   </button>
                 </div>
@@ -36,7 +41,10 @@ const page = () => {
                     solid performance.
                   </p>
                   <div className="text-4xl font-bold mb-4">$500</div>
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                  <button
+                    onClick={() => alert("Coming soon!")}
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                  >
                     Choose Plan
                   </button>
                 </div>
@@ -50,7 +58,10 @@ const page = () => {
                     demand the best returns.
                   </p>
                   <div className="text-4xl font-bold mb-4">$1,000</div>
-                  <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                  <button
+                    onClick={() => alert("Coming soon!")}
+                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                  >
                     Choose Plan
                   </button>
                 </div>
