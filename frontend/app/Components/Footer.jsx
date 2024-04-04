@@ -25,17 +25,17 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/predictions" className="hover:underline">
-                  Predictions
+                <a href="/investments" className="hover:underline">
+                  Investments
                 </a>
               </li>
               <li>
-                <a href="/news" className="hover:underline">
+                <a href="/blog" className="hover:underline">
                   News
                 </a>
               </li>
               <li>
-                <a href="/chat" className="hover:underline">
+                <a href="/#chat" className="hover:underline">
                   Chat
                 </a>
               </li>
