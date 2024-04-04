@@ -28,9 +28,12 @@ export function HeroPost({
         <Image
           src={fullCoverImagePath}
           alt={`Cover Image for ${title}`}
-          className={cn("shadow-sm w-full md:h-[60vh] object-cover", {
-            "hover:shadow-lg transition-shadow duration-200": slug,
-          })}
+          className={cn(
+            "shadow-sm w-full md:h-[60vh] object-cover object-top",
+            {
+              "hover:shadow-lg transition-shadow duration-200": slug,
+            }
+          )}
           width={1300}
           height={630}
         />
