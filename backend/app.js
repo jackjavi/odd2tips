@@ -17,7 +17,11 @@ const gameDataRoutes = require("./routes/gameDataRoutes");
 const requestCounterRoutes = require("./routes/requestCounterRoute");
 const socketHandler = require("./sockets/socketHandler");
 const chatRoutes = require("./routes/chatRoutes");
-const allowedOrigins = ["http://localhost:3000", "https://odd2tips.vercel.app"];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://odd2tips.vercel.app",
+  "https://www.odd2tips.com/",
+];
 const io = require("socket.io")(http, {
   cors: {
     origin: allowedOrigins,
