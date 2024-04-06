@@ -21,6 +21,9 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://odd2tips.vercel.app",
   "https://www.odd2tips.com/",
+  "odd2tips.com",
+  "https://odd2tips.com",
+  "www.odd2tips.com",
 ];
 const io = require("socket.io")(http, {
   cors: {
