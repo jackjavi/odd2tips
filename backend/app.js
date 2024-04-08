@@ -37,6 +37,7 @@ app.use(
   cors({
     origin: function (origin, callback) {
       if (!origin) return callback(null, true);
+      console.log(origin);
       if (allowedOrigins.indexOf(origin) === -1) {
         var msg =
           "The CORS policy for this site does not " +
