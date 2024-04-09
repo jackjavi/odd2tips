@@ -7,7 +7,7 @@ import LoginModal from "./LoginModal";
 import { CgProfile } from "react-icons/cg";
 
 const Chat = () => {
-  const [token, setToken] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,16 +17,22 @@ const Chat = () => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
+    const checkAuthStatus = async () => {
+      try {
+        const response = await axios.get(`/api/auth/checkAuth`);
+        setIsAuthenticated(response.data.isAuthenticated);
+      } catch (error) {
+        console.error("Error checking authentication status:", error);
+      }
+    };
+    checkAuthStatus();
+  }, []);
+
+  useEffect(() => {
     const fetchMessages = async () => {
       try {
-        setToken(JSON.parse(localStorage.getItem("token")));
         const response = await axios.get(
-          `/api/chat/messages?page=${currentPage}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          `/api/chat/messages?page=${currentPage}`
         );
 
         setMessages(response.data.messages.concat(messages));
@@ -53,7 +59,7 @@ const Chat = () => {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (!token) {
+    if (!isAuthenticated) {
       setShowLoginModal(true);
       return;
     }
