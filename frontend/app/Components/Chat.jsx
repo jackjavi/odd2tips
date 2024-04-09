@@ -16,17 +16,14 @@ const Chat = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const messagesEndRef = useRef(null);
 
-  useEffect(() => {
-    const checkAuthStatus = async () => {
-      try {
-        const response = await axios.get(`/api/auth/checkAuth`);
-        setIsAuthenticated(response.data.isAuthenticated);
-      } catch (error) {
-        console.error("Error checking authentication status:", error);
-      }
-    };
-    checkAuthStatus();
-  }, []);
+  const checkAuthStatus = async () => {
+    try {
+      const response = await axios.get(`/api/auth/checkAuth`);
+      setIsAuthenticated(response.data.isAuthenticated);
+    } catch (error) {
+      console.error("Error checking authentication status:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -59,6 +56,7 @@ const Chat = () => {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
+    checkAuthStatus();
     if (!isAuthenticated) {
       setShowLoginModal(true);
       return;
