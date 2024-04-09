@@ -1,11 +1,14 @@
 require("dotenv").config();
 
 const express = require("express");
+const cookieParser = require("cookie-parser");
+
 const app = express();
 app.use(express.json());
 const http = require("http").createServer(app);
 const cors = require("cors");
 app.use(cors());
+app.use(cookieParser());
 const connectDatabase = require("./utils/database");
 const authRoutes = require("./routes/authRoute");
 const uploadRoutes = require("./routes/uploadRoutes");
@@ -15,6 +18,7 @@ const AppController = require("./routes/appRoutes");
 const gameDataCollectRoutes = require("./routes/gameDataCollectRoutes");
 const gameDataRoutes = require("./routes/gameDataRoutes");
 const requestCounterRoutes = require("./routes/requestCounterRoute");
+const checkAuthRoutes = require("./routes/checkAuthRoutes");
 const socketHandler = require("./sockets/socketHandler");
 const chatRoutes = require("./routes/chatRoutes");
 const allowedOrigins = [
@@ -28,23 +32,35 @@ const io = require("socket.io")(http, {
     credentials: true,
   },
 });
-
-app.use(cors());
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 app.use(express.static("public"));
 
 connectDatabase();
 app.use("/api/auth", authRoutes);
 app.use("/api", AppController);
-app.use("/api/chat", chatRoutes);
+
 app.use("/api/blog", uploadRoutes);
-app.use("/api/blog", blogRoutes);
+
 app.use("/api/games", gameDataCollectRoutes);
 app.use("/api/games", sportMonksRoutes);
+app.use("/api/blog", blogRoutes);
 app.use("/api", requestCounterRoutes);
 
 const authenticate = require("./middleware/authenticate");
 app.use("/api/games", authenticate, gameDataRoutes);
+app.use("/api/chat", authenticate, chatRoutes);
+app.use("/api/auth", authenticate, checkAuthRoutes);
 
 socketHandler(io);
 
