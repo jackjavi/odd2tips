@@ -5,18 +5,35 @@ import { useEffect, useState } from "react";
 import { logout } from "../utils/auth";
 import { IoIosMenu } from "react-icons/io";
 import Image from "next/image";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { ro } from "date-fns/locale";
 
 const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
-  }, []);
+    const checkAuthStatus = async () => {
+      try {
+        const response = await axios.get(`/api/auth/checkAuth`, {
+          withCredentials: true,
+        });
+        setIsAuthenticated(response.data.isAuthenticated);
+      } catch (error) {
+        // console.error("Error checking authentication status:", error);
+        setIsAuthenticated(false);
+      }
+    };
 
-  const handleLogout = () => {
-    logout();
+    checkAuthStatus();
+  }, [router.pathname]);
+  setTimeout(() => {
+    console.log(isAuthenticated);
+  }, 3000);
+  const handleLogout = async () => {
+    await logout();
     setIsAuthenticated(false);
     setIsModalOpen(false);
   };

@@ -60,7 +60,15 @@ exports.login = async (req, res) => {
       profilePicture: user.profilePicture,
     };
 
-    res.status(200).json({ token, userData });
+    req.user = userData;
+
+    res.cookie("token", token, {
+      httpOnly: true,
+
+      maxAge: 43200000, // 12 hours (12 * 60 * 60 * 1000 milliseconds)
+    });
+
+    res.status(200).json({ message: "Login successful", userData });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -68,7 +76,7 @@ exports.login = async (req, res) => {
 };
 
 exports.logout = async (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
+  const token = req.cookies.token;
   try {
     const decoded = tokenService.verifyToken(token);
     if (!decoded) {
@@ -78,6 +86,10 @@ exports.logout = async (req, res) => {
     const sessionId = decoded.sessionId;
 
     await redisClient.del(sessionId);
+
+    res.clearCookie("token", {
+      httpOnly: true,
+    });
 
     res.status(200).send({ message: "Logged out successfully" });
   } catch (error) {
