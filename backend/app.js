@@ -56,10 +56,11 @@ app.use("/api/games", gameDataCollectRoutes);
 app.use("/api/games", sportMonksRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api", requestCounterRoutes);
+app.use("/api/chat", chatRoutes);
 
 const authenticate = require("./middleware/authenticate");
 app.use("/api/games", authenticate, gameDataRoutes);
-app.use("/api/chat", authenticate, chatRoutes);
+
 app.use("/api/auth", authenticate, checkAuthRoutes);
 
 socketHandler(io);
