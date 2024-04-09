@@ -15,14 +15,13 @@ const Chat = () => {
   const { IoMdArrowDropdown } = require("react-icons/io");
   const [showLoginModal, setShowLoginModal] = useState(false);
   const messagesEndRef = useRef(null);
-  const BASE_URL = `https://odd2tips.onrender.com/api/`;
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         setToken(JSON.parse(localStorage.getItem("token")));
         const response = await axios.get(
-          `${BASE_URL}chat/messages?page=${currentPage}`,
+          `/api/chat/messages?page=${currentPage}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
