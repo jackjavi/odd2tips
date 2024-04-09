@@ -8,11 +8,7 @@ let socket;
 export const connectSocket = () => {
   console.log("Connecting to socket...");
 
-  const token = JSON.parse(localStorage.getItem("token")) || null;
-
-  socket = io("https://odd2tips.onrender.com", {
-    query: { token },
-  });
+  socket = io("https://odd2tips.onrender.com");
 
   socket.on("connect", () => {
     console.log("Connected to socket server");

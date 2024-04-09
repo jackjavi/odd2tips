@@ -6,30 +6,21 @@ const socketHandler = (io) => {
   io.on("connection", (socket) => {
     console.log("A user connected");
 
-    const token = socket.handshake.query.token;
+    const verificationResult = verifyToken(token);
 
-    if (token) {
-      const verificationResult = verifyToken(token);
-
-      if (verificationResult) {
-        const { userId } = verificationResult;
-        socket.userId = userId;
-        console.log(
-          "Authenticated socket connection",
-          socket.id,
-          "User ID:",
-          userId
-        );
-      } else {
-        console.log("Token verification failed, disconnecting socket.");
-        socket.disconnect(true);
-        return;
-      }
+    if (verificationResult) {
+      const { userId } = verificationResult;
+      socket.userId = userId;
+      console.log(
+        "Authenticated socket connection",
+        socket.id,
+        "User ID:",
+        userId
+      );
     } else {
-      if (!socket.userId) {
-        console.log("No user ID found for socket, ignoring message.");
-        return;
-      }
+      console.log("Token verification failed, disconnecting socket.");
+      socket.disconnect(true);
+      return;
     }
 
     socket.on("chat message", async (msgContent) => {
