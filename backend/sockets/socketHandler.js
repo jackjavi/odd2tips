@@ -6,22 +6,14 @@ const socketHandler = (io) => {
   io.on("connection", (socket) => {
     console.log("A user connected");
 
-    const verificationResult = verifyToken(token);
-
-    if (verificationResult) {
-      const { userId } = verificationResult;
-      socket.userId = userId;
-      console.log(
-        "Authenticated socket connection",
-        socket.id,
-        "User ID:",
-        userId
-      );
-    } else {
-      console.log("Token verification failed, disconnecting socket.");
-      socket.disconnect(true);
-      return;
-    }
+    const { userId } = verificationResult;
+    socket.userId = userId;
+    console.log(
+      "Authenticated socket connection",
+      socket.id,
+      "User ID:",
+      userId
+    );
 
     socket.on("chat message", async (msgContent) => {
       try {
