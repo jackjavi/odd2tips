@@ -13,3 +13,5 @@ const requestCountSchema = new mongoose.Schema({
 });
 
 const RequestCount = mongoose.model("RequestCount", requestCountSchema);
+
+module.exports = RequestCount;
