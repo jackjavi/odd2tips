@@ -55,9 +55,9 @@ const Chat = () => {
     setMessages((prevMessages) => [...prevMessages, msg]);
   });
 
-  useEffect(() => {
+  /* useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages]);*/
 
   const handleSendMessage = (e) => {
     e.preventDefault();
