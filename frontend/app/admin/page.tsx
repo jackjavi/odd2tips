@@ -34,19 +34,8 @@ const AdminPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      console.log("No token found, redirecting to login...");
-
-      return;
-    }
     try {
-      const response = await axios.post(`/api/games/gameData`, formData, {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(token)}`,
-        },
-      });
+      const response = await axios.post(`/api/games/gameData`, formData);
 
       alert(`Form submission successful: ${response.data.gameTitle}`);
       router.push("/admin");
