@@ -28,6 +28,7 @@ const Chat = () => {
       }
     };
     checkAuthStatus();
+    connectSocket(token);
   }, []);
 
   useEffect(() => {
@@ -48,8 +49,6 @@ const Chat = () => {
     fetchMessages();
   }, [currentPage]);
   useEffect(() => {}, []);
-
-  connectSocket(token);
 
   useSocket("chat message", (msg) => {
     setMessages((prevMessages) => [...prevMessages, msg]);
