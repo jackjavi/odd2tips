@@ -4,7 +4,7 @@ const User = require("../models/User");
 
 const socketHandler = (io) => {
   io.on("connection", (socket) => {
-    const cookies = socket.handshake.headers.cookie;
+    const cookies = socket.handshake.headers.cookie || "";
     const tokenCookie = cookies
       .split(";")
       .find((c) => c.trim().startsWith("token="));
