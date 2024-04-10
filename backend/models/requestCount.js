@@ -11,6 +11,15 @@ const requestCountSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
+  ipAddress: {
+    type: String,
+  },
+  userAgent: {
+    type: String,
+  },
+  language: {
+    type: String,
+  },
 });
 
 const RequestCount = mongoose.model("RequestCount", requestCountSchema);

@@ -10,7 +10,14 @@ exports.getGameData = async (req, res) => {
   try {
     const requestCounter = await RequestCount.findOneAndUpdate(
       { endpoint },
-      { $inc: { count: 1 } },
+      {
+        $inc: { count: 1 },
+        $set: {
+          ipAddress: req.ip,
+          userAgent: req.headers["user-agent"],
+          language: req.headers["accept-language"],
+        },
+      },
       { new: true, upsert: true }
     );
     console.log("Request count:", requestCounter.count);
