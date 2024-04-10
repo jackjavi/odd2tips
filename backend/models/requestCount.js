@@ -4,7 +4,6 @@ const requestCountSchema = new mongoose.Schema({
   endpoint: {
     type: String,
     required: true,
-    unique: true,
   },
   count: {
     type: Number,
