@@ -29,7 +29,7 @@ const Chat = () => {
     };
     checkAuthStatus();
     connectSocket(token);
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     const fetchMessages = async () => {
