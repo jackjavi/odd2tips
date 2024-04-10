@@ -4,16 +4,15 @@ const User = require("../models/User");
 
 const socketHandler = (io) => {
   io.on("connection", (socket) => {
-    const cookies = socket.handshake.headers.cookie || "";
-
     const tokenCookie = socket.handshake.headers.cookie;
+    console.log("Token cookie:", tokenCookie);
     if (!tokenCookie) {
       console.log("No token found, disconnecting socket.");
       socket.disconnect(true);
       return;
     }
-    const token = tokenCookie.split("=")[1];
-    const verificationResult = verifyToken(token);
+
+    const verificationResult = verifyToken(tokenCookie);
 
     if (verificationResult) {
       const { userId } = verificationResult;

@@ -9,11 +9,9 @@ let sessionToken = JSON.parse(localStorage.getItem("sessionToken"));
 export const connectSocket = () => {
   console.log("Connecting to socket...");
 
-  socket = io("https://odd2tips.onrender.com", {
+  socket = io("http://localhost:8888", {
     withCredentials: true,
-    extraHeaders: {
-      cookie: `sessionToken=${sessionToken}`,
-    },
+    cookie: `sessionToken=${sessionToken}`,
   });
 
   socket.on("connect", () => {
