@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const requestCountSchema = new mongoose.Schema({
-  endpoint: String,
   count: {
     type: Number,
     default: 1,

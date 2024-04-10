@@ -9,7 +9,6 @@ exports.getGameData = async (req, res) => {
 
   try {
     const newRequestCount = new RequestCount({
-      endpoint: "gameDataCollect",
       ipAddress: ip,
       userAgent: req.headers["user-agent"],
       language: req.headers["accept-language"],
