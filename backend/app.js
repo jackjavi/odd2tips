@@ -34,7 +34,7 @@ const io = require("socket.io")(http, {
   },
 });
 
-app.use(cors());
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 app.use(express.static("public"));
 
