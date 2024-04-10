@@ -3,13 +3,11 @@ const RequestCount = require("../models/requestCount");
 const moment = require("moment");
 
 exports.getGameData = async (req, res) => {
-  const endpoint = "gameDataCollect";
   const todayStart = moment().startOf("day");
   const todayEnd = moment().endOf("day");
 
   try {
     const requestCounter = new RequestCount({
-      endpoint,
       count: 1,
       ipAddress: req.ip,
       userAgent: req.headers["user-agent"],
