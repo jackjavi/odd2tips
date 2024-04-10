@@ -1,5 +1,5 @@
 const GameData = require("../models/GameData");
-const RequestCount = require("../models/RequestCount");
+const RequestCount = require("../models/requestCount");
 const moment = require("moment");
 
 exports.getGameData = async (req, res) => {
