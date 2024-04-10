@@ -1,19 +1,17 @@
 const mongoose = require("mongoose");
 
 const requestCountSchema = new mongoose.Schema({
+  endpoint: String,
   count: {
     type: Number,
-    required: true,
-    default: 0,
+    default: 1,
   },
-  ipAddress: {
-    type: String,
-  },
-  userAgent: {
-    type: String,
-  },
-  language: {
-    type: String,
+  ipAddress: String,
+  userAgent: String,
+  language: String,
+  timestamp: {
+    type: Date,
+    default: Date.now,
   },
 });
 

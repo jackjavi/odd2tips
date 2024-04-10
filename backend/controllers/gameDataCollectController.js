@@ -1,20 +1,20 @@
 const GameData = require("../models/GameData");
-const RequestCount = require("../models/requestCount");
+const RequestCount = require("../models/RequestCount");
 const moment = require("moment");
 
 exports.getGameData = async (req, res) => {
   const todayStart = moment().startOf("day");
   const todayEnd = moment().endOf("day");
+  const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   try {
-    const requestCounter = new RequestCount({
-      count: 1,
-      ipAddress: req.ip,
+    const newRequestCount = new RequestCount({
+      endpoint: "gameDataCollect",
+      ipAddress: ip,
       userAgent: req.headers["user-agent"],
       language: req.headers["accept-language"],
     });
-    await requestCounter.save();
-    console.log("Request count:", requestCounter.count);
+    await newRequestCount.save();
 
     const gameData = await GameData.find({
       startTime: {
@@ -23,11 +23,11 @@ exports.getGameData = async (req, res) => {
       },
     });
 
-    res.json(gameData);
+    res.json({ gameData, requestInfo: newRequestCount });
   } catch (error) {
     console.error("Error getting game data:", error);
     res
       .status(500)
-      .json({ message: "Failed to fetch game data or update request count" });
+      .json({ message: "Failed to fetch game data or log request" });
   }
 };
