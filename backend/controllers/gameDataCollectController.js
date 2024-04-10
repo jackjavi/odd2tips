@@ -3,30 +3,30 @@ const RequestCount = require("../models/requestCount");
 const moment = require("moment");
 
 exports.getGameData = async (req, res) => {
-  const todayStart = moment().startOf("day");
-  const todayEnd = moment().endOf("day");
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   try {
-    let requestCounter = await RequestCount.findOne({
-      date: {
-        $gte: todayStart.toDate(),
-        $lte: todayEnd.toDate(),
-      },
-      ipAddress: ip,
-    });
-
-    if (requestCounter) {
-      requestCounter.count += 1;
-    } else {
-      requestCounter = new RequestCount({
-        count: 1,
+    const updateDoc = {
+      $inc: { count: 1 },
+      $setOnInsert: {
         ipAddress: ip,
         userAgent: req.headers["user-agent"],
         language: req.headers["accept-language"],
-        date: new Date(),
-      });
-    }
+        date: today,
+        endpoint: endpoint,
+      },
+    };
+
+    const requestCounter = await RequestCount.findOneAndUpdate(
+      { ipAddress: ip, date: today },
+      updateDoc,
+      { new: true, upsert: true }
+    );
+
+    console.log("Request count:", requestCounter);
 
     await requestCounter.save();
 
