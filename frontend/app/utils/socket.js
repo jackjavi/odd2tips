@@ -8,7 +8,9 @@ let socket;
 export const connectSocket = () => {
   console.log("Connecting to socket...");
 
-  socket = io("/sockets");
+  socket = io("http://localhost:8888", {
+    withCredentials: true,
+  });
 
   socket.on("connect", () => {
     console.log("Connected to socket server");
