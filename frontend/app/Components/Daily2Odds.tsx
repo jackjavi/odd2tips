@@ -15,12 +15,11 @@ interface GameData {
 const Daily2Odds: React.FC = () => {
   const [games, setGames] = useState<GameData[]>([]);
   const defaultDate = new Date();
-  const BASE_URL = "https://odd2tips.onrender.com/api/";
 
   useEffect(() => {
     const fetchGames = async () => {
       const { data } = await axios.get<GameData[]>(
-        `${BASE_URL}games/gameDataCollect`
+        `/api/games/gameDataCollect`
       );
       setGames(data);
     };

@@ -4,8 +4,13 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        // destination: "http://localhost:8888/api/:path*",
-        destination: "https://odd2tips.onrender.com/api/:path*",
+        destination: "http://localhost:8888/api/:path*",
+        // destination: "https://odd2tips.onrender.com/api/:path*",
+      },
+      {
+        source: "/sockets/:path*",
+        destination: "http://localhost:8888/:path*",
+        // destination: "https://odd2tips.onrender.com/:path*",
       },
     ];
   },

@@ -32,17 +32,8 @@ const io = require("socket.io")(http, {
     credentials: true,
   },
 });
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-};
-app.use(cors({ origin: allowedOrigins, credentials: true }));
+
+app.use(cors());
 
 app.use(express.static("public"));
 

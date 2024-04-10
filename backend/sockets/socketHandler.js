@@ -4,16 +4,31 @@ const User = require("../models/User");
 
 const socketHandler = (io) => {
   io.on("connection", (socket) => {
-    console.log("A user connected");
+    const cookies = socket.handshake.headers.cookie;
+    const tokenCookie = cookies
+      .split(";")
+      .find((c) => c.trim().startsWith("token="));
+    if (!tokenCookie) {
+      console.log("No token found, disconnecting socket.");
+      socket.disconnect(true);
+      return;
+    }
+    const token = tokenCookie.split("=")[1];
+    const verificationResult = verifyToken(token);
 
-    const { userId } = verificationResult;
-    socket.userId = userId;
-    console.log(
-      "Authenticated socket connection",
-      socket.id,
-      "User ID:",
-      userId
-    );
+    if (verificationResult) {
+      const { userId } = verificationResult;
+      socket.userId = userId;
+      console.log(
+        "Authenticated socket connection",
+        socket.id,
+        "User ID:",
+        userId
+      );
+    } else {
+      console.log("Token verification failed, disconnecting socket.");
+      socket.disconnect(true);
+    }
 
     socket.on("chat message", async (msgContent) => {
       try {
