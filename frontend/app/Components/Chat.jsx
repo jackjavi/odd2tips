@@ -8,6 +8,7 @@ import { CgProfile } from "react-icons/cg";
 
 const Chat = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, setToken] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,10 +22,7 @@ const Chat = () => {
       try {
         const response = await axios.get(`/api/auth/checkAuth`);
         setIsAuthenticated(response.data.isAuthenticated);
-        localStorage.setItem(
-          "sessionToken",
-          JSON.stringify(response.data.token)
-        );
+        setToken(response.data.token);
       } catch (error) {
         // console.error("Error checking authentication status:", error);
       }
@@ -49,9 +47,7 @@ const Chat = () => {
     };
     fetchMessages();
   }, [currentPage]);
-  useEffect(() => {
-    connectSocket();
-  }, []);
+  useEffect(() => {}, []);
 
   useSocket("chat message", (msg) => {
     setMessages((prevMessages) => [...prevMessages, msg]);
@@ -63,7 +59,7 @@ const Chat = () => {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-
+    connectSocket(token);
     if (!isAuthenticated) {
       setShowLoginModal(true);
       return;

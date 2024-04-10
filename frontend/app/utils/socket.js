@@ -4,14 +4,13 @@ import { useEffect } from "react";
 import io from "socket.io-client";
 
 let socket;
-let sessionToken = JSON.parse(localStorage.getItem("sessionToken"));
 
-export const connectSocket = () => {
+export const connectSocket = (token) => {
   console.log("Connecting to socket...");
 
-  socket = io("http://localhost:8888", {
+  socket = io("https://odd2tips.onrender.com", {
     withCredentials: true,
-    cookie: `sessionToken=${sessionToken}`,
+    query: { token: token },
   });
 
   socket.on("connect", () => {

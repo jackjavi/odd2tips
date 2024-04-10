@@ -4,7 +4,7 @@ const User = require("../models/User");
 
 const socketHandler = (io) => {
   io.on("connection", (socket) => {
-    const tokenCookie = socket.handshake.headers.cookie;
+    const tokenCookie = socket.handshake.query.token;
     console.log("Token cookie:", tokenCookie);
     if (!tokenCookie) {
       console.log("No token found, disconnecting socket.");
