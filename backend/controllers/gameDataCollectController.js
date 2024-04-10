@@ -8,18 +8,14 @@ exports.getGameData = async (req, res) => {
   const todayEnd = moment().endOf("day");
 
   try {
-    const requestCounter = await RequestCount.findOneAndUpdate(
-      { endpoint },
-      {
-        $inc: { count: 1 },
-        $set: {
-          ipAddress: req.ip,
-          userAgent: req.headers["user-agent"],
-          language: req.headers["accept-language"],
-        },
-      },
-      { new: true, upsert: true }
-    );
+    const requestCounter = new RequestCount({
+      endpoint,
+      count: 1,
+      ipAddress: req.ip,
+      userAgent: req.headers["user-agent"],
+      language: req.headers["accept-language"],
+    });
+    await requestCounter.save();
     console.log("Request count:", requestCounter.count);
 
     const gameData = await GameData.find({
