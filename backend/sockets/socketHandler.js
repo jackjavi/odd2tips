@@ -5,10 +5,8 @@ const User = require("../models/User");
 const socketHandler = (io) => {
   io.on("connection", (socket) => {
     const cookies = socket.handshake.headers.cookie || "";
-    console.log("Cookies:", cookies);
-    const tokenCookie = cookies
-      .split(";")
-      .find((c) => c.trim().startsWith("token="));
+
+    const tokenCookie = socket.handshake.headers.cookie;
     if (!tokenCookie) {
       console.log("No token found, disconnecting socket.");
       socket.disconnect(true);

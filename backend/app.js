@@ -29,7 +29,7 @@ const allowedOrigins = [
 ];
 const io = require("socket.io")(http, {
   cors: {
-    origin: "*",
+    origin: allowedOrigins,
     credentials: true,
   },
 });
