@@ -22,9 +22,9 @@ const Chat = () => {
       try {
         const response = await axios.get(`/api/auth/checkAuth`);
         setIsAuthenticated(response.data.isAuthenticated);
-        setToken(response.data.token);
+        // setToken(response.data.token);
       } catch (error) {
-        console.error("Error checking authentication status:", error);
+        // console.error("Error checking authentication status:", error);
       }
     };
     checkAuthStatus();

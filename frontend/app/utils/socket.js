@@ -8,7 +8,7 @@ let socket;
 export const connectSocket = () => {
   console.log("Connecting to socket...");
 
-  socket = io("/sockets", {
+  socket = io("https://odd2tips.onrender.com", {
     withCredentials: true,
   });
 
