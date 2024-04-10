@@ -3,8 +3,8 @@ const RequestCount = require("../models/requestCount");
 const moment = require("moment");
 
 exports.getGameData = async (req, res) => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const todayStart = moment().startOf("day").toDate();
+  const todayEnd = moment().endOf("day").toDate();
 
   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
@@ -15,24 +15,22 @@ exports.getGameData = async (req, res) => {
         ipAddress: ip,
         userAgent: req.headers["user-agent"],
         language: req.headers["accept-language"],
-        date: today,
+        date: new Date(),
       },
     };
 
     const requestCounter = await RequestCount.findOneAndUpdate(
-      { ipAddress: ip, date: today },
+      { ipAddress: ip, date: { $gte: todayStart, $lte: todayEnd } },
       updateDoc,
       { new: true, upsert: true }
     );
 
     console.log("Request count:", requestCounter);
 
-    await requestCounter.save();
-
     const gameData = await GameData.find({
       startTime: {
-        $gte: todayStart.toDate(),
-        $lte: todayEnd.toDate(),
+        $gte: todayStart,
+        $lte: todayEnd,
       },
     });
 
