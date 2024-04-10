@@ -22,7 +22,7 @@ const Chat = () => {
         const response = await axios.get(`/api/auth/checkAuth`);
         setIsAuthenticated(response.data.isAuthenticated);
         localStorage.setItem(
-          "sessioToken",
+          "sessionToken",
           JSON.stringify(response.data.token)
         );
       } catch (error) {
