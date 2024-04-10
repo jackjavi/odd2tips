@@ -34,8 +34,6 @@ const AdminPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const BASE_URL = "https://odd2tips.onrender.com/api/";
-
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -44,7 +42,7 @@ const AdminPage: React.FC = () => {
       return;
     }
     try {
-      const response = await axios.post(`${BASE_URL}games/gameData`, formData, {
+      const response = await axios.post(`/api/games/gameData`, formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
         },
