@@ -8,12 +8,27 @@ exports.getGameData = async (req, res) => {
   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   try {
-    const newRequestCount = new RequestCount({
+    let requestCounter = await RequestCount.findOne({
+      date: {
+        $gte: todayStart.toDate(),
+        $lte: todayEnd.toDate(),
+      },
       ipAddress: ip,
-      userAgent: req.headers["user-agent"],
-      language: req.headers["accept-language"],
     });
-    await newRequestCount.save();
+
+    if (requestCounter) {
+      requestCounter.count += 1;
+    } else {
+      requestCounter = new RequestCount({
+        count: 1,
+        ipAddress: ip,
+        userAgent: req.headers["user-agent"],
+        language: req.headers["accept-language"],
+        date: new Date(),
+      });
+    }
+
+    await requestCounter.save();
 
     const gameData = await GameData.find({
       startTime: {
@@ -22,7 +37,7 @@ exports.getGameData = async (req, res) => {
       },
     });
 
-    res.json({ gameData, requestInfo: newRequestCount });
+    res.json({ gameData, requestInfo: requestCounter });
   } catch (error) {
     console.error("Error getting game data:", error);
     res

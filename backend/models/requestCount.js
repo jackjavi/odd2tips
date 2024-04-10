@@ -8,11 +8,14 @@ const requestCountSchema = new mongoose.Schema({
   ipAddress: String,
   userAgent: String,
   language: String,
-  timestamp: {
+  date: {
     type: Date,
-    default: Date.now,
+    default: () => Date.now(),
+    index: true,
   },
 });
+
+requestCountSchema.index({ date: 1, ipAddress: 1 }, { unique: true });
 
 const RequestCount = mongoose.model("RequestCount", requestCountSchema);
 
