@@ -49,6 +49,8 @@ const Chat = () => {
   }, [currentPage]);
   useEffect(() => {}, []);
 
+  connectSocket(token);
+
   useSocket("chat message", (msg) => {
     setMessages((prevMessages) => [...prevMessages, msg]);
   });
@@ -59,7 +61,7 @@ const Chat = () => {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    connectSocket(token);
+
     if (!isAuthenticated) {
       setShowLoginModal(true);
       return;
