@@ -34,7 +34,7 @@ exports.getGameData = async (req, res) => {
       },
     });
 
-    res.json({ gameData, requestInfo: requestCounter });
+    res.json({ gameData });
   } catch (error) {
     console.error("Error getting game data:", error);
     res
