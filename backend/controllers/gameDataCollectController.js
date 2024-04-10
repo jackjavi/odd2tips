@@ -16,7 +16,6 @@ exports.getGameData = async (req, res) => {
         userAgent: req.headers["user-agent"],
         language: req.headers["accept-language"],
         date: today,
-        endpoint: endpoint,
       },
     };
 
