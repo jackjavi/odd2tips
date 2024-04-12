@@ -17,6 +17,7 @@ const sportMonksRoutes = require("./routes/sportMonksRoute");
 const AppController = require("./routes/appRoutes");
 const gameDataCollectRoutes = require("./routes/gameDataCollectRoutes");
 const gameDataRoutes = require("./routes/gameDataRoutes");
+const roomRoutes = require("./routes/roomRoutes");
 const requestCounterRoutes = require("./routes/requestCounterRoute");
 const checkAuthRoutes = require("./routes/checkAuthRoutes");
 const socketHandler = require("./sockets/socketHandler");
@@ -49,6 +50,7 @@ app.use("/api/games", sportMonksRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api", requestCounterRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/rooms", roomRoutes);
 
 const authenticate = require("./middleware/authenticate");
 app.use("/api/games", authenticate, gameDataRoutes);
