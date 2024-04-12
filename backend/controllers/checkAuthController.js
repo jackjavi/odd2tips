@@ -1,3 +1,7 @@
 exports.checkAuth = (req, res) => {
-  res.json({ token: req.cookies.token, isAuthenticated: true });
+  res.json({
+    token: req.cookies.token,
+    isAuthenticated: true,
+    user: req.user,
+  });
 };
