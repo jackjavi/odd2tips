@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const CreateRoom: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const CreateRoom: React.FC = () => {
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -49,7 +51,6 @@ const CreateRoom: React.FC = () => {
     setSubmitting(true);
     setError("");
 
-    // Ensure adminId is not empty before attempting to create a room
     if (!formData.adminId) {
       setError("Authentication required to create a room.");
       setSubmitting(false);
@@ -61,7 +62,13 @@ const CreateRoom: React.FC = () => {
         withCredentials: true,
       });
       alert("Room created successfully!");
-      // Optionally, reset form or redirect user
+      setFormData({
+        title: "",
+        description: "",
+        privacy: "public",
+        adminId: formData.adminId,
+      });
+      router.push("/rooms");
     } catch (err) {
       setError("Failed to create room. Please try again.");
       console.error(err);
