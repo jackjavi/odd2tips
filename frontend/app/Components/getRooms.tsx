@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 interface Room {
   _id: string;
@@ -55,9 +56,11 @@ const RoomsList: React.FC = () => {
                 {room.privacy.toUpperCase()}
               </span>
             </div>
-            <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
-              Join Room
-            </button>
+            <Link href={`/rooms/${room.title}`}>
+              <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                Join Room
+              </button>
+            </Link>
           </div>
         ))}
       </div>
