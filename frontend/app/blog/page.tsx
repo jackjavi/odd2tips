@@ -40,7 +40,7 @@ export default function Index() {
                 month: "long",
                 day: "numeric",
               })}
-              excerpt={heroPost.content.substring(0, 250)}
+              excerpt={heroPost.content.substring(0, 200)}
               content={heroPost.content}
               authorName={heroPost.authorName}
               authorImagePath={heroPost.authorImagePath}
