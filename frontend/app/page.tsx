@@ -40,19 +40,19 @@ const Home = () => {
               The ultimate sports prediction platform
             </p>
             <div className="mt-4">
-              <a
-                href="#features"
+              <Link
+                href="/rooms"
                 className="inline-block bg-green-600 text-white rounded-full px-6 py-3 font-semibold shadow-lg hover:bg-green-700 transition-colors"
               >
-                Explore Features
-              </a>
+                Explore Tipsters
+              </Link>
             </div>
           </div>
 
           <div>
-            <div>
+            {/* <div>
               <Daily2Odds />
-            </div>
+  </div> */}
             {/*<div className="flex flex-col md:flex-row gap-8 mt-8">
               <div className="md:w-1/2">
                 <SportsMonk />
