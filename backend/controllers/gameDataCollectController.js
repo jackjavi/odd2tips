@@ -9,21 +9,18 @@ exports.getGameData = async (req, res) => {
   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   try {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
     const updateDoc = {
       $inc: { count: 1 },
       $setOnInsert: {
         ipAddress: ip,
         userAgent: req.headers["user-agent"],
         language: req.headers["accept-language"],
-        date: today,
+        date: new Date(),
       },
     };
 
     const requestCounter = await RequestCount.findOneAndUpdate(
-      { ipAddress: ip, date: today },
+      { ipAddress: ip, date: { $gte: todayStart, $lte: todayEnd } },
       updateDoc,
       { new: true, upsert: true }
     );
