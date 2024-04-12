@@ -50,9 +50,9 @@ const Home = () => {
           </div>
 
           <div>
-            <div>
+            {/* <div>
               <Daily2Odds />
-            </div>
+  </div> */}
             {/*<div className="flex flex-col md:flex-row gap-8 mt-8">
               <div className="md:w-1/2">
                 <SportsMonk />
