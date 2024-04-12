@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
@@ -5,6 +7,7 @@ import { format } from "date-fns";
 interface GameData {
   _id: string;
   gameTitle: string;
+  predictionType: string;
   startTime: string;
   homeTeam: string;
   awayTeam: string;
@@ -31,20 +34,15 @@ const Daily2Odds: React.FC = () => {
 
   return (
     <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 rounded-lg shadow-lg">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-center text-white mb-4">
-          DAILY 2 ODDS
-        </h2>
-        <p className="text-center text-md text-blue-200">
-          {format(defaultDate, "iiii, MMMM do, yyyy")}
-        </p>
-      </div>
       {games.map((game) => (
         <div
           key={game._id}
           className="border-b border-blue-300 p-4 hover:bg-blue-600 hover:bg-opacity-25 transition-colors rounded-lg mb-4"
         >
           <div className="mb-4">
+            <h2 className="text-2xl font-bold text-center text-white mb-4">
+              {game.predictionType.toUpperCase()}
+            </h2>
             <span className="text-lg font-semibold text-yellow-200">
               {game.gameTitle}
             </span>
