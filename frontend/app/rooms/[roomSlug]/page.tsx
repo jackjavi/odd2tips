@@ -44,8 +44,7 @@ const RoomPage: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <Navbar />
-      <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 h-screen shadow-lg mb-6 rounded-b-md">
+      <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 h-screen shadow-lg mb-6 rounded-md">
         <h2 className="text-2xl font-bold text-center text-white mb-4 pt-8 pb-2">
           {room.title}
         </h2>
