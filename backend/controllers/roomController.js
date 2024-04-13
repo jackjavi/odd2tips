@@ -27,3 +27,18 @@ exports.getAllRooms = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.getRoomByTitle = async (req, res) => {
+  try {
+    const { title } = req.params;
+    const room = await Room.findOne({ title }).populate("adminId", "name");
+
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    res.status(200).json(room);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
