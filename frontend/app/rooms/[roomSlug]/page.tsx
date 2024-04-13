@@ -29,9 +29,7 @@ const RoomPage: React.FC = () => {
   const [room, setRoom] = useState<Room | null>(null);
 
   useEffect(() => {
-    console.log("Room slug:", typeof roomSlug);
     if (typeof roomSlug.roomSlug === "string") {
-      console.log("Fetching room details for:", roomSlug);
       getRoomByTitle(roomSlug.roomSlug)
         .then((fetchedRoom) => {
           setRoom(fetchedRoom);
@@ -75,7 +73,9 @@ const RoomPage: React.FC = () => {
         </div>
 
         <div className="mt-8">
-          <h3 className="text-xl font-semibold text-white mb-4">Today's Tip</h3>
+          <h3 className="text-xl font-semibold text-white mb-4">
+            Today&lsquo;s Tip
+          </h3>
           <Daily2Odds />
         </div>
       </div>
