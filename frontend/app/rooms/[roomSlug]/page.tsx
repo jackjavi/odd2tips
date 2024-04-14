@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Daily2Odds from "../../Components/Daily2Odds";
-import Navbar from "../../Components/Navbar";
+import Chat from "@/app/Components/Chat";
 import {
   FaTelegramPlane,
   FaWhatsapp,
@@ -44,7 +44,7 @@ const RoomPage: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 h-screen shadow-lg mb-6 rounded-md">
+      <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 h-full shadow-lg mb-6 rounded-md">
         <h2 className="text-2xl font-bold text-center text-white mb-4 pt-8 pb-2">
           {room.title}
         </h2>
@@ -76,6 +76,9 @@ const RoomPage: React.FC = () => {
             Today&lsquo;s Tip
           </h3>
           <Daily2Odds />
+          <div className="md:w-1/2 mt-8">
+            <Chat />
+          </div>
         </div>
       </div>
     </div>
