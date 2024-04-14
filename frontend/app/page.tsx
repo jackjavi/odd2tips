@@ -62,11 +62,7 @@ const Home = () => {
               </div>
   </div>*/}
 
-            <div className="flex flex-col md:flex-row gap-8 mt-8 items-center justify-center">
-              <div className="md:w-1/2">
-                <Chat />
-              </div>
-            </div>
+            <div className="flex flex-col md:flex-row gap-8 mt-8 items-center justify-center"></div>
           </div>
         </div>
       </div>
