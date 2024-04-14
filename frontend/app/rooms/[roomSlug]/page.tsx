@@ -76,10 +76,10 @@ const RoomPage: React.FC = () => {
             Today&lsquo;s Tip
           </h3>
           <Daily2Odds />
-          <div className="md:w-1/2 mt-8">
-            <Chat />
-          </div>
         </div>
+      </div>
+      <div className="md:w-1/2 mt-8">
+        <Chat />
       </div>
     </div>
   );
