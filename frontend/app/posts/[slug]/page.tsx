@@ -32,7 +32,7 @@ const PostPage = () => {
   const content = post.content;
 
   return (
-    <div className="bg-gradient-to-r from-green-400 to-purple-700">
+    <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-slate-900 hover:to-slate-500">
       <Header />
       <main>
         <Container>

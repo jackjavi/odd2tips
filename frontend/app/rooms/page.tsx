@@ -10,7 +10,7 @@ const GetRoomPage: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="relative min-h-screen bg-gradient-to-r from-green-400 to-purple-700">
+      <div className="relative min-h-screen bg-gradient-to-r from-green-400 to-blue-500 hover:from-slate-900 hover:to-slate-500">
         <div className="absolute top-4 right-4 md:top-8 md:right-8">
           <CreateRoomLink />
         </div>
