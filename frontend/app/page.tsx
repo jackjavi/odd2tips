@@ -13,6 +13,7 @@ import Link from "next/link";
 import { Post } from "@/interfaces/post";
 import Container from "@/app/blog/_components/container";
 import Investments from "@/app/Components/investmentsPlay";
+import AboutSection from "@/app/Components/AboutSection";
 
 const Home = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -28,45 +29,11 @@ const Home = () => {
 
   const heroPost = allPosts.length > 0 ? allPosts[0] : null;
   return (
-    <>
+    <div className="bg-gradient-to-r from-green-500 to-blue-600">
       <Navbar />
-      <div className="bg-black px-4 py-8 bg-cover bg-center bg-no-repeat">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 bg-gradient-to-r from-green-500 to-blue-600 bg-opacity-20 bg-cover bg-center bg-no-repeat rounded-lg p-6 shadow-lg">
-            <h1 className="text-5xl md:text-8xl font-bold tracking-wide leading-10 md:pr-8 animate-pulse text-[whitesmoke]">
-              Odd2Tips
-            </h1>
-            <p className="mt-4 text-xl text-[whitesmoke] animate-pulse">
-              The ultimate sports prediction platform
-            </p>
-            <div className="mt-4">
-              <Link
-                href="/rooms"
-                className="inline-block bg-green-600 text-white rounded-full px-6 py-3 font-semibold shadow-lg hover:bg-green-700 transition-colors"
-              >
-                Explore Tipsters
-              </Link>
-            </div>
-          </div>
 
-          <div>
-            {/* <div>
-              <Daily2Odds />
-  </div> */}
-            {/*<div className="flex flex-col md:flex-row gap-8 mt-8">
-              <div className="md:w-1/2">
-                <SportsMonk />
-              </div>
-              <div className="md:w-1/2">
-                <SportsMonk />
-              </div>
-  </div>*/}
+      <AboutSection />
 
-            <div className="flex flex-col md:flex-row gap-8 mt-8 items-center justify-center"></div>
-          </div>
-        </div>
-      </div>
-      <Investments />
       {heroPost && (
         <Container>
           <div className="py-8 ">
@@ -96,7 +63,7 @@ const Home = () => {
         </Container>
       )}
       <Footer />
-    </>
+    </div>
   );
 };
 
