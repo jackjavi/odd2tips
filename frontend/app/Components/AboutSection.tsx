@@ -1,13 +1,26 @@
-// AboutSection.tsx
 import React from "react";
+import Link from "next/link";
 
 const AboutSection: React.FC = () => {
   return (
-    <div className="px-4 py-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg">
+    <div className="px-4 py-12 h-[85vh] flex flex-col items-center justify-center">
+      <div className="text-center mb-8 bg-opacity-20 bg-cover bg-center bg-no-repeat rounded-lg p-6 ">
+        <h1 className="text-5xl md:text-8xl font-bold tracking-wide leading-10 md:pr-8 animate-pulse text-[whitesmoke]">
+          Odd2Tips
+        </h1>
+        {/*<p className="mt-4 text-xl text-[whitesmoke] animate-pulse">
+          The ultimate sports prediction platform
+        </p>
+        <div className="mt-4">
+          <Link
+            href="/rooms"
+            className="inline-block bg-green-600 text-white rounded-full px-6 py-3 font-semibold shadow-lg hover:bg-green-700 transition-colors"
+          >
+            Explore Tipsters
+          </Link>
+  </div>*/}
+      </div>
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-[whitesmoke] mb-4">
-          Who We Are
-        </h2>
         <p className="text-lg md:text-xl text-[whitesmoke] mb-4">
           We are a platform that enables tipsters to have a global reach of
           clients and also allows clients to get the best odds from top tipsters
@@ -18,12 +31,13 @@ const AboutSection: React.FC = () => {
           our platform to acquire new clients, have a portfolio as a
           professional tipster, and gain global reach.
         </p>
-        <a
-          href="#subscribe"
-          className="inline-block bg-white text-blue-700 font-semibold rounded-lg text-lg px-8 py-3 hover:bg-gray-100 transition-colors"
+
+        <Link
+          href="/rooms"
+          className="inline-block bg-green-600 text-white rounded-full px-6 py-3 font-semibold shadow-lg hover:bg-green-700 transition-colors"
         >
-          Subscribe to Newsletter
-        </a>
+          Explore Tipsters
+        </Link>
       </div>
     </div>
   );

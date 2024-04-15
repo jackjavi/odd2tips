@@ -39,15 +39,15 @@ const RoomsList: React.FC = () => {
   if (error) return <div className="text-red-500">{error}</div>;
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 ">
       <h2 className="text-2xl font-semibold mb-4 text-blue-700">
         Tipster Rooms
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
         {rooms.map((room) => (
           <div
             key={room._id}
-            className="p-4 border rounded-lg shadow-lg bg-blue-50"
+            className="p-4 border rounded-lg shadow-lg bg-gradient-to-r from-green-300 to-blue-400"
           >
             <h3 className="text-xl font-bold text-blue-600">{room.title}</h3>
             <p className="text-gray-700">{room.description}</p>
