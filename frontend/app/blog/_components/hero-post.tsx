@@ -45,13 +45,17 @@ export function HeroPost({
       </h3>
       <div className="text-lg mb-4 text-slate-300">
         {date}
-        <p className="text-slate-300">{excerpt}</p>
+        <Link className="hover:underline" href={`/posts/${slug}`}>
+          <p className="text-slate-300">{excerpt}</p>
+        </Link>
         <div className="author flex items-center mt-4">
-          <img
-            src={fullAuthorImagePath}
-            alt={authorName}
-            className="w-10 h-10 rounded-full mr-4"
-          />
+          <Link className="hover:underline" href={`/posts/${slug}`}>
+            <img
+              src={fullAuthorImagePath}
+              alt={authorName}
+              className="w-10 h-10 rounded-full mr-4"
+            />
+          </Link>
           <span className="text-slate-300">{authorName}</span>
         </div>
       </div>

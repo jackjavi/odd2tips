@@ -26,13 +26,15 @@ export function PostPreview({
   return (
     <div className="post-preview">
       <div className="mb-5">
-        <Image
-          src={fullCoverImagePath}
-          alt={`Cover Image for ${title}`}
-          className="cover-image md:h-[40vh] object-cover hover:shadow-lg transition-shadow duration-200"
-          width={1300}
-          height={630}
-        />
+        <Link className="hover:underline" href={`/posts/${slug}`}>
+          <Image
+            src={fullCoverImagePath}
+            alt={`Cover Image for ${title}`}
+            className="cover-image md:h-[40vh] object-cover hover:shadow-lg transition-shadow duration-200"
+            width={1300}
+            height={630}
+          />
+        </Link>
       </div>
       <h3 className="text-3xl mb-3 leading-snug text-[whitesmoke]">
         <Link className="hover:underline" href={`/posts/${slug}`}>
@@ -42,7 +44,9 @@ export function PostPreview({
       <div className="text-lg mb-4 text-slate-300">
         <DateFormatter dateString={date} />
       </div>
-      <p className="text-lg leading-relaxed mb-4 text-slate-400">{excerpt}</p>
+      <Link className="hover:underline" href={`/posts/${slug}`}>
+        <p className="text-lg leading-relaxed mb-4 text-slate-400">{excerpt}</p>
+      </Link>
       <div className="author flex items-center">
         <img
           src={fullAuthorImagePath}
