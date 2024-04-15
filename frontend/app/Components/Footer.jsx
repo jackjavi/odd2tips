@@ -82,7 +82,7 @@ const Footer = () => {
       </div>
 
       {/* Legal Notice */}
-      <div className="text-center mt-8 pt-4">
+      <div className="text-center mt-8 pt-4 text-slate-200">
         <p>&copy; {new Date().getFullYear()} Odd2Tips. All rights reserved.</p>
       </div>
     </div>

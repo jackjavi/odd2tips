@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const AboutSection: React.FC = () => {
   return (
-    <div className="px-4 py-12 h-[80vh] flex flex-col items-center justify-center">
+    <div className="px-4 pb-12 pt-2 h-[80vh] flex flex-col items-center justify-center">
       <div className="text-center mb-8 bg-opacity-20 bg-cover bg-center bg-no-repeat rounded-lg p-6 ">
         <h1 className="text-5xl md:text-8xl font-bold tracking-wide leading-10 md:pr-8 animate-pulse text-[whitesmoke]">
           Odd2Tips
