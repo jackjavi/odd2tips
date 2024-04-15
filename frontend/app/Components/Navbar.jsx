@@ -107,7 +107,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-gradient-to-r from-green-400 to-purple-700 text-white p-4 relative flex justify-center h-[20vh]">
+    <nav className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-slate-900 hover:to-slate-500 text-white p-4 relative flex justify-center h-[20vh]">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <Link href="/">
