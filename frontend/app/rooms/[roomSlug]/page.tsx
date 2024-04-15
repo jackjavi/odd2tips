@@ -43,7 +43,7 @@ const RoomPage: React.FC = () => {
   if (!room) return <div>Loading...</div>;
 
   return (
-    <div className="container mx-auto p-4 bg-gradient-to-r from-green-500 to-blue-600">
+    <div className="container mx-auto p-4 bg-gradient-to-r from-green-400 to-purple-700">
       <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 h-full shadow-lg mb-6 rounded-md">
         <h2 className="text-2xl font-bold text-center text-white mb-4 pt-8 pb-2">
           {room.title}
