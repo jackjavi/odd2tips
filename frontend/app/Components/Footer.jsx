@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-slate-900 hover:to-slate-500 py-20 px-[10vw]">
+    <div className="bg-gradient-to-r from-green-500 to-blue-600 hover:from-slate-900 hover:to-slate-500 py-20 px-[10vw]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mx-auto ">
         {/* About Section */}
         <div className="flex flex-col text-slate-200 justify-center items-center">
