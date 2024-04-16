@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const AboutSection: React.FC = () => {
   return (
-    <div className="px-4 py-12 h-[75vh] flex flex-col items-center justify-center">
-      <div className="text-center mb-8 bg-opacity-20 bg-cover bg-center bg-no-repeat rounded-lg p-6 ">
+    <div className="px-4 py-12 h-[80vh] flex flex-col items-center justify-center">
+      <div className="text-center mb-4 bg-opacity-20 bg-cover bg-center bg-no-repeat rounded-lg p-6 ">
         <h1 className="font-playfair text-5xl md:text-8xl font-bold tracking-wide leading-10 md:pr-8 animate-pulse text-[whitesmoke] ">
           Odd2Tips
         </h1>
@@ -20,13 +20,13 @@ const AboutSection: React.FC = () => {
           </Link>
   </div>*/}
       </div>
-      <div className="max-w-4xl mx-auto text-center font-montserrat">
-        <p className="text-lg md:text-xl text-[whitesmoke] mb-4">
+      <div className="max-w-4xl mx-auto text-center font-montserrat ">
+        <p className="text-lg md:text-xl text-[whitesmoke] mb-4 tracking-wide leading-wide">
           We are a platform that enables tipsters to have a global reach of
           clients and also allows clients to get the best odds from top tipsters
           with a winning record.
         </p>
-        <p className="text-lg md:text-xl text-[whitesmoke] mb-8">
+        <p className="text-lg md:text-xl text-[whitesmoke] mb-8 leading-wide tracking-wide">
           Subscribe to our newsletter to receive instructions on how to leverage
           our platform to acquire new clients, have a portfolio as a
           professional tipster, and gain global reach.
