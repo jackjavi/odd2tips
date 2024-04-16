@@ -1,4 +1,9 @@
-import { Inter, Roboto_Mono } from "next/font/google";
+import {
+  Inter,
+  Roboto_Mono,
+  Montserrat,
+  Playfair_Display,
+} from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -20,13 +25,28 @@ const roboto_mono = Roboto_Mono({
   variable: "--font-roboto-mono",
 });
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
+
+const playfair_display = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair-display",
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${roboto_mono.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${roboto_mono.variable} ${montserrat.variable} ${playfair_display.variable} bg-[#1a202c] text-[#e2e8f0] antialiased font-montserrat`}
+    >
       <body>{children}</body>
     </html>
   );
