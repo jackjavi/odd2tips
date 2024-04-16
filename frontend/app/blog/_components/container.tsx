@@ -3,7 +3,9 @@ type Props = {
 };
 
 const Container = ({ children }: Props) => {
-  return <div className=" mx-auto md:px-[10vw] px-5 ">{children}</div>;
+  return (
+    <div className=" mx-auto md:px-[10vw] px-5 font-montserrat">{children}</div>
+  );
 };
 
 export default Container;
