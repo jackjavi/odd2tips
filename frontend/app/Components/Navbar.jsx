@@ -115,8 +115,8 @@ const Navbar = () => {
               src="/logo.png"
               className="cursor-pointer"
               alt="Logo-SVG"
-              width={70}
-              height={70}
+              width={80}
+              height={80}
             />
           </Link>
         </div>
