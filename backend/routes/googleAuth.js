@@ -68,7 +68,8 @@ router.get("/auth/google/callback", async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      // sameSite: "none",
+      sameSite: "none",
+      secure: true,
       maxAge: 43200000, // 12 hours (12 * 60 * 60 * 1000 milliseconds)
     });
 
