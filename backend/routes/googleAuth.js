@@ -72,9 +72,6 @@ router.get("/auth/google/callback", async (req, res) => {
       maxAge: 43200000, // 12 hours (12 * 60 * 60 * 1000 milliseconds)
     });
 
-    // Code to handle user authentication and retrieval using the profile data
-    console.log("User profile:", profile);
-
     res.redirect("https://www.odd2tips.com/");
   } catch (error) {
     console.error("Error:", error.response.data.error);
