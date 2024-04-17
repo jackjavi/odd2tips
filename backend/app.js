@@ -11,7 +11,6 @@ const http = require("http").createServer(app);
 const cors = require("cors");
 app.use(cors());
 app.use(cookieParser());
-const SQLiteStore = require("connect-sqlite3")(session);
 const connectDatabase = require("./utils/database");
 const authRoutes = require("./routes/authRoute");
 const googleAuth = require("./routes/googleAuth");
@@ -39,16 +38,6 @@ const io = require("socket.io")(http, {
     credentials: true,
   },
 });
-
-app.use(
-  cors({ origin: allowedOrigins, credentials: true }),
-  session({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: false,
-    store: new SQLiteStore({ db: "sessions.db", dir: "./var/db" }),
-  })
-);
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
