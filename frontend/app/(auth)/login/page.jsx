@@ -26,6 +26,18 @@ export default function Login() {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      await axios.get("/api/auth/login/federated/google", {
+        withCredentials: true,
+      });
+      console.log("Google login successful");
+    } catch (err) {
+      setError(err.response?.data.error || "Error with Google login");
+      console.error("Error with Google login:", err);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -72,6 +84,11 @@ export default function Login() {
                 Login
               </button>
             </form>
+          </div>
+          <div>
+            <button className="button google" onClick={handleGoogleLogin}>
+              Sign in with Google
+            </button>
           </div>
         </div>
 

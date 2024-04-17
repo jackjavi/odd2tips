@@ -1,6 +1,8 @@
 require("dotenv").config();
 
 const express = require("express");
+const session = require("express-session");
+const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -9,8 +11,10 @@ const http = require("http").createServer(app);
 const cors = require("cors");
 app.use(cors());
 app.use(cookieParser());
+const SQLiteStore = require("connect-sqlite3")(session);
 const connectDatabase = require("./utils/database");
 const authRoutes = require("./routes/authRoute");
+const googleAuth = require("./routes/googleAuth");
 const uploadRoutes = require("./routes/uploadRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const sportMonksRoutes = require("./routes/sportMonksRoute");
@@ -27,6 +31,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://odd2tips.vercel.app",
   "https://odd2tips.onrender.com",
+  "https://accounts.google.com",
 ];
 const io = require("socket.io")(http, {
   cors: {
@@ -35,12 +40,21 @@ const io = require("socket.io")(http, {
   },
 });
 
-app.use(cors({ origin: allowedOrigins, credentials: true }));
+app.use(
+  cors({ origin: allowedOrigins, credentials: true }),
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    store: new SQLiteStore({ db: "sessions.db", dir: "./var/db" }),
+  })
+);
 
 app.use(express.static("public"));
 
 connectDatabase();
 app.use("/api/auth", authRoutes);
+app.use("/api/auth", googleAuth);
 app.use("/api", AppController);
 
 app.use("/api/blog", uploadRoutes);
