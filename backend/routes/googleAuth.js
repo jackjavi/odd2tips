@@ -75,10 +75,10 @@ router.get("/auth/google/callback", async (req, res) => {
     // Code to handle user authentication and retrieval using the profile data
     console.log("User profile:", profile);
 
-    res.redirect("http://localhost:3000/");
+    res.redirect("https://www.odd2tips.com/");
   } catch (error) {
     console.error("Error:", error.response.data.error);
-    res.redirect("http://localhost:3000/login");
+    res.redirect("https://www.odd2tips.com/login");
   }
 });
 
