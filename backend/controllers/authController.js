@@ -8,7 +8,7 @@ const redisClient = require("../utils/redis");
 const cloudinary = require("../utils/cloudinaryConfig");
 
 exports.register = async (req, res) => {
-  const { email } = req.body;
+  const { email, password, name } = req.body;
   let profilePictureUrl = null;
 
   try {
@@ -21,6 +21,8 @@ exports.register = async (req, res) => {
 
     const user = new User({
       email,
+      password,
+      name,
       profilePicture: profilePictureUrl,
       verificationToken,
     });
