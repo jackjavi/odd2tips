@@ -38,6 +38,7 @@ const io = require("socket.io")(http, {
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 app.use(express.static("public"));
+app.set("view engine", "ejs");
 
 connectDatabase();
 app.use("/api/auth", authRoutes);
