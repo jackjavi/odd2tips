@@ -28,9 +28,7 @@ export default function Login() {
 
   const handleGoogleLogin = async () => {
     try {
-      await axios.get("/api/auth/login/federated/google", {
-        withCredentials: true,
-      });
+      window.location.href = "https://odd2tips.onrender.com/auth/google";
       console.log("Google login successful");
     } catch (err) {
       setError(err.response?.data.error || "Error with Google login");

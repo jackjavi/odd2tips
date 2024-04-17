@@ -55,7 +55,7 @@ app.set("view engine", "ejs");
 
 connectDatabase();
 app.use("/api/auth", authRoutes);
-app.use("/api/auth", googleAuth);
+app.use("/", googleAuth);
 app.use("/api", AppController);
 
 app.use("/api/blog", uploadRoutes);
