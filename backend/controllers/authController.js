@@ -1,4 +1,6 @@
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
+const sendEmail = require("../utils/sendEmail");
 const { v4: uuidv4 } = require("uuid");
 const User = require("../models/User");
 const tokenService = require("../services/tokenService");
@@ -7,29 +9,64 @@ const cloudinary = require("../utils/cloudinaryConfig");
 
 exports.register = async (req, res) => {
   const { email, password, name } = req.body;
-  console.log(email, password, name);
   let profilePictureUrl = null;
 
   try {
-    if (req.files) {
+    if (req.files.profilePicture) {
       profilePictureUrl = req.files.profilePicture[0].path;
       const result = await cloudinary.uploader.upload(profilePictureUrl);
       profilePictureUrl = result.url;
     }
+    const verificationToken = crypto.randomBytes(20).toString("hex");
 
     const user = new User({
       email,
       password,
       name,
       profilePicture: profilePictureUrl,
+      verificationToken,
     });
     await user.save();
 
-    // const token = tokenService.generateToken({ id: user._id.toString() });
-    res.json({ user });
+    const verificationUrl = `https://${req.headers.host}/api/auth/verify-email?token=${verificationToken}`;
+    const message = `Please verify your email by clicking on this link: ${verificationUrl}`;
+
+    await sendEmail({
+      to: user.email,
+      subject: "Verify Email",
+      text: message,
+    });
+
+    res.status(200).json({
+      user,
+      message: "Registration successful, please verify your email.",
+    });
   } catch (error) {
     console.error("Register error:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.verifyEmail = async (req, res) => {
+  const { token } = req.query;
+  try {
+    const user = await User.findOne({ verificationToken: token });
+    if (!user) {
+      return res.render("verifyEmail", {
+        message: "Invalid or expired verification token.",
+      });
+    }
+
+    user.isVerified = true;
+    user.verificationToken = undefined;
+    await user.save();
+
+    res.render("verifyEmail", { message: "Email verification successful!" });
+  } catch (error) {
+    console.error("Email verification error:", error);
+    res.render("verifyemail", {
+      message: "Internal Server Error. Please try again later.",
+    });
   }
 };
 
@@ -39,6 +76,10 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    if (!user.isVerified) {
+      return res.status(403).json({ error: "Email not verified" });
     }
 
     const sessionId = uuidv4();

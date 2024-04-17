@@ -51,6 +51,7 @@ app.use(
 );
 
 app.use(express.static("public"));
+app.set("view engine", "ejs");
 
 connectDatabase();
 app.use("/api/auth", authRoutes);
