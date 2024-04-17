@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   profilePicture: { type: String, required: false },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: String,
 });
 
 userSchema.pre("save", async function (next) {
