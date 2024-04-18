@@ -92,7 +92,7 @@ const RoomComponent: React.FC<RoomComponentProps> = () => {
           className="mb-6 p-4 bg-white shadow-lg rounded-lg"
         >
           <h2 className="text-2xl font-bold text-green-700 mb-3">
-            Today's Tip
+            Today&apos;s Tip
           </h2>
           <button
             onClick={() => handleButtonClick("TodaysTip")}
