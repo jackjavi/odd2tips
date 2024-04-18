@@ -60,7 +60,7 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
     <>
       <div
         ref={ref}
-        className="bg-gradient-to-br from-purple-600 to-green-500 p-4 rounded-lg shadow-lg"
+        className="bg-gradient-to-br from-purple-600 to-green-500 p-4 shadow-lg"
       >
         <h1 className="text-xl font-bold text-center text-white mb-2">
           ODD 2 TIPS
