@@ -1,10 +1,11 @@
+const { v4: uuidv4 } = require("uuid");
+
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
 const User = require("../models/User");
 const tokenService = require("../services/tokenService");
 const redisClient = require("../utils/redis");
-const { v4: uuidv4 } = require("uuid");
 
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
@@ -58,25 +59,17 @@ router.get("/auth/google/callback", async (req, res) => {
       sessionId,
     });
 
+    const oneTimeToken = uuidv4();
     await redisClient.set(
-      sessionId,
-      JSON.stringify({ userId: user._id.toString() }),
-      86400
-    );
+      oneTimeToken,
+      JSON.stringify({ token: token, user: user }),
+      300
+    ); // Expires in 5 minutes
 
-    req.user = profile;
-
-    res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-      maxAge: 43200000, // 12 hours (12 * 60 * 60 * 1000 milliseconds)
-    });
-
-    res.render("success", { profile: profile });
+    res.redirect(`https://www.odd2tips.com/login?ott=${oneTimeToken}`);
   } catch (error) {
     console.error("Error:", error.response.data.error);
-    res.render("error", { error: "Login erro" });
+    res.render("error", { error: "Login error" });
   }
 });
 

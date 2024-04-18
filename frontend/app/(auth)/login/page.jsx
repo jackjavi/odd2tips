@@ -2,7 +2,7 @@
 
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -11,6 +11,29 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ott = params.get("ott");
+    if (ott) {
+      exchangeOTTForSession(ott);
+    }
+  }, []);
+
+  const exchangeOTTForSession = async (ott) => {
+    try {
+      const response = await axios.post(
+        "/api/auth/google/exchange-ott",
+        { ott },
+        { withCredentials: true }
+      );
+
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error exchanging OTT:", error);
+      setError("Error exchanging OTT");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -70,6 +70,35 @@ exports.verifyEmail = async (req, res) => {
   }
 };
 
+exports.exchangeOTT = async (req, res) => {
+  const { ott } = req.body;
+
+  try {
+    const sessionInfo = await redisClient.get(ott);
+
+    if (!sessionInfo) {
+      return res.status(404).json({ error: "OTT not found or expired" });
+    }
+
+    await redisClient.del(ott);
+
+    const { token, user } = JSON.parse(sessionInfo);
+
+    req.user = user;
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      // sameSite: "none",
+      maxAge: 43200000, // 12 hours (12 * 60 * 60 * 1000 milliseconds)
+    });
+
+    res.status(200).json({ message: "Login successful", userData: user });
+  } catch (error) {
+    console.error("Error during OTT exchange:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {

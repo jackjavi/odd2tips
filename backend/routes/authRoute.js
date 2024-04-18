@@ -6,6 +6,8 @@ const upload = require("../utils/upload");
 router.post("/register", upload, AuthController.register);
 router.get("/verify-email", AuthController.verifyEmail);
 
+router.post("/google/exchange-ott", AuthController.exchangeOTT);
+
 router.post("/login", AuthController.login);
 router.post("/logout", AuthController.logout);
 
