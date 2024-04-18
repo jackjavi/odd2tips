@@ -73,10 +73,10 @@ router.get("/auth/google/callback", async (req, res) => {
       maxAge: 43200000, // 12 hours (12 * 60 * 60 * 1000 milliseconds)
     });
 
-    res.redirect("https://www.odd2tips.com/");
+    res.render("success", { profile: profile });
   } catch (error) {
     console.error("Error:", error.response.data.error);
-    res.redirect("https://www.odd2tips.com/login");
+    res.render("error", { error: "Login erro" });
   }
 });
 

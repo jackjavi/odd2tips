@@ -27,6 +27,7 @@ const socketHandler = require("./sockets/socketHandler");
 const chatRoutes = require("./routes/chatRoutes");
 const allowedOrigins = [
   "https://www.odd2tips.com",
+  "https://odd2tips.com",
   "http://localhost:3000",
   "https://odd2tips.vercel.app",
   "https://odd2tips.onrender.com",
