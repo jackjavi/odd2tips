@@ -29,7 +29,7 @@ const Home = () => {
 
   const heroPost = allPosts.length > 0 ? allPosts[0] : null;
   return (
-    <div className="bg-gradient-to-r from-slate-900 to-slate-500 hover:from-green-500 hover:to-blue-600">
+    <div className="bg-gradient-to-r from-slate-500 to-slate-900 ">
       <Navbar />
 
       <AboutSection />

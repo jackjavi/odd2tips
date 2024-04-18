@@ -47,7 +47,7 @@ const RoomsList: React.FC = () => {
         {rooms.map((room) => (
           <div
             key={room._id}
-            className="p-4 border rounded-lg shadow-lg bg-gradient-to-r from-green-300 to-blue-400"
+            className="p-4 border rounded-lg shadow-lg bg-gradient-to-r from-slate-600 to-slate-300"
           >
             <h3 className="text-xl font-bold text-blue-600">{room.title}</h3>
             <p className="text-gray-700">{room.description}</p>

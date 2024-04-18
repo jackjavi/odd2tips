@@ -107,7 +107,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="shadow md:shadow-lg bg-gradient-to-r from-slate-900 to-slate-500 hover:from-green-500 hover:to-blue-600 text-white p-4 relative flex justify-center h-[15vh] md:h-[20vh]">
+    <nav className="shadow md:shadow-lg bg-gradient-to-r from-slate-500 to-slate-900 text-white p-4 relative flex justify-center h-[15vh] md:h-[20vh]">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <Link href="/">

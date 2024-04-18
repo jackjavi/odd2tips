@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "../../Components/Navbar";
+import GoogleSignInButton from "../../Components/GoogleSignInButton";
 import Footer from "../../Components/Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -61,16 +62,18 @@ export default function Login() {
   return (
     <>
       <Navbar />
-      <div className="flex min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-center w-full md:w-1/2 p-12 bg-gradient-to-r from-green-500 to-blue-600 text-white">
+      <div className="flex min-h-screen">
+        <div className="flex flex-col justify-center w-full md:w-1/2 p-12 text-white gap-4 bg-gradient-to-r from-slate-500 to-slate-900">
           <div className="max-w-md mx-auto">
-            <h1 className="text-3xl font-semibold text-center mb-8">Login</h1>
+            <h1 className="text-3xl font-semibold text-center mb-8 text-blue-200 font-playfair">
+              Login
+            </h1>
             {error && (
               <p className="bg-red-100 text-red-500 p-3 rounded">{error}</p>
             )}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium">
+                <label htmlFor="email" className="block text-sm font-semibold">
                   Email
                 </label>
                 <input
@@ -84,7 +87,10 @@ export default function Login() {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-semibold"
+                >
                   Password
                 </label>
                 <input
@@ -94,21 +100,27 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                   required
-                  className="mt-1 p-2 w-full rounded-md text-gray-700"
+                  className="mt-1 mb-4 p-2 w-full rounded-md text-gray-700"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full p-2 rounded hover:bg-blue-700 transition-colors"
+                className="w-full p-2 rounded bg-green-600 hover:bg-purple-500 transition-colors font-bold "
               >
                 Login
               </button>
             </form>
           </div>
-          <div>
-            <button className="button google" onClick={handleGoogleLogin}>
-              Sign in with Google
-            </button>
+          <div className="flex items-center justify-center  py-2">
+            <div className="border-t border-slate-500 w-[10%]" />
+            <span className="px-4 text-sm font-montserrat text-[whitesmoke] ">
+              or
+            </span>
+            <div className="border-t border-slate-500 w-[10%]" />
+          </div>
+
+          <div className="flex justify-center items-center">
+            <GoogleSignInButton onClick={handleGoogleLogin} />
           </div>
         </div>
 

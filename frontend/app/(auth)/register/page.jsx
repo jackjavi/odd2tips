@@ -46,10 +46,10 @@ export default function Register() {
   return (
     <>
       <Navbar />
-      <div className="flex min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-center w-full md:w-1/2 p-12 bg-gradient-to-r from-green-500 to-blue-600 text-white">
+      <div className="flex min-h-screen ">
+        <div className="flex flex-col justify-center w-full md:w-1/2 p-12 bg-gradient-to-r from-slate-500 to-slate-900 text-white">
           <div className="max-w-md mx-auto">
-            <h1 className="text-3xl font-semibold text-center mb-8">
+            <h1 className="text-3xl font-semibold text-center text-blue-200 mb-8 font-playfair">
               Register
             </h1>
             {error && (
@@ -59,7 +59,7 @@ export default function Register() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block mb-2 text-sm font-medium text-gray-300"
+                  className="block mb-2 text-sm  text-gray-300 font-semibold"
                 >
                   Name
                 </label>
@@ -68,14 +68,15 @@ export default function Register() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  placeholder="Name"
                   required
-                  className="p-2 w-full rounded-md text-gray-700"
+                  className="p-2 w-full rounded-md text-gray-700 "
                 />
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-300"
+                  className="block mb-2 text-sm  text-gray-300 font-semibold"
                 >
                   Email
                 </label>
@@ -84,14 +85,15 @@ export default function Register() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
                   required
-                  className="p-2 w-full rounded-md text-gray-700"
+                  className="p-2 w-full rounded-md text-gray-700 "
                 />
               </div>
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-300"
+                  className="block mb-2 text-sm  text-gray-300 font-semibold"
                 >
                   Password
                 </label>
@@ -100,8 +102,9 @@ export default function Register() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
                   required
-                  className="p-2 w-full rounded-md text-gray-700"
+                  className="p-2 w-full rounded-md text-gray-700 "
                 />
               </div>
               <div>
@@ -126,7 +129,7 @@ export default function Register() {
               </div>
               <button
                 type="submit"
-                className="w-full py-2 px-4 rounded hover:bg-blue-700 transition-colors text-white font-semibold"
+                className="w-full py-2 px-4 rounded bg-green-600 hover:bg-purple-500 transition-colors text-white font-semibold"
               >
                 Register
               </button>
