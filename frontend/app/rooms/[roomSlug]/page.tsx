@@ -1,88 +1,144 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import Daily2Odds from "../../Components/Daily2Odds";
-import Chat from "@/app/Components/Chat";
-import {
-  FaTelegramPlane,
-  FaWhatsapp,
-  FaTwitter,
-  FaFacebookF,
-  FaInstagram,
-  FaTiktok,
-} from "react-icons/fa";
-import { getRoomByTitle } from "../../../lib/room";
+import React, { useState } from "react";
+import Daily2Odds from "@/app/Components/Daily2Odds";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
-interface Room {
-  _id: string;
-  title: string;
-  description: string;
-  privacy: string;
-  adminId: string;
-  members: string[];
-  createdAt: string;
-}
+type RoomComponentProps = {};
 
-const RoomPage: React.FC = () => {
-  const roomSlug = useParams();
-  const [room, setRoom] = useState<Room | null>(null);
+const RoomComponent: React.FC<RoomComponentProps> = () => {
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+  const router = useRouter();
+  const { roomSlug } = useParams();
+  const searchParams = useSearchParams();
+  const roomId = searchParams.get("roomId");
 
-  useEffect(() => {
-    if (typeof roomSlug.roomSlug === "string") {
-      getRoomByTitle(roomSlug.roomSlug)
-        .then((fetchedRoom) => {
-          setRoom(fetchedRoom);
-        })
-        .catch((error) => {
-          console.error("Error fetching room details:", error);
-        });
+  const handleButtonClick = (section: string) => {
+    if (section === "Settings") {
+      router.push(`/rooms/${roomSlug}/dashboard?roomId=${roomId}`);
+    } else {
+      setActiveModal(section);
     }
-  }, [roomSlug]);
+  };
 
-  if (!room) return <div>Loading...</div>;
+  const closeModal = () => {
+    setActiveModal(null);
+  };
+
+  const Modal = ({
+    title,
+    children,
+  }: {
+    title: string;
+    children: React.ReactNode;
+  }) => (
+    <div className="md:absolute md:right-0 md:top-0 md:bottom-0 md:h-screen  md:w-2/3 bg-gradient-to-r from-slate-500 to-slate-900 flex justify-center items-center p-4">
+      <div className=" p-4 shadow-lg w-full h-auto ">
+        <h2 className="text-xl font-semibold">{title}</h2>
+        {children}
+        <button
+          onClick={closeModal}
+          className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
 
   return (
-    <div className=" mx-auto p-4 bg-gradient-to-r from-slate-500 to-slate-900">
-      <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 h-full shadow-lg mb-6 rounded-md">
-        <h2 className="text-2xl font-bold text-center text-white mb-4 pt-8 pb-2">
-          {room.title}
-        </h2>
-        <p className="text-center text-md text-blue-200">{room.description}</p>
+    <div className="flex flex-col md:flex-row h-screen w-full">
+      {/* Navigation Section */}
+      <div className="w-full md:w-1/3 p-4 bg-gray-50 overflow-y-auto">
+        <section id="stats" className="mb-6 p-4 bg-white shadow-lg rounded-lg">
+          <h2 className="text-2xl font-bold text-purple-700 mb-3">
+            Stats - Winning Record
+          </h2>
+          <button
+            onClick={() => handleButtonClick("Stats")}
+            className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+          >
+            View Stats
+          </button>
+        </section>
 
-        <div className="flex justify-center gap-4 mt-4">
-          <a href="#" className="text-white text-2xl">
-            <FaTelegramPlane />
-          </a>
-          <a href="#" className="text-white text-2xl">
-            <FaWhatsapp />
-          </a>
-          <a href="#" className="text-white text-2xl">
-            <FaTwitter />
-          </a>
-          <a href="#" className="text-white text-2xl">
-            <FaFacebookF />
-          </a>
-          <a href="#" className="text-white text-2xl">
-            <FaInstagram />
-          </a>
-          <a href="#" className="text-white text-2xl">
-            <FaTiktok />
-          </a>
-        </div>
+        <section id="about" className="mb-6 p-4 bg-white shadow-lg rounded-lg">
+          <h2 className="text-2xl font-bold text-purple-700 mb-3">About</h2>
+          <button
+            onClick={() => handleButtonClick("About")}
+            className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+          >
+            Learn More
+          </button>
+        </section>
 
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold text-white mb-4">
-            Today&lsquo;s Tip
-          </h3>
-          <Daily2Odds />
-        </div>
+        <section
+          id="social-links"
+          className="mb-6 p-4 bg-white shadow-lg rounded-lg"
+        >
+          <h2 className="text-2xl font-bold text-purple-700 mb-3">
+            Room Social Links
+          </h2>
+          <button
+            onClick={() => handleButtonClick("SocialLinks")}
+            className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+          >
+            Explore
+          </button>
+        </section>
+
+        <section
+          id="todays-tip"
+          className="mb-6 p-4 bg-white shadow-lg rounded-lg"
+        >
+          <h2 className="text-2xl font-bold text-green-700 mb-3">
+            Today's Tip
+          </h2>
+          <button
+            onClick={() => handleButtonClick("TodaysTip")}
+            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+          >
+            Discover
+          </button>
+        </section>
+
+        <section
+          id="future-tips"
+          className="mb-6 p-4 bg-white shadow-lg rounded-lg"
+        >
+          <h2 className="text-2xl font-bold text-green-700 mb-3">
+            Unlock Future Tips
+          </h2>
+          <button
+            onClick={() => handleButtonClick("FutureTips")}
+            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+          >
+            Unlock
+          </button>
+        </section>
+
+        <section
+          id="settings"
+          className="mb-6 p-4 bg-white shadow-lg rounded-lg"
+        >
+          <h2 className="text-2xl font-bold text-purple-700 mb-3">Settings</h2>
+          <button
+            onClick={() => handleButtonClick("Settings")}
+            className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+          >
+            Configure
+          </button>
+        </section>
       </div>
-      <div className="md:w-1/2 mt-8">
-        <Chat />
-      </div>
+
+      {/* Content/Modal Section */}
+      {activeModal === "TodaysTip" && (
+        <Modal title="Today's Tip">
+          <Daily2Odds roomId={roomId} />
+        </Modal>
+      )}
     </div>
   );
 };
 
-export default RoomPage;
+export default RoomComponent;

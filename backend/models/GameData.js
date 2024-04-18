@@ -9,6 +9,11 @@ const gameDataSchema = new mongoose.Schema(
     awayTeam: { type: String, required: true },
     prediction: { type: String, required: true },
     odd: { type: Number, required: true },
+    roomId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Room",
+      required: true,
+    },
   },
   { timestamps: true }
 );

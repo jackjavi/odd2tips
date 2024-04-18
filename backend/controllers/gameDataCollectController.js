@@ -5,6 +5,7 @@ const moment = require("moment");
 exports.getGameData = async (req, res) => {
   const todayStart = moment().startOf("day").toDate();
   const todayEnd = moment().endOf("day").toDate();
+  const { roomId } = req.query;
 
   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
@@ -32,6 +33,7 @@ exports.getGameData = async (req, res) => {
         $gte: todayStart,
         $lte: todayEnd,
       },
+      roomId: roomId,
     });
 
     res.json(gameData);
