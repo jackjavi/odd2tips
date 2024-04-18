@@ -60,46 +60,46 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
     <>
       <div
         ref={ref}
-        className="bg-gradient-to-r from-purple-500 via-purple-600 to-green-500 p-4 rounded-lg shadow-lg"
+        className="bg-gradient-to-br from-purple-600 to-green-500 p-4 rounded-lg shadow-lg"
       >
-        {games.map((game) => (
+        <h1 className="text-xl font-bold text-center text-white mb-2">
+          ODD 2 TIPS
+        </h1>
+        {games.map((game, index) => (
           <div
             key={game._id}
-            className="border-b border-slate-300 p-4 hover:bg-purple-700 hover:text-white hover:bg-opacity-25 transition-colors rounded-lg mb-4"
+            className={`p-2 mb-2 ${
+              index % 2 === 0 ? "bg-purple-700" : "bg-purple-600"
+            } rounded-lg`}
           >
-            <div className="mb-4">
-              <h2 className="text-2xl font-bold text-center mb-4">
-                {game.predictionType.toUpperCase()}
-              </h2>
-              <span className="text-lg font-semibold">{game.gameTitle}</span>
-              <span className="ml-4 text-sm font-medium text-slate-500">
-                {format(new Date(game.startTime), "MMMM d, p")}
-              </span>
-            </div>
             <div className="flex justify-between items-center">
               <div>
-                <span className="font-semibold">{game.homeTeam}</span>
-                <span className="mx-2">vs</span>
-                <span className="font-semibold">{game.awayTeam}</span>
-              </div>
-              <div>
-                <span className="text-sm bg-green-400 text-slate-800 py-1 px-3 rounded-full">
-                  {`${game.prediction} @ ${game.odd.toFixed(2)}`}
+                <span className="text-xs text-white">
+                  {format(new Date(game.startTime), "MMM d, p")}
                 </span>
+                <div className="text-xs text-white mt-1">{game.gameTitle}</div>
+              </div>
+              <div className="text-right">
+                <div className="font-medium text-xs text-white">
+                  {game.homeTeam} vs {game.awayTeam}
+                </div>
+                <div className="text-xs text-green-300">
+                  {`${game.prediction} @ ${game.odd.toFixed(2)}`}
+                </div>
               </div>
             </div>
           </div>
         ))}
-        <div className="mt-4 p-4 text-right">
-          <span className="text-lg font-bold">Total Odds:</span>
-          <span className="text-lg text-green-200 ml-2">
+        <div className="mt-2 p-2 text-right bg-purple-800 rounded-lg">
+          <span className="text-xs font-bold text-white">Total Odds:</span>
+          <span className="text-xs text-green-300 ml-1">
             {totalOdds.toFixed(2)}
           </span>
         </div>
       </div>
       <button
         onClick={downloadImage}
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-4"
+        className="mt-3 px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 text-xs font-bold mr-4"
       >
         Download as PNG
       </button>
