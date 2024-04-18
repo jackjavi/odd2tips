@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { logout } from "../utils/auth";
 import { IoIosMenu } from "react-icons/io";
+import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -88,10 +89,13 @@ const Navbar = () => {
           <Link
             href="/login"
             scroll={false}
-            className="block px-4 py-2 rounded-md hover:bg-blue-500 text-white bg-green-600 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+            className="block bg-blue-500 hover:bg-blue-700 rounded-md 0 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
             onClick={() => setIsModalOpen(false)}
           >
-            Login
+            <button className=" text-white font-bold py-2 px-6 rounded inline-flex items-center">
+              <FcGoogle className="mr-2" />
+              Sign in with Google
+            </button>
           </Link>
           <Link
             href="/register"
@@ -99,7 +103,10 @@ const Navbar = () => {
             className="block px-4 py-2 mt-2 md:mt-0 rounded-md bg-green-600 text-white hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
             onClick={() => setIsModalOpen(false)}
           >
-            Register
+            <button className=" text-white font-bold rounded inline-flex items-center">
+              <FcGoogle className="mr-2" />
+              Sign up with Google
+            </button>
           </Link>
         </>
       )}

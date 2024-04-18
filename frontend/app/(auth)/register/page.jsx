@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "../../Components/Navbar";
+import GoogleSignInButton from "../../Components/GoogleSignInButton";
 import Footer from "../../Components/Footer";
 import { useState } from "react";
 import axios from "axios";
@@ -43,11 +44,20 @@ export default function Register() {
     setProfilePicture(e.target.files[0]);
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      window.location.href = "https://odd2tips.onrender.com/auth/google";
+    } catch (err) {
+      setError(err.response?.data.error || "Error with Google login");
+      console.error("Error with Google login:", err);
+    }
+  };
+
   return (
     <>
       <Navbar />
       <div className="flex min-h-screen ">
-        <div className="flex flex-col justify-center w-full md:w-1/2 p-12 bg-gradient-to-r from-slate-500 to-slate-900 text-white">
+        <div className="flex flex-col justify-center gap-4 w-full md:w-1/2 p-12 bg-gradient-to-r from-slate-500 to-slate-900 text-white">
           <div className="max-w-md mx-auto">
             <h1 className="text-3xl font-semibold text-center text-blue-200 mb-8 font-playfair">
               Register
@@ -134,6 +144,17 @@ export default function Register() {
                 Register
               </button>
             </form>
+          </div>
+          <div className="flex items-center justify-center  py-2">
+            <div className="border-t border-slate-500 w-[10%]" />
+            <span className="px-4 text-sm font-montserrat text-[whitesmoke] ">
+              or
+            </span>
+            <div className="border-t border-slate-500 w-[10%]" />
+          </div>
+
+          <div className="flex justify-center items-center">
+            <GoogleSignInButton onClick={handleGoogleLogin} />
           </div>
         </div>
 

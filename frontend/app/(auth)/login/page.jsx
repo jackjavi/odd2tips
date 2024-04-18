@@ -62,7 +62,7 @@ export default function Login() {
   return (
     <>
       <Navbar />
-      <div className="flex min-h-screen">
+      <div className="flex h-full">
         <div className="flex flex-col justify-center w-full md:w-1/2 p-12 text-white gap-4 bg-gradient-to-r from-slate-500 to-slate-900">
           <div className="max-w-md mx-auto">
             <h1 className="text-3xl font-semibold text-center mb-8 text-blue-200 font-playfair">
