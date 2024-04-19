@@ -33,9 +33,9 @@ const AboutSection: React.FC = () => {
 
         <Link
           href="/rooms"
-          className="mt-8 inline-block text-xl md:text-3xl bg-gradient-to-r from-violet-900 to-green-500 text-white rounded-full px-6 py-7 font-bold shadow-lg hover:bg-black hover:scale-110 transition-colors"
+          className="mt-8 inline-block text-md sm:text-lg md:text-2xl bg-blue-900 text-blue-400 rounded-full px-4 py-5 font-bold shadow-lg  hover:scale-110 transition-colors"
         >
-          Explore Tipsters
+          EXPLORE TIPSTERS
         </Link>
       </div>
     </div>

@@ -53,10 +53,10 @@ const Home = () => {
             />
             <div className="">
               <Link
-                className="text-green-500 flex flex-col items-center gap-4 md:py-24"
+                className="text-blue-500 flex flex-col items-center gap-4 md:py-24"
                 href="/blog"
               >
-                <h2 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-green-500">
+                <h2 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-tighter leading-tight ">
                   More Stories
                 </h2>
                 <FaArrowRotateRight size={15} />

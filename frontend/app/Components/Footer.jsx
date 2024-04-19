@@ -15,17 +15,15 @@ const Footer = () => {
         {/* About Section */}
         <div className="flex flex-col text-slate-200 justify-center items-center">
           <Image src="/logo.png" alt="Logo-SVG" width={100} height={100} />
-          <p className="text-center text-green-600">
+          <p className="text-center text-blue-500">
             Your premier destination for sports predictions and live chat.
             Engage, predict, and win!
           </p>
         </div>
 
         {/* Quick Links */}
-        <div className="flex flex-col text-green-500 justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-violet-700">
-            Quick Links
-          </h2>
+        <div className="flex flex-col text-blue-500 justify-center items-center">
+          <h2 className="font-bold text-lg mb-2 text-white">Quick Links</h2>
           <ul className="flex gap-4">
             <li>
               <a href="/" className="hover:underline">
@@ -52,7 +50,7 @@ const Footer = () => {
 
         {/* Social Media */}
         <div className="flex flex-col  justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-violet-700">Follow Us</h2>
+          <h2 className="font-bold text-lg mb-2 text-white">Follow Us</h2>
           <div className="flex space-x-4">
             <a
               href="https://t.me"
@@ -108,8 +106,8 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="flex flex-col text-green-500 justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-violet-700">Contact Us</h2>
+        <div className="flex flex-col text-blue-500 justify-center items-center">
+          <h2 className="font-bold text-lg mb-2 text-white">Contact Us</h2>
           <ul>
             <li>Email: odd2tips@gmail.com</li>
             <li>Phone: +254 700 566 210</li>
