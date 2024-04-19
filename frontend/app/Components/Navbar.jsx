@@ -47,7 +47,7 @@ const Navbar = () => {
     <>
       <Link
         href="/"
-        className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+        className="block px-4 py-2 text-green-600 md:text-green-700 hover:text-purple-800  hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Home
@@ -55,7 +55,7 @@ const Navbar = () => {
       <Link
         href="/rooms"
         scroll={false}
-        className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+        className="block px-4 py-2 text-green-600 md:text-green-700 hover:text-purple-800  hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Tipster Rooms
@@ -64,7 +64,7 @@ const Navbar = () => {
       <Link
         href="/blog"
         scroll={false}
-        className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg"
+        className="block px-4 py-2 text-green-600 md:text-green-700 hover:text-purple-800  hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg"
         onClick={() => setIsModalOpen(false)}
       >
         News
@@ -72,7 +72,7 @@ const Navbar = () => {
       <Link
         href="/#chat"
         scroll={false}
-        className="block px-4 py-2 text-green-600 md:text-[whitesmoke] hover:text-gray-200 transition-all ease-in-out duration-200 font-medium md:text-lg"
+        className="block px-4 py-2 text-green-600 md:text-green-700 hover:text-purple-800  hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg"
         onClick={() => setIsModalOpen(false)}
       >
         Chat
@@ -129,7 +129,7 @@ const Navbar = () => {
         </div>
         <button
           onClick={toggleModal}
-          className="md:hidden z-30 text-white focus:outline-none"
+          className="md:hidden z-30 text-blue-900 focus:outline-none"
         >
           <IoIosMenu size={40} />
         </button>
