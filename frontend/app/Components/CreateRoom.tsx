@@ -78,7 +78,7 @@ const CreateRoom: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 ">
       <h2 className="text-2xl font-semibold mb-4">Create a New Room</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -89,6 +89,7 @@ const CreateRoom: React.FC = () => {
             id="title"
             name="title"
             type="text"
+            placeholder="Enter a title for your room"
             required
             className="w-full p-2 border border-gray-300 rounded"
             value={formData.title}
@@ -102,6 +103,7 @@ const CreateRoom: React.FC = () => {
           <textarea
             id="description"
             name="description"
+            placeholder="Enter a description for your room"
             className="w-full p-2 border border-gray-300 rounded"
             rows={4}
             value={formData.description}

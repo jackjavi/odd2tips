@@ -32,7 +32,7 @@ const PostPage = () => {
   const content = post.content;
 
   return (
-    <div className="bg-gradient-to-r from-slate-500 to-slate-900">
+    <div className="bg-[whitesmoke]">
       <Header />
       <main>
         <Container>

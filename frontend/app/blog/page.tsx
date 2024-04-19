@@ -26,7 +26,7 @@ export default function Index() {
   const morePosts = allPosts.length > 1 ? allPosts.slice(1) : [];
 
   return (
-    <div className="bg-gradient-to-r from-slate-500 to-slate-900">
+    <div className="bg-[whitesmoke]">
       <Navbar />
       <main>
         <Container>

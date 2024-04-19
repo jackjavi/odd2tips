@@ -32,9 +32,9 @@ const RoomComponent: React.FC<RoomComponentProps> = () => {
     title: string;
     children: React.ReactNode;
   }) => (
-    <div className="md:absolute md:right-0 md:top-0 md:bottom-0 md:h-screen  md:w-2/3 bg-gradient-to-r from-slate-500 to-slate-900 flex justify-center items-center p-4">
+    <div className="md:absolute md:right-0 md:top-0 md:bottom-0 md:h-screen  md:w-2/3 bg-[whitesmoke] text-green-600 font-playfair flex justify-center items-center p-4">
       <div className=" p-4 shadow-lg w-full h-auto ">
-        <h2 className="text-xl font-semibold">{title}</h2>
+        <h2 className="text-xl mb-2 font-semibold">{title}</h2>
         {children}
         <button
           onClick={closeModal}
