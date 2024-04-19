@@ -24,7 +24,7 @@ export function PostHeader({ title, coverImage, date, author }: Props) {
         <div className="block md:hidden mb-6">
           <Avatar name={author.name} picture={author.picture} />
         </div>
-        <div className="mb-6 text-lg text-slate-300">{date}</div>
+        <div className="mb-6 text-lg text-blue-300">{date}</div>
       </div>
     </>
   );
