@@ -26,8 +26,6 @@ exports.getGameData = async (req, res) => {
       { new: true, upsert: true }
     );
 
-    console.log("Request count:", requestCounter);
-
     const gameData = await GameData.find({
       startTime: {
         $gte: todayStart,

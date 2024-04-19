@@ -9,3 +9,22 @@ exports.createGameData = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+exports.editGameData = async (req, res) => {
+  const { id: gameId } = req.params;
+
+  try {
+    const gameData = await GameData.findByIdAndUpdate(gameId, req.body, {
+      new: true,
+    });
+
+    if (!gameData) {
+      return res.status(404).json({ message: "GameData not found" });
+    }
+
+    res.json(gameData);
+  } catch (error) {
+    console.error("Error updating game data:", error);
+    res.status(500).json({ message: "Failed to update game data" });
+  }
+};
