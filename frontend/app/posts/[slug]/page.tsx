@@ -45,7 +45,10 @@ const PostPage = () => {
                 month: "long",
                 day: "numeric",
               })}
-              author={{ name: post.authorName, picture: post.authorImagePath }}
+              author={{
+                name: post.authorName,
+                picture: post.authorImagePath || "/logo.png",
+              }}
             />
             <PostBody content={content} />
           </article>
