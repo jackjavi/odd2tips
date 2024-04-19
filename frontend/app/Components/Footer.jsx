@@ -23,7 +23,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div className="flex flex-col text-blue-500 justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-blue-700">Quick Links</h2>
+          <h2 className="font-bold text-lg mb-2 text-blue-500">Quick Links</h2>
           <ul className="flex gap-4">
             <li>
               <a href="/" className="hover:underline">
@@ -50,7 +50,7 @@ const Footer = () => {
 
         {/* Social Media */}
         <div className="flex flex-col  justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-blue-700">Follow Us</h2>
+          <h2 className="font-bold text-lg mb-2 text-blue-500">Follow Us</h2>
           <div className="flex space-x-4">
             <a
               href="https://t.me"
