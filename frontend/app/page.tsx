@@ -51,12 +51,15 @@ const Home = () => {
               authorImagePath={heroPost.authorImagePath}
               slug={heroPost.slug}
             />
-            <div className="flex flex-col items-center gap-4 md:py-24">
-              <h2 className="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-[whitesmoke]">
-                More Stories
-              </h2>
-              <Link href="/blog">
-                <FaArrowRotateRight color="blue" size={20} />
+            <div className="">
+              <Link
+                className="text-green-500 flex flex-col items-center gap-4 md:py-24"
+                href="/blog"
+              >
+                <h2 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-green-500">
+                  More Stories
+                </h2>
+                <FaArrowRotateRight size={15} />
               </Link>
             </div>
           </div>

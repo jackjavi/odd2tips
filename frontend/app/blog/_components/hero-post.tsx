@@ -41,15 +41,15 @@ export function HeroPost({
           height={630}
         />
       </div>
-      <h3 className="md:text-4xl text-lg md:font-bold font-semibold leading-snug text-[whitesmoke]">
+      <h3 className="md:text-4xl text-lg md:font-bold font-semibold leading-snug text-green-600">
         <Link className="hover:underline" href={`/posts/${slug}`}>
           {title}
         </Link>
       </h3>
-      <div className="text-lg mb-4 text-slate-300">
+      <div className="text-lg mb-4 text-teal-300">
         {date}
         <Link className="hover:underline" href={`/posts/${slug}`}>
-          <p className="text-slate-300">{excerpt}</p>
+          <p className="text-violet-200">{excerpt}</p>
         </Link>
         <div className="author flex items-center mt-4">
           <Link className="hover:underline" href={`/posts/${slug}`}>
@@ -59,7 +59,7 @@ export function HeroPost({
               className="w-10 h-10 rounded-full mr-4"
             />
           </Link>
-          <span className="text-slate-300">{authorName}</span>
+          <span className="text-blue-500">{authorName}</span>
         </div>
       </div>
     </section>
