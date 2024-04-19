@@ -41,7 +41,11 @@ const EditGames: React.FC = () => {
     fetchGames();
   }, [roomId]);
 
-  const handleEditClick = (game: GameData) => {
+  const handleEditClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    game: GameData
+  ) => {
+    e.stopPropagation();
     setEditModeId(game._id);
     setEditedGame({ ...game });
   };
@@ -63,6 +67,7 @@ const EditGames: React.FC = () => {
           `/api/games/gameData/${gameId}`,
           editedGame
         );
+
         setGames(
           games.map((game) => (game._id === gameId ? response.data : game))
         );
@@ -163,7 +168,7 @@ const EditGames: React.FC = () => {
                 <>
                   <button
                     type="button"
-                    onClick={() => handleEditClick(game)}
+                    onClick={(e) => handleEditClick(e, game)}
                     className="p-2 text-white hover:text-green-500"
                   >
                     <MdModeEdit size={24} />
