@@ -60,7 +60,7 @@ const EditGames: React.FC = () => {
     if (editedGame) {
       try {
         const response = await axios.put(
-          `/api/games/gamesData/${gameId}`,
+          `/api/games/gameData/${gameId}`,
           editedGame
         );
         setGames(
