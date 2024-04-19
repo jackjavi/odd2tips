@@ -18,9 +18,12 @@ export function HeroPost({
   const fullCoverImagePath = coverImagePath.startsWith("http")
     ? coverImagePath
     : `${process.env.NEXT_PUBLIC_BASE_PATH}${coverImagePath}`;
-  const fullAuthorImagePath = authorImagePath.startsWith("http")
-    ? authorImagePath
-    : `${process.env.NEXT_PUBLIC_BASE_PATH}${authorImagePath}`;
+  let fullAuthorImagePath = "/logo.png";
+  if (authorImagePath) {
+    fullAuthorImagePath = authorImagePath.startsWith("http")
+      ? authorImagePath
+      : `${process.env.NEXT_PUBLIC_BASE_PATH}${authorImagePath}`;
+  }
 
   return (
     <section className="hero-post">
