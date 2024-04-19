@@ -56,7 +56,7 @@ const Footer = () => {
               href="https://t.me"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400"
+              className="text-blue-500"
             >
               <FaTelegramPlane />
             </a>
@@ -65,7 +65,7 @@ const Footer = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className=""
+              className="text-black"
             >
               <BsTwitterX />
             </a>
