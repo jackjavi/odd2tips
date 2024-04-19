@@ -90,11 +90,7 @@ const EditGames: React.FC = () => {
         EDIT GAMES
       </h1>
       {games.map((game) => (
-        <form
-          key={game._id}
-          onSubmit={(e) => handleEditSubmit(e, game._id)}
-          className="p-2 mb-2 bg-purple-700 rounded-lg"
-        >
+        <form key={game._id} className="p-2 mb-2 bg-purple-700 rounded-lg">
           <div className="flex justify-between items-center">
             <div className="text-xs text-white">
               {editModeId === game._id ? (
@@ -151,7 +147,8 @@ const EditGames: React.FC = () => {
               {editModeId === game._id ? (
                 <>
                   <button
-                    type="submit"
+                    onClick={(e) => handleEditSubmit(e, game._id)}
+                    type="button"
                     className="p-2 text-white hover:text-green-500"
                   >
                     Save
