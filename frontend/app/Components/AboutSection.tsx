@@ -5,7 +5,7 @@ const AboutSection: React.FC = () => {
   return (
     <div className="px-4 py-12 h-[80vh] flex flex-col items-center justify-center">
       <div className="text-center mb-4 bg-opacity-20 bg-cover bg-center bg-no-repeat rounded-lg p-6 ">
-        <h1 className="drop-shadow-lg font-montserrat text-5xl md:text-9xl font-extrabold tracking-wider leading-wider md:pr-8 animate-pulse text-blue-900 ">
+        <h1 className="drop-shadow-lg font-montserrat text-4xl sm:text-5xl md:text-9xl font-extrabold tracking-5 leading-wider md:pr-8 animate-pulse text-blue-900 ">
           ODD 2 TIPS
         </h1>
         {/*<p className="mt-4 text-xl text-[whitesmoke] animate-pulse">
