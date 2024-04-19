@@ -46,7 +46,7 @@ const AddGames: React.FC = () => {
       const response = await axios.post(`/api/games/gameData`, formData);
 
       alert(`Form submission successful: ${response.data.gameTitle}`);
-      router.push("/admin");
+      router.push(`/rooms/${roomSlug}/dashboard`);
     } catch (error) {
       console.error("Failed to submit form:", error);
     }

@@ -62,9 +62,7 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
         ref={ref}
         className="bg-gradient-to-br from-purple-600 to-green-500 p-4 shadow-lg"
       >
-        <h1 className="text-xl font-bold text-center text-white mb-2">
-          ODD 2 TIPS
-        </h1>
+        <h1 className="text-xl font-bold text-center text-white mb-2"></h1>
         {games.length > 0 ? (
           games.map((game, index) => (
             <div
