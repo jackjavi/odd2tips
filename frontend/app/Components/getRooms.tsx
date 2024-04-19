@@ -47,12 +47,14 @@ const RoomsList: React.FC = () => {
         {rooms.map((room) => (
           <div
             key={room._id}
-            className="p-4 border rounded-lg shadow-lg bg-gradient-to-r from-slate-300 to-slate-600"
+            className="p-4 border rounded-lg shadow-lg bg-black"
           >
-            <h3 className="text-xl font-bold text-blue-600">{room.title}</h3>
-            <p className="text-gray-700">{room.description}</p>
+            <h3 className="text-xl font-bold text-[whitesmoke]">
+              {room.title}
+            </h3>
+            <p className="text-gray-400">{room.description}</p>
             <div className="mt-2">
-              <span className="px-2 py-1 text-xs rounded bg-blue-200 text-blue-800">
+              <span className="px-1 py-1 text-[8px] sm:text-[12px] md:text-xs rounded bg-blue-300 text-gray-800">
                 {room.privacy.toUpperCase()}
               </span>
             </div>
@@ -61,7 +63,7 @@ const RoomsList: React.FC = () => {
                 room._id
               }`}
             >
-              <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+              <button className="mt-4 px-4 py-2 bg-blue-400 text-white rounded hover:bg-blue-700 transition-colors">
                 Visit Room
               </button>
             </Link>
