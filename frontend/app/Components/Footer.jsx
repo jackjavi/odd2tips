@@ -10,7 +10,7 @@ import { BsTwitterX } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-r from-slate-500 to-slate-900 py-20 px-[10vw]  border-t-2 border-slate-700">
+    <div className="bg-[whitesmoke] py-20 px-[10vw]  ">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mx-auto ">
         {/* About Section */}
         <div className="flex flex-col text-slate-200 justify-center items-center">
@@ -23,7 +23,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div className="flex flex-col text-blue-500 justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-white">Quick Links</h2>
+          <h2 className="font-bold text-lg mb-2 text-blue-700">Quick Links</h2>
           <ul className="flex gap-4">
             <li>
               <a href="/" className="hover:underline">
@@ -50,7 +50,7 @@ const Footer = () => {
 
         {/* Social Media */}
         <div className="flex flex-col  justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-white">Follow Us</h2>
+          <h2 className="font-bold text-lg mb-2 text-blue-700">Follow Us</h2>
           <div className="flex space-x-4">
             <a
               href="https://t.me"
@@ -107,7 +107,7 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div className="flex flex-col text-blue-500 justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-white">Contact Us</h2>
+          <h2 className="font-bold text-lg mb-2 ">Contact Us</h2>
           <ul>
             <li>Email: odd2tips@gmail.com</li>
             <li>Phone: +254 700 566 210</li>
