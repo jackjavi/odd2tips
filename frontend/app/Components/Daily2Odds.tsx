@@ -72,7 +72,7 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
     <>
       <div
         ref={ref}
-        className="bg-white p-4 rounded-lg shadow-lg divide-y divide-gray-200"
+        className="bg-white p-4  shadow-lg divide-y divide-gray-200"
         style={{ fontFamily: "Arial, sans-serif" }}
       >
         {games.map((game, index) => (
