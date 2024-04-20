@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 import * as htmlToImage from "html-to-image";
+import Loading from "./Loading";
+import { fi } from "date-fns/locale";
 
 interface GameData {
   _id: string;
@@ -21,6 +23,7 @@ interface Daily2OddsProps {
 
 const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
   const [games, setGames] = useState<GameData[]>([]);
+  const [loading, setLoading] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,11 +35,20 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
         setGames(data);
       } catch (error) {
         console.error("Failed to fetch games:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchGames();
   }, [roomId]);
+
+  if (loading)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
 
   const totalOdds = games.reduce((acc, game) => acc * game.odd, 1);
 

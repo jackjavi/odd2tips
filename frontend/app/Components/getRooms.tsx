@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import Loading from "./Loading";
 
 interface Room {
   _id: string;
@@ -35,7 +36,12 @@ const RoomsList: React.FC = () => {
     fetchRooms();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   if (error) return <div className="text-red-500">{error}</div>;
 
   return (
