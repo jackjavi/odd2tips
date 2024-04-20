@@ -72,56 +72,46 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
     <>
       <div
         ref={ref}
-        className="bg-gradient-to-br from-purple-600 to-green-500 p-4 shadow-lg"
+        className="bg-white p-4 rounded-lg shadow-lg divide-y divide-gray-200"
+        style={{ fontFamily: "Arial, sans-serif" }}
       >
-        <h1 className="text-xl font-bold text-center text-white mb-2"></h1>
-        {games.length > 0 ? (
-          games.map((game, index) => (
-            <div
-              key={game._id}
-              className={`p-2 mb-2 ${
-                index % 2 === 0 ? "bg-purple-700" : "bg-purple-600"
-              } rounded-lg`}
-            >
-              <div className="flex justify-between items-center">
-                <div>
-                  <span className="text-xs text-white">
-                    {format(new Date(game.startTime), "MMM d, p")}
-                  </span>
-                  <div className="text-xs text-white mt-1">
-                    {game.gameTitle}
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="font-medium text-xs text-white">
-                    {game.homeTeam} vs {game.awayTeam}
-                  </div>
-                  <div className="text-xs text-green-300">
-                    {`${game.prediction} @ ${game.odd.toFixed(2)}`}
-                  </div>
-                </div>
-              </div>
+        {games.map((game, index) => (
+          <div
+            key={game._id}
+            className="py-3 first:pt-0 last:pb-0 flex justify-between items-center"
+            style={{ background: index % 2 === 0 ? "#f8f9fa" : "#e9ecef" }}
+          >
+            <div>
+              <span className="block text-xs font-bold text-slate-500">
+                {format(new Date(game.startTime), "MMM d, p")}
+              </span>
+              <span className="block text-xs text-slate-500">
+                {game.gameTitle}
+              </span>
             </div>
-          ))
-        ) : (
-          <div className="text-white text-center">
-            Be patient as the Room Admin updates today&apos;s games. Check out
-            games in other rooms{" "}
-            <a className="underline" href="/rooms">
-              here
-            </a>
+            <div className="text-right">
+              <span className="block text-sm font-bold text-[#5e17eb]">
+                {game.predictionType}
+              </span>
+              <span className="block text-xs text-slate-500">
+                {game.homeTeam} vs {game.awayTeam}
+              </span>
+              <span className="block text-xs font-bold text-slate-500">
+                {game.prediction} @ {game.odd.toFixed(2)}
+              </span>
+            </div>
           </div>
-        )}
-        <div className="mt-2 p-2 text-right bg-purple-800 rounded-lg">
-          <span className="text-xs font-bold text-white">Total Odds:</span>
-          <span className="text-xs text-green-300 ml-1">
+        ))}
+        <div className="pt-3 text-right">
+          <span className="text-sm font-bold text-slate-500">Total Odds:</span>
+          <span className="text-sm font-bold text-[#5e17eb] ml-1">
             {totalOdds.toFixed(2)}
           </span>
         </div>
       </div>
       <button
         onClick={downloadImage}
-        className="mt-3 px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 text-xs font-bold mr-4"
+        className="mt-4 mr-4 px-6 py-2 bg-[#5e17eb] text-white rounded font-bold text-sm hover:bg-[#4e12cb]"
       >
         Download as PNG
       </button>
