@@ -47,7 +47,7 @@ const Navbar = () => {
     <>
       <Link
         href="/"
-        className="block px-4 py-2 text-green-600 md:text-green-700 hover:text-purple-800  hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]   transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Home
@@ -55,7 +55,7 @@ const Navbar = () => {
       <Link
         href="/rooms"
         scroll={false}
-        className="block px-4 py-2 text-green-600 md:text-green-700 hover:text-purple-800  hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Tipster Rooms
@@ -64,7 +64,7 @@ const Navbar = () => {
       <Link
         href="/blog"
         scroll={false}
-        className="block px-4 py-2 text-green-600 md:text-green-700 hover:text-purple-800  hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg"
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-medium md:text-lg"
         onClick={() => setIsModalOpen(false)}
       >
         News
@@ -72,7 +72,7 @@ const Navbar = () => {
       <Link
         href="/#chat"
         scroll={false}
-        className="block px-4 py-2 text-green-600 md:text-green-700 hover:text-purple-800  hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg"
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-medium md:text-lg"
         onClick={() => setIsModalOpen(false)}
       >
         Chat
@@ -89,23 +89,23 @@ const Navbar = () => {
           <Link
             href="/login"
             scroll={false}
-            className="block bg-blue-500 hover:bg-blue-700 rounded-md 0 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+            className="block bg-teal-500 hover:bg-teal-600 rounded-md 0 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
             onClick={() => setIsModalOpen(false)}
           >
-            <button className=" text-white font-bold py-2 px-6 rounded inline-flex items-center">
+            <button className=" text-[whitesmoke] font-bold py-3 px-5 rounded inline-flex items-center">
               <FcGoogle className="mr-2" />
-              Sign in with Google
+              Login
             </button>
           </Link>
           <Link
             href="/register"
             scroll={false}
-            className="block px-4 py-2 mt-2 md:mt-0 rounded-md bg-green-600 text-white hover:bg-blue-500 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+            className="block px-4 py-3 mt-2 md:mt-0 rounded-md bg-teal-500 text-white hover:bg-teal-600 transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
             onClick={() => setIsModalOpen(false)}
           >
-            <button className=" text-white font-bold rounded inline-flex items-center">
+            <button className=" text-[whitesmoke] font-bold rounded inline-flex items-center">
               <FcGoogle className="mr-2" />
-              Sign up with Google
+              Sign up
             </button>
           </Link>
         </>
@@ -129,9 +129,9 @@ const Navbar = () => {
         </div>
         <button
           onClick={toggleModal}
-          className="md:hidden z-30 text-blue-900 focus:outline-none"
+          className="md:hidden z-30 text-teal-500 focus:outline-none"
         >
-          <IoIosMenu size={40} />
+          <IoIosMenu size={45} />
         </button>
         {/* Modal for small screens */}
         {isModalOpen && (

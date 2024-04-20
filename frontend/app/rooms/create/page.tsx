@@ -8,7 +8,7 @@ const CreateRoomPage: React.FC = () => {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-[whitesmoke] text-blue-500">
+      <main className="min-h-screen bg-[whitesmoke] text-teal-500">
         <div className="py-10">
           <CreateRoom />
         </div>

@@ -15,15 +15,15 @@ const Footer = () => {
         {/* About Section */}
         <div className="flex flex-col text-slate-200 justify-center items-center">
           <Image src="/logo.png" alt="Logo-SVG" width={100} height={100} />
-          <p className="text-center text-blue-500">
+          <p className="text-center text-teal-500">
             Your premier destination for sports predictions and live chat.
             Engage, predict, and win!
           </p>
         </div>
 
         {/* Quick Links */}
-        <div className="flex flex-col text-blue-500 justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-blue-500">Quick Links</h2>
+        <div className="flex flex-col text-teal-500 justify-center items-center">
+          <h2 className="font-bold text-lg mb-2 text-teal-500">Quick Links</h2>
           <ul className="flex gap-4">
             <li>
               <a href="/" className="hover:underline">
@@ -50,13 +50,13 @@ const Footer = () => {
 
         {/* Social Media */}
         <div className="flex flex-col  justify-center items-center">
-          <h2 className="font-bold text-lg mb-2 text-blue-500">Follow Us</h2>
+          <h2 className="font-bold text-lg mb-2 text-teal-500">Follow Us</h2>
           <div className="flex space-x-4">
             <a
               href="https://t.me"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500"
+              className="text-teal-500"
             >
               <FaTelegramPlane />
             </a>
@@ -73,7 +73,7 @@ const Footer = () => {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600"
+              className="text-teal-600"
             >
               <FaFacebookF />
             </a>
@@ -106,7 +106,7 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="flex flex-col text-blue-500 justify-center items-center">
+        <div className="flex flex-col text-teal-500 justify-center items-center">
           <h2 className="font-bold text-lg mb-2 ">Contact Us</h2>
           <ul>
             <li>Email: odd2tips@gmail.com</li>
@@ -116,7 +116,7 @@ const Footer = () => {
       </div>
 
       {/* Legal Notice */}
-      <div className="text-center mt-8 pt-4 text-blue-500">
+      <div className="text-center mt-8 pt-4 text-teal-500">
         <p>&copy; {new Date().getFullYear()} Odd2Tips. All rights reserved.</p>
       </div>
     </div>

@@ -9,15 +9,15 @@ import Footer from "../Components/Footer";
 const GetRoomPage: React.FC = () => {
   return (
     <>
-      <Navbar />
-      <div className="relative min-h-[85vh] md:min-h-[80vh] bg-[whitesmoke]">
-        <div className="absolute top-4 right-4 md:top-8 md:right-8">
+      <main className="relative min-h-screen md:min-h-screen bg-[whitesmoke]">
+        <Navbar />
+        <div className="absolute top-28 right-4 md:top-56 md:right-8">
           <CreateRoomLink />
         </div>
-        <main className="flex flex-col items-center justify-center py-10">
+        <div className="flex flex-col items-center justify-center py-10">
           <GetRooms />
-        </main>
-      </div>
+        </div>
+      </main>
       <Footer />
     </>
   );

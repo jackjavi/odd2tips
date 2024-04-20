@@ -40,21 +40,21 @@ const RoomsList: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4 ">
-      <h2 className="text-2xl font-semibold mb-4 text-blue-700">
+      <h2 className="text-2xl font-semibold mb-4 text-teal-800">
         Tipster Rooms
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
         {rooms.map((room) => (
           <div
             key={room._id}
-            className="p-4 border rounded-lg shadow-lg bg-black"
+            className="p-4 border rounded-lg shadow-lg bg-teal-800"
           >
             <h3 className="text-xl font-bold text-[whitesmoke]">
               {room.title}
             </h3>
             <p className="text-gray-400">{room.description}</p>
             <div className="mt-2">
-              <span className="px-1 py-1 text-[8px] sm:text-[12px] md:text-xs rounded bg-blue-300 text-gray-800">
+              <span className="px-1 py-1 text-[8px] sm:text-[12px] md:text-xs rounded bg-slate-300 text-gray-800">
                 {room.privacy.toUpperCase()}
               </span>
             </div>
@@ -63,7 +63,7 @@ const RoomsList: React.FC = () => {
                 room._id
               }`}
             >
-              <button className="mt-4 px-4 py-2 bg-blue-400 text-white rounded hover:bg-blue-700 transition-colors">
+              <button className="mt-4 px-4 py-2 bg-slate-400 text-white rounded hover:bg-slate-200 transition-colors">
                 Visit Room
               </button>
             </Link>
