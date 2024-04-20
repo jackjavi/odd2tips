@@ -51,7 +51,7 @@ const RoomComponent: React.FC<RoomComponentProps> = () => {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col md:flex-row h-screen w-full">
+      <main className="flex flex-col md:flex-row h-[85vh] md:h-[80vh] w-full">
         {/* Navigation Section */}
         <div className="w-full md:w-1/3 p-4 bg-gray-50 overflow-y-auto">
           <section
