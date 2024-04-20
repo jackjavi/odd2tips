@@ -10,6 +10,7 @@ import { PostBody } from "@/app/blog/_components/post-body";
 import { PostHeader } from "@/app/blog/_components/post-header";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { Post as PostType } from "@/interfaces/post";
+import Loading from "@/app/Components/Loading";
 
 const PostPage = () => {
   const [post, setPost] = useState<PostType | null>(null);
@@ -26,7 +27,11 @@ const PostPage = () => {
   }, [slug]);
 
   if (!post) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   const content = post.content;
