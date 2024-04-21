@@ -31,6 +31,14 @@ const BetSlipLS: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const isValidDate = Date.parse(formData.startTime);
+    if (isNaN(isValidDate)) {
+      alert("Please enter a valid date and time for the start time.");
+      return;
+    }
+
+    formData.startTime = new Date(formData.startTime).toISOString();
+
     try {
       localStorage.setItem("betslip", JSON.stringify(formData));
 

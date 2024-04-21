@@ -14,7 +14,7 @@ const Daily2Odds: React.FC = () => {
     const fetchGames = async () => {
       try {
         const betslip = JSON.parse(localStorage.getItem("betslip") || "[]");
-        setGames((prevData) => [...prevData, betslip]);
+        setGames([betslip]);
       } catch (error) {
         console.error("Failed to fetch games:", error);
       } finally {
@@ -54,6 +54,7 @@ const Daily2Odds: React.FC = () => {
         link.href = dataUrl;
         link.click();
       }
+      localStorage.removeItem("betslip");
     } catch (error) {
       console.error("Failed to download image:", error);
     }
