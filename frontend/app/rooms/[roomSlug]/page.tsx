@@ -5,6 +5,7 @@ import Daily2Odds from "@/app/Components/Daily2Odds";
 import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 type RoomComponentProps = {};
 
@@ -50,6 +51,7 @@ const RoomComponent: React.FC<RoomComponentProps> = () => {
 
   return (
     <>
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Navbar />
       <main className="flex flex-col md:flex-row h-[85vh] md:h-[80vh] bg-[whitesmoke] w-full">
         {/* Navigation Section */}

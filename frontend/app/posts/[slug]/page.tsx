@@ -11,6 +11,7 @@ import { PostHeader } from "@/app/blog/_components/post-header";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { Post as PostType } from "@/interfaces/post";
 import Loading from "@/app/Components/Loading";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const PostPage = () => {
   const [post, setPost] = useState<PostType | null>(null);
@@ -38,6 +39,7 @@ const PostPage = () => {
 
   return (
     <div className="bg-[whitesmoke]">
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Header />
       <main>
         <Container>

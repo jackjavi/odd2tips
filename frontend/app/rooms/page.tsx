@@ -5,10 +5,13 @@ import Navbar from "../Components/Navbar";
 import CreateRoomLink from "../Components/CreateRoomLink";
 import GetRooms from "../Components/getRooms";
 import Footer from "../Components/Footer";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const GetRoomPage: React.FC = () => {
   return (
     <>
+      {" "}
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <main className="relative min-h-screen md:min-h-screen bg-[whitesmoke]">
         <Navbar />
         <div className="absolute top-28 right-4 md:top-56 md:right-8">

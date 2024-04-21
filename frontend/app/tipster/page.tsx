@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 interface Room {
   id: string;
@@ -29,6 +30,7 @@ const TipsterRoom: React.FC = () => {
 
   return (
     <div>
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <h1>Tipster Rooms</h1>
       <input
         value={roomName}

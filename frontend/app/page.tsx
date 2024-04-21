@@ -15,6 +15,7 @@ import Container from "@/app/blog/_components/container";
 import Investments from "@/app/Components/investmentsPlay";
 import AboutSection from "@/app/Components/AboutSection";
 import BetSlipPromotion from "@/app/Components/BetSlipPromotion";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const Home = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -30,45 +31,48 @@ const Home = () => {
 
   const heroPost = allPosts.length > 0 ? allPosts[0] : null;
   return (
-    <div className="bg-[whitesmoke] ">
-      <Navbar />
+    <>
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
+      <div className="bg-[whitesmoke] ">
+        <Navbar />
 
-      <AboutSection />
-      <BetSlipPromotion />
+        <AboutSection />
+        <BetSlipPromotion />
 
-      {heroPost && (
-        <Container>
-          <div className="py-8 ">
-            <HeroPost
-              title={heroPost.title}
-              coverImagePath={heroPost.coverImagePath}
-              date={new Date(heroPost.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-              excerpt={heroPost.content.substring(0, 200)}
-              content={heroPost.content}
-              authorName={heroPost.authorName}
-              authorImagePath={heroPost.authorImagePath}
-              slug={heroPost.slug}
-            />
-            <div className="">
-              <Link
-                className="text-teal-500 flex flex-col items-center gap-4 md:py-24"
-                href="/blog"
-              >
-                <h2 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-tighter leading-tight ">
-                  More Stories
-                </h2>
-                <FaArrowRotateRight size={15} />
-              </Link>
+        {heroPost && (
+          <Container>
+            <div className="py-8 ">
+              <HeroPost
+                title={heroPost.title}
+                coverImagePath={heroPost.coverImagePath}
+                date={new Date(heroPost.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+                excerpt={heroPost.content.substring(0, 200)}
+                content={heroPost.content}
+                authorName={heroPost.authorName}
+                authorImagePath={heroPost.authorImagePath}
+                slug={heroPost.slug}
+              />
+              <div className="">
+                <Link
+                  className="text-teal-500 flex flex-col items-center gap-4 md:py-24"
+                  href="/blog"
+                >
+                  <h2 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-tighter leading-tight ">
+                    More Stories
+                  </h2>
+                  <FaArrowRotateRight size={15} />
+                </Link>
+              </div>
             </div>
-          </div>
-        </Container>
-      )}
-      <Footer />
-    </div>
+          </Container>
+        )}
+        <Footer />
+      </div>
+    </>
   );
 };
 
