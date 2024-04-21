@@ -115,11 +115,11 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Legal Notice */}
+      {/* Legal Notice 
       <div className="text-center mt-8 pt-4 text-teal-500">
         <p>&copy; {new Date().getFullYear()} Odd2Tips. All rights reserved.</p>
       </div>
-    </div>
+    </div>*/}
   );
 };
 
