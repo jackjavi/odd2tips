@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GameData } from "@/interfaces/gameDataLS";
 
-import { useParams, useSearchParams, useRouter } from "next/navigation";
-
 const BetSlipLS: React.FC = () => {
   const [gameData, setGameData] = useState<GameData[]>([]);
   const router = useRouter();
@@ -18,8 +16,6 @@ const BetSlipLS: React.FC = () => {
     prediction: "",
     odd: 0,
   });
-
-  const searchParams = useSearchParams();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
