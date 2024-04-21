@@ -4,11 +4,13 @@ import { format, set } from "date-fns";
 import * as htmlToImage from "html-to-image";
 import Loading from "./Loading";
 import { GameData } from "@/interfaces/gameDataLS";
+import { useRouter } from "next/navigation";
 
 const Daily2Odds: React.FC = () => {
   const [games, setGames] = useState<GameData[]>([]);
   const [loading, setLoading] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -77,6 +79,15 @@ const Daily2Odds: React.FC = () => {
     }
   };
 
+  const deleteBetslip = async () => {
+    try {
+      localStorage.removeItem("betslip");
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div
@@ -118,12 +129,20 @@ const Daily2Odds: React.FC = () => {
           </span>
         </div>
       </div>
-      <button
-        onClick={downloadImage}
-        className="mt-4 mr-4 px-6 py-2 bg-[#5e17eb] text-white rounded font-bold text-sm hover:bg-[#4e12cb]"
-      >
-        Download as PNG
-      </button>
+      <div className="flex">
+        <button
+          onClick={downloadImage}
+          className="mt-4 mr-4 px-6 py-2 bg-[#5e17eb] text-white rounded font-bold text-sm hover:bg-[#4e12cb]"
+        >
+          Download as PNG
+        </button>
+        <button
+          onClick={deleteBetslip}
+          className="mt-4 mr-4 px-6 py-2 bg-[#5e17eb] text-white rounded font-bold text-sm hover:bg-[#4e12cb]"
+        >
+          Delete Betslip
+        </button>
+      </div>
     </>
   );
 };

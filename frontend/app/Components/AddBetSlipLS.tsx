@@ -49,11 +49,18 @@ const BetSlipLS: React.FC = () => {
 
     const updatedFormData = {
       ...formData,
-      startTime: utcDate.toISOString(), // Convert to ISO string in UTC
+      startTime: utcDate.toISOString(),
     };
 
+    let newData = updatedFormData;
     try {
-      localStorage.setItem("betslip", JSON.stringify(updatedFormData));
+      const currentBetSlip = JSON.parse(
+        localStorage.getItem("betslip") || "[]"
+      );
+
+      const updatedBetSlip = [...currentBetSlip, updatedFormData];
+
+      localStorage.setItem("betslip", JSON.stringify(updatedBetSlip));
 
       alert(`Form submission successful: ${formData.gameTitle}`);
       setFormData({
