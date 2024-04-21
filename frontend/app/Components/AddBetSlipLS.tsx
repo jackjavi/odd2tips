@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GameData } from "@/interfaces/gameDataLS";
+import { useRouter } from "next/navigation";
 
 const BetSlipLS: React.FC = () => {
   const [gameData, setGameData] = useState<GameData[]>([]);
+  const router = useRouter();
 
   const [formData, setFormData] = useState<GameData>({
     gameTitle: "",
@@ -46,7 +48,7 @@ const BetSlipLS: React.FC = () => {
         date.getMinutes()
       )
     );
-
+    router.push("/betslip");
     const updatedFormData = {
       ...formData,
       startTime: utcDate.toISOString(),
@@ -72,6 +74,7 @@ const BetSlipLS: React.FC = () => {
         prediction: "",
         odd: 0,
       });
+      router;
     } catch (error) {
       console.error("Failed to submit form:", error);
     }
@@ -95,7 +98,7 @@ const BetSlipLS: React.FC = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="gameTitle"
             type="text"
-            placeholder="Enter game title   e.g. UEFA Champions League"
+            placeholder="e.g. UEFA Champions League"
             name="gameTitle"
             value={formData.gameTitle}
             onChange={handleChange}
@@ -113,7 +116,7 @@ const BetSlipLS: React.FC = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="predictionType"
             type="text"
-            placeholder="Enter prediction type   e.g. ODD2TIPS, JACKPOT"
+            placeholder="e.g. ODD2TIPS, JACKPOT"
             name="predictionType"
             value={formData.predictionType}
             onChange={handleChange}

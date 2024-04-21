@@ -82,7 +82,7 @@ const Daily2Odds: React.FC = () => {
   const deleteBetslip = async () => {
     try {
       localStorage.removeItem("betslip");
-      router.refresh();
+      router.push("/betslip");
     } catch (error) {
       console.log(error);
     }
