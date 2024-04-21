@@ -71,7 +71,7 @@ const Daily2Odds: React.FC = () => {
         link.href = dataUrl;
         link.click();
       }
-      //localStorage.removeItem("betslip");
+      localStorage.removeItem("betslip");
     } catch (error) {
       console.error("Failed to download image:", error);
     }
@@ -81,7 +81,7 @@ const Daily2Odds: React.FC = () => {
     <>
       <div
         ref={ref}
-        className="bg-white p-4  shadow-lg divide-y divide-gray-200"
+        className="bg-[whitesmoke] p-4  shadow-lg divide-y divide-gray-200 w-full"
         style={{ fontFamily: "Arial, sans-serif" }}
       >
         {games.map((game, index) => (

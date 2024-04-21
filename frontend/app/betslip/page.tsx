@@ -13,7 +13,7 @@ const CreateRoomPage: React.FC = () => {
         <div className="py-10 md:w-1/3">
           <AddBetSlipLS />
         </div>
-        <div className="py-10">
+        <div className="py-10 md:w-1/3 w-full">
           <BetSlipDownload />
         </div>
       </main>
