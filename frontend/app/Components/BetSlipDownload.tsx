@@ -81,14 +81,14 @@ const Daily2Odds: React.FC = () => {
 
   return (
     <>
+      <h2 className="text-3xl font-semibold text-center mb-5">
+        Download Betslip
+      </h2>
       <div
         ref={ref}
         className="bg-[whitesmoke] p-4  shadow-lg divide-y divide-gray-200 w-full "
         style={{ fontFamily: "Arial, sans-serif" }}
       >
-        <h2 className="text-3xl font-semibold text-center mb-5">
-          Download Betslip
-        </h2>
         {games.length < 1 && (
           <h2 className="text-red-500">
             Create slip before attempting to download...
