@@ -131,13 +131,13 @@ const Daily2Odds: React.FC = () => {
       <div className="flex">
         <button
           onClick={downloadImage}
-          className="mt-4 mr-4 px-6 py-2 bg-[#5e17eb] text-white rounded font-bold text-sm hover:bg-[#4e12cb]"
+          className="mt-4 mr-4 px-6 py-2 bg-[#5e17eb] text-white rounded font-bold text-sm hover:bg-teal-700"
         >
           Download as PNG
         </button>
         <button
           onClick={deleteBetslip}
-          className="mt-4 mr-4 px-6 py-2 bg-[#5e17eb] text-white rounded font-bold text-sm hover:bg-[#4e12cb]"
+          className="mt-4 mr-4 px-6 py-2 bg-[#5e17eb] text-white rounded font-bold text-sm hover:bg-teal-700"
         >
           Delete Betslip
         </button>
