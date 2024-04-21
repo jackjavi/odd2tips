@@ -6,7 +6,7 @@ import { GameData } from "@/interfaces/gameDataLS";
 
 const BetSlipLS: React.FC = () => {
   const [gameData, setGameData] = useState<GameData[]>([]);
-  const router = useRouter();
+
   const [formData, setFormData] = useState<GameData>({
     gameTitle: "",
     predictionType: "",
