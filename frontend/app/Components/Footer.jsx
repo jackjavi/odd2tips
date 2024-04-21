@@ -109,7 +109,7 @@ const Footer = () => {
         <div className="flex flex-col text-teal-500 justify-center items-center">
           <h2 className="font-bold text-lg mb-2 ">Contact Us</h2>
           <ul>
-            <li>Email: odd2tips@gmail.com</li>
+            <li>Email: oddtwotips@gmail.com</li>
             <li>Phone: +254 700 566 210</li>
           </ul>
         </div>
