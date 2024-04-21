@@ -31,16 +31,29 @@ const BetSlipLS: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const isValidDate = Date.parse(formData.startTime);
-    if (isNaN(isValidDate)) {
+    if (!formData.startTime) {
       alert("Please enter a valid date and time for the start time.");
       return;
     }
 
-    formData.startTime = new Date(formData.startTime).toISOString();
+    const date = new Date(formData.startTime);
+    const utcDate = new Date(
+      Date.UTC(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        date.getHours(),
+        date.getMinutes()
+      )
+    );
+
+    const updatedFormData = {
+      ...formData,
+      startTime: utcDate.toISOString(), // Convert to ISO string in UTC
+    };
 
     try {
-      localStorage.setItem("betslip", JSON.stringify(formData));
+      localStorage.setItem("betslip", JSON.stringify(updatedFormData));
 
       alert(`Form submission successful: ${formData.gameTitle}`);
       setFormData({

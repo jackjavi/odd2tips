@@ -6,15 +6,18 @@ import Loading from "./Loading";
 import { GameData } from "@/interfaces/gameDataLS";
 
 const Daily2Odds: React.FC = () => {
-  const [games, setGames] = useState([] as GameData[]);
+  const [games, setGames] = useState<GameData[]>([]);
   const [loading, setLoading] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const betslip = JSON.parse(localStorage.getItem("betslip") || "[]");
-        setGames([betslip]);
+        const betslip = localStorage.getItem("betslip");
+        if (betslip) {
+          const betslipData = JSON.parse(betslip);
+          setGames(Array.isArray(betslipData) ? betslipData : [betslipData]);
+        }
       } catch (error) {
         console.error("Failed to fetch games:", error);
       } finally {
@@ -32,9 +35,23 @@ const Daily2Odds: React.FC = () => {
       </div>
     );
 
-  const formatDate = (dateString: string): string => {
+  const formatDate = (dateString: string | null): string => {
+    if (!dateString) {
+      return "Invalid date";
+    }
+
     try {
-      return format(new Date(dateString), "MMM d, p");
+      const date = new Date(dateString);
+      const localDate = new Date(
+        date.getUTCFullYear(),
+        date.getUTCMonth(),
+        date.getUTCDate(),
+        date.getUTCHours(),
+        date.getUTCMinutes(),
+        date.getUTCSeconds()
+      );
+
+      return format(localDate, "MMM d, p");
     } catch (error) {
       console.error("Invalid date:", dateString);
       return "Invalid date";
@@ -54,7 +71,7 @@ const Daily2Odds: React.FC = () => {
         link.href = dataUrl;
         link.click();
       }
-      localStorage.removeItem("betslip");
+      //localStorage.removeItem("betslip");
     } catch (error) {
       console.error("Failed to download image:", error);
     }
