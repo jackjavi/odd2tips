@@ -32,6 +32,15 @@ const Daily2Odds: React.FC = () => {
       </div>
     );
 
+  const formatDate = (dateString: string): string => {
+    try {
+      return format(new Date(dateString), "MMM d, p");
+    } catch (error) {
+      console.error("Invalid date:", dateString);
+      return "Invalid date";
+    }
+  };
+
   const totalOdds = games.reduce((acc, game) => acc * game.odd, 1);
 
   const downloadImage = async () => {
@@ -65,7 +74,7 @@ const Daily2Odds: React.FC = () => {
           >
             <div>
               <span className="block text-xs font-bold text-slate-500">
-                {format(new Date(game.startTime), "MMM d, p")}
+                {formatDate(game.startTime)}
               </span>
               <span className="block text-xs text-slate-500">
                 {game.gameTitle}
