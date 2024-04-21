@@ -36,13 +36,13 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="/blog" className="hover:underline">
-                News
+              <a href="/betslip" className="hover:underline">
+                Betslip
               </a>
             </li>
             <li>
-              <a href="/#chat" className="hover:underline">
-                Chat
+              <a href="/blog" className="hover:underline">
+                News
               </a>
             </li>
           </ul>

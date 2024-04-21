@@ -73,7 +73,6 @@ const Daily2Odds: React.FC = () => {
         link.href = dataUrl;
         link.click();
       }
-      localStorage.removeItem("betslip");
     } catch (error) {
       console.error("Failed to download image:", error);
     }

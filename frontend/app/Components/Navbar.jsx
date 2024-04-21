@@ -60,7 +60,14 @@ const Navbar = () => {
       >
         Tipster Rooms
       </Link>
-
+      <Link
+        href="/betslip"
+        scroll={false}
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-medium md:text-lg"
+        onClick={() => setIsModalOpen(false)}
+      >
+        Betslip
+      </Link>
       <Link
         href="/blog"
         scroll={false}
@@ -69,14 +76,7 @@ const Navbar = () => {
       >
         News
       </Link>
-      <Link
-        href="/#chat"
-        scroll={false}
-        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-medium md:text-lg"
-        onClick={() => setIsModalOpen(false)}
-      >
-        Chat
-      </Link>
+
       {isAuthenticated ? (
         <button
           onClick={handleLogout}
