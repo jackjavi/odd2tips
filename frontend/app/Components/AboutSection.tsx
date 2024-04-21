@@ -33,7 +33,7 @@ const AboutSection: React.FC = () => {
 
         <Link
           href="/rooms"
-          className="mt-8 inline-block tracking-tighter font-playfair text-md sm:text-lg md:text-2xl bg-teal-500 text-[whitesmoke] rounded-full px-4 py-2 font-bold shadow-lg  hover:scale-110 transition-colors"
+          className="mt-8 inline-block tracking-tighter text-md sm:text-lg md:text-2xl bg-teal-500 text-[whitesmoke] rounded-full px-4 py-2 font-bold shadow-lg  hover:scale-110 transition-colors"
         >
           Explore Tipsters
         </Link>

@@ -14,6 +14,7 @@ import { Post } from "@/interfaces/post";
 import Container from "@/app/blog/_components/container";
 import Investments from "@/app/Components/investmentsPlay";
 import AboutSection from "@/app/Components/AboutSection";
+import BetSlipPromotion from "@/app/Components/BetSlipPromotion";
 
 const Home = () => {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -33,6 +34,7 @@ const Home = () => {
       <Navbar />
 
       <AboutSection />
+      <BetSlipPromotion />
 
       {heroPost && (
         <Container>
