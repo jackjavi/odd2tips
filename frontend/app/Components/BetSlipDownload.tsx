@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { format, set } from "date-fns";
 import * as htmlToImage from "html-to-image";
-import Loading from "./Loading";
 import { GameData } from "@/interfaces/gameDataLS";
 import { useRouter } from "next/navigation";
 
@@ -29,13 +28,6 @@ const Daily2Odds: React.FC = () => {
 
     fetchGames();
   }, []);
-
-  if (loading)
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
 
   const formatDate = (dateString: string | null): string => {
     if (!dateString) {
@@ -91,9 +83,17 @@ const Daily2Odds: React.FC = () => {
     <>
       <div
         ref={ref}
-        className="bg-[whitesmoke] p-4  shadow-lg divide-y divide-gray-200 w-full"
+        className="bg-[whitesmoke] p-4  shadow-lg divide-y divide-gray-200 w-full "
         style={{ fontFamily: "Arial, sans-serif" }}
       >
+        <h2 className="text-3xl font-semibold text-center mb-5">
+          Download Betslip
+        </h2>
+        {games.length < 1 && (
+          <h2 className="text-red-500">
+            Create slip before attempting to download...
+          </h2>
+        )}
         {games.map((game, index) => (
           <div
             key={index}
