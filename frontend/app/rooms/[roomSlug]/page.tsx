@@ -1,20 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Daily2Odds from "@/app/Components/Daily2Odds";
 import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { FaLock } from "react-icons/fa";
 
 const RoomComponent: React.FC = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [isUserAdmin, setIsUserAdmin] = useState(false);
   const router = useRouter();
   const { roomSlug } = useParams();
   const searchParams = useSearchParams();
   const roomId = searchParams.get("roomId");
   const adminId = searchParams.get("adminId");
   const roomTitle = searchParams.get("roomTitle");
+
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      try {
+        const response = await axios.get("/api/auth/checkAuth", {
+          withCredentials: true,
+        });
+        const currentUserId = response.data.user._id;
+        setIsUserAdmin(currentUserId === adminId);
+      } catch (error) {
+        console.error("Error checking auth status:", error);
+      }
+    };
+
+    checkAuthStatus();
+  }, [adminId]);
 
   const handleButtonClick = (section: string) => {
     if (section === "Settings") {
@@ -135,10 +154,13 @@ const RoomComponent: React.FC = () => {
           >
             <h2 className="text-2xl font-bold text-[#5e17eb] mb-3">Settings</h2>
             <button
-              onClick={() => handleButtonClick("Settings")}
-              className="px-4 py-2 bg-[#5e17eb] text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+              onClick={() => isUserAdmin && handleButtonClick("Settings")}
+              className={`px-4 py-2 bg-[#5e17eb] text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 ${
+                !isUserAdmin ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={!isUserAdmin}
             >
-              Configure
+              {isUserAdmin ? "Configure" : <FaLock />}
             </button>
           </section>
         </div>

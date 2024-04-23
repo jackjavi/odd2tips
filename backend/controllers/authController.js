@@ -130,7 +130,7 @@ exports.login = async (req, res) => {
       profilePicture: user.profilePicture,
     };
 
-    req.user = userData;
+    req.user = user;
 
     res.cookie("token", token, {
       httpOnly: true,
