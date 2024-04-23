@@ -62,7 +62,7 @@ const RoomsList: React.FC = () => {
             <Link
               href={`/rooms/${encodeURIComponent(room.title)}?roomId=${
                 room._id
-              }`}
+              }&adminId=${room.adminId}&roomTitle=${room.title}`}
             >
               <button className="mt-4 px-4 py-2 bg-slate-400 text-white rounded hover:bg-slate-200 transition-colors">
                 Visit Room

@@ -19,9 +19,15 @@ interface GameData {
 
 interface Daily2OddsProps {
   roomId: string | null;
+  roomTitle: string | null;
+  adminId: string | null;
 }
 
-const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
+const Daily2Odds: React.FC<Daily2OddsProps> = ({
+  roomId,
+  roomTitle,
+  adminId,
+}) => {
   const [games, setGames] = useState<GameData[]>([]);
   const [loading, setLoading] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
@@ -58,8 +64,11 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
 
       if (node) {
         const dataUrl = await htmlToImage.toPng(node);
+        const currentTimestamp = format(new Date(), "yyyy MM dd_HH:mm:ss");
         const link = document.createElement("a");
-        link.download = "daily2odds.png";
+        link.download = `${
+          roomTitle || "default"
+        }.odd2tips.com.${currentTimestamp}.png`;
         link.href = dataUrl;
         link.click();
       }

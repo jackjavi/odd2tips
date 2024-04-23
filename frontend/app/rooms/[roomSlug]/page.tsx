@@ -7,14 +7,14 @@ import Footer from "@/app/Components/Footer";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { GoogleTagManager } from "@next/third-parties/google";
 
-type RoomComponentProps = {};
-
-const RoomComponent: React.FC<RoomComponentProps> = () => {
+const RoomComponent: React.FC = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const router = useRouter();
   const { roomSlug } = useParams();
   const searchParams = useSearchParams();
   const roomId = searchParams.get("roomId");
+  const adminId = searchParams.get("adminId");
+  const roomTitle = searchParams.get("roomTitle");
 
   const handleButtonClick = (section: string) => {
     if (section === "Settings") {
@@ -146,7 +146,11 @@ const RoomComponent: React.FC<RoomComponentProps> = () => {
         {/* Content/Modal Section */}
         {activeModal === "TodaysTip" && (
           <Modal title="Today's Tip">
-            <Daily2Odds roomId={roomId} />
+            <Daily2Odds
+              roomId={roomId}
+              roomTitle={roomTitle}
+              adminId={adminId}
+            />
           </Modal>
         )}
       </main>
