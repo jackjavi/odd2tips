@@ -36,12 +36,7 @@ const RoomsList: React.FC = () => {
     fetchRooms();
   }, []);
 
-  if (loading)
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
+  if (loading) return <Loading />;
   if (error) return <div className="text-red-500">{error}</div>;
 
   return (
