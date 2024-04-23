@@ -26,7 +26,7 @@ const RoomComponent: React.FC = () => {
           withCredentials: true,
         });
         const currentUserId =
-          response.data.user._id || response.data.user.userId;
+          response.data.user._id.toString() || response.data.user.userId;
         console.log("Current User ID:", currentUserId, "Admin ID:", adminId);
         setIsUserAdmin(currentUserId === adminId);
       } catch (error) {
