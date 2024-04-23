@@ -75,7 +75,7 @@ const RoomComponent: React.FC = () => {
       <main className="flex flex-col md:flex-row h-[85vh] md:h-[80vh] bg-[whitesmoke] w-full">
         {/* Navigation Section */}
         <div className="w-full md:w-1/3 p-4 bg-gray-50 overflow-y-auto">
-          <section
+          {/*<section
             id="stats"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
           >
@@ -88,9 +88,9 @@ const RoomComponent: React.FC = () => {
             >
               View Stats
             </button>
-          </section>
+  </section>*/}
 
-          <section
+          {/*<section
             id="about"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
           >
@@ -101,9 +101,9 @@ const RoomComponent: React.FC = () => {
             >
               Learn More
             </button>
-          </section>
+</section>*/}
 
-          <section
+          {/*<section
             id="social-links"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
           >
@@ -116,7 +116,7 @@ const RoomComponent: React.FC = () => {
             >
               Explore
             </button>
-          </section>
+  </section>*/}
 
           <section
             id="todays-tip"
@@ -133,7 +133,7 @@ const RoomComponent: React.FC = () => {
             </button>
           </section>
 
-          <section
+          {/*<section
             id="future-tips"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
           >
@@ -146,7 +146,7 @@ const RoomComponent: React.FC = () => {
             >
               Unlock
             </button>
-          </section>
+</section>*/}
 
           <section
             id="settings"
