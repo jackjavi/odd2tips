@@ -25,7 +25,8 @@ const RoomComponent: React.FC = () => {
         const response = await axios.get("/api/auth/checkAuth", {
           withCredentials: true,
         });
-        const currentUserId = response.data.user._id;
+        const currentUserId =
+          response.data.user._id || response.data.user.userId;
         console.log("Current User ID:", currentUserId, "Admin ID:", adminId);
         setIsUserAdmin(currentUserId === adminId);
       } catch (error) {
