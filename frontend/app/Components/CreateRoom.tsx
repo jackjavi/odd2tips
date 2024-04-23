@@ -61,6 +61,13 @@ const CreateRoom: React.FC = () => {
       await axios.post("/api/rooms/create", formData, {
         withCredentials: true,
       });
+      await axios.patch(
+        `/api/auth/updateProfile?userId=${formData.adminId}`,
+        { isRoomAdmin: true },
+        {
+          withCredentials: true,
+        }
+      );
       alert("Room created successfully!");
       setFormData({
         title: "",
