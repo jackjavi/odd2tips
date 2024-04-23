@@ -6,7 +6,11 @@ const authenticate = require("../middleware/authenticate");
 
 router.post("/register", upload, AuthController.register);
 router.get("/verify-email", AuthController.verifyEmail);
-router.patch("/updateProfile", authenticate, AuthController.updateProfile);
+router.patch(
+  "/updateProfile/:userId",
+  authenticate,
+  AuthController.updateProfile
+);
 
 router.post("/google/exchange-ott", AuthController.exchangeOTT);
 

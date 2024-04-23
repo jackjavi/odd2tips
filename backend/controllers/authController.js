@@ -172,6 +172,7 @@ exports.logout = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   const { userId } = req.params;
   const updates = req.body;
+  console.log("Updates:", updates, "userId:", userId);
 
   try {
     const user = await User.findByIdAndUpdate(

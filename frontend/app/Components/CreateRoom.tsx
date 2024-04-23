@@ -62,7 +62,7 @@ const CreateRoom: React.FC = () => {
         withCredentials: true,
       });
       await axios.patch(
-        `/api/auth/updateProfile?userId=${formData.adminId}`,
+        `/api/auth/updateProfile/${formData.adminId}`,
         { isRoomAdmin: true },
         {
           withCredentials: true,
