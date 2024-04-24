@@ -22,7 +22,7 @@ const CreateRoom: React.FC = () => {
         if (data.isAuthenticated) {
           setFormData((prevFormData) => ({
             ...prevFormData,
-            adminId: data.user.userId,
+            adminId: data.user.userId || data.user._id,
           }));
         } else {
           setError("You must be logged in to create a room.");
@@ -62,7 +62,7 @@ const CreateRoom: React.FC = () => {
         withCredentials: true,
       });
       await axios.patch(
-        `/api/auth/updateProfile/${formData.adminId}`,
+        `/api/auth/updateProfile/${formData.adminId.toString()}`,
         { isRoomAdmin: true },
         {
           withCredentials: true,
@@ -73,7 +73,7 @@ const CreateRoom: React.FC = () => {
         title: "",
         description: "",
         privacy: "public",
-        adminId: formData.adminId,
+        adminId: formData.adminId.toString(),
       });
       router.push("/rooms");
     } catch (err) {

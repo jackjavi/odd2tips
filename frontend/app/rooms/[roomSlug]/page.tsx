@@ -16,7 +16,7 @@ const RoomComponent: React.FC = () => {
   const { roomSlug } = useParams();
   const searchParams = useSearchParams();
   const roomId = searchParams.get("roomId");
-  const adminId = searchParams.get("adminId")?.toString();
+  const adminId = searchParams.get("adminId");
   const roomTitle = searchParams.get("roomTitle");
 
   useEffect(() => {
@@ -33,7 +33,6 @@ const RoomComponent: React.FC = () => {
           currentUserId = response.data.user.userId;
         }
 
-        console.log("Current User ID:", currentUserId, "Admin ID:", adminId);
         setIsUserAdmin(currentUserId === adminId);
       } catch (error) {
         console.error("Error checking auth status:", error);
