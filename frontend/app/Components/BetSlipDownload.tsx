@@ -4,12 +4,21 @@ import { format, set } from "date-fns";
 import * as htmlToImage from "html-to-image";
 import { GameData } from "@/interfaces/gameDataLS";
 import { useRouter } from "next/navigation";
+import { te } from "date-fns/locale";
 
 const Daily2Odds: React.FC = () => {
   const [games, setGames] = useState<GameData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [colorSettings, setColorSettings] = useState({
+    titleColor: "#333",
+    timeColor: "#333",
+    oddsColor: "#333",
+    totalOddsColor: "#5e17eb",
+    backgroundColor: "#f8f9fa",
+    brand: "#5e17eb",
+  });
+
   const ref = useRef<HTMLDivElement>(null);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -28,6 +37,13 @@ const Daily2Odds: React.FC = () => {
 
     fetchGames();
   }, []);
+
+  const handleColorChange = (colorType: string, color: string) => {
+    setColorSettings((prevSettings) => ({
+      ...prevSettings,
+      [colorType]: color,
+    }));
+  };
 
   const formatDate = (dateString: string | null): string => {
     if (!dateString) {
@@ -87,10 +103,70 @@ const Daily2Odds: React.FC = () => {
       <h2 className="text-3xl font-semibold text-center mb-5">
         Download Betslip
       </h2>
+      <div className="flex flex-wrap justify-between text-sm md:text-md font-playfair mb-10">
+        <div className="flex flex-col">
+          <label>Title</label>
+          <input
+            type="color"
+            value={colorSettings.titleColor}
+            onChange={(e) => handleColorChange("titleColor", e.target.value)}
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label>Time</label>
+          <input
+            type="color"
+            value={colorSettings.timeColor}
+            onChange={(e) => handleColorChange("timeColor", e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col">
+          <label>Odds</label>
+          <input
+            type="color"
+            value={colorSettings.oddsColor}
+            onChange={(e) => handleColorChange("oddsColor", e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col">
+          <label>Total Odds</label>
+          <input
+            type="color"
+            value={colorSettings.totalOddsColor}
+            onChange={(e) =>
+              handleColorChange("totalOddsColor", e.target.value)
+            }
+          />
+        </div>
+        <div className="flex flex-col">
+          <label>Background</label>
+          <input
+            type="color"
+            value={colorSettings.backgroundColor}
+            onChange={(e) =>
+              handleColorChange("backgroundColor", e.target.value)
+            }
+          />
+        </div>
+        <div className="flex flex-col">
+          <label>Brand</label>
+          <input
+            type="color"
+            value={colorSettings.brand}
+            onChange={(e) => handleColorChange("brand", e.target.value)}
+          />
+        </div>
+      </div>
+
       <div
         ref={ref}
-        className="bg-[whitesmoke] p-4  shadow-lg divide-y divide-gray-200 w-full "
-        style={{ fontFamily: "Arial, sans-serif" }}
+        className=" p-4  shadow-lg divide-y divide-gray-200 w-full "
+        style={{
+          fontFamily:
+            "Arial, sans-serif backgroundColor: colorSettings.backgroundColor",
+          backgroundColor: colorSettings.backgroundColor,
+        }}
       >
         {games.length < 1 && (
           <h2 className="text-red-500">
@@ -101,31 +177,53 @@ const Daily2Odds: React.FC = () => {
           <div
             key={index}
             className="py-3 first:pt-0 last:pb-0 flex justify-between items-center"
-            style={{ background: index % 2 === 0 ? "#f8f9fa" : "#e9ecef" }}
+            style={{
+              color: colorSettings.backgroundColor,
+            }}
           >
             <div>
-              <span className="block text-xs font-bold text-slate-500">
+              <span
+                className="block text-xs font-bold "
+                style={{ color: colorSettings.timeColor }}
+              >
                 {formatDate(game.startTime)}
               </span>
-              <span className="block text-xs text-slate-500">
+              <span
+                className="block text-xs"
+                style={{ color: colorSettings.titleColor }}
+              >
                 {game.gameTitle}
               </span>
             </div>
             <div className="text-right">
-              <span className="block text-sm font-bold text-[#5e17eb]">
+              <span
+                className="block text-sm font-bold "
+                style={{ color: colorSettings.brand }}
+              >
                 {game.predictionType}
               </span>
-              <span className="block text-xs text-slate-500">
+              <span
+                className="block text-xs "
+                style={{ color: colorSettings.titleColor }}
+              >
                 {game.homeTeam} vs {game.awayTeam}
               </span>
-              <span className="block text-xs font-bold text-slate-500">
+              <span
+                className="block text-xs font-bold "
+                style={{ color: colorSettings.oddsColor }}
+              >
                 {game.prediction} @ {game.odd.toFixed(2)}
               </span>
             </div>
           </div>
         ))}
         <div className="pt-3 text-right">
-          <span className="text-sm font-bold text-slate-500">Total Odds:</span>
+          <span
+            className="text-sm font-bold "
+            style={{ color: colorSettings.totalOddsColor }}
+          >
+            Total Odds:
+          </span>
           <span className="text-sm font-bold text-[#5e17eb] ml-1">
             {totalOdds.toFixed(2)}
           </span>

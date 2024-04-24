@@ -1,4 +1,5 @@
 export type GameData = {
+  _id: string;
   gameTitle: string;
   predictionType: string;
   startTime: string;
