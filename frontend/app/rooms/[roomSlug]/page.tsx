@@ -20,6 +20,10 @@ const RoomComponent: React.FC = () => {
   const roomTitle = searchParams.get("roomTitle");
 
   useEffect(() => {
+    const modal = searchParams.get("modal");
+    if (modal) {
+      setActiveModal(modal);
+    }
     const checkAuthStatus = async () => {
       try {
         const response = await axios.get("/api/auth/checkAuth", {
@@ -61,7 +65,10 @@ const RoomComponent: React.FC = () => {
     title: string;
     children: React.ReactNode;
   }) => (
-    <div className="md:absolute md:right-0 md:top-0 md:bottom-0 md:h-screen  md:w-2/3 bg-[whitesmoke] text-teal-600 font-playfair flex justify-center items-center p-4">
+    <div
+      id="open-modal"
+      className="md:absolute md:right-0 md:top-0 md:bottom-0 md:h-screen  md:w-2/3 bg-[whitesmoke] text-teal-600 font-playfair flex justify-center items-center p-4"
+    >
       <div className=" p-4 shadow-lg w-full h-auto ">
         <h2 className="text-xl mb-2 font-semibold">{title}</h2>
         {children}

@@ -84,6 +84,16 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
         className="bg-white p-4  shadow-lg divide-y divide-gray-200"
         style={{ fontFamily: "Arial, sans-serif" }}
       >
+        {games.length === 0 && (
+          <div className="text-center text-lg text-slate-500">
+            No games available for now in this room, awaiting admin's update.
+            Explore other rooms{" "}
+            <a className="underline italic" href="/rooms">
+              here
+            </a>
+            .
+          </div>
+        )}
         {games.map((game, index) => (
           <div
             key={game._id}
