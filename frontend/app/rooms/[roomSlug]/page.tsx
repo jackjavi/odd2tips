@@ -16,7 +16,7 @@ const RoomComponent: React.FC = () => {
   const { roomSlug } = useParams();
   const searchParams = useSearchParams();
   const roomId = searchParams.get("roomId");
-  const adminId = searchParams.get("adminId");
+  const adminId = searchParams.get("adminId")?.toString();
   const roomTitle = searchParams.get("roomTitle");
 
   useEffect(() => {
