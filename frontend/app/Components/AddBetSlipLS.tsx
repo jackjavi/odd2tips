@@ -10,6 +10,7 @@ const BetSlipLS: React.FC = () => {
   const router = useRouter();
 
   const [formData, setFormData] = useState<GameData>({
+    _id: "",
     gameTitle: "",
     predictionType: "",
     startTime: "",
@@ -67,6 +68,7 @@ const BetSlipLS: React.FC = () => {
         `Form submission successful: ${formData.gameTitle}. Reload page to see changes.`
       );
       setFormData({
+        _id: "",
         gameTitle: "",
         predictionType: "",
         startTime: "",
