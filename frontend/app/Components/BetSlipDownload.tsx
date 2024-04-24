@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { format, set } from "date-fns";
+
+import { format } from "date-fns";
 import * as htmlToImage from "html-to-image";
 import { GameData } from "@/interfaces/gameDataLS";
-import { useRouter } from "next/navigation";
-import { te } from "date-fns/locale";
 
 const Daily2Odds: React.FC = () => {
   const [games, setGames] = useState<GameData[]>([]);
   const [loading, setLoading] = useState(true);
+
   const [colorSettings, setColorSettings] = useState({
-    titleColor: "#333",
-    timeColor: "#333",
-    oddsColor: "#333",
-    totalOddsColor: "#5e17eb",
-    backgroundColor: "#f8f9fa",
-    brand: "#5e17eb",
+    titleColor: "#FFFFFF", // Pure white for contrast against dark background
+    timeColor: "#FFD700", // Gold for time to stand out
+    oddsColor: "#00FF00", // Bright green for odds for a striking look
+    totalOddsColor: "#FF4500", // Orange-red for total odds for importance
+    backgroundColor: "#000080", // Navy blue for background for professionalism
+    brand: "#FFC0CB", // Pink for brand to be distinctive yet professional
+    teams: "#87CEEB", // Sky blue for teams for a calming effect
   });
 
   const ref = useRef<HTMLDivElement>(null);
@@ -157,6 +157,14 @@ const Daily2Odds: React.FC = () => {
             onChange={(e) => handleColorChange("brand", e.target.value)}
           />
         </div>
+        <div className="flex flex-col">
+          <label>Teams</label>
+          <input
+            type="color"
+            value={colorSettings.teams}
+            onChange={(e) => handleColorChange("homeTeam", e.target.value)}
+          />
+        </div>
       </div>
 
       <div
@@ -204,7 +212,7 @@ const Daily2Odds: React.FC = () => {
               </span>
               <span
                 className="block text-xs "
-                style={{ color: colorSettings.titleColor }}
+                style={{ color: colorSettings.teams }}
               >
                 {game.homeTeam} vs {game.awayTeam}
               </span>
@@ -224,7 +232,10 @@ const Daily2Odds: React.FC = () => {
           >
             Total Odds:
           </span>
-          <span className="text-sm font-bold text-[#5e17eb] ml-1">
+          <span
+            className="text-sm font-bold  ml-1"
+            style={{ color: colorSettings.totalOddsColor }}
+          >
             {totalOdds.toFixed(2)}
           </span>
         </div>
