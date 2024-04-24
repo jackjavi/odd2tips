@@ -86,8 +86,8 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
       >
         {games.length === 0 && (
           <div className="text-center text-lg text-slate-500">
-            No games available for now in this room, awaiting admin's update.
-            Explore other rooms{" "}
+            No games available for now in this room, awaiting admin&apos;s
+            update. Explore other rooms{" "}
             <a className="underline italic" href="/rooms">
               here
             </a>
