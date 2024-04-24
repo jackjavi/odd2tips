@@ -48,7 +48,6 @@ const BetSlipLS: React.FC = () => {
         date.getMinutes()
       )
     );
-    router.push("/betslip");
     const updatedFormData = {
       ...formData,
       startTime: utcDate.toISOString(),
@@ -64,7 +63,9 @@ const BetSlipLS: React.FC = () => {
 
       localStorage.setItem("betslip", JSON.stringify(updatedBetSlip));
 
-      alert(`Form submission successful: ${formData.gameTitle}`);
+      alert(
+        `Form submission successful: ${formData.gameTitle}. Reload page to see changes.`
+      );
       setFormData({
         gameTitle: "",
         predictionType: "",
@@ -74,7 +75,6 @@ const BetSlipLS: React.FC = () => {
         prediction: "",
         odd: 0,
       });
-      router;
     } catch (error) {
       console.error("Failed to submit form:", error);
     }

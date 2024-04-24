@@ -60,8 +60,9 @@ const Daily2Odds: React.FC = () => {
 
       if (node) {
         const dataUrl = await htmlToImage.toPng(node);
+        const currentTimestamp = format(new Date(), "yyyy MM dd_HH:mm:ss");
         const link = document.createElement("a");
-        link.download = "daily2odds.png";
+        link.download = `odd2tips.com.${currentTimestamp}.png`;
         link.href = dataUrl;
         link.click();
       }
@@ -73,7 +74,9 @@ const Daily2Odds: React.FC = () => {
   const deleteBetslip = async () => {
     try {
       localStorage.removeItem("betslip");
-      router.push("/betslip");
+      alert(
+        "Betslip deleted successfully. Reload page if still visible on dashboard."
+      );
     } catch (error) {
       console.log(error);
     }
