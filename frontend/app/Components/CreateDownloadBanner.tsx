@@ -9,7 +9,7 @@ const createDownloadBanner: React.FC = () => {
           <span className="text-[whitesmoke]">CREATE</span>{" "}
           <span className="text-slate-700">CUSTOMIZE</span> AND{" "}
           <span className="text-[whitesmoke]">DOWNLOAD BETSLIPS</span> FOR{" "}
-          <span className="text-slate-700">FREE</span>
+          <span className="text-slate-700">FREE </span>
           WITHOUT <span className="text-slate-700">REGISTRATION</span>
         </div>
         <div className="h-[50vh]">
