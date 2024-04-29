@@ -26,13 +26,13 @@ const CreateRoomPage: React.FC = () => {
       <CreateDownloadBanner />
 
       <main className="min-h-screen bg-[whitesmoke] text-teal-500 px-[10%] mx-auto  flex flex-col md:flex-row gap-8">
-        <div className="py-10 md:w-1/3 w-full md:flex md:flex-col md:items-center md:justify-center">
+        <div className="py-10 md:w-1/2 w-full md:flex md:flex-col md:items-center md:justify-center">
           <BetSlipDownload />
         </div>
-        <div className="py-10 md:w-1/3">
+        <div className="py-10 md:w-1/2">
           <AddBetSlipLS />
         </div>
-        <div className="py-10 md:w-1/3 bg-teal-600 md:bg-[whitesmoke]"></div>
+        <div className="py-10 bg-teal-600 md:hidden"></div>
       </main>
       <Footer />
     </>
