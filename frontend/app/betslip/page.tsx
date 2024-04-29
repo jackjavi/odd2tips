@@ -32,7 +32,7 @@ const CreateRoomPage: React.FC = () => {
         <div className="py-10 md:w-1/3">
           <AddBetSlipLS />
         </div>
-        <div className="py-10 md:w-1/3 bg-teal-600"></div>
+        <div className="py-10 md:w-1/3 bg-teal-600 md:bg-[whitesmoke]"></div>
       </main>
       <Footer />
     </>
