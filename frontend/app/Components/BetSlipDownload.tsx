@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+"use client";
 
+import React, { useState, useEffect, useRef } from "react";
 import { format } from "date-fns";
 import * as htmlToImage from "html-to-image";
 import { GameData } from "@/interfaces/gameDataLS";

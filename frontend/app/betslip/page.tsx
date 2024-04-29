@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Navbar from "@/app/Components/Navbar";
 import AddBetSlipLS from "@/app/Components/AddBetSlipLS";

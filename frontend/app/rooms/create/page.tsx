@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import CreateRoom from "../../Components/CreateRoom";
 import Navbar from "../../Components/Navbar";

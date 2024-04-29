@@ -10,14 +10,16 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { FaLock } from "react-icons/fa";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+{
+  /*export const metadata: Metadata = {
   title: "Top Football Predictions Analysis & Betslips | BetRoom",
   description:
     "Get the best football predictions and analysis from our expert tipsters. Download betslips instantly and engage with other football enthusiasts.",
   keywords: [
     "football predictions, football analysis, football betslips, expert tips, football enthusiasts, football fans",
   ],
-};
+};*/
+}
 
 const RoomComponent: React.FC = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
