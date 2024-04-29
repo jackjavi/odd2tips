@@ -84,8 +84,8 @@ const BetSlipLS: React.FC = () => {
 
   return (
     <main className=" mx-auto my-10">
-      <h2 className="text-3xl font-semibold text-center mb-5">
-        Create Betslip
+      <h2 className="md:text-3xl text-lg  font-semibold text-center mb-5">
+        CREATE BETSLIP
       </h2>
       <form
         onSubmit={handleSubmit}

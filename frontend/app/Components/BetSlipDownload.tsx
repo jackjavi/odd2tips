@@ -100,8 +100,8 @@ const Daily2Odds: React.FC = () => {
 
   return (
     <>
-      <h2 className="text-3xl font-semibold text-center mb-5">
-        Download Betslip
+      <h2 className="md:text-3xl text-lg font-semibold text-center mb-5">
+        DOWNLOAD BETSLIP
       </h2>
       <div className="flex flex-wrap justify-between text-sm md:text-md font-playfair mb-10">
         <div className="flex flex-col">
