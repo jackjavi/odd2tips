@@ -1,4 +1,3 @@
-// BetSlipPromotion.tsx
 import React from "react";
 
 const BetSlipPromotion: React.FC = () => {
