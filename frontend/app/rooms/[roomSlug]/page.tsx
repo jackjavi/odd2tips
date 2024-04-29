@@ -14,8 +14,9 @@ export const metadata: Metadata = {
   title: "Top Football Predictions Analysis & Betslips | BetRoom",
   description:
     "Get the best football predictions and analysis from our expert tipsters. Download betslips instantly and engage with other football enthusiasts.",
-  keywords:
+  keywords: [
     "football predictions, football analysis, football betslips, expert tips, football enthusiasts, football fans",
+  ],
 };
 
 const RoomComponent: React.FC = () => {

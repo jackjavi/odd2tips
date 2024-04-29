@@ -9,6 +9,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 export const metadata: Metadata = {
   title: "Create Room | BetRoom",
   description: "Create a room and invite your friends to join the room. ",
+  keywords: ["create room", "invite friends", "join room", "room"],
 };
 
 const CreateRoomPage: React.FC = () => {

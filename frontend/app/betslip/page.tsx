@@ -5,6 +5,19 @@ import AddBetSlipLS from "@/app/Components/AddBetSlipLS";
 import BetSlipDownload from "@/app/Components/BetSlipDownload";
 import CreateDownloadBanner from "@/app/Components/CreateDownloadBanner";
 import Footer from "@/app/Components/Footer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Create, Customize & Download BetSlips for free Instantly",
+  description:
+    "Create & Customize Your Betslips. Download high-quality betslips tailored to your style without registration. Odd2Tips is the best place to create, customize and download betslips for free.",
+  keywords: [
+    "create betslip",
+    "customize betslip",
+    "download betslip",
+    "betslip",
+  ],
+};
 
 const CreateRoomPage: React.FC = () => {
   return (
