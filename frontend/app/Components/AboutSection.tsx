@@ -43,7 +43,7 @@ const AboutSection: React.FC = () => {
             variants={containerVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="mt-8 inline-block tracking-tighter text-md sm:text-lg md:text-2xl bg-teal-500 text-[whitesmoke] rounded-full px-4 py-2 font-bold shadow-lg  hover:scale-110 transition-colors"
+            className="mt-8 inline-block tracking-tighter text-md sm:text-lg md:text-2xl bg-teal-500 text-[whitesmoke] rounded-lg px-4 py-2 font-bold shadow-lg  hover:scale-110 transition-colors"
           >
             Explore Tipsters
           </motion.a>
