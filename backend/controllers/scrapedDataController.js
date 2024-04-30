@@ -60,10 +60,10 @@ exports.fetchFootballResults = async (req, res) => {
 
     $(".fixres__item").each((index, element) => {
       const date =
-        $(element).prevAll(".fixres__header2:first").text().trim() +
+        $(element).prevAll(".fixres__header1:first").text().trim() +
         " " +
-        $(element).prevAll(".fixres__header3:first").text().trim();
-      const league = $(element).prevAll(".fixres__header1:first").text().trim();
+        $(element).prevAll(".fixres__header2:first").text().trim();
+      const league = $(element).prevAll(".fixres__header3:first").text().trim();
       const teamOneName = $(element)
         .find(".matches__participant--side1 .swap-text__target")
         .text()

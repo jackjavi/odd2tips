@@ -18,6 +18,7 @@ const uploadRoutes = require("./routes/uploadRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const sportMonksRoutes = require("./routes/sportMonksRoute");
 const scrapedDataRoutes = require("./routes/scrapedDataRoute");
+const getResultsRoutes = require("./routes/getResultsRoutes");
 const AppController = require("./routes/appRoutes");
 const gameDataCollectRoutes = require("./routes/gameDataCollectRoutes");
 const gameDataRoutes = require("./routes/gameDataRoutes");
@@ -58,6 +59,7 @@ app.use("/api", requestCounterRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/rooms", roomRoutes);
 app.use("/api/scrapedData", scrapedDataRoutes);
+app.use("/api/football", getResultsRoutes);
 
 const authenticate = require("./middleware/authenticate");
 app.use("/api/games", authenticate, gameDataRoutes);
