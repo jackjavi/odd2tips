@@ -1,6 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const Result = require("../models/Result");
+const Fixtures = require("../models/Fixtures");
 
 exports.scrapedData = async (req, res) => {
   try {
@@ -108,6 +109,86 @@ exports.fetchFootballResults = async (req, res) => {
     const filteredResults = savedResults.filter((result) => result !== null);
 
     res.status(200).json({ results: filteredResults });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.fetchFootballFixtures = async (req, res) => {
+  try {
+    console.log("Fetching Football Fixtures...");
+
+    const response = await axios.get(
+      "https://www.skysports.com/football-fixtures"
+    );
+    const html = response.data;
+    const $ = cheerio.load(html);
+
+    const resultPromises = [];
+
+    $(".fixres__item").each((index, element) => {
+      const header1 = $(element)
+        .prevAll(".fixres__header1:first")
+        .text()
+        .trim();
+      const header2 = $(element)
+        .prevAll(".fixres__header2:first")
+        .text()
+        .trim();
+
+      const fullDate = `${header1} ${header2}`;
+
+      const teamOne = $(element)
+        .find(".matches__participant--side1 .swap-text__target")
+        .text()
+        .trim();
+      const teamTwo = $(element)
+        .find(".matches__participant--side2 .swap-text__target")
+        .text()
+        .trim();
+
+      const matchId = $(element).attr("data-item-id");
+
+      const time = $(element).find(".matches__date").text().trim();
+      const league = $(element).prevAll(".fixres__header3:first").text().trim();
+      const location = $(element).find(".matches__item").attr("data-location");
+      const status = $(element).find(".matches__item").attr("data-status");
+
+      resultPromises.push(
+        Fixtures.findOne({
+          teamOne: teamOne,
+          teamTwo: teamTwo,
+          fullDate: fullDate,
+        }).then((existingFixture) => {
+          if (existingFixture) {
+            /*console.log(
+              `Fixture for ${teamOne} vs ${teamTwo} on ${fullDate} already exists.`
+            );*/
+            return null;
+          } else {
+            const newFixture = new Fixtures({
+              fullDate,
+              teamOne,
+              teamTwo,
+              time,
+              league,
+              location,
+              status,
+              matchId,
+            });
+            return newFixture.save();
+          }
+        })
+      );
+    });
+
+    const savedFixtures = await Promise.all(resultPromises);
+    const filteredFixtures = savedFixtures.filter(
+      (fixture) => fixture !== null
+    );
+
+    res.status(200).json({ fixtures: filteredFixtures });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });

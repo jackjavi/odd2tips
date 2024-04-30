@@ -21,6 +21,4 @@ const resultSchema = new mongoose.Schema({
   },
 });
 
-const Result = mongoose.model("Result", resultSchema);
-
-module.exports = Result;
+module.exports = mongoose.model("Result", resultSchema);
