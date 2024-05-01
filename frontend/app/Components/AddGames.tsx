@@ -2,22 +2,36 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { GameData } from "@/interfaces/gameData";
 
 import { useParams, useSearchParams, useRouter } from "next/navigation";
+
+interface GameData {
+  gameTitle: string;
+  homeTeam: string;
+  awayTeam: string;
+  prediction: string;
+  roomId: string;
+  date?: string;
+  odds: string[];
+  countryName: string;
+  last5home: string[];
+  last5away: string[];
+}
 
 const AddGames: React.FC = () => {
   const [gameData, setGameData] = useState<GameData[]>([]);
   const router = useRouter();
   const [formData, setFormData] = useState<GameData>({
     gameTitle: "",
-    predictionType: "",
-    startTime: "",
     homeTeam: "",
     awayTeam: "",
     prediction: "",
-    odd: 0,
     roomId: "",
+    date: "",
+    odds: [],
+    countryName: "",
+    last5home: [],
+    last5away: [],
   });
 
   const searchParams = useSearchParams();
@@ -38,11 +52,14 @@ const AddGames: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const safeRoomId = typeof roomId === "string" ? roomId : "";
+
     try {
       setFormData((prevData) => ({
         ...prevData,
-        roomId: roomId,
+        roomId: safeRoomId,
       }));
+
       const response = await axios.post(`/api/games/gameData`, formData);
 
       alert(`Form submission successful: ${response.data.gameTitle}`);
@@ -73,43 +90,6 @@ const AddGames: React.FC = () => {
             placeholder="Enter game title   e.g. UEFA Champions League"
             name="gameTitle"
             value={formData.gameTitle}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Prediction Type Input */}
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="predictionType"
-          >
-            Prediction Type
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="predictionType"
-            type="text"
-            placeholder="Enter prediction type   e.g. ODD2TIPS, JACKPOT"
-            name="predictionType"
-            value={formData.predictionType}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Start Time Input */}
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="startTime"
-          >
-            Start Time
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="startTime"
-            type="datetime-local"
-            placeholder="Select start time"
-            name="startTime"
-            value={formData.startTime}
             onChange={handleChange}
           />
         </div>
@@ -187,7 +167,7 @@ const AddGames: React.FC = () => {
             name="odd"
             min="0.01"
             step="0.01"
-            value={formData.odd}
+            value={formData.odds}
             onChange={handleChange}
           />
         </div>
