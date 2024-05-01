@@ -14,6 +14,7 @@ interface GameData {
   odds: string[];
   countryName: string;
   roomId: string;
+  date: string;
 }
 
 interface Daily2OddsProps {
@@ -67,9 +68,6 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId, roomTitle }) => {
           style={{ background: index % 2 === 0 ? "#f8f9fa" : "#e9ecef" }}
         >
           <div>
-            <span className="block text-xs font-bold text-slate-500">
-              {game.startTime}
-            </span>
             <span className="block text-xs text-slate-500">
               {game.gameTitle} - {game.countryName}
             </span>

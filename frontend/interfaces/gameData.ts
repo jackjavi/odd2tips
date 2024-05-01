@@ -10,4 +10,5 @@ export type GameData = {
   odds: string[];
   countryName: string;
   roomId: string;
+  date: string;
 };
