@@ -1,29 +1,28 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: false },
-  name: { type: String, required: true },
-  profilePicture: { type: String, required: false },
-  isVerified: {
-    type: Boolean,
-    default: false,
+const userSchema = new mongoose.Schema(
+  {
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: false },
+    name: { type: String, required: true },
+    profilePicture: { type: String, required: false },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    isRoomAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    isAppAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: String,
   },
-  isRoomAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  verificationToken: String,
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
