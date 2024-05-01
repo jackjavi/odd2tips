@@ -107,6 +107,7 @@ exports.getPredictions = async (req, res) => {
       odds: prediction.odds,
       countryName: prediction.countryName,
       roomId: firstRoomId,
+      date: prediction.date,
     }));
 
     // Create GameData entries for the second room

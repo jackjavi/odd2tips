@@ -1,44 +1,96 @@
 const GameData = require("../models/GameData");
-const RequestCount = require("../models/requestCount");
 const moment = require("moment");
 
-exports.getGameData = async (req, res) => {
-  const todayStart = moment().startOf("day").toDate();
-  const todayEnd = moment().endOf("day").toDate();
-  const { roomId } = req.query;
+function formatDate(d) {
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const suffixes = [
+    "th",
+    "st",
+    "nd",
+    "rd",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "st",
+    "nd",
+    "rd",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "th",
+    "st",
+  ];
 
+  let day = days[d.getDay()];
+  let date = d.getDate();
+  let month = months[d.getMonth()];
+  let year = d.getFullYear();
+  let suffix = suffixes[date] || "th";
+
+  return `${day}, ${month} ${date}${suffix}, ${year}`;
+}
+
+exports.getGameData = async (req, res) => {
+  const today = new Date();
+  const todayFormatted = formatDate(today); // "Wednesday, May 1st, 2024"
+  console.log(todayFormatted);
+
+  const { roomId } = req.query;
+  console.log(roomId);
   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   try {
-    const updateDoc = {
-      $inc: { count: 1 },
-      $setOnInsert: {
-        ipAddress: ip,
-        userAgent: req.headers["user-agent"],
-        language: req.headers["accept-language"],
-        date: new Date(),
-      },
-    };
-
-    const requestCounter = await RequestCount.findOneAndUpdate(
-      { ipAddress: ip, date: { $gte: todayStart, $lte: todayEnd } },
-      updateDoc,
-      { new: true, upsert: true }
-    );
-
+    // Fetch game data matching the formatted date and room ID
     const gameData = await GameData.find({
-      startTime: {
-        $gte: todayStart,
-        $lte: todayEnd,
-      },
+      date: todayFormatted, // Ensure this field name matches the one used in your schema
       roomId: roomId,
     });
+
+    if (!gameData.length) {
+      return res.status(404).json({ message: "No game data found for today." });
+    }
 
     res.json(gameData);
   } catch (error) {
     console.error("Error getting game data:", error);
-    res
-      .status(500)
-      .json({ message: "Failed to fetch game data or log request" });
+    res.status(500).json({ message: "Failed to fetch game data" });
   }
 };
