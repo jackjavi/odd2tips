@@ -5,7 +5,7 @@ import Loading from "./Loading";
 interface GameData {
   _id: string;
   gameTitle: string;
-  startTime: string;
+
   homeTeam: string;
   awayTeam: string;
   prediction: string;
