@@ -1,11 +1,13 @@
 export type GameData = {
-  _id?: string;
+  _id: string;
   gameTitle: string;
-  predictionType: string;
   startTime: string;
   homeTeam: string;
   awayTeam: string;
   prediction: string;
-  odd: number;
-  roomId: string | null;
+  last5home: string[];
+  last5away: string[];
+  odds: string[];
+  countryName: string;
+  roomId: string;
 };

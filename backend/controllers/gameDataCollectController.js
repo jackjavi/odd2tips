@@ -78,9 +78,8 @@ exports.getGameData = async (req, res) => {
   const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   try {
-    // Fetch game data matching the formatted date and room ID
     const gameData = await GameData.find({
-      date: todayFormatted, // Ensure this field name matches the one used in your schema
+      date: todayFormatted,
       roomId: roomId,
     });
 
