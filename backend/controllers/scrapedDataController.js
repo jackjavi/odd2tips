@@ -285,6 +285,10 @@ exports.scrapePredictions = async (req, res) => {
         const prediction = row.querySelector(".pttd.ptprd .ptpredboxsml")
           ? row.querySelector(".pttd.ptprd .ptpredboxsml").innerText.trim()
           : null;
+        const date = document
+          .querySelector(".bclink li:last-child")
+          ?.innerText.trim()
+          .replace("Today - ", "");
 
         return {
           countryName,
@@ -296,6 +300,7 @@ exports.scrapePredictions = async (req, res) => {
           prediction,
           matchUrl,
           odds,
+          date,
         };
       });
     });
