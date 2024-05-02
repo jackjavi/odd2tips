@@ -32,7 +32,7 @@ const CreateRoom: React.FC = () => {
       } catch (error) {
         console.error("Authentication check failed:", error);
         setError(
-          "An error occurred while checking authentication, you must be logged in to create a room."
+          "An error occurred while checking authentication, you must be logged in to create a new tipster room."
         );
       }
     };
@@ -98,7 +98,7 @@ const CreateRoom: React.FC = () => {
             id="title"
             name="title"
             type="text"
-            placeholder="Enter a title for your room"
+            placeholder="Enter a title for your tipster room"
             required
             className="w-full p-2 border border-gray-300 rounded"
             value={formData.title}
@@ -112,7 +112,7 @@ const CreateRoom: React.FC = () => {
           <textarea
             id="description"
             name="description"
-            placeholder="Enter a description for your room"
+            placeholder="Enter a description for your tipster room"
             className="w-full p-2 border border-gray-300 rounded"
             rows={4}
             value={formData.description}

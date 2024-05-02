@@ -14,7 +14,7 @@ const AboutSection: React.FC = () => {
       animate="visible"
       variants={containerVariants}
       transition={{ duration: 0.8, delay: 0.2 }}
-      className="px-4 py-12 h-[80vh] flex flex-col items-center justify-center"
+      className="px-4 pb-12 h-full md:h-[80vh] flex flex-col items-center justify-center"
     >
       <motion.div
         variants={containerVariants}

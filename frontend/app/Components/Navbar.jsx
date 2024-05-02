@@ -167,6 +167,12 @@ const Navbar = () => {
         <Link href="/blog">
           <span>Latest News</span>
         </Link>
+        <Link href="/betslip">
+          <span>Create Betslip</span>
+        </Link>
+        <Link href="/rooms/create">
+          <span>Become our Top Tipster</span>
+        </Link>
       </div>
     </nav>
   );

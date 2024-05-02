@@ -6,9 +6,12 @@ import { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
-  title: "Create Room | BetRoom",
-  description: "Create a room and invite your friends to join the room. ",
-  keywords: ["create room", "invite friends", "join room", "room"],
+  title: "Become our Top Tipster",
+  description:
+    "Create a room and sell high-quality football predictions to other football enthusiasts. Get started now!",
+  keywords: [
+    "football predictions, football analysis, football betslips, expert tips, football enthusiasts, football fans",
+  ],
 };
 
 const CreateRoomPage: React.FC = () => {
