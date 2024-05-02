@@ -105,7 +105,7 @@ const Navbar = () => {
           >
             <button className=" text-[whitesmoke] font-bold rounded inline-flex items-center">
               <FcGoogle className="mr-2" />
-              Sign up
+              SignUp
             </button>
           </Link>
         </>
@@ -114,8 +114,8 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="shadow md:shadow-lg bg-[whitesmoke] p-4 relative flex justify-center h-[15vh] md:h-[20vh]">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className=" bg-[whitesmoke] p-4 relative flex flex-col justify-center items-center h-[20vh]  mx-auto">
+      <div className=" mx-auto flex justify-between items-center h-[70%] shadow md:shadow-lg w-full">
         <div>
           <Link href="/">
             <Image
@@ -150,9 +150,23 @@ const Navbar = () => {
           </div>
         )}
         {/* Static display for larger screens */}
-        <div className="hidden md:flex md:items-center md:justify-center md:space-x-4">
+        <div className="hidden md:flex md:items-center md:justify-center md:space-x-4 md:pr-4">
           {navLinks}
         </div>
+      </div>
+      <div className="bg-teal-600 font-extrabold flex justify-around items-center flex-wrap overflow-scroll  h-[30%] w-full">
+        <Link href="/rooms">
+          <span>Predictions</span>
+        </Link>
+        <Link href="#">
+          <span>Fixtures</span>
+        </Link>
+        <Link href="/football/results">
+          <span>Results</span>
+        </Link>
+        <Link href="/blog">
+          <span>Latest News</span>
+        </Link>
       </div>
     </nav>
   );
