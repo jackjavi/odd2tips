@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: "Expert Football Predictions, Betslips & Football News",
   },
   description:
-    "Your premier destination for expert football predictions and streamlined betting. Engage with tipsters, download betslips instantly, and stay informed with the latest football news.",
+    "Get the latest trending news in the football world. Stay updated with the latest news, fixtures, football free daily predictions, and results. Top Leagues - English Premier League, La Liga, Serie A, Bundesliga, Ligue 1, and more.",
   keywords: [
     "football predictions, football news, football betting, expert tips, football analysis, football betslips, free expert odds, sure tips, daily odds, today&apos;s tip, odds today, football predictions today, football news today, football betting today, expert tips today, football analysis today, football betslips today, free expert odds today, sure tips today, daily odds today, today&apos;s tip today, odds today today, football predictions today today, football news today today, football betting today today, expert tips today today, football analysis today today, football betslips today today, free expert odds today today, sure tips today today, daily odds today today, today&apos;s tip today today, odds today today today",
   ],

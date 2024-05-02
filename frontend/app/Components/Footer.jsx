@@ -16,8 +16,8 @@ const Footer = () => {
         <div className="flex flex-col text-slate-200 justify-center items-center">
           <Image src="/logo.png" alt="Logo-SVG" width={100} height={100} />
           <p className="text-center text-teal-500">
-            Your premier destination for sports predictions and live chat.
-            Engage, predict, and win!
+            Get the latest trending news in the football world. Stay updated
+            with the latest news, fixtures, and results.
           </p>
         </div>
 
