@@ -154,7 +154,7 @@ const Navbar = () => {
           {navLinks}
         </div>
       </div>
-      <div className="bg-teal-600 font-extrabold flex justify-around items-center flex-wrap overflow-scroll  h-[30%] w-full">
+      <div className="bg-teal-600 font-extrabold text-xs md:text-md 3xl:text-lg flex justify-around items-center flex-wrap overflow-scroll  h-[30%] w-full">
         <Link href="/rooms">
           <span>Predictions</span>
         </Link>
