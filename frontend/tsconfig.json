@@ -26,7 +26,10 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/blog/posts/[slug]/page.jsx"
+    "app/blog/posts/[slug]/page.jsx",
+    "app/football/fixtures/page.tsx",
+    "app/football/fixtures/page.tsx",
+    "app/utils/fetchFixtures.js"
   ],
   "exclude": ["node_modules"]
 }

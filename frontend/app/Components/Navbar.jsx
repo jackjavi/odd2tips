@@ -158,7 +158,7 @@ const Navbar = () => {
         <Link href="/rooms">
           <span>Predictions</span>
         </Link>
-        <Link href="#">
+        <Link href="/football/fixtures">
           <span>Fixtures</span>
         </Link>
         <Link href="/football/results">

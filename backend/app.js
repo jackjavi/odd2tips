@@ -20,6 +20,7 @@ const sportMonksRoutes = require("./routes/sportMonksRoute");
 const scrapedDataRoutes = require("./routes/scrapedDataRoutes");
 const getResultsRoutes = require("./routes/getResultsRoutes");
 const getPredictionsRoutes = require("./routes/getPredictionsRoutes");
+const getFootballFixturesRoutes = require("./routes/getFootballFixturesRoutes");
 const AppController = require("./routes/appRoutes");
 const gameDataCollectRoutes = require("./routes/gameDataCollectRoutes");
 const gameDataRoutes = require("./routes/gameDataRoutes");
@@ -62,6 +63,7 @@ app.use("/api/rooms", roomRoutes);
 app.use("/api/scrapedData", scrapedDataRoutes);
 app.use("/api/football", getResultsRoutes);
 app.use("/api/football", getPredictionsRoutes);
+app.use("/api/football", getFootballFixturesRoutes);
 
 const authenticate = require("./middleware/authenticate");
 app.use("/api/games", authenticate, gameDataRoutes);
