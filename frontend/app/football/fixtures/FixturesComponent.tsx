@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Fixture, fetchFixtures } from "../../utils/football";
+import Loading from "@/app/Components/Loading";
 
 const FixturesComponent: React.FC = () => {
   const [fixtures, setFixtures] = useState<Fixture[]>([]);
@@ -20,8 +21,7 @@ const FixturesComponent: React.FC = () => {
       });
   }, []);
 
-  if (loading)
-    return <div className="text-center text-lg">Loading fixtures...</div>;
+  if (loading) return <Loading />;
   if (error)
     return (
       <div className="text-center text-lg text-red-500">Error: {error}</div>
