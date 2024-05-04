@@ -77,19 +77,25 @@ exports.getPredictions = async (req, res) => {
     const predictions = await Prediction.find({ date: dateString });
 
     // Check if there are enough predictions
-    if (predictions.length < 10) {
+    if (predictions.length < 13) {
       console.error("Not enough predictions available.");
       return;
     }
 
     // Shuffle array and pick 10 random predictions
     const shuffledPredictions = predictions.sort(() => 0.5 - Math.random());
-    const selectedPredictions = shuffledPredictions.slice(0, 10);
+    const selectedPredictions = shuffledPredictions.slice(0, 13);
 
     // Divide predictions into two groups of 5 each
+<<<<<<< HEAD
     const firstRoomPredictions = selectedPredictions.slice(0, 3);
     const secondRoomPredictions = selectedPredictions.slice(4, 7);
     const thirdRoomPredictions = selectedPredictions.slice(8, 10);
+=======
+    const firstRoomPredictions = selectedPredictions.slice(0, 4);
+    const secondRoomPredictions = selectedPredictions.slice(5, 7);
+    const thirdRoomPredictions = selectedPredictions.slice(8, 13);
+>>>>>>> parent of 6206c9a (Fix third room concat)
 
     // Room IDs
     const firstRoomId = new mongoose.Types.ObjectId("6618dbf5ad0eed6ed54294b6");
