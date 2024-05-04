@@ -77,24 +77,26 @@ exports.getPredictions = async (req, res) => {
     const predictions = await Prediction.find({ date: dateString });
 
     // Check if there are enough predictions
-    if (predictions.length < 10) {
+    if (predictions.length < 13) {
       console.error("Not enough predictions available.");
       return;
     }
 
     // Shuffle array and pick 10 random predictions
     const shuffledPredictions = predictions.sort(() => 0.5 - Math.random());
-    const selectedPredictions = shuffledPredictions.slice(0, 10);
+    const selectedPredictions = shuffledPredictions.slice(0, 13);
 
     // Divide predictions into two groups of 5 each
-    const firstRoomPredictions = selectedPredictions.slice(0, 5);
-    const secondRoomPredictions = selectedPredictions.slice(5, 10);
+    const firstRoomPredictions = selectedPredictions.slice(0, 4);
+    const secondRoomPredictions = selectedPredictions.slice(5, 7);
+    const thirdRoomPredictions = selectedPredictions.slice(8, 13);
 
     // Room IDs
     const firstRoomId = new mongoose.Types.ObjectId("6618dbf5ad0eed6ed54294b6");
     const secondRoomId = new mongoose.Types.ObjectId(
       "6627e05bef51f7e131a1a290"
     );
+    const thirdRoomId = new mongoose.Types.ObjectId("6634d619c25268c539c0455b");
 
     // Create GameData entries for the first room
     const firstRoomEntries = firstRoomPredictions.map((prediction) => ({
@@ -121,6 +123,19 @@ exports.getPredictions = async (req, res) => {
       odds: prediction.odds,
       countryName: prediction.countryName,
       roomId: secondRoomId,
+      date: prediction.date,
+    }));
+
+    const thirdRoomEntries = thirdRoomPredictions.map((prediction) => ({
+      gameTitle: prediction.competitionName,
+      homeTeam: prediction.homeTeam,
+      awayTeam: prediction.awayTeam,
+      prediction: prediction.prediction,
+      last5home: prediction.last5home,
+      last5away: prediction.last5away,
+      odds: prediction.odds,
+      countryName: prediction.countryName,
+      roomId: thirdRoomId,
       date: prediction.date,
     }));
 
