@@ -77,19 +77,18 @@ exports.getPredictions = async (req, res) => {
     const predictions = await Prediction.find({ date: dateString });
 
     // Check if there are enough predictions
-    if (predictions.length < 13) {
+    if (predictions.length < 10) {
       console.error("Not enough predictions available.");
       return;
     }
 
     // Shuffle array and pick 10 random predictions
     const shuffledPredictions = predictions.sort(() => 0.5 - Math.random());
-    const selectedPredictions = shuffledPredictions.slice(0, 13);
+    const selectedPredictions = shuffledPredictions.slice(0, 10);
 
     // Divide predictions into two groups of 5 each
-    const firstRoomPredictions = selectedPredictions.slice(0, 4);
-    const secondRoomPredictions = selectedPredictions.slice(5, 7);
-    const thirdRoomPredictions = selectedPredictions.slice(8, 13);
+    const firstRoomPredictions = selectedPredictions.slice(0, 5);
+    const secondRoomPredictions = selectedPredictions.slice(5, 10);
 
     // Room IDs
     const firstRoomId = new mongoose.Types.ObjectId("6618dbf5ad0eed6ed54294b6");
@@ -126,7 +125,7 @@ exports.getPredictions = async (req, res) => {
       date: prediction.date,
     }));
 
-    const thirdRoomEntries = thirdRoomPredictions.map((prediction) => ({
+    const thirdRoomEntries = secondRoomPredictions.map((prediction) => ({
       gameTitle: prediction.competitionName,
       homeTeam: prediction.homeTeam,
       awayTeam: prediction.awayTeam,
