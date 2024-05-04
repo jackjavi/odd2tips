@@ -87,8 +87,9 @@ exports.getPredictions = async (req, res) => {
     const selectedPredictions = shuffledPredictions.slice(0, 10);
 
     // Divide predictions into two groups of 5 each
-    const firstRoomPredictions = selectedPredictions.slice(0, 5);
-    const secondRoomPredictions = selectedPredictions.slice(5, 10);
+    const firstRoomPredictions = selectedPredictions.slice(0, 3);
+    const secondRoomPredictions = selectedPredictions.slice(4, 7);
+    const thirdRoomPredictions = selectedPredictions.slice(8, 10);
 
     // Room IDs
     const firstRoomId = new mongoose.Types.ObjectId("6618dbf5ad0eed6ed54294b6");
@@ -125,7 +126,7 @@ exports.getPredictions = async (req, res) => {
       date: prediction.date,
     }));
 
-    const thirdRoomEntries = secondRoomPredictions.map((prediction) => ({
+    const thirdRoomEntries = thirdRoomPredictions.map((prediction) => ({
       gameTitle: prediction.competitionName,
       homeTeam: prediction.homeTeam,
       awayTeam: prediction.awayTeam,
