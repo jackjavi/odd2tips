@@ -140,7 +140,9 @@ exports.getPredictions = async (req, res) => {
     }));
 
     // Save all entries to the database
-    await GameData.insertMany(firstRoomEntries.concat(secondRoomEntries));
+    await GameData.insertMany(
+      firstRoomEntries.concat(secondRoomEntries).concat(thirdRoomEntries)
+    );
 
     console.log("GameData entries successfully created for both rooms.");
     res.status(200).json({ message: "Predictions allocated to rooms." });
