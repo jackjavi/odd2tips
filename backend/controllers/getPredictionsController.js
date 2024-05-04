@@ -88,6 +88,7 @@ exports.getPredictions = async (req, res) => {
 
     // Divide predictions into two groups of 5 each
 <<<<<<< HEAD
+<<<<<<< HEAD
     const firstRoomPredictions = selectedPredictions.slice(0, 3);
     const secondRoomPredictions = selectedPredictions.slice(4, 7);
     const thirdRoomPredictions = selectedPredictions.slice(8, 10);
@@ -96,6 +97,10 @@ exports.getPredictions = async (req, res) => {
     const secondRoomPredictions = selectedPredictions.slice(5, 7);
     const thirdRoomPredictions = selectedPredictions.slice(8, 13);
 >>>>>>> parent of 6206c9a (Fix third room concat)
+=======
+    const firstRoomPredictions = selectedPredictions.slice(0, 5);
+    const secondRoomPredictions = selectedPredictions.slice(5, 10);
+>>>>>>> parent of 58fc317 (Update 3rd room predictions)
 
     // Room IDs
     const firstRoomId = new mongoose.Types.ObjectId("6618dbf5ad0eed6ed54294b6");
@@ -132,7 +137,7 @@ exports.getPredictions = async (req, res) => {
       date: prediction.date,
     }));
 
-    const thirdRoomEntries = thirdRoomPredictions.map((prediction) => ({
+    const thirdRoomEntries = secondRoomPredictions.map((prediction) => ({
       gameTitle: prediction.competitionName,
       homeTeam: prediction.homeTeam,
       awayTeam: prediction.awayTeam,
