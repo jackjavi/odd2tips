@@ -24,7 +24,7 @@ interface MatchResultProps {
   }[];
 }
 
-const MatchResults: React.FC<MatchResultProps> = () => {
+const MatchResults: React.FC = () => {
   const [results, setResults] = useState<Result[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
