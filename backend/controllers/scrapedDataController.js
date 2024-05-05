@@ -3,6 +3,7 @@ const cheerio = require("cheerio");
 const Result = require("../models/Result");
 const Fixtures = require("../models/Fixtures");
 const Prediction = require("../models/Prediction");
+const PredictzResults = require("../models/PredictzResults");
 const puppeteer = require("puppeteer");
 
 exports.fetchFootballResults = async (req, res) => {
@@ -247,6 +248,85 @@ exports.scrapePredictions = async (req, res) => {
     res
       .status(500)
       .json({ message: "Failed to fetch predictions", error: error.message });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
+exports.fetchPredictzResults = async (req, res) => {
+  let browser;
+  try {
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.setUserAgent(
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
+    );
+
+    async function fetchResults(url) {
+      await page.goto(url, { waitUntil: "networkidle0" });
+      return page.evaluate(() => {
+        return Array.from(document.querySelectorAll("table.pztable tr")).map(
+          (row) => {
+            const league = row.querySelector("td a")
+              ? row.querySelector("td a").innerText.trim()
+              : "Unknown League";
+            const matchUrl = row.querySelector("td a")
+              ? row.querySelector("td a").href
+              : null;
+            const teamsScores = row.querySelectorAll("td")[3]
+              ? row.querySelectorAll("td")[3].innerText.trim()
+              : "Unknown";
+
+            const matchPattern = /^(.*?)\s(\d+)\s(.*?)\s(\d+)$/;
+            const match = teamsScores.match(matchPattern);
+            const teamOne = match ? match[1] : "Unknown Team One";
+            const scoreOne = match ? match[2] : "0";
+            const teamTwo = match ? match[3] : "Unknown Team Two";
+            const scoreTwo = match ? match[4] : "0";
+
+            let status = "Draw";
+            if (parseInt(scoreOne) > parseInt(scoreTwo)) status = "Home win";
+            else if (parseInt(scoreTwo) > parseInt(scoreOne))
+              status = "Away win";
+
+            return {
+              league,
+              matchUrl,
+              teamOne,
+              scoreOne,
+              teamTwo,
+              scoreTwo,
+              status,
+            };
+          }
+        );
+      });
+    }
+
+    const yesterdayResults = await fetchResults(
+      "https://www.predictz.com/results/yesterday"
+    );
+    const todayResults = await fetchResults(
+      "https://www.predictz.com/results/"
+    );
+
+    const combinedResults = yesterdayResults.concat(todayResults);
+
+    await PredictzResults.deleteMany({});
+    await PredictzResults.insertMany(combinedResults);
+
+    res.status(200).json({
+      message:
+        "Results for yesterday and today fetched and stored successfully.",
+    });
+  } catch (error) {
+    console.error("Error fetching results:", error);
+    res.status(500).json({
+      message: "Failed to fetch results",
+      error: error.message,
+    });
   } finally {
     if (browser) {
       await browser.close();
