@@ -7,9 +7,15 @@ import { GameData } from "../../interfaces/gameData";
 
 interface Daily2OddsProps {
   roomId: string | null;
+  roomTitle: string | null;
+  adminId: string | null;
 }
 
-const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
+const Daily2Odds: React.FC<Daily2OddsProps> = ({
+  roomId,
+  roomTitle,
+  adminId,
+}) => {
   const [games, setGames] = useState<GameData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
