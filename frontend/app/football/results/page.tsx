@@ -9,8 +9,8 @@ const ResultsPage: React.FC = () => {
   return (
     <div className="bg-[whitesmoke]">
       <Navbar />
-      <main className="container mx-auto p-4 h-screen">
-        <div className="w-full md:w-2/3 h-full md:h-[70vh] overflow-scroll">
+      <main mx-auto>
+        <div className="md:w-2/3">
           <MatchResults />
         </div>
       </main>
