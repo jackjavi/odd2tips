@@ -1,21 +1,9 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Loading from "./Loading";
-
-interface GameData {
-  _id: string;
-  gameTitle: string;
-
-  homeTeam: string;
-  awayTeam: string;
-  prediction: string;
-  last5home: string[];
-  last5away: string[];
-  odds: string[];
-  countryName: string;
-  roomId: string;
-  date: string;
-}
+import { GameData } from "../../interfaces/gameData";
 
 interface Daily2OddsProps {
   roomId: string | null;
@@ -30,7 +18,6 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
 }) => {
   const [games, setGames] = useState<GameData[]>([]);
   const [loading, setLoading] = useState(true);
-  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -52,46 +39,64 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
   if (loading) return <Loading />;
 
   return (
-    <div
-      ref={ref}
-      className="bg-white p-4 shadow-lg divide-y divide-gray-200"
-      style={{ fontFamily: "Arial, sans-serif" }}
-    >
-      {games.length === 0 && (
-        <div className="text-center text-lg text-slate-500">
+    <div className="bg-white p-6 shadow-lg divide-y divide-gray-200">
+      {games.length === 0 ? (
+        <div className="text-center text-lg text-gray-500">
           No games available for now in this room. Explore other rooms{" "}
-          <a className="underline italic" href="/rooms">
+          <a href="/rooms" className="underline italic">
             here
           </a>
           .
         </div>
+      ) : (
+        games.map((game, index) => (
+          <div
+            key={game._id}
+            className={`py-3 ${index % 2 === 0 ? "bg-gray-50" : "bg-gray-100"}`}
+          >
+            <div className="flex justify-between items-center">
+              <div>
+                <div className="text-sm text-gray-500">
+                  {game.gameTitle} - {game.countryName}
+                </div>
+                <div className="text-lg font-bold text-purple-600">
+                  {game.homeTeam} vs {game.awayTeam}
+                </div>
+                <div className="text-sm text-gray-500">
+                  Prediction: {game.prediction}
+                </div>
+              </div>
+              <div>
+                <div className="text-sm font-bold">
+                  Odds: {game.odds.join(", ")}
+                </div>
+                <div
+                  className={`text-sm font-semibold ${getStatusStyle(
+                    game.status
+                  )}`}
+                >
+                  {game.status || "Pending"}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
       )}
-      {games.map((game, index) => (
-        <div
-          key={game._id}
-          className="py-3 first:pt-0 last:pb-0 flex justify-between items-center"
-          style={{ background: index % 2 === 0 ? "#f8f9fa" : "#e9ecef" }}
-        >
-          <div>
-            <span className="block text-xs text-slate-500">
-              {game.gameTitle} - {game.countryName}
-            </span>
-          </div>
-          <div className="text-right">
-            <span className="block text-sm font-bold text-[#5e17eb]">
-              {game.homeTeam} vs {game.awayTeam}
-            </span>
-            <span className="block text-xs font-bold text-slate-500">
-              {game.prediction}
-            </span>
-            <span className="block text-xs text-slate-500">
-              Odds: {game.odds.join(", ")}
-            </span>
-          </div>
-        </div>
-      ))}
     </div>
   );
 };
+
+function getStatusStyle(status: string | undefined) {
+  switch (status) {
+    case "Home win":
+      return "text-green-500";
+    case "Away win":
+      return "text-red-500";
+    case "Draw":
+      return "text-yellow-500";
+    default:
+      return "text-gray-400";
+  }
+}
 
 export default Daily2Odds;

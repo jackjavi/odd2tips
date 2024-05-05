@@ -10,4 +10,5 @@ export type GameData = {
   countryName: string;
   roomId: string;
   date: string;
+  status: string;
 };
