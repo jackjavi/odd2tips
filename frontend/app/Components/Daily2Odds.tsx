@@ -17,6 +17,7 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
   adminId,
 }) => {
   const [games, setGames] = useState<GameData[]>([]);
+  const [totalOdds, setTotalOdds] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
           `/api/games/gameDataCollect?roomId=${roomId}`
         );
         setGames(data);
+        calculateTotalOdds(data);
       } catch (error) {
         console.error("Failed to fetch games:", error);
       } finally {
@@ -38,6 +40,26 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
     }
   }, [roomId]);
 
+  const calculateTotalOdds = (games: GameData[]) => {
+    let newTotalOdds = 0;
+    games.forEach((game) => {
+      switch (game.prediction) {
+        case "Home win":
+          newTotalOdds += parseFloat(game.homeOdd);
+          break;
+        case "Away win":
+          newTotalOdds += parseFloat(game.awayOdd);
+          break;
+        case "Draw":
+          newTotalOdds += parseFloat(game.drawOdd);
+          break;
+        default:
+          break;
+      }
+    });
+    setTotalOdds(newTotalOdds);
+  };
+
   if (loading) return <Loading />;
 
   return (
@@ -47,35 +69,40 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
           No games available. Please check back later.
         </div>
       ) : (
-        games.map((game) => (
-          <div
-            key={game._id}
-            className="p-4 border-b border-gray-200 last:border-b-0"
-          >
-            <h3 className="text-lg font-semibold text-purple-600">
-              {game.gameTitle}
-            </h3>
-            <p className="text-gray-500">{game.date}</p>
-            <div className="grid grid-cols-2 gap-4 my-2">
-              <div>
-                <h4 className="text-md font-semibold">
-                  {game.homeTeam} vs {game.awayTeam}
-                </h4>
-                <p className="text-gray-500">Prediction: {game.prediction}</p>
-                <p className={`text-sm ${getStatusStyle(game.status)}`}>
-                  {game.status}
-                </p>
-              </div>
-              <div>
-                <div className="text-right">
-                  <p className="text-green-600">Home: {game.homeOdd}</p>
-                  <p className="text-blue-600">Draw: {game.drawOdd}</p>
-                  <p className="text-red-600">Away: {game.awayOdd}</p>
+        <>
+          {games.map((game) => (
+            <div
+              key={game._id}
+              className="p-4 border-b border-gray-200 last:border-b-0"
+            >
+              <h3 className="text-lg font-semibold text-purple-600">
+                {game.gameTitle}
+              </h3>
+              <p className="text-gray-500">{game.date}</p>
+              <div className="grid grid-cols-2 gap-4 my-2">
+                <div>
+                  <h4 className="text-md font-semibold">
+                    {game.homeTeam} vs {game.awayTeam}
+                  </h4>
+                  <p className="text-gray-500">Prediction: {game.prediction}</p>
+                  <p className={`text-sm ${getStatusStyle(game.status)}`}>
+                    {game.status}
+                  </p>
+                </div>
+                <div>
+                  <div className="text-right">
+                    <p className="text-green-600">Home: {game.homeOdd}</p>
+                    <p className="text-blue-600">Draw: {game.drawOdd}</p>
+                    <p className="text-red-600">Away: {game.awayOdd}</p>
+                  </div>
                 </div>
               </div>
             </div>
+          ))}
+          <div className="p-4 text-center text-lg">
+            Total Odds: {totalOdds.toFixed(2)}
           </div>
-        ))
+        </>
       )}
     </div>
   );
