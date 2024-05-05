@@ -5,50 +5,6 @@ const Fixtures = require("../models/Fixtures");
 const Prediction = require("../models/Prediction");
 const puppeteer = require("puppeteer");
 
-exports.scrapedData = async (req, res) => {
-  try {
-    console.log("Scraping Data...");
-    const response = await axios.get(
-      "https://www.skysports.com/football-fixtures"
-    );
-    const html = response.data;
-    const $ = cheerio.load(html);
-
-    const fixtures = [];
-
-    $(".fixres__item").each((index, element) => {
-      const header1 = $(element)
-        .prevAll(".fixres__header1:first")
-        .text()
-        .trim();
-      const header2 = $(element)
-        .prevAll(".fixres__header2:first")
-        .text()
-        .trim();
-
-      const fullDate = `${header1} ${header2}`;
-
-      const teamOne = $(element)
-        .find(".matches__participant--side1 .swap-text__target")
-        .text()
-        .trim();
-      const teamTwo = $(element)
-        .find(".matches__participant--side2 .swap-text__target")
-        .text()
-        .trim();
-
-      const matchId = $(element).attr("data-item-id");
-
-      fixtures.push({ fullDate, teamOne, teamTwo, matchId });
-    });
-
-    res.status(200).json({ fixtures });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: error.message });
-  }
-};
-
 exports.fetchFootballResults = async (req, res) => {
   try {
     console.log("Fetching Football Results...");
@@ -59,7 +15,9 @@ exports.fetchFootballResults = async (req, res) => {
     const html = response.data;
     const $ = cheerio.load(html);
 
-    const resultPromises = [];
+    await Result.deleteMany({});
+
+    const results = [];
 
     $(".fixres__item").each((index, element) => {
       const date =
@@ -83,37 +41,27 @@ exports.fetchFootballResults = async (req, res) => {
       const scoreOne = resultSplit[0];
       const scoreTwo = resultSplit[1];
 
-      resultPromises.push(
-        Result.findOne({
-          "teamOne.name": teamOneName,
-          "teamTwo.name": teamTwoName,
-          date: date,
-        }).then((existingResult) => {
-          if (existingResult) {
-            /*console.log(
-              `Result for ${teamOneName} vs ${teamTwoName} on ${date} already exists.`
-            );*/
-            return null;
-          } else {
-            const newResult = new Result({
-              date,
-              league,
-              teamOne: { name: teamOneName, score: scoreOne },
-              teamTwo: { name: teamTwoName, score: scoreTwo },
-            });
-            return newResult.save();
-          }
-        })
-      );
+      results.push({
+        date,
+        league,
+        teamOne: { name: teamOneName, score: scoreOne },
+        teamTwo: { name: teamTwoName, score: scoreTwo },
+      });
     });
 
-    const savedResults = await Promise.all(resultPromises);
-    const filteredResults = savedResults.filter((result) => result !== null);
+    await Result.insertMany(results);
 
-    res.status(200).json({ results: filteredResults });
+    res
+      .status(200)
+      .json({ message: "Football results fetched and stored successfully." });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: error.message });
+    console.error("Error fetching football results:", error);
+    res
+      .status(500)
+      .json({
+        message: "Failed to fetch football results",
+        error: error.message,
+      });
   }
 };
 
