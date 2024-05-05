@@ -67,7 +67,6 @@ exports.fetchFootballFixtures = async (req, res) => {
   try {
     console.log("Fetching Football Fixtures...");
 
-    // First, delete all existing fixtures
     await Fixtures.deleteMany({});
 
     const response = await axios.get(
@@ -116,7 +115,6 @@ exports.fetchFootballFixtures = async (req, res) => {
       fixturesToSave.push(fixtureData.save());
     });
 
-    // Wait for all fixtures to be saved
     await Promise.all(fixturesToSave);
 
     console.log("All fixtures have been successfully updated.");
@@ -179,21 +177,22 @@ exports.scrapePredictions = async (req, res) => {
       waitUntil: "networkidle0",
     });
 
+    await Prediction.deleteMany({});
+
     const predictionsData = await page.evaluate(() => {
-      const rows = Array.from(document.querySelectorAll(".pttr.ptcnt")); // Select all match rows
+      const rows = Array.from(document.querySelectorAll(".pttr.ptcnt"));
       return rows.map((row) => {
         const matchUrl = row.querySelector(".pttd.ptclick .btntsm")
           ? row.querySelector(".pttd.ptclick .btntsm").href
           : null;
 
-        // Extracting country and competition names from the URL
         let countryName = "Unknown Country";
         let competitionName = "Unknown Competition";
         if (matchUrl) {
           const pathSegments = new URL(matchUrl).pathname.split("/");
           if (pathSegments.length >= 3) {
-            countryName = pathSegments[2]; // Country name is typically the third segment
-            competitionName = pathSegments[3]; // Competition name is typically the fourth segment
+            countryName = pathSegments[2];
+            competitionName = pathSegments[3];
           }
         }
 
@@ -236,19 +235,9 @@ exports.scrapePredictions = async (req, res) => {
     });
 
     const predictions = await Promise.all(
-      predictionsData.map(async (data) => {
-        const exists = await Prediction.findOne({
-          homeTeam: data.homeTeam,
-          awayTeam: data.awayTeam,
-          date: data.date,
-        });
-
-        if (!exists) {
-          const prediction = new Prediction(data);
-          return prediction.save();
-        } else {
-          return exists;
-        }
+      predictionsData.map((data) => {
+        const prediction = new Prediction(data);
+        return prediction.save();
       })
     );
 
