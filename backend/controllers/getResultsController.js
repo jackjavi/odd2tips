@@ -3,7 +3,7 @@ const moment = require("moment");
 
 exports.getResults = async (req, res) => {
   try {
-    const todayDate = moment().format("MMMM YYYY dddd Do");
+    const todayDate = moment().format("MMMM YYYY dddd Do MMMM");
     const yesterdayDate = moment()
       .subtract(1, "days")
       .format("MMMM YYYY dddd Do MMMM");
