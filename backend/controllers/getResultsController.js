@@ -7,7 +7,6 @@ exports.getResults = async (req, res) => {
     const yesterdayDate = moment()
       .subtract(1, "days")
       .format("MMMM YYYY dddd Do MMMM");
-    console.log(todayDate, yesterdayDate);
 
     const results = await Result.find({
       date: { $in: [todayDate, yesterdayDate] },
