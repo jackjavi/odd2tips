@@ -1,30 +1,22 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import { GameData } from "../../interfaces/gameData";
 
 interface Daily2OddsProps {
   roomId: string | null;
-  roomTitle: string | null;
-  adminId: string | null;
 }
 
-const Daily2Odds: React.FC<Daily2OddsProps> = ({
-  roomId,
-  roomTitle,
-  adminId,
-}) => {
+const Daily2Odds: React.FC<Daily2OddsProps> = ({ roomId }) => {
   const [games, setGames] = useState<GameData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const { data } = await axios.get<GameData[]>(
-          `/api/games/gameDataCollect?roomId=${roomId}`
-        );
+        const { data } = await axios.get<GameData[]>(`/api/games/${roomId}`);
         setGames(data);
       } catch (error) {
         console.error("Failed to fetch games:", error);
@@ -33,49 +25,44 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
       }
     };
 
-    fetchGames();
+    if (roomId) {
+      fetchGames();
+    }
   }, [roomId]);
 
   if (loading) return <Loading />;
 
   return (
-    <div className="bg-white p-6 shadow-lg divide-y divide-gray-200">
+    <div className="max-w-4xl mx-auto bg-white shadow rounded overflow-hidden">
       {games.length === 0 ? (
-        <div className="text-center text-lg text-gray-500">
-          No games available for now in this room. Explore other rooms{" "}
-          <a href="/rooms" className="underline italic">
-            here
-          </a>
-          .
+        <div className="p-6 text-center text-lg font-medium text-gray-500">
+          No games available. Please check back later.
         </div>
       ) : (
-        games.map((game, index) => (
+        games.map((game) => (
           <div
             key={game._id}
-            className={`py-3 ${index % 2 === 0 ? "bg-gray-50" : "bg-gray-100"}`}
+            className="p-4 border-b border-gray-200 last:border-b-0"
           >
-            <div className="flex justify-between items-center">
+            <h3 className="text-lg font-semibold text-purple-600">
+              {game.gameTitle}
+            </h3>
+            <p className="text-gray-500">{game.date}</p>
+            <div className="grid grid-cols-2 gap-4 my-2">
               <div>
-                <div className="text-sm text-gray-500">
-                  {game.gameTitle} - {game.countryName}
-                </div>
-                <div className="text-lg font-bold text-purple-600">
+                <h4 className="text-md font-semibold">
                   {game.homeTeam} vs {game.awayTeam}
-                </div>
-                <div className="text-sm text-gray-500">
-                  Prediction: {game.prediction}
-                </div>
+                </h4>
+                <p className="text-gray-500">Prediction: {game.prediction}</p>
+                <p className={`text-sm ${getStatusStyle(game.status)}`}>
+                  {game.status}
+                </p>
               </div>
               <div>
-                <div className="text-sm font-bold">
-                  Odds: {game.odds.join(", ")}
-                </div>
-                <div
-                  className={`text-sm font-semibold ${getStatusStyle(
-                    game.status
-                  )}`}
-                >
-                  {game.status || "Pending"}
+                <div className="text-right">
+                  <p className="text-green-600">Home: {game.homeOdd}</p>
+                  <p className="text-blue-600">Draw: {game.drawOdd}</p>
+                  <p className="text-red-600">Away: {game.awayOdd}</p>
                 </div>
               </div>
             </div>
@@ -86,14 +73,14 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
   );
 };
 
-function getStatusStyle(status: string | undefined) {
+function getStatusStyle(status: string) {
   switch (status) {
     case "Home win":
       return "text-green-500";
     case "Away win":
       return "text-red-500";
     case "Draw":
-      return "text-yellow-500";
+      return "text-blue-500";
     default:
       return "text-gray-400";
   }

@@ -203,18 +203,35 @@ exports.scrapePredictions = async (req, res) => {
         const awayTeam = row.querySelector(".pttd.ptmoba")
           ? row.querySelector(".pttd.ptmoba").innerText.trim()
           : null;
-        const odds = Array.from(row.querySelectorAll(".pttd.ptodds a")).map(
-          (link) => link.innerText.trim()
-        );
+        const oddsElements = Array.from(
+          row.querySelectorAll(".pttd.ptodds a")
+        ).map((link) => link.innerText.trim());
+
+        let homeOdd = parseFloat(oddsElements[0] || "0");
+        let drawOdd = parseFloat(oddsElements[1] || "0");
+        let awayOdd = parseFloat(oddsElements[2] || "0");
+
         const last5home = Array.from(
           row.querySelector(".ptlast5wh .last5box").children
         ).map((el) => el.innerText.trim());
         const last5away = Array.from(
           row.querySelector(".ptlast5wa .last5box").children
         ).map((el) => el.innerText.trim());
-        const prediction = row.querySelector(".pttd.ptprd .ptpredboxsml")
+        let predictionRaw = row.querySelector(".pttd.ptprd .ptpredboxsml")
           ? row.querySelector(".pttd.ptprd .ptpredboxsml").innerText.trim()
           : null;
+
+        let prediction;
+        if (predictionRaw.includes("Home")) {
+          prediction = "Home win";
+        } else if (predictionRaw.includes("Away")) {
+          prediction = "Away win";
+        } else if (predictionRaw.includes("Draw")) {
+          prediction = "Draw";
+        } else {
+          prediction = "Unknown";
+        }
+
         const date = document
           .querySelector(".bclink li:last-child")
           ?.innerText.trim()
@@ -229,7 +246,9 @@ exports.scrapePredictions = async (req, res) => {
           last5away,
           prediction,
           matchUrl,
-          odds,
+          homeOdd,
+          drawOdd,
+          awayOdd,
           date,
         };
       });

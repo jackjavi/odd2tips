@@ -6,7 +6,9 @@ export type GameData = {
   prediction: string;
   last5home: string[];
   last5away: string[];
-  odds: string[];
+  homeOdd: string;
+  drawOdd: string;
+  awayOdd: string;
   countryName: string;
   roomId: string;
   date: string;
