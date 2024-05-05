@@ -28,11 +28,11 @@ const FixturesComponent: React.FC = () => {
     );
 
   return (
-    <div className="bg-[whitesmoke] shadow  p-4 mx-auto my-6 max-w-4xl">
-      <h1 className="text-center text-3xl font-bold text-[#5e17eb] mb-3">
+    <div className="bg-[whitesmoke] shadow-lg rounded-lg p-5 mx-auto my-6 max-w-4xl">
+      <h1 className="text-center text-3xl font-bold text-[#5e17eb] mb-4">
         Football Fixtures
       </h1>
-      <p className="text-center text-slate-600 mb-4">
+      <p className="text-center text-slate-600 mb-5">
         {new Date().toLocaleDateString("en-US", {
           weekday: "long",
           year: "numeric",
@@ -41,21 +41,26 @@ const FixturesComponent: React.FC = () => {
         })}
       </p>
       {fixtures.length > 0 ? (
-        <div className="space-y-3">
+        <ul className="space-y-4">
           {fixtures.map((fixture) => (
-            <div key={fixture._id} className="bg-slate-50 p-3 rounded-md">
-              <div className="flex justify-between items-center text-slate-700">
-                <span className="font-semibold text-slate-800">
+            <li
+              key={fixture._id}
+              className="bg-white border border-slate-200 p-4 rounded-lg shadow-sm"
+            >
+              <div className="flex justify-between items-center">
+                <div className="text-lg font-semibold text-slate-900">
                   {fixture.league}
+                </div>
+                <span className="text-sm font-medium text-green-600">
+                  {fixture.time}
                 </span>
-                <span className="text-sm text-green-600">{fixture.time}</span>
               </div>
-              <div className="text-center text-lg font-semibold text-[#5e17eb]">
+              <div className="mt-2 text-center text-xl font-semibold text-[#5e17eb]">
                 {fixture.teamOne} vs {fixture.teamTwo}
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       ) : (
         <p className="text-center text-slate-500">
           No fixtures available at this time.
