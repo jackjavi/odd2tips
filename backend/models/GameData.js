@@ -19,6 +19,7 @@ const gameDataSchema = new mongoose.Schema(
     odds: [String],
     countryName: String,
     date: String,
+    status: { type: String, default: "Pending" },
   },
   { timestamps: true }
 );

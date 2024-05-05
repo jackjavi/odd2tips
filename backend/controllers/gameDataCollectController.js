@@ -1,81 +1,12 @@
 const GameData = require("../models/GameData");
-const moment = require("moment");
-
-function formatDate(d) {
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const suffixes = [
-    "th",
-    "st",
-    "nd",
-    "rd",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "st",
-    "nd",
-    "rd",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "th",
-    "st",
-  ];
-
-  let day = days[d.getDay()];
-  let date = d.getDate();
-  let month = months[d.getMonth()];
-  let year = d.getFullYear();
-  let suffix = suffixes[date] || "th";
-
-  return `${day}, ${month} ${date}${suffix}, ${year}`;
-}
+const { formatDate } = require("../utils/dateUtils");
 
 exports.getGameData = async (req, res) => {
   const today = new Date();
   const todayFormatted = formatDate(today); // "Wednesday, May 1st, 2024"
-  console.log(todayFormatted);
 
   const { roomId } = req.query;
   console.log(roomId);
-  const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   try {
     const gameData = await GameData.find({
