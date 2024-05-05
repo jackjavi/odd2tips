@@ -6,7 +6,6 @@ exports.getGameData = async (req, res) => {
   const todayFormatted = formatDate(today); // "Wednesday, May 1st, 2024"
 
   const { roomId } = req.query;
-  console.log(roomId);
 
   try {
     const gameData = await GameData.find({

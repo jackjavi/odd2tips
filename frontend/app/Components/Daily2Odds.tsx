@@ -22,7 +22,9 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const { data } = await axios.get<GameData[]>(`/api/games/${roomId}`);
+        const { data } = await axios.get<GameData[]>(
+          `/api/games/gameDataCollect?roomId=${roomId}`
+        );
         setGames(data);
       } catch (error) {
         console.error("Failed to fetch games:", error);
