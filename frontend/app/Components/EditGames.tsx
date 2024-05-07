@@ -80,9 +80,15 @@ const EditGames: React.FC = () => {
     }
   };
 
-  const handleDelete = (gameId: string) => {
-    // Call the API to delete the game and then remove it from the state
-    console.log(`Delete game with ID: ${gameId}`);
+  const handleDelete = async (gameId: string) => {
+    try {
+      const res = await axios.delete(`/api/games/gameData/${gameId}`);
+      alert(res.data.message);
+
+      setGames(games.filter((game) => game._id !== gameId));
+    } catch (error) {
+      console.error("Failed to delete game:", error);
+    }
   };
 
   return (
