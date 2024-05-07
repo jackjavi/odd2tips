@@ -5,7 +5,7 @@ import { fetchScrapedFixtures } from "../utils/football";
 import Loading from "../Components/Loading";
 import { Fixture } from "../../interfaces/Fixture";
 
-const scrapedFixtures = () => {
+const scrapedFixtures: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const fetchFixtures = async () => {
