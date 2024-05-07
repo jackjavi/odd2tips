@@ -15,10 +15,14 @@ interface HistroyProps {
   roomId: string | null;
 }
 
+interface Error {
+  error: string | null;
+}
+
 const History: React.FC<HistroyProps> = ({ roomId }) => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchHistory = async () => {
@@ -31,7 +35,7 @@ const History: React.FC<HistroyProps> = ({ roomId }) => {
           { withCredentials: true }
         );
 
-        const formattedHistory = response.data.map((entry) => ({
+        const formattedHistory = response.data.map((entry: HistoryEntry) => ({
           date: entry.date,
           status: entry.status,
           roomId: entry.roomId.toString(),
@@ -39,7 +43,7 @@ const History: React.FC<HistroyProps> = ({ roomId }) => {
         setHistory(formattedHistory);
       } catch (error) {
         console.error("Error fetching history:", error);
-        setError("Failed to fetch history");
+        setError({ error: "Failed to fetch history" });
       } finally {
         setIsLoading(false);
       }
@@ -68,7 +72,7 @@ const History: React.FC<HistroyProps> = ({ roomId }) => {
       {isLoading ? (
         <p>Loading history...</p>
       ) : error ? (
-        <p className="text-red-500">{error}</p>
+        <p className="text-red-500">{error.error}</p>
       ) : (
         <ul className="list-disc pl-5">
           {getLast7Days().map((day) => {
