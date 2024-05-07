@@ -80,7 +80,7 @@ const RoomComponent: React.FC = () => {
   }) => (
     <div
       id="open-modal"
-      className="md:absolute md:right-0 md:top-0 md:bottom-0 md:h-screen  md:w-2/3 bg-[whitesmoke] text-teal-600 font-playfair flex justify-center items-center p-4"
+      className="md:absolute md:right-0 md:top-0 md:bottom-0 md:h-screen h-full overflow-scroll md:w-2/3 bg-[whitesmoke] text-teal-600 font-playfair flex justify-center items-center p-4"
     >
       <div className=" p-4 shadow-lg w-full h-auto ">
         <h2 className="text-xl mb-2 font-semibold">{title}</h2>
