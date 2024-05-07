@@ -28,23 +28,25 @@ import { GoogleTagManager } from "@next/third-parties/google";
 const PostPage = () => {
   const [post, setPost] = useState<PostType | null>(null);
   const { slug } = useParams();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPost = async () => {
       if (typeof slug === "string") {
         const fetchedPost = await getPostBySlug(slug);
         setPost(fetchedPost);
+        setLoading(false);
       }
     };
     fetchPost();
   }, [slug]);
 
+  if (loading) {
+    return <Loading />;
+  }
+
   if (!post) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
+    return <div>"Post not found"</div>;
   }
 
   const content = post.content;
