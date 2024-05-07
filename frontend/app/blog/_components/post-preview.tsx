@@ -48,7 +48,9 @@ export function PostPreview({
         <DateFormatter dateString={date} />
       </div>
       <Link className="hover:underline" href={`/posts/${slug}`}>
-        <p className="text-lg leading-relaxed mb-4 text-teal-400">{excerpt}</p>
+        <p className="text-lg leading-relaxed  mb-4 text-teal-400 ">
+          {excerpt}
+        </p>
       </Link>
       <div className="author flex items-center">
         <img

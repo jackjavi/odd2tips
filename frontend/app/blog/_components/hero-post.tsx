@@ -49,7 +49,11 @@ export function HeroPost({
       <div className="text-lg mb-4 text-teal-500 font-playfair mt-2">
         {date}
         <Link className="hover:underline" href={`/posts/${slug}`}>
-          <p className="text-teal-400 leading-7 tracking-wide mt-2">
+          <p
+            className="text-teal-400 leading-7 tracking-wide mt-2 first-line:uppercase first-line:tracking-widest
+  first-letter:text-7xl first-letter:font-bold 
+  first-letter:mr-3 first-letter:float-left"
+          >
             {excerpt}
           </p>
         </Link>
