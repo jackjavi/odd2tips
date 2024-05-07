@@ -1,4 +1,6 @@
 import { Fixture } from "../../interfaces/Fixture";
+import { Result } from "../../interfaces/Result";
+import { Prediction } from "../../interfaces/Prediction";
 
 export async function fetchFixtures(): Promise<Fixture[]> {
   try {
@@ -26,7 +28,7 @@ export async function fetchScrapedFixtures(): Promise<Fixture[]> {
   }
 }
 
-export async function fetchScrapedResults(): Promise<Fixture[]> {
+export async function fetchScrapedResults(): Promise<Result[]> {
   try {
     const response = await fetch("/api/scrapedData/results");
     if (!response.ok) {
@@ -39,7 +41,7 @@ export async function fetchScrapedResults(): Promise<Fixture[]> {
   }
 }
 
-export async function fetchScrapedPredictions(): Promise<Fixture[]> {
+export async function fetchScrapedPredictions(): Promise<Prediction[]> {
   try {
     const response = await fetch("/api/scrapedData/predictions");
     if (!response.ok) {

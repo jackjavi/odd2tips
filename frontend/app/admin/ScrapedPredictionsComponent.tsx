@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchScrapedPredictions } from "../utils/football";
 import Loading from "../Components/Loading";
-import { Prediction } from "../../interfaces/Prediction";
 
 const ScrapePredictions = () => {
   const [loading, setLoading] = useState<boolean>(false);

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchScrapedFixtures } from "../utils/football";
 import Loading from "../Components/Loading";
-import { Fixture } from "../../interfaces/Fixture";
 
 const ScrapedFixtures: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
