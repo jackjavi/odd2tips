@@ -28,3 +28,20 @@ exports.editGameData = async (req, res) => {
     res.status(500).json({ message: "Failed to update game data" });
   }
 };
+
+exports.deleteGameData = async (req, res) => {
+  const { id: gameId } = req.params;
+
+  try {
+    const gameData = await GameData.findByIdAndDelete(gameId);
+
+    if (!gameData) {
+      return res.status(404).json({ message: "GameData not found" });
+    }
+
+    res.json({ message: "GameData deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting game data:", error);
+    res.status(500).json({ message: "Failed to delete game data" });
+  }
+};
