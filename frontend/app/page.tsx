@@ -15,6 +15,7 @@ import Container from "@/app/blog/_components/container";
 import Investments from "@/app/Components/investmentsPlay";
 import AboutSection from "@/app/Components/AboutSection";
 import BetSlipPromotion from "@/app/Components/BetSlipPromotion";
+import RandomGameData from "@/app/Components/RandomGameData";
 import { GoogleTagManager } from "@next/third-parties/google";
 
 const Home = () => {
@@ -68,6 +69,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
+            <RandomGameData />
           </Container>
         )}
         <Footer />

@@ -8,5 +8,6 @@ router.get(
   "/gameDataCollectAllDates",
   gameDataCollectAllDatesController.getGameDataAllDates
 );
+router.get("/randomGameData", gameDataCollectController.getRandomGameData);
 
 module.exports = router;
