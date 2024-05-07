@@ -46,7 +46,7 @@ const PostPage = () => {
   }
 
   if (!post) {
-    return <div>"Post not found"</div>;
+    return <div>&quot;Post not found&quot;</div>;
   }
 
   const content = post.content;
