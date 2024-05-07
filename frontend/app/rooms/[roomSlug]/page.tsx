@@ -80,7 +80,7 @@ const RoomComponent: React.FC = () => {
   }) => (
     <div
       id="open-modal"
-      className="md:absolute md:right-0 md:top-0 md:bottom-0 h-screen overflow-scroll md:w-2/3 bg-[whitesmoke] text-teal-600 font-playfair flex justify-center items-center p-4"
+      className="md:absolute md:right-0 md:top-0 md:bottom-0 h-full md:w-2/3 bg-[whitesmoke] text-teal-600 font-playfair flex justify-center items-center p-4"
     >
       <div className=" p-4 shadow-lg w-full h-auto ">
         <h2 className="text-xl mb-2 font-semibold">{title}</h2>
@@ -99,7 +99,7 @@ const RoomComponent: React.FC = () => {
     <>
       <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Navbar />
-      <main className="flex flex-col md:flex-row h-[85vh] md:h-[80vh] bg-[whitesmoke] w-full">
+      <main className="flex flex-col md:flex-row min-h-[80vh] md:h-[80vh] bg-[whitesmoke] w-full">
         {/* Navigation Section */}
         <div className="w-full md:w-1/3 p-4 bg-gray-50 overflow-y-auto">
           {/*<section
