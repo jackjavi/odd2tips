@@ -197,7 +197,6 @@ const RoomComponent: React.FC = () => {
               className={`px-4 py-2 bg-[#5e17eb] text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 ${
                 !isUserAdmin ? "opacity-50 cursor-not-allowed" : ""
               }`}
-              disabled={!isUserAdmin}
             >
               {isUserAdmin ? "Configure" : <FaLock />}
             </button>

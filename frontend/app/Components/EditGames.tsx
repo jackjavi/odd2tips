@@ -140,7 +140,7 @@ const EditGames: React.FC = () => {
                   <div>
                     {game.homeTeam} vs {game.awayTeam}
                   </div>
-                  <div>{`${game.prediction} @ ${game.odd.toFixed(2)}`}</div>
+                  <div>{`${game.prediction} @ ${game.odd}`}</div>
                 </>
               )}
             </div>

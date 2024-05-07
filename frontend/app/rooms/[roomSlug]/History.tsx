@@ -51,9 +51,6 @@ const History: React.FC<HistroyProps> = ({ roomId }) => {
 
     fetchHistory();
   }, [roomId]);
-  history.forEach((entry) => {
-    console.log(entry.date, entry.status, entry.roomId);
-  });
 
   const getLast7Days = () => {
     const today = new Date();
