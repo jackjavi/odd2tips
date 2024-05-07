@@ -5,7 +5,7 @@ import { fetchScrapedResults } from "../utils/football";
 import Loading from "../Components/Loading";
 import { Result } from "../../interfaces/Result";
 
-const scrapedResults = () => {
+const ScrapedResults = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const fetchResults = async () => {
@@ -32,4 +32,4 @@ const scrapedResults = () => {
   );
 };
 
-export default scrapedResults;
+export default ScrapedResults;
