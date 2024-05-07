@@ -21,7 +21,7 @@ const gameDataSchema = new mongoose.Schema(
     awayOdd: String,
     countryName: String,
     date: String,
-    status: { type: String, default: "Pending" },
+    status: { type: String, default: "PENDING" },
   },
   { timestamps: true }
 );

@@ -5,6 +5,7 @@ import axios from "axios";
 import Daily2Odds from "@/app/Components/Daily2Odds";
 import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
+import History from "./History";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { FaLock } from "react-icons/fa";
@@ -173,6 +174,18 @@ const RoomComponent: React.FC = () => {
               Unlock
             </button>
 </section>*/}
+          <section
+            id="history"
+            className="mb-6 p-4 bg-white shadow-lg rounded-lg"
+          >
+            <h2 className="text-2xl font-bold text-teal-700 mb-3">History</h2>
+            <button
+              onClick={() => handleButtonClick("history")}
+              className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+            >
+              View
+            </button>
+          </section>
 
           <section
             id="settings"
@@ -199,6 +212,11 @@ const RoomComponent: React.FC = () => {
               roomTitle={roomTitle}
               adminId={adminId}
             />
+          </Modal>
+        )}
+        {activeModal === "history" && (
+          <Modal title="history">
+            <History roomId={roomId} />
           </Modal>
         )}
       </main>
