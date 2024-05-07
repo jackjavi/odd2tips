@@ -42,20 +42,22 @@ const RoomsList: React.FC = () => {
   if (error) return <div className="text-red-500">{error}</div>;
 
   return (
-    <div className="container mx-auto p-4 ">
+    <div className="container mx-auto p-4 h-full">
       <h2 className="text-2xl font-semibold mb-4 text-teal-800">
         Tipster Rooms
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4   ">
         {rooms.map((room) => (
           <div
             key={room._id}
-            className="p-4 border rounded-lg shadow-lg bg-teal-800"
+            className="p-4 border rounded-lg shadow-lg bg-teal-800  h-[35vh]  overflow-y-auto"
           >
-            <h3 className="text-xl font-bold text-[whitesmoke]">
+            <h3 className="md:text-xl text-md font-bold text-[whitesmoke]">
               {room.title}
             </h3>
-            <p className="text-gray-400">{room.description}</p>
+            <p className="text-gray-400 mt-2 md:h-[15vh] h-[10vh] overflow-scroll text-sm md:text-lg">
+              {room.description}
+            </p>
             <div className="mt-2">
               <span className="px-1 py-1 text-[8px] sm:text-[12px] md:text-xs rounded bg-slate-300 text-gray-800">
                 {room.privacy.toUpperCase()}
@@ -66,7 +68,7 @@ const RoomsList: React.FC = () => {
                 room._id
               }&adminId=${room.adminId}&roomTitle=${room.title}`}
             >
-              <button className="mt-4 px-4 py-2 bg-slate-400 text-white rounded hover:bg-slate-200 transition-colors">
+              <button className="text-sm md:text-md mt-4 px-4 py-2 bg-slate-400 text-white rounded hover:bg-slate-200 transition-colors">
                 Visit Room
               </button>
             </Link>
