@@ -5,6 +5,7 @@ import axios from "axios";
 import { format } from "date-fns";
 import { MdModeEdit, MdDelete } from "react-icons/md";
 import { useSearchParams } from "next/navigation";
+import { formatDate } from "../utils/dateUtils";
 
 // Define the GameData interface
 interface GameData {
@@ -134,7 +135,7 @@ const EditGames: React.FC = () => {
                 </>
               ) : (
                 <>
-                  <div>{format(new Date(game.startTime), "MMM d, p")}</div>
+                  <div>{formatDate(new Date(game.startTime))}</div>
                   <div>{game.gameTitle}</div>
                   <div>
                     {game.homeTeam} vs {game.awayTeam}
