@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Fixture, fetchFixtures } from "../../utils/football";
+import { fetchFixtures } from "../../utils/football";
 import Loading from "@/app/Components/Loading";
+import { Fixture } from "@/interfaces/Fixture";
 
 const FixturesComponent: React.FC = () => {
   const [fixtures, setFixtures] = useState<Fixture[]>([]);
