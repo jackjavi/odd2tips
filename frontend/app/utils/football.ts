@@ -53,3 +53,15 @@ export async function fetchScrapedPredictions(): Promise<Prediction[]> {
     throw error;
   }
 }
+
+export async function createRoomHistory(): Promise<void> {
+  try {
+    const response = await fetch(`/api/football/create-history`);
+    if (!response.ok) {
+      throw new Error("Failed to create room history");
+    }
+  } catch (error) {
+    console.error("Error creating room history:", error);
+    throw error;
+  }
+}

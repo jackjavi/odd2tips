@@ -10,8 +10,7 @@ const ScrapedFixtures: React.FC = () => {
   const fetchFixtures = async () => {
     setLoading(true);
     try {
-      const fixtures = await fetchScrapedFixtures();
-      console.log(fixtures);
+      await fetchScrapedFixtures();
     } catch (error) {
       console.error("Error fetching fixtures:", error);
     } finally {

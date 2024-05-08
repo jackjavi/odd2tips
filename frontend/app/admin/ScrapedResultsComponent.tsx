@@ -27,7 +27,7 @@ const ScrapedResults = () => {
 
   return (
     <div>
-      <button onClick={fetchResults}>scrap FIxtures</button>
+      <button onClick={fetchResults}>scrap Results</button>
     </div>
   );
 };

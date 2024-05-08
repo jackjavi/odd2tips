@@ -2,7 +2,7 @@ import React from "react";
 import ScrapedFixtures from "./ScrapedFixturesComponent";
 import ScrapedResults from "./ScrapedResultsComponent";
 import ScrapePredictions from "./ScrapedPredictionsComponent";
-import { Prediction } from "../../interfaces/Prediction";
+import CreateHistory from "./CreateHistory";
 
 const AdminPage: React.FC = () => {
   return (
@@ -11,6 +11,7 @@ const AdminPage: React.FC = () => {
       <ScrapedFixtures />
       <ScrapedResults />
       <ScrapePredictions />
+      <CreateHistory />
     </div>
   );
 };
