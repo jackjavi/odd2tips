@@ -11,13 +11,13 @@ const CreateHistory: React.FC = () => {
   const createHistory = async () => {
     setLoading(true);
     try {
-      const history = await createHistory();
-      console.log(history);
+      await createHistory();
+
+      setSuccess(true);
     } catch (error) {
       console.error("Error fetching history:", error);
     } finally {
       setLoading(false);
-      setSuccess(true);
     }
 
     if (loading) {

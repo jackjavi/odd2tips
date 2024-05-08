@@ -65,3 +65,39 @@ export async function createRoomHistory(): Promise<void> {
     throw error;
   }
 }
+
+export async function fetchPredictzResults(): Promise<void> {
+  try {
+    const response = await fetch("/api/football/results-predictz");
+    if (!response.ok) {
+      throw new Error("Failed to fetch predictz results");
+    }
+  } catch (error) {
+    console.error("Error fetching predictz results:", error);
+    throw error;
+  }
+}
+
+export async function analyzeFootballResults(): Promise<void> {
+  try {
+    const response = await fetch("/api/football/analyze-results");
+    if (!response.ok) {
+      throw new Error("Failed to analyze results");
+    }
+  } catch (error) {
+    console.error("Error analyzing results:", error);
+    throw error;
+  }
+}
+
+export async function allocateFixturesToRooms(): Promise<void> {
+  try {
+    const response = await fetch("/api/football/predictz");
+    if (!response.ok) {
+      throw new Error("Failed to allocate fixtures to rooms");
+    }
+  } catch (error) {
+    console.error("Error allocating fixtures to rooms:", error);
+    throw error;
+  }
+}

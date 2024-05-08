@@ -3,6 +3,9 @@ import ScrapedFixtures from "./ScrapedFixturesComponent";
 import ScrapedResults from "./ScrapedResultsComponent";
 import ScrapePredictions from "./ScrapedPredictionsComponent";
 import CreateHistory from "./CreateHistory";
+import StorePredictzResults from "./StorePredictzResults";
+import AnalyzeResults from "./AnalyzeResults";
+import AllocateFixtures from "./AllocateFixtures";
 
 const AdminPage: React.FC = () => {
   return (
@@ -11,7 +14,10 @@ const AdminPage: React.FC = () => {
       <ScrapedFixtures />
       <ScrapedResults />
       <ScrapePredictions />
+      <AllocateFixtures />
       <CreateHistory />
+      <StorePredictzResults />
+      <AnalyzeResults />
     </div>
   );
 };
