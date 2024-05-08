@@ -73,7 +73,7 @@ const RandomGameData: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto bg-white shadow rounded-lg overflow-hidden">
-      <h2 className="md:text-3xl text-xl font-bold text-center text-green-500 mt-8 mb-6">
+      <h2 className="md:text-3xl text-xl font-bold text-center text-teal-600 mt-8 mb-6">
         RANDOMLY FEATURED TIPSTER
       </h2>
       <h3 className="md:text-lg text-md font-bold text-center text-gray-800 mb-6 font-playfair">
