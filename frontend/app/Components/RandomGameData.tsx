@@ -67,13 +67,17 @@ const RandomGameData: React.FC = () => {
 
   if (loading) return <Loading />;
 
+  if (games.length === 0) {
+    return <></>;
+  }
+
   return (
     <div className="max-w-4xl mx-auto bg-white shadow rounded-lg overflow-hidden">
       <h2 className="md:text-3xl text-xl font-bold text-center text-green-500 mt-8 mb-6">
         RANDOMLY FEATURED TIPSTER
       </h2>
       <h3 className="md:text-lg text-md font-bold text-center text-gray-800 mb-6 font-playfair">
-        Tipster Room - {games[0].roomTitle}
+        Tipster Room - {games[0] && games[0].roomTitle}
       </h3>
       {games.length === 0 ? (
         <div className="p-6 text-center text-lg font-medium text-teal-500">
@@ -81,35 +85,38 @@ const RandomGameData: React.FC = () => {
         </div>
       ) : (
         <>
-          {games.map((game) => (
-            <div
-              key={game._id}
-              className="p-4 border-b border-gray-200 last:border-b-0"
-            >
-              <h3 className="text-xl font-semibold text-purple-600 mb-2">
-                {game.gameTitle}
-              </h3>
-              <p className="text-teal-500 mb-2">{game.date}</p>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <h4 className="text-md font-semibold text-teal-500 mb-1">
-                    {game.homeTeam} vs {game.awayTeam}
-                  </h4>
-                  <p className="text-purple-400 mb-1">
-                    Prediction: {game.prediction}
-                  </p>
-                  <p className={`text-sm ${getStatusStyle(game.status)} mb-1`}>
-                    Status: {game.status}
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="text-green-600 mb-1">Home: {game.homeOdd}</p>
-                  <p className="text-blue-600 mb-1">Draw: {game.drawOdd}</p>
-                  <p className="text-teal-800 mb-1">Away: {game.awayOdd}</p>
+          {games.length > 0 &&
+            games.map((game) => (
+              <div
+                key={game._id}
+                className="p-4 border-b border-gray-200 last:border-b-0"
+              >
+                <h3 className="text-xl font-semibold text-purple-600 mb-2">
+                  {game.gameTitle}
+                </h3>
+                <p className="text-teal-500 mb-2">{game.date}</p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="text-md font-semibold text-teal-500 mb-1">
+                      {game.homeTeam} vs {game.awayTeam}
+                    </h4>
+                    <p className="text-purple-400 mb-1">
+                      Prediction: {game.prediction}
+                    </p>
+                    <p
+                      className={`text-sm ${getStatusStyle(game.status)} mb-1`}
+                    >
+                      Status: {game.status}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-green-600 mb-1">Home: {game.homeOdd}</p>
+                    <p className="text-blue-600 mb-1">Draw: {game.drawOdd}</p>
+                    <p className="text-teal-800 mb-1">Away: {game.awayOdd}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
           <div className="p-4 text-center text-lg font-bold text-teal-500">
             Total Odds: {totalOdds.toFixed(2)}
           </div>

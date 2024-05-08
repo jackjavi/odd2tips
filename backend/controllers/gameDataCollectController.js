@@ -44,6 +44,9 @@ exports.getRandomGameData = async (req, res) => {
     const roomTitle = await Room.findOne({ _id: roomId });
 
     const gameData = await GameData.find({ roomId, date: todayFormatted });
+    if (!gameData.length) {
+      return res.status(404).json({});
+    }
     const updatedGameData = gameData.map((game) => {
       return {
         ...game._doc,
