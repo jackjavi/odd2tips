@@ -32,7 +32,6 @@ exports.createHistory = async (req, res) => {
         );
         const status = hasPendingGames ? "Pending" : isAllWon ? "WON" : "LOST";
 
-        await History.deleteMany({});
         await History.create({ date, roomId: room._id, status });
       }
     }
