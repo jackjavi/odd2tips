@@ -3,28 +3,16 @@ import BlogPost from "../models/BlogPost.mjs";
 
 const handleFileUpload = async (req, res) => {
   try {
-    const { title, content, authorName, excerpt } = req.body;
-    let coverImageUrl, authorImageUrl;
-
-    if (req.files.coverImage) {
-      const coverImage = req.files.coverImage[0];
-      const coverResult = await cloudinary.uploader.upload(coverImage.path);
-      coverImageUrl = coverResult.url;
-    }
-
-    if (req.files.authorImage) {
-      const authorImage = req.files.authorImage[0];
-      const authorResult = await cloudinary.uploader.upload(authorImage.path);
-      authorImageUrl = authorResult.url;
-    }
+    const { title, content, authorName, excerpt, markdown, fileUrls } =
+      req.body;
 
     const blogPost = new BlogPost({
       title,
       content,
       authorName,
+      fileUrls,
       excerpt,
-      coverImagePath: coverImageUrl,
-      authorImagePath: authorImageUrl,
+      markdown,
     });
 
     await blogPost.save();

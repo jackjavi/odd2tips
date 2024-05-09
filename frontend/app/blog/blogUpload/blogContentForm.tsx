@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, use } from "react";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { markdownToHtml } from "../../utils/markdown";
@@ -10,55 +10,92 @@ import remarkGfm from "remark-gfm";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeExternalLinks from "rehype-external-links";
 import { handleFileUploader } from "@/app/utils/handleFileUploader";
+import { uploadBlog } from "../../utils/markdown";
+import Loading from "@/app/Components/Loading";
+import { set } from "date-fns";
+
+type FormData = {
+  title: string;
+  excerpt: string;
+  content: string;
+  authorName: string;
+  markdown: string;
+  fileUrls: string[];
+};
 
 const BlogContentForm: React.FC = () => {
-  const [contentHtml, setContentHtml] = useState("");
   const [title, setTitle] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
   const [authorName, setAuthorName] = useState("");
-  const [coverImage, setCoverImage] = useState<File | null>(null);
-  const [authorImage, setAuthorImage] = useState<File | null>(null);
-  const [contentImage, setContentImage] = useState<File>();
-
+  const [fileUrls, setFileUrls] = useState<string[]>([]);
+  const [files, setFiles] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   const options = { code: CodeBlock };
+
+  useEffect(() => {
+    const fileUrls = localStorage.getItem("fileUrls");
+    if (fileUrls) {
+      const urls = JSON.parse(fileUrls);
+      if (Array.isArray(urls)) {
+        setFileUrls(urls);
+      }
+    }
+  }, [files]);
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const html = await markdownToHtml(content);
-    console.log(html);
-    setContentHtml(html);
-  };
+    const metadata = `---
+    title: ${title}
+    excerpt: ${excerpt}
+    authorName: ${authorName}
+    fileUrls: ${fileUrls}
+    ---\n
+    `;
+    const metadatadContent = metadata + content;
+    // const html = await markdownToHtml(metadatadContent);
 
-  const handleCoverImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setCoverImage(e.target.files[0]);
-    }
-  };
-
-  const handleAuthorImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setAuthorImage(e.target.files[0]);
-    }
+    const formData = {
+      title,
+      excerpt,
+      content: "",
+      authorName,
+      fileUrls,
+      markdown: metadatadContent,
+    };
+    await uploadBlog(formData as FormData);
+    localStorage.removeItem("fileUrls");
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoading(true);
     if (e.target.files) {
       const file = e.target.files[0];
 
       try {
         const url = await handleFileUploader(e.target.files[0]);
-
+        setFiles([...files, url]);
+        localStorage.setItem("fileUrls", JSON.stringify([...files, url]));
         setContent((prevContent) => `${prevContent}\n![${file.name}](${url})`);
-        console.log("File uploaded successfully", url.url);
       } catch (error) {
         console.error("Error uploading file", error);
+      } finally {
+        setLoading(false);
       }
     }
   };
 
+  const handleReset = () => {
+    setFileUrls([]);
+    localStorage.removeItem("fileUrls");
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-full">
       <form onSubmit={handleFormSubmit} className="w-full max-w-screen-sm">
         <div className="flex flex-wrap -mx-3 mb-6">
           <input
@@ -78,6 +115,16 @@ const BlogContentForm: React.FC = () => {
           <div className="w-full px-3">
             <SimpleMDE value={content} onChange={setContent} />
           </div>
+          <div>
+            {fileUrls.map((url) => (
+              <div key={url} className="flex items-center">
+                <span className="ml-2 text-sm">{url}</span>
+              </div>
+            ))}
+          </div>
+          <label className="block mb-2 text-sm font-medium text-gray-300">
+            Author Name
+          </label>
           <input
             className="p-2 border border-gray-300 rounded"
             type="text"
@@ -101,38 +148,25 @@ const BlogContentForm: React.FC = () => {
                     hover:file:bg-violet-100"
             />
           </div>
-          <div className="file-upload">
-            <label className="file-label">
-              <input
-                className="file-input"
-                type="file"
-                onChange={handleCoverImageChange}
-              />
-              Upload Cover Image
-            </label>
-          </div>
-          <div className="file-upload">
-            <label className="file-label">
-              <input
-                className="file-input"
-                type="file"
-                onChange={handleAuthorImageChange}
-              />
-              Upload Author Image
-            </label>
-          </div>
         </div>
         <div className="flex justify-end">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             type="submit"
           >
-            Convert to HTML
+            SUBMIT
+          </button>
+          <button
+            onClick={handleReset}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            type="reset"
+          >
+            RESET IMAGES
           </button>
         </div>
       </form>
 
-      {contentHtml && (
+      {content && (
         <div className="w-full max-w-screen-sm mt-8">
           <h2 className="text-xl font-bold mb-4">Markdown Preview:</h2>
           <Markdown

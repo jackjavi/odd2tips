@@ -1,3 +1,12 @@
+type FormData = {
+  title: string;
+  excerpt: string;
+  content: string;
+  authorName: string;
+  markdown: string;
+  fileUrls: string[];
+};
+
 export async function markdownToHtml(markdown: string) {
   const response = await fetch("/api/markdown/convert", {
     method: "POST",
@@ -8,4 +17,16 @@ export async function markdownToHtml(markdown: string) {
   });
   const { html } = await response.json();
   return html;
+}
+
+export async function uploadBlog(formData: FormData) {
+  const response = await fetch("/api/blog/upload", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+  const data = await response.json();
+  return data;
 }

@@ -11,11 +11,14 @@ function slugify(text) {
 }
 
 const blogPostSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  authorName: String,
-  coverImagePath: String,
-  authorImagePath: String,
+  title: String || null,
+  content: String || null,
+  markdown: String || null,
+  authorName: String || null,
+  excerpt: String || null,
+  fileUrls: [String] || null,
+  coverImagePath: String || null,
+  authorImagePath: String || null,
   date: { type: Date, default: Date.now },
   slug: { type: String, unique: true },
 });
