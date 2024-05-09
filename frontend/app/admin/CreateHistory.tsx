@@ -9,7 +9,6 @@ const CreateHistoryComponent: React.FC = () => {
   const [success, setSuccess] = useState<boolean>(false);
 
   const createHistoryHandler = async () => {
-    setLoading(true);
     try {
       await createRoomHistory();
 
