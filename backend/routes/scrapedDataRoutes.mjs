@@ -12,6 +12,6 @@ const router = express.Router();
 router.get("/results", fetchFootballResults);
 router.get("/fixtures", fetchFootballFixtures);
 router.get("/news", fetchFootballNews);
-router.get("/predictions", isAppAdmin, scrapePredictions);
+router.get("/predictions", scrapePredictions);
 
 export default router;

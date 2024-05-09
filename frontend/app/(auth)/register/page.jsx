@@ -27,13 +27,12 @@ export default function Register() {
     }
 
     try {
-      const res = await axios.post(`/api/auth/register`, formData, {
+      await axios.post(`/api/auth/register`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       alert(`Registration successful. Please log in.`);
-      console.log(res.data);
       router.push("/login");
     } catch (err) {
       setError(err.response?.data.error || "Error registering");

@@ -21,6 +21,11 @@ const upload = multer({
   { name: "coverImage", maxCount: 1 },
   { name: "authorImage", maxCount: 1 },
   { name: "profilePicture", maxCount: 1 },
+  { name: "blogImage", maxCount: 1 },
+  { name: "image", maxCount: 1 },
+  { name: "file", maxCount: 1 },
+  { name: "video", maxCount: 1 },
+  { name: "audio", maxCount: 1 },
 ]);
 
 function checkFileType(file, cb) {

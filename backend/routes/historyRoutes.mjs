@@ -7,7 +7,7 @@ import isAppAdmin from "../middleware/isAppAdmin.mjs";
 
 const router = express.Router();
 
-router.get("/create-history", isAppAdmin, createHistory);
+router.get("/create-history", createHistory);
 router.get("/get-history", getHistory);
 
 export default router;

@@ -21,6 +21,7 @@ import getPredictionsRoutes from "./routes/getPredictionsRoutes.mjs";
 import getFootballFixturesRoutes from "./routes/getFootballFixturesRoutes.mjs";
 import historyRoutes from "./routes/historyRoutes.mjs";
 import AppController from "./routes/appRoutes.mjs";
+import fileUploaderRoutes from "./routes/fileUploaderRoutes.mjs";
 import markdownToHtmlRoutes from "./routes/markdownToHtmlRoutes.mjs";
 import gameDataCollectRoutes from "./routes/gameDataCollectRoutes.mjs";
 import gameDataRoutes from "./routes/gameDataRoutes.mjs";
@@ -67,6 +68,7 @@ app.use("/api/football", getFootballFixturesRoutes);
 app.use("/api/football", analyzeResultsRoutes);
 app.use("/api/football", historyRoutes);
 app.use("/api/markdown", markdownToHtmlRoutes);
+app.use("/api/upload", fileUploaderRoutes);
 
 import authenticate from "./middleware/authenticate.mjs";
 app.use("/api/games", authenticate, gameDataRoutes);
@@ -79,7 +81,7 @@ app.get("/", (req, res) => {
   res.send("<h1>Hello World</h1>");
 });
 
-const PORT = process.env.PORT || 8888;
+const PORT = process.env.PORT || 8889;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
