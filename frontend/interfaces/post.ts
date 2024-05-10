@@ -6,6 +6,6 @@ export type Post = {
   content: string;
   authorName: string;
   coverImagePath: string;
-  authorImagePath: string | null;
-  markdown: string | null;
+  authorImagePath: string;
+  markdown: string;
 };
