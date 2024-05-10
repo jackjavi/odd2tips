@@ -1,10 +1,11 @@
 export type Post = {
-  title: string;
+  title: string | null;
   date: string;
-  excerpt: string;
-  slug: string;
-  content: string;
-  authorName: string;
-  coverImagePath: string;
-  authorImagePath: string;
+  excerpt: string | null;
+  slug: string | null;
+  content: string | null;
+  authorName: string | null;
+  coverImagePath: string | null;
+  authorImagePath: string | null;
+  markdown: string | null;
 };

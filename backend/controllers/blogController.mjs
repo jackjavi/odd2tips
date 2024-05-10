@@ -1,5 +1,6 @@
 import e from "express";
 import BlogPost from "../models/BlogPost.mjs";
+import markdownIt from "markdown-it";
 
 const getAllPosts = async (req, res) => {
   try {
@@ -24,4 +25,55 @@ const getPostBySlug = async (req, res) => {
   }
 };
 
-export { getAllPosts, getPostBySlug };
+const fetchAndModifyBlogPosts = async (req, res) => {
+  try {
+    const blogPosts = await BlogPost.find();
+
+    blogPosts.forEach(async (post) => {
+      if (!post.markdown) {
+        post.markdown = post.content;
+      }
+
+      if (!post.excerpt) {
+        post.excerpt = post.content.slice(0, 200);
+      }
+
+      if (!post.fileUrls) {
+        post.fileUrls = [post.coverImagePath];
+      }
+
+      await post.save();
+    });
+
+    console.log("BlogPosts modified successfully");
+  } catch (error) {
+    console.error("Error modifying BlogPosts:", error);
+  }
+};
+
+const convertContentToMarkdown = async (req, res) => {
+  const md = new markdownIt();
+  try {
+    const blogPosts = await BlogPost.find();
+
+    for (const post of blogPosts) {
+      post.content = md.render(post.content);
+      await post.save();
+    }
+
+    console.log("Content converted to markdown successfully");
+    res
+      .status(200)
+      .json({ message: "Content converted to markdown successfully" });
+  } catch (error) {
+    console.error("Error converting content to markdown:", error);
+    res.status(500).json({ message: "Failed to convert content to markdown" });
+  }
+};
+
+export {
+  getAllPosts,
+  getPostBySlug,
+  fetchAndModifyBlogPosts,
+  convertContentToMarkdown,
+};

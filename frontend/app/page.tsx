@@ -51,7 +51,8 @@ const Home = () => {
                   month: "long",
                   day: "numeric",
                 })}
-                excerpt={heroPost.content.substring(0, 200)}
+                excerpt={heroPost.excerpt}
+                markdown={heroPost.markdown}
                 content={heroPost.content}
                 authorName={heroPost.authorName}
                 authorImagePath={heroPost.authorImagePath}
