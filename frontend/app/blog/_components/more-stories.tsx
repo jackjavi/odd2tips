@@ -1,4 +1,3 @@
-// MoreStories component
 import React from "react";
 import { Post } from "@/interfaces/post";
 import { PostPreview } from "./post-preview";
@@ -22,6 +21,7 @@ export function MoreStories({ posts }: Props) {
             date={post.date}
             excerpt={post.excerpt}
             content={post.content}
+            markdown={post.markdown}
             authorName={post.authorName}
             authorImagePath={post.authorImagePath}
             slug={post.slug}
