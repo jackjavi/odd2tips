@@ -178,81 +178,88 @@ const scrapePredictions = async (req, res) => {
       waitUntil: "networkidle0",
     });
 
+    await Prediction.deleteMany({});
+
     const predictionsData = await page.evaluate(() => {
       const rows = Array.from(document.querySelectorAll(".pttr.ptcnt"));
-      return rows.map((row) => {
-        const matchUrl = row.querySelector(".pttd.ptclick .btntsm")
-          ? row.querySelector(".pttd.ptclick .btntsm").href
-          : null;
+      return rows
+        .map((row) => {
+          const matchUrl = row.querySelector(".pttd.ptclick .btntsm")
+            ? row.querySelector(".pttd.ptclick .btntsm").href
+            : null;
 
-        let countryName = "Unknown Country";
-        let competitionName = "Unknown Competition";
-        if (matchUrl) {
-          const pathSegments = new URL(matchUrl).pathname.split("/");
-          if (pathSegments.length >= 3) {
-            countryName = pathSegments[2];
-            competitionName = pathSegments[3];
+          let countryName = "Unknown Country";
+          let competitionName = "Unknown Competition";
+          if (matchUrl) {
+            const pathSegments = new URL(matchUrl).pathname.split("/");
+            if (pathSegments.length >= 3) {
+              countryName = pathSegments[2];
+              competitionName = pathSegments[3];
+            }
           }
-        }
 
-        const homeTeam = row.querySelector(".pttd.ptmobh")
-          ? row.querySelector(".pttd.ptmobh").innerText.trim()
-          : null;
-        const awayTeam = row.querySelector(".pttd.ptmoba")
-          ? row.querySelector(".pttd.ptmoba").innerText.trim()
-          : null;
-        const oddsElements = Array.from(
-          row.querySelectorAll(".pttd.ptodds a")
-        ).map((link) => link.innerText.trim());
+          const homeTeamElement = row.querySelector(".pttd.ptmobh");
+          const awayTeamElement = row.querySelector(".pttd.ptmoba");
+          const oddsElements = Array.from(
+            row.querySelectorAll(".pttd.ptodds a")
+          );
 
-        let homeOdd = parseFloat(oddsElements[0] || "0");
-        let drawOdd = parseFloat(oddsElements[1] || "0");
-        let awayOdd = parseFloat(oddsElements[2] || "0");
+          if (!homeTeamElement || !awayTeamElement || oddsElements.length < 3) {
+            return null;
+          }
 
-        const last5home = Array.from(
-          row.querySelector(".ptlast5wh .last5box").children
-        ).map((el) => el.innerText.trim());
-        const last5away = Array.from(
-          row.querySelector(".ptlast5wa .last5box").children
-        ).map((el) => el.innerText.trim());
-        let predictionRaw = row.querySelector(".pttd.ptprd .ptpredboxsml")
-          ? row.querySelector(".pttd.ptprd .ptpredboxsml").innerText.trim()
-          : null;
+          const homeTeam = homeTeamElement.innerText.trim();
+          const awayTeam = awayTeamElement.innerText.trim();
+          const odds = oddsElements.map((link) => link.innerText.trim());
 
-        let prediction;
-        if (predictionRaw.includes("Home")) {
-          prediction = "Home win";
-        } else if (predictionRaw.includes("Away")) {
-          prediction = "Away win";
-        } else if (predictionRaw.includes("Draw")) {
-          prediction = "Draw";
-        } else {
-          prediction = "Unknown";
-        }
+          let homeOdd = parseFloat(odds[0] || "0");
+          let drawOdd = parseFloat(odds[1] || "0");
+          let awayOdd = parseFloat(odds[2] || "0");
 
-        const date = document
-          .querySelector(".bclink li:last-child")
-          ?.innerText.trim()
-          .replace("Today - ", "");
+          const last5home = Array.from(
+            row.querySelector(".ptlast5wh .last5box").children
+          ).map((el) => el.innerText.trim());
+          const last5away = Array.from(
+            row.querySelector(".ptlast5wa .last5box").children
+          ).map((el) => el.innerText.trim());
+          let predictionRaw = row.querySelector(".pttd.ptprd .ptpredboxsml")
+            ? row.querySelector(".pttd.ptprd .ptpredboxsml").innerText.trim()
+            : null;
 
-        return {
-          countryName,
-          competitionName,
-          homeTeam,
-          awayTeam,
-          last5home,
-          last5away,
-          prediction,
-          matchUrl,
-          homeOdd,
-          drawOdd,
-          awayOdd,
-          date,
-        };
-      });
+          let prediction;
+          if (predictionRaw.includes("Home")) {
+            prediction = "Home win";
+          } else if (predictionRaw.includes("Away")) {
+            prediction = "Away win";
+          } else if (predictionRaw.includes("Draw")) {
+            prediction = "Draw";
+          } else {
+            prediction = "Unknown";
+          }
+
+          const date = document
+            .querySelector(".bclink li:last-child")
+            ?.innerText.trim()
+            .replace("Today - ", "");
+
+          return {
+            countryName,
+            competitionName,
+            homeTeam,
+            awayTeam,
+            last5home,
+            last5away,
+            prediction,
+            matchUrl,
+            homeOdd,
+            drawOdd,
+            awayOdd,
+            date,
+          };
+        })
+        .filter(Boolean);
     });
 
-    await Prediction.deleteMany({});
     const predictions = await Promise.all(
       predictionsData.map((data) => {
         const prediction = new Prediction(data);
