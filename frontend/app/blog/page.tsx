@@ -35,8 +35,6 @@ export default function Index() {
   }, []);
 
   const heroPost = allPosts.length > 0 ? allPosts[0] : null;
-  const content = heroPost?.markdown ? heroPost.markdown : heroPost?.content;
-  const excerpt = heroPost?.markdown ? heroPost.excerpt : "";
   const morePosts = allPosts.length > 1 ? allPosts.slice(1) : [];
 
   return (
@@ -54,7 +52,7 @@ export default function Index() {
                 month: "long",
                 day: "numeric",
               })}
-              excerpt={excerpt}
+              excerpt={heroPost.excerpt}
               content={heroPost.markdown}
               markdown={heroPost.markdown}
               authorName={heroPost.authorName}
