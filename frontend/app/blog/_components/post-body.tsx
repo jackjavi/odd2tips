@@ -19,7 +19,7 @@ export function PostBody({ content }: Props) {
   first-letter:mr-1 first-letter:float-left"
     >
       <Markdown
-        className="prose prose-invert min-w-full"
+        className="prose min-w-full"
         components={options}
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[
