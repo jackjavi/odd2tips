@@ -49,7 +49,7 @@ const PostPage = () => {
     return <div>&quot;Post not found&quot;</div>;
   }
 
-  const content = post.content;
+  const content = post.markdown;
 
   return (
     <div className="bg-[whitesmoke]">
