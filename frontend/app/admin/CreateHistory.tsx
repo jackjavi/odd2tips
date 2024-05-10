@@ -1,17 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import createHistory from "./CreateHistory";
+import { createRoomHistory } from "../utils/football";
 import Loading from "../Components/Loading";
 
-const CreateHistory: React.FC = () => {
+const CreateHistoryComponent: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [success, setSuccess] = useState<boolean>(false);
 
-  const createHistory = async () => {
-    setLoading(true);
+  const createHistoryHandler = async () => {
     try {
-      await createHistory();
+      await createRoomHistory();
 
       setSuccess(true);
     } catch (error) {
@@ -26,11 +25,11 @@ const CreateHistory: React.FC = () => {
   };
   return (
     <div>
-      <button onClick={createHistory}>
+      <button onClick={createHistoryHandler}>
         CreateHistory {success && "- successfully created"}
       </button>
     </div>
   );
 };
 
-export default CreateHistory;
+export default CreateHistoryComponent;
