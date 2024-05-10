@@ -51,14 +51,16 @@ const BlogContentForm: React.FC = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const metadata = `---
+    {
+      /*const metadata = `---
     title: ${title}
     excerpt: ${excerpt}
     authorName: ${authorName}
     fileUrls: ${fileUrls}
     ---\n
-    `;
-    const metadatadContent = metadata + content;
+  `;*/
+    }
+    //const metadatadContent = metadata + content;
     // const html = await markdownToHtml(metadatadContent);
 
     const formData = {
@@ -67,7 +69,7 @@ const BlogContentForm: React.FC = () => {
       content: "",
       authorName,
       fileUrls,
-      markdown: metadatadContent,
+      markdown: content,
     };
     await uploadBlog(formData as FormData);
     localStorage.removeItem("fileUrls");
