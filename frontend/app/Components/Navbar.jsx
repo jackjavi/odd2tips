@@ -170,7 +170,14 @@ const Navbar = () => {
         <Link href="/betslip">
           <span>Create Betslip</span>
         </Link>
-        <Link href="/rooms/create">
+        <Link
+          onClick={() =>
+            alert(
+              "Not available currently, subscribe to our newsletter to get updates on the same."
+            )
+          }
+          href="#"
+        >
           <span>Become our Top Tipster</span>
         </Link>
       </div>
