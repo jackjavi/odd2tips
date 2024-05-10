@@ -164,7 +164,7 @@ exports.fetchFootballNews = async (req, res) => {
   }
 };
 
-const scrapePredictions = async (req, res) => {
+exports.scrapePredictions = async (req, res) => {
   let browser;
   try {
     browser = await puppeteer.launch({ headless: true });
