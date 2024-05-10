@@ -1,4 +1,4 @@
-export type BlogContentFormProps {
+export type BlogContentFormProps = {
   title: string;
   setTitle: (value: string) => void;
   excerpt: string;
@@ -9,4 +9,4 @@ export type BlogContentFormProps {
   setAuthorName: (value: string) => void;
   handleCoverImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleAuthorImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
