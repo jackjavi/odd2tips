@@ -5,7 +5,7 @@ export type Post = {
   slug: string | null;
   content: string | null;
   authorName: string | null;
-  coverImagePath: string | null;
+  coverImagePath: string;
   authorImagePath: string | null;
   markdown: string | null;
 };
