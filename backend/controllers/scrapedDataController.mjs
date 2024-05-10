@@ -178,8 +178,6 @@ const scrapePredictions = async (req, res) => {
       waitUntil: "networkidle0",
     });
 
-    await Prediction.deleteMany({});
-
     const predictionsData = await page.evaluate(() => {
       const rows = Array.from(document.querySelectorAll(".pttr.ptcnt"));
       return rows.map((row) => {
@@ -254,6 +252,7 @@ const scrapePredictions = async (req, res) => {
       });
     });
 
+    await Prediction.deleteMany({});
     const predictions = await Promise.all(
       predictionsData.map((data) => {
         const prediction = new Prediction(data);
