@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, use } from "react";
-import SimpleMDE from "react-simplemde-editor";
+
 import "easymde/dist/easymde.min.css";
 import { markdownToHtml } from "../../utils/markdown";
 import Markdown from "react-markdown";
@@ -12,7 +12,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import { handleFileUploader } from "@/app/utils/handleFileUploader";
 import { uploadBlog } from "../../utils/markdown";
 import Loading from "@/app/Components/Loading";
-import { set } from "date-fns";
+import dynamic from "next/dynamic";
 
 type FormData = {
   title: string;
@@ -22,6 +22,12 @@ type FormData = {
   markdown: string;
   fileUrls: string[];
 };
+
+// Dynamically import the SimpleMDE editor with SSR disabled
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+  loading: () => <p>Loading editor...</p>,
+});
 
 const BlogContentForm: React.FC = () => {
   const [title, setTitle] = useState("");
