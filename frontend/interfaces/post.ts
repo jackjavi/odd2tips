@@ -7,4 +7,5 @@ export type Post = {
   authorName: string;
   coverImagePath: string;
   authorImagePath: string;
+  markdown: string;
 };
