@@ -10,7 +10,7 @@ const historySchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["WON", "LOST", "UNAVAILABLE", "Pending"],
+      enum: String[("WON", "LOST", "Pending", "UNAVAILABLE")],
       required: true,
     },
   },

@@ -2,7 +2,6 @@ import History from "../models/History.mjs";
 import Room from "../models/Room.mjs";
 import GameData from "../models/GameData.mjs";
 import { formatDate } from "../utils/dateUtils.mjs";
-import e from "express";
 
 const createHistory = async (req, res) => {
   try {
@@ -16,6 +15,8 @@ const createHistory = async (req, res) => {
 
     for (const room of rooms) {
       for (const date of last7Days) {
+        await History.deleteMany({ date, roomId: room._id });
+
         const games = await GameData.find({ roomId: room._id, date: date });
 
         if (games.length === 0) {
@@ -24,16 +25,35 @@ const createHistory = async (req, res) => {
             roomId: room._id,
             status: "UNAVAILABLE",
           });
+          console.log("No games found for room:", room.title, "on date:", date);
           continue;
         }
 
         const hasPendingGames = games.some((game) => game.status === "Pending");
+        if (hasPendingGames) {
+          await History.create({ date, roomId: room._id, status: "Pending" });
+          console.log(
+            "Pending games found for room:",
+            room.title,
+            "on date:",
+            date
+          );
+          continue;
+        }
+
         const isAllWon = games.every(
           (game) => game.status === game.prediction && game.status !== "Pending"
         );
-        const status = hasPendingGames ? "Pending" : isAllWon ? "WON" : "LOST";
-
+        const status = isAllWon ? "WON" : "LOST";
         await History.create({ date, roomId: room._id, status });
+        console.log(
+          "Status for room:",
+          room.title,
+          "on date:",
+          date,
+          "is",
+          status
+        );
       }
     }
 
