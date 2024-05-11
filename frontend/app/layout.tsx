@@ -5,6 +5,7 @@ import {
   Playfair_Display,
 } from "next/font/google";
 import type { Metadata } from "next";
+import { HOME_OG_IMAGE_URL } from "@/lib/constants";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     "football predictions, football news, football betting, expert tips, football analysis, football betslips, free expert odds, sure tips, daily odds, today&apos;s tip, odds today, football predictions today, football news today, football betting today, expert tips today, football analysis today, football betslips today, free expert odds today, sure tips today, daily odds today, today&apos;s tip today, odds today today, football predictions today today, football news today today, football betting today today, expert tips today today, football analysis today today, football betslips today today, free expert odds today today, sure tips today today, daily odds today today, today&apos;s tip today today, odds today today today",
   ],
   openGraph: {
-    images: ["/assets/opengraph/og-graph.png"],
+    images: [HOME_OG_IMAGE_URL],
   },
 };
 
