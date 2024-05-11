@@ -169,12 +169,12 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
           </>
         )}
       </div>
-      <button
+      {/*<button
         onClick={downloadImage}
         className="mt-4 mr-4 px-6 py-3 bg-[#5e17eb] text-white rounded font-bold text-sm hover:bg-teal-700"
       >
         Download as PNG
-      </button>
+                        </button>*/}
     </>
   );
 };
