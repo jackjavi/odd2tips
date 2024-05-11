@@ -26,6 +26,8 @@ import markdownToHtmlRoutes from "./routes/markdownToHtmlRoutes.mjs";
 import gameDataCollectRoutes from "./routes/gameDataCollectRoutes.mjs";
 import gameDataRoutes from "./routes/gameDataRoutes.mjs";
 import analyzeResultsRoutes from "./routes/analyzeResultsRoutes.mjs";
+import getTweetsRoutes from "./routes/twitter/getTweetsRoutes.mjs";
+import callbackRoutes from "./routes/twitter/callbackRoutes.mjs";
 import roomRoutes from "./routes/roomRoutes.mjs";
 import requestCounterRoutes from "./routes/requestCounterRoute.mjs";
 import checkAuthRoutes from "./routes/checkAuthRoutes.mjs";
@@ -69,6 +71,8 @@ app.use("/api/football", analyzeResultsRoutes);
 app.use("/api/football", historyRoutes);
 app.use("/api/markdown", markdownToHtmlRoutes);
 app.use("/api/upload", fileUploaderRoutes);
+app.use("/api/twitter", getTweetsRoutes);
+app.use("/api/twitter", callbackRoutes);
 
 import authenticate from "./middleware/authenticate.mjs";
 app.use("/api/games", authenticate, gameDataRoutes);
