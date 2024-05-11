@@ -13,8 +13,8 @@ const callbackcontroller = async (req, res) => {
 
   // Obtain access token
   const twitterClient = new TwitterApi({
-    clientId: "cjAzTDByQXR3Ylpxc1d6U0RRYS06MTpjaQ",
-    clientSecret: "kW2QyaZYKANnWgBYTXKhfeCsAEyKOoGcMRDi2lgI3Vo8blyS9x",
+    clientId: process.env.TWITTERCLIENTID,
+    clientSecret: process.env.TWITTERCLIENTSECRET,
   });
 
   twitterClient
