@@ -46,17 +46,23 @@ const RandomGameData: React.FC = () => {
   }, []);
 
   const calculateTotalOdds = (games: GameData[]) => {
-    let newTotalOdds = 0;
+    let newTotalOdds = 1;
     games.forEach((game) => {
       switch (game.prediction) {
         case "Home win":
-          newTotalOdds += parseFloat(game.homeOdd);
+          if (parseFloat(game.homeOdd) !== 0) {
+            newTotalOdds *= parseFloat(game.homeOdd);
+          }
           break;
         case "Away win":
-          newTotalOdds += parseFloat(game.awayOdd);
+          if (parseFloat(game.awayOdd) !== 0) {
+            newTotalOdds *= parseFloat(game.awayOdd);
+          }
           break;
         case "Draw":
-          newTotalOdds += parseFloat(game.drawOdd);
+          if (parseFloat(game.drawOdd) !== 0) {
+            newTotalOdds *= parseFloat(game.drawOdd);
+          }
           break;
         default:
           break;
