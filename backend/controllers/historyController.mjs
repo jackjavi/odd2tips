@@ -13,6 +13,8 @@ const createHistory = async (req, res) => {
       return formatDate(date);
     });
 
+    const today = formatDate(new Date());
+
     for (const room of rooms) {
       for (const date of last7Days) {
         await History.deleteMany({ date, roomId: room._id });
@@ -26,6 +28,18 @@ const createHistory = async (req, res) => {
             status: "UNAVAILABLE",
           });
           console.log("No games found for room:", room.title, "on date:", date);
+          continue;
+        }
+
+        if (date === today) {
+          await History.create({ date, roomId: room._id, status: "Pending" });
+          console.log(
+            "Status for room:",
+            room.title,
+            "on date:",
+            date,
+            "is Pending"
+          );
           continue;
         }
 
