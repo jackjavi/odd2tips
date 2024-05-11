@@ -95,28 +95,62 @@ const RandomGameData: React.FC = () => {
                   {game.gameTitle}
                 </h3>
                 <p className="text-teal-500 mb-2">{game.date}</p>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="text-md font-semibold text-teal-500 mb-1">
-                      {game.homeTeam} vs {game.awayTeam}
-                    </h4>
-                    <p className="text-purple-400 mb-1">
+                <div className="md:grid md:grid-cols-3 gap-4 my-2 flex flex-col">
+                  <div className="col-span-1 flex flex-col items-center">
+                    <h4 className="text-md font-semibold">{game.homeTeam}</h4>
+                    <div className="flex justify-center">
+                      {game.last5home.map((result, index) => (
+                        <span
+                          key={index}
+                          className={`result ${
+                            result === "W"
+                              ? "bg-green-500"
+                              : result === "L"
+                              ? "bg-red-500"
+                              : "bg-blue-500"
+                          } rounded-md text-white px-2 py-1 mx-1`}
+                        >
+                          {result}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="col-span-1 flex justify-center items-center">
+                    <p className="text-gray-500">
                       Prediction: {game.prediction}
                     </p>
-                    <p
-                      className={`text-sm ${getStatusStyle(game.status)} mb-1`}
-                    >
-                      Status: {game.status}
-                    </p>
                   </div>
-                  <div className="text-right">
-                    <p className="text-green-600 mb-1">Home: {game.homeOdd}</p>
-                    <p className="text-blue-600 mb-1">Draw: {game.drawOdd}</p>
-                    <p className="text-teal-800 mb-1">Away: {game.awayOdd}</p>
+                  <div className="col-span-1 flex flex-col items-center">
+                    <h4 className="text-md font-semibold">{game.awayTeam}</h4>
+                    <div className="flex justify-center">
+                      {game.last5away.map((result, index) => (
+                        <span
+                          key={index}
+                          className={`result ${
+                            result === "W"
+                              ? "bg-green-500"
+                              : result === "L"
+                              ? "bg-red-500"
+                              : "bg-blue-500"
+                          } rounded-md text-white px-2 py-1 mx-1`}
+                        >
+                          {result}
+                        </span>
+                      ))}
+                    </div>
                   </div>
+                </div>
+                <p className={`text-sm ${getStatusStyle(game.status)}`}>
+                  {game.status}
+                </p>
+                <div className="text-right">
+                  <p className="text-green-600">Home: {game.homeOdd}</p>
+                  <p className="text-blue-600">Draw: {game.drawOdd}</p>
+                  <p className="text-red-600">Away: {game.awayOdd}</p>
                 </div>
               </div>
             ))}
+
           <div className="p-4 text-center text-lg font-bold text-teal-500">
             Total Odds: {totalOdds.toFixed(2)}
           </div>
