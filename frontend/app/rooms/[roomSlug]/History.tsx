@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { formatDate } from "@/app/utils/dateUtils";
+import { motion } from "framer-motion";
 
 interface HistoryEntry {
   date: string | null;
@@ -64,7 +65,13 @@ const History: React.FC<HistroyProps> = ({ roomId }) => {
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-lg mx-auto bg-white shadow rounded-lg p-4"
+    >
       <h3 className="text-lg font-semibold text-teal-700 mb-3">Last 7 Days</h3>
       {isLoading ? (
         <p>Loading history...</p>
@@ -74,16 +81,47 @@ const History: React.FC<HistroyProps> = ({ roomId }) => {
         <ul className="list-disc pl-5">
           {getLast7Days().map((day) => {
             const historyEntry = history.find((entry) => entry.date === day);
+            let textColor = "text-gray-400";
+
+            switch (historyEntry?.status) {
+              case "W":
+                textColor = "text-green-500";
+                break;
+              case "L":
+                textColor = "text-red-500";
+                break;
+              case "P":
+                textColor = "text-gray-500";
+                break;
+              default:
+                break;
+            }
 
             return (
-              <li key={day}>
-                {day}: {historyEntry?.status || "-"}
-              </li>
+              <motion.li
+                key={day}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center justify-between py-2"
+              >
+                <span className="text-gray-800">{day}</span>
+                <motion.span
+                  className={`text-lg font-semibold ${textColor}`}
+                  animate={{
+                    scale: [1, 1.2, 1], // Dance animation
+                    rotate: [0, 180, 0], // Dance animation
+                    transition: { duration: 1, repeat: Infinity }, // Repeat the dance animation
+                  }}
+                >
+                  {historyEntry?.status || "-"}
+                </motion.span>
+              </motion.li>
             );
           })}
         </ul>
       )}
-    </div>
+    </motion.div>
   );
 };
 
