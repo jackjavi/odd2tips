@@ -103,7 +103,9 @@ const RandomGameData: React.FC = () => {
                 <p className="text-teal-500 mb-2">{game.date}</p>
                 <div className="md:grid md:grid-cols-3 gap-4 my-2 flex flex-col">
                   <div className="col-span-1 flex flex-col items-center">
-                    <h4 className="text-md font-semibold">{game.homeTeam}</h4>
+                    <h4 className="text-md text-black font-semibold">
+                      {game.homeTeam}
+                    </h4>
                     <div className="flex justify-center">
                       {game.last5home.map((result, index) => (
                         <span
@@ -127,7 +129,9 @@ const RandomGameData: React.FC = () => {
                     </p>
                   </div>
                   <div className="col-span-1 flex flex-col items-center">
-                    <h4 className="text-md font-semibold">{game.awayTeam}</h4>
+                    <h4 className="text-md text-black font-semibold">
+                      {game.awayTeam}
+                    </h4>
                     <div className="flex justify-center">
                       {game.last5away.map((result, index) => (
                         <span
