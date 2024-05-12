@@ -42,6 +42,27 @@ const RedisClient = class RedisClient {
       throw new Error(`Redis DEL error: ${error}`);
     }
   }
+
+  async setTwitterAuth(url, codeVerifier, state) {
+    try {
+      await this.set("twitterAuth:url", url, 300);
+      await this.set("twitterAuth:codeVerifier", codeVerifier, 300);
+      await this.set("twitterAuth:state", state, 300);
+    } catch (error) {
+      throw new Error(`Redis SET error for Twitter auth: ${error}`);
+    }
+  }
+
+  async getTwitterAuth() {
+    try {
+      const url = await this.get("twitterAuth:url");
+      const codeVerifier = await this.get("twitterAuth:codeVerifier");
+      const state = await this.get("twitterAuth:state");
+      return { url, codeVerifier, state };
+    } catch (error) {
+      throw new Error(`Redis GET error for Twitter auth: ${error}`);
+    }
+  }
 };
 
 const redisClient = new RedisClient();

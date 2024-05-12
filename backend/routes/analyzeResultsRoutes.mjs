@@ -4,6 +4,6 @@ import isAppAdmin from "../middleware/authenticate.mjs";
 
 const router = express.Router();
 
-router.get("/analyze-results", isAppAdmin, analyzeResults);
+router.get("/analyze-results", analyzeResults);
 
 export default router;

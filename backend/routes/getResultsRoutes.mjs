@@ -6,6 +6,6 @@ import { fetchPredictzResults } from "../controllers/scrapedDataController.mjs";
 const router = express.Router();
 
 router.get("/get-results", getResults);
-router.get("/results-predictz", isAppAdmin, fetchPredictzResults);
+router.get("/results-predictz", fetchPredictzResults);
 
 export default router;
