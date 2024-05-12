@@ -1,6 +1,8 @@
 import redisClient from "../../utils/redis.mjs";
 import TwitterApi from "twitter-api-v2";
 
+const FILE_PATH = "tokens.json"; // Path to the JSON file to store tokens
+
 const callbackcontroller = async (req, res) => {
   console.log(process.env.TWITTERREDIRECTURL);
   // Extract state and code from query string
@@ -36,9 +38,13 @@ const callbackcontroller = async (req, res) => {
         expiresIn,
       }) => {
         console.log("Logged in!");
-        // {loggedClient} is an authenticated client in behalf of some user
-        // Store {accessToken} somewhere, it will be valid until {expiresIn} is hit.
-        // If you want to refresh your token later, store {refreshToken} (it is present if 'offline.access' has been given as scope)
+        // Store tokens in a JSON file
+        const tokens = {
+          accessToken,
+          refreshToken,
+          expiresIn,
+        };
+        await fs.writeFile(FILE_PATH, JSON.stringify(tokens));
 
         // Example request
         const { data: userObject } = await loggedClient.v2.me();
