@@ -10,7 +10,8 @@ const ScrapedFixtures: React.FC = () => {
   const fetchFixtures = async () => {
     setLoading(true);
     try {
-      await fetchScrapedFixtures();
+      window.location.href =
+        "https://odd2tips.onrender.com/api/scrapedData/fixtures";
     } catch (error) {
       console.error("Error fetching fixtures:", error);
     } finally {

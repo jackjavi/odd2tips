@@ -10,8 +10,8 @@ const ScrapePredictions = () => {
   const fetchPredictions = async () => {
     setLoading(true);
     try {
-      const predictions = await fetchScrapedPredictions();
-      console.log(predictions);
+      window.location.href =
+        "https://odd2tips.onrender.com/api/scrapedData/predictions";
     } catch (error) {
       console.error("Error fetching predictions:", error);
     } finally {

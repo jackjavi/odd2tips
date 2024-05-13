@@ -11,7 +11,8 @@ const AllocateFixtures: React.FC = () => {
   const allocateFixtures = async () => {
     setLoading(true);
     try {
-      await allocateFixturesToRooms();
+      window.location.href =
+        "https://odd2tips.onrender.com/api/football/predictz";
       setSuccess(true);
     } catch (error) {
       console.error("Error allocating fixtures:", error);

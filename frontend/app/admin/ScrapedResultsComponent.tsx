@@ -11,8 +11,8 @@ const ScrapedResults = () => {
   const fetchResults = async () => {
     setLoading(true);
     try {
-      const fixtures = await fetchScrapedResults();
-      console.log(fixtures);
+      window.location.href =
+        "https://odd2tips.onrender.com/api/scrapedData/results";
     } catch (error) {
       console.error("Error fetching rsults:", error);
     } finally {

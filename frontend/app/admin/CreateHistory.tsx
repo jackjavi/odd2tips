@@ -10,7 +10,8 @@ const CreateHistoryComponent: React.FC = () => {
 
   const createHistoryHandler = async () => {
     try {
-      await createRoomHistory();
+      window.location.href =
+        "https://odd2tips.onrender.com/api/football/create-history";
 
       setSuccess(true);
     } catch (error) {

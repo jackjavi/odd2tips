@@ -11,7 +11,8 @@ const StorePredictzResults: React.FC = () => {
   const fetchResults = async () => {
     setLoading(true);
     try {
-      const results = await fetchPredictzResults();
+      window.location.href =
+        "https://odd2tips.onrender.com/api/football/results-predictz";
       setSuccess(true);
     } catch (error) {
       console.error("Error fetching results:", error);

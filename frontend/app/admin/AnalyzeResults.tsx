@@ -11,7 +11,8 @@ const AnalyzeResults: React.FC = () => {
   const analyzeResults = async () => {
     setLoading(true);
     try {
-      await analyzeFootballResults();
+      window.location.href =
+        "https://odd2tips.onrender.com/api/football/analyze-results";
       setSuccess(true);
     } catch (error) {
       console.error("Error fetching results:", error);
