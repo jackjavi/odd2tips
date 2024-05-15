@@ -13,6 +13,7 @@ import { handleFileUploader } from "@/app/utils/handleFileUploader";
 import { uploadBlog } from "../../utils/markdown";
 import Loading from "@/app/Components/Loading";
 import dynamic from "next/dynamic";
+import CoverImage from "../_components/cover-image";
 
 type FormData = {
   title: string;
@@ -34,6 +35,7 @@ const BlogContentForm: React.FC = () => {
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
   const [authorName, setAuthorName] = useState("");
+  const [coverImage, setCoverImage] = useState("");
   const [fileUrls, setFileUrls] = useState<string[]>([]);
   const [files, setFiles] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -68,6 +70,7 @@ const BlogContentForm: React.FC = () => {
       excerpt,
       content: "",
       authorName,
+      coverImagePath: coverImage,
       fileUrls,
       markdown: content,
     };
@@ -104,8 +107,14 @@ const BlogContentForm: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center h-full">
-      <form onSubmit={handleFormSubmit} className="w-full max-w-screen-sm">
-        <div className="flex flex-wrap -mx-3 mb-6">
+      <form
+        onSubmit={handleFormSubmit}
+        className="w-full h-screen max-w-screen-sm flex flex-col justify-around"
+      >
+        <div className="flex flex-wrap -mx-3 mb-6 justify-around gap-4 flex-col">
+          <label className="block mb-2 text-sm font-medium text-gray-300">
+            Title
+          </label>
           <input
             className="p-2 border border-gray-300 rounded"
             type="text"
@@ -113,6 +122,19 @@ const BlogContentForm: React.FC = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          <label className="block mb-2 text-sm font-medium text-gray-300">
+            Cover Image
+          </label>
+          <input
+            className="p-2 border border-gray-300 rounded"
+            type="text"
+            placeholder="Cover Image url from cloudinary"
+            value={coverImage}
+            onChange={(e) => setCoverImage(e.target.value)}
+          />
+          <label className="block mb-2 text-sm font-medium text-gray-300">
+            Excerpt
+          </label>
           <textarea
             className="p-2 border border-gray-300 rounded"
             placeholder="Excerpt"
@@ -121,6 +143,7 @@ const BlogContentForm: React.FC = () => {
             onChange={(e) => setExcerpt(e.target.value)}
           />
           <div className="w-full px-3">
+            <h4 className="text-lg font-bold mb-2">Content</h4>
             <SimpleMDE value={content} onChange={setContent} />
           </div>
           <div>

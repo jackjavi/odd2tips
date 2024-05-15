@@ -10,6 +10,7 @@ const handleFileUpload = async (req, res) => {
       title,
       content,
       authorName,
+      coverImagePath,
       fileUrls,
       excerpt,
       markdown,
