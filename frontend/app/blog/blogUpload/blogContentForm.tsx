@@ -109,7 +109,7 @@ const BlogContentForm: React.FC = () => {
     <div className="flex flex-col items-center h-full">
       <form
         onSubmit={handleFormSubmit}
-        className="w-full h-screen max-w-screen-sm flex flex-col justify-around"
+        className="w-full h-full max-w-screen-sm flex flex-col justify-around"
       >
         <div className="flex flex-wrap -mx-3 mb-6 justify-around gap-4 flex-col">
           <label className="block mb-2 text-sm font-medium text-gray-300">
