@@ -3,8 +3,15 @@ import BlogPost from "../models/BlogPost.mjs";
 
 const handleFileUpload = async (req, res) => {
   try {
-    const { title, content, authorName, excerpt, markdown, fileUrls } =
-      req.body;
+    const {
+      title,
+      content,
+      authorName,
+      coverImagePath,
+      excerpt,
+      markdown,
+      fileUrls,
+    } = req.body;
 
     const blogPost = new BlogPost({
       title,
