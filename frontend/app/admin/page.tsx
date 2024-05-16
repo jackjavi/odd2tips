@@ -11,10 +11,10 @@ import Footer from "../Components/Footer";
 
 const AdminPage: React.FC = () => {
   return (
-    <>
+    <div className="bg-[whitesmoke]">
       <Navbar />
-      <main>
-        <h1>Admin Page</h1>
+      <main className=" mx-auto container flex flex-col gap-8 py-8 bg-[whitesmoke] text-green-800">
+        <h1 className="font-bold text-lg md:text-xl">Admin Page</h1>
         <ScrapedFixtures />
         <ScrapedResults />
         <ScrapePredictions />
@@ -24,7 +24,7 @@ const AdminPage: React.FC = () => {
         <AnalyzeResults />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
