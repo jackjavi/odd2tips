@@ -62,7 +62,9 @@ const getRandomGameData = async (req, res) => {
 
 const getRandomGameforTweets = async (req, res) => {
   try {
-    const games = await GameData.find({});
+    const today = new Date();
+    const todayFormatted = formatDate(today);
+    const games = await GameData.find({ date: todayFormatted });
 
     const randomIndex = Math.floor(Math.random() * games.length);
     const randomGame = games[randomIndex];
