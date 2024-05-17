@@ -19,7 +19,7 @@ function getAuthorizationHeader() {
 export async function getAllPosts(): Promise<Post[]> {
   try {
     const headers = getAuthorizationHeader();
-    const response = await axios.get(`/api/blog/posts`);
+    const response = await axios.get(`/api/blog/posts-test`);
 
     return response.data;
   } catch (error) {
@@ -31,7 +31,7 @@ export async function getAllPosts(): Promise<Post[]> {
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
     const headers = getAuthorizationHeader();
-    const response = await axios.get(`/api/blog/posts/${slug}`);
+    const response = await axios.get(`/api/blog/posts-test/${slug}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching post by slug (${slug}):`, error);
