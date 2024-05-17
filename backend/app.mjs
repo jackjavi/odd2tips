@@ -56,7 +56,6 @@ app.use("/", googleAuth);
 app.use("/api", AppController);
 
 app.use("/api/blog", uploadRoutes);
-twitterClient;
 
 app.use("/api/games", gameDataCollectRoutes);
 app.use("/api/games", sportMonksRoutes);
