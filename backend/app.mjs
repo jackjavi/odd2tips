@@ -27,6 +27,8 @@ import markdownToHtmlRoutes from "./routes/markdownToHtmlRoutes.mjs";
 import gameDataCollectRoutes from "./routes/gameDataCollectRoutes.mjs";
 import gameDataRoutes from "./routes/gameDataRoutes.mjs";
 import analyzeResultsRoutes from "./routes/analyzeResultsRoutes.mjs";
+import getTweetsRoutes from "./routes/twitter/getTweetsRoutes.mjs";
+import callbackRoutes from "./routes/twitter/callbackRoutes.mjs";
 import roomRoutes from "./routes/roomRoutes.mjs";
 import requestCounterRoutes from "./routes/requestCounterRoute.mjs";
 import checkAuthRoutes from "./routes/checkAuthRoutes.mjs";
@@ -49,6 +51,7 @@ const io = new Server(server);
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
+connectDatabase();
 app.use("/api/auth", authRoutes);
 app.use("/", googleAuth);
 app.use("/api", AppController);
@@ -70,6 +73,9 @@ app.use("/api/football", historyRoutes);
 app.use("/api/markdown", markdownToHtmlRoutes);
 app.use("/api/upload", fileUploaderRoutes);
 app.use("/api/generativeAI", formatArtcielsRoutes);
+app.use("/api/twitter", getTweetsRoutes);
+app.use("/api/twitter", callbackRoutes);
+
 import authenticate from "./middleware/authenticate.mjs";
 app.use("/api/games", authenticate, gameDataRoutes);
 
@@ -83,6 +89,5 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 8888;
 app.listen(PORT, () => {
-  connectDatabase();
   console.log(`Server listening on port ${PORT}`);
 });
