@@ -1,6 +1,5 @@
 import express from "express";
 import {
-  formatArticles,
   addImageUrlsAndSaveToDatabase,
   saveJsonArticles,
 } from "../../controllers/generativeAI/generativeAIController.mjs";
