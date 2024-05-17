@@ -550,7 +550,6 @@ const cleanData = (req, res) => {
       JSON.stringify(cleanedArticles, null, 2)
     );
 
-    console.log(cleanedArticles); // Log the cleaned articles (for demonstration)
     return res.status(200).json(cleanedArticles);
   } catch (error) {
     console.error("Error cleaning data:", error);
@@ -564,16 +563,10 @@ function cleanArticle(article) {
   const title = article.title.replace(/<[^>]*>/g, "");
 
   // Clean content (remove HTML elements, \n, and convert to markdown)
-  const content = article.content
-    .replace(/<[^>]*>/g, "") // Remove HTML tags
-    .replace(/\n/g, "  ") // Replace newlines with two spaces
-    .trim() // Remove leading/trailing whitespace
-    .split("\n\n") // Split paragraphs
-    .map((paragraph) => `  ${paragraph}\n\n[[ ]]`) // Add markdown syntax
-    .join("\n"); // Join paragraphs back with newline
+  const content = article.content.replace(/<[^>]*>/g, ""); // Remove HTML tags
 
   return {
-    title: `# ${title}`, // Add heading for title
+    title: `${title}`,
     timestamp: article.timestamp,
     content: content,
     imageUrls: article.imageUrls,

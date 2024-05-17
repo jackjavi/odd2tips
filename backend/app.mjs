@@ -21,12 +21,12 @@ import getPredictionsRoutes from "./routes/getPredictionsRoutes.mjs";
 import getFootballFixturesRoutes from "./routes/getFootballFixturesRoutes.mjs";
 import historyRoutes from "./routes/historyRoutes.mjs";
 import AppController from "./routes/appRoutes.mjs";
+import formatArtcielsRoutes from "./routes/generativeAI/generativeAIRoutes.mjs  ";
 import fileUploaderRoutes from "./routes/fileUploaderRoutes.mjs";
 import markdownToHtmlRoutes from "./routes/markdownToHtmlRoutes.mjs";
 import gameDataCollectRoutes from "./routes/gameDataCollectRoutes.mjs";
 import gameDataRoutes from "./routes/gameDataRoutes.mjs";
 import analyzeResultsRoutes from "./routes/analyzeResultsRoutes.mjs";
-import twitterClient from "./utils/twitterApi.mjs";
 import roomRoutes from "./routes/roomRoutes.mjs";
 import requestCounterRoutes from "./routes/requestCounterRoute.mjs";
 import checkAuthRoutes from "./routes/checkAuthRoutes.mjs";
@@ -54,7 +54,6 @@ app.use("/", googleAuth);
 app.use("/api", AppController);
 
 app.use("/api/blog", uploadRoutes);
-twitterClient;
 
 app.use("/api/games", gameDataCollectRoutes);
 app.use("/api/games", sportMonksRoutes);
@@ -70,6 +69,7 @@ app.use("/api/football", analyzeResultsRoutes);
 app.use("/api/football", historyRoutes);
 app.use("/api/markdown", markdownToHtmlRoutes);
 app.use("/api/upload", fileUploaderRoutes);
+app.use("/api/generativeAI", formatArtcielsRoutes);
 import authenticate from "./middleware/authenticate.mjs";
 app.use("/api/games", authenticate, gameDataRoutes);
 
