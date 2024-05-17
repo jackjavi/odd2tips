@@ -1,6 +1,5 @@
 import e from "express";
 import BlogPost from "../models/BlogPost.mjs";
-import BlogPostTest from "../models/BlogPostTest.mjs";
 import markdownIt from "markdown-it";
 
 const getAllPosts = async (req, res) => {
@@ -13,32 +12,9 @@ const getAllPosts = async (req, res) => {
   }
 };
 
-const getAllPostsTest = async (req, res) => {
-  try {
-    const posts = await BlogPostTest.find().sort({ date: -1 });
-    res.json(posts);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error fetching posts" });
-  }
-};
-
 const getPostBySlug = async (req, res) => {
   try {
     const post = await BlogPost.findOne({ slug: req.params.slug });
-    if (!post) {
-      return res.status(404).json({ message: "Post not found" });
-    }
-    res.json(post);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error fetching post" });
-  }
-};
-
-const getPostBySlugTest = async (req, res) => {
-  try {
-    const post = await BlogPostTest.findOne({ slug: req.params.slug });
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -98,8 +74,6 @@ const convertContentToMarkdown = async (req, res) => {
 export {
   getAllPosts,
   getPostBySlug,
-  getAllPostsTest,
-  getPostBySlugTest,
   fetchAndModifyBlogPosts,
   convertContentToMarkdown,
 };
