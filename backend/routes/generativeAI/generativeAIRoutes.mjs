@@ -7,7 +7,7 @@ import {
 
 const router = express.Router();
 
-router.get("/format-articles", formatArticles);
+// router.get("/format-articles", formatArticles);
 router.get("/add-image-urls", addImageUrlsAndSaveToDatabase);
 router.get("/save-mongo", saveJsonArticles);
 
