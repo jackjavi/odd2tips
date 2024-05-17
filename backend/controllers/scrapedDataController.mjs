@@ -1,10 +1,11 @@
 import axios from "axios";
-import cheerio from "cheerio";
+import cheerio, { html } from "cheerio";
 import puppeteer from "puppeteer";
 import Result from "../models/Result.mjs";
 import Fixtures from "../models/Fixtures.mjs";
 import Prediction from "../models/Prediction.mjs";
 import PredictzResults from "../models/PredictzResults.mjs";
+import fs from "fs";
 
 const fetchFootballResults = async (req, res) => {
   try {
@@ -96,10 +97,47 @@ const fetchFootballFixtures = async (req, res) => {
         .find(".matches__participant--side2 .swap-text__target")
         .text()
         .trim();
-      const matchId = $(element).attr("data-item-id");
-      const time = $(element).find(".matches__date").text().trim();
-      const league = $(element).prevAll(".fixres__header3:first").text().trim();
-      const location = $(element).find(".matches__item").attr("data-location");
+      const cleanData = () => {
+        // Read the JSON file
+        const data = fs.readFileSync("fullArticles.json", "utf8");
+        const articles = JSON.parse(data);
+
+        let markdownData = "";
+
+        // Iterate over each article
+        articles.forEach((article, index) => {
+          markdownData += `${index}\n`;
+
+          // Clean title (remove HTML tags)
+          const title = article.title.replace(/<[^>]*>?/gm, "");
+          markdownData += `title\t"${title}"\n`;
+
+          // Add timestamp
+          markdownData += `timestamp\t"${article.timestamp}"\n`;
+
+          // Clean content (remove HTML tags and convert to Markdown)
+          const content = article.content
+            .replace(/<[^>]*>?/gm, "") // Remove HTML tags
+            .replace(/\n/g, " ") // Replace newline characters with spaces
+            .replace(/\[(.*?)\]/g, "") // Remove any remaining square brackets and their contents
+            .trim(); // Trim any leading or trailing whitespace
+          markdownData += `content\t"# ${title}\\n\\n${markdown
+            .render(content)
+            .replace(/\n/g, "")}"\n`;
+
+          // Add image URLs
+          if (article.imageUrls && article.imageUrls.length > 0) {
+            markdownData += "imageUrls\t\n";
+            article.imageUrls.forEach((imageUrl, i) => {
+              markdownData += `${i}\t"${imageUrl}"\n`;
+            });
+          }
+        });
+
+        // Write the Markdown data to a file
+        fs.writeFileSync("cleanedArticles.md", markdownData, "utf8");
+      };
+      nd(".matches__item").attr("data-location");
       const status = $(element).find(".matches__item").attr("data-status");
 
       const fixtureData = new Fixtures({
@@ -548,4 +586,7 @@ export {
   fetchFootballNews,
   scrapePredictions,
   fetchPredictzResults,
+  scrapeBBCSport,
+  scrapeBBCArticles,
+  cleanData,
 };
