@@ -1,10 +1,11 @@
 import axios from "axios";
-import cheerio from "cheerio";
+import cheerio, { html } from "cheerio";
 import puppeteer from "puppeteer";
 import Result from "../models/Result.mjs";
 import Fixtures from "../models/Fixtures.mjs";
 import Prediction from "../models/Prediction.mjs";
 import PredictzResults from "../models/PredictzResults.mjs";
+import fs from "fs";
 
 const fetchFootballResults = async (req, res) => {
   try {
@@ -96,10 +97,47 @@ const fetchFootballFixtures = async (req, res) => {
         .find(".matches__participant--side2 .swap-text__target")
         .text()
         .trim();
-      const matchId = $(element).attr("data-item-id");
-      const time = $(element).find(".matches__date").text().trim();
-      const league = $(element).prevAll(".fixres__header3:first").text().trim();
-      const location = $(element).find(".matches__item").attr("data-location");
+      const cleanData = () => {
+        // Read the JSON file
+        const data = fs.readFileSync("fullArticles.json", "utf8");
+        const articles = JSON.parse(data);
+
+        let markdownData = "";
+
+        // Iterate over each article
+        articles.forEach((article, index) => {
+          markdownData += `${index}\n`;
+
+          // Clean title (remove HTML tags)
+          const title = article.title.replace(/<[^>]*>?/gm, "");
+          markdownData += `title\t"${title}"\n`;
+
+          // Add timestamp
+          markdownData += `timestamp\t"${article.timestamp}"\n`;
+
+          // Clean content (remove HTML tags and convert to Markdown)
+          const content = article.content
+            .replace(/<[^>]*>?/gm, "") // Remove HTML tags
+            .replace(/\n/g, " ") // Replace newline characters with spaces
+            .replace(/\[(.*?)\]/g, "") // Remove any remaining square brackets and their contents
+            .trim(); // Trim any leading or trailing whitespace
+          markdownData += `content\t"# ${title}\\n\\n${markdown
+            .render(content)
+            .replace(/\n/g, "")}"\n`;
+
+          // Add image URLs
+          if (article.imageUrls && article.imageUrls.length > 0) {
+            markdownData += "imageUrls\t\n";
+            article.imageUrls.forEach((imageUrl, i) => {
+              markdownData += `${i}\t"${imageUrl}"\n`;
+            });
+          }
+        });
+
+        // Write the Markdown data to a file
+        fs.writeFileSync("cleanedArticles.md", markdownData, "utf8");
+      };
+      nd(".matches__item").attr("data-location");
       const status = $(element).find(".matches__item").attr("data-status");
 
       const fixtureData = new Fixtures({
@@ -359,10 +397,196 @@ const fetchPredictzResults = async (req, res) => {
   }
 };
 
+const scrapeBBCSport = async (req, res) => {
+  let browser;
+  try {
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto("https://www.bbc.com/sport/football", {
+      waitUntil: "networkidle2",
+    });
+
+    const title = await page.evaluate(() => {
+      const mainHeading = document.querySelector(".ssrcss-1c92cct-Heading");
+      return mainHeading ? mainHeading.textContent.trim() : null;
+    });
+
+    const articles = await page.evaluate(() => {
+      const articleElements = document.querySelectorAll(
+        ".ssrcss-1dr5icq-ListItem"
+      ); // Select all article elements
+      const articles = [];
+
+      articleElements.forEach((element) => {
+        const headline = element.querySelector(".ssrcss-1nzemmm-PromoHeadline");
+        const link = element.querySelector(".ssrcss-zmz0hi-PromoLink");
+
+        if (headline && link) {
+          let articleLink = link.getAttribute("href"); // Extract the link attribute
+          if (articleLink.startsWith("/")) {
+            articleLink = `https://www.bbc.com${articleLink}`; // Add the base URL if the link is relative
+          }
+          articles.push({
+            headline: headline.textContent.trim(), // Extract and trim the headline text content
+            link: articleLink,
+          });
+        }
+      });
+
+      return articles;
+    });
+
+    const livePromo = await page.evaluate(() => {
+      const livePromoElement = document.querySelector(
+        '.ssrcss-18mhvre-Promo[data-testid="promo"][type="live"]'
+      );
+      if (!livePromoElement) {
+        return null;
+      }
+
+      const headline = livePromoElement.querySelector(
+        ".ssrcss-1nzemmm-PromoHeadline"
+      );
+      const link = livePromoElement.querySelector(".ssrcss-vdnb7q-PromoLink");
+
+      let liveLink = link ? link.getAttribute("href") : null;
+      if (liveLink && liveLink.startsWith("/")) {
+        liveLink = `https://www.bbc.com${liveLink}`; // Add the base URL if the link is relative
+      }
+
+      return {
+        headline: headline ? headline.textContent.trim() : null,
+        link: liveLink,
+      };
+    });
+
+    fs.writeFileSync(
+      "articles.json",
+      JSON.stringify({ title, articles, livePromo }, null, 2)
+    );
+    res.status(200).json({ title, articles, livePromo });
+  } catch (error) {
+    console.error("Error scraping BBC Sport:", error);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch data", error: error.message });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
+const scrapeBBCArticles = async (req, res) => {
+  let browser;
+  try {
+    // Read articles from articles.json file
+    const rawData = fs.readFileSync("./articles.json");
+    const articlesStructure = JSON.parse(rawData);
+    const articles = articlesStructure.articles;
+
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    let extractedData = [];
+    for (const article of articles) {
+      if (article.link.includes("/articles/")) {
+        await page.goto(article.link, { waitUntil: "networkidle2" });
+
+        const articleData = await page.evaluate(() => {
+          const articleWrapper = document.querySelector(".e1nh2i2l3");
+          if (!articleWrapper) {
+            return null;
+          }
+
+          const title = articleWrapper.querySelector("h1").innerHTML;
+          const timestamp = articleWrapper.querySelector("time").innerText;
+          const contentBlocks = articleWrapper.querySelectorAll(
+            ".ssrcss-uf6wea-RichTextComponentWrapper p"
+          );
+          const content = Array.from(contentBlocks)
+            .map((block) => block.innerText)
+            .join("\n");
+          const imageElements = articleWrapper.querySelectorAll(
+            ".ssrcss-xza2yt-ComponentWrapper img"
+          );
+          const imageUrls = Array.from(imageElements).map((img) => img.src);
+
+          return { title, timestamp, content, imageUrls };
+        });
+
+        extractedData.push(articleData);
+      }
+    }
+
+    // Write extracted data to fullArticles.json
+    fs.writeFileSync(
+      "./fullArticles.json",
+      JSON.stringify(extractedData, null, 2)
+    );
+
+    res.status(200).json(extractedData);
+  } catch (error) {
+    console.error("Error scraping articles:", error);
+    res.status(500).json({ error: "Internal server error" });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
+const cleanData = (req, res) => {
+  try {
+    // Read data from fullArticles.json
+    const rawData = fs.readFileSync("./fullArticles.json", "utf8");
+    const articles = JSON.parse(rawData);
+
+    // Cleaned articles array
+    const cleanedArticles = articles.map(cleanArticle);
+
+    // Write cleaned data to a new file (optional)
+    fs.writeFileSync(
+      "./cleanedArticles.json",
+      JSON.stringify(cleanedArticles, null, 2)
+    );
+
+    console.log(cleanedArticles); // Log the cleaned articles (for demonstration)
+    return res.status(200).json(cleanedArticles);
+  } catch (error) {
+    console.error("Error cleaning data:", error);
+  }
+};
+
+function cleanArticle(article) {
+  if (!article) return null; // Skip missing articles
+
+  // Clean title (remove HTML tags)
+  const title = article.title.replace(/<[^>]*>/g, "");
+
+  // Clean content (remove HTML elements, \n, and convert to markdown)
+  const content = article.content
+    .replace(/<[^>]*>/g, "") // Remove HTML tags
+    .replace(/\n/g, "  ") // Replace newlines with two spaces
+    .trim() // Remove leading/trailing whitespace
+    .split("\n\n") // Split paragraphs
+    .map((paragraph) => `  ${paragraph}\n\n[[ ]]`) // Add markdown syntax
+    .join("\n"); // Join paragraphs back with newline
+
+  return {
+    title: `# ${title}`, // Add heading for title
+    timestamp: article.timestamp,
+    content: content,
+    imageUrls: article.imageUrls,
+  };
+}
+
 export {
   fetchFootballResults,
   fetchFootballFixtures,
   fetchFootballNews,
   scrapePredictions,
   fetchPredictzResults,
+  scrapeBBCSport,
+  scrapeBBCArticles,
+  cleanData,
 };
