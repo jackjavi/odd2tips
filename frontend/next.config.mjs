@@ -21,7 +21,7 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: ["res.cloudinary.com"],
+    domains: ["res.cloudinary.com", "ichef.bbci.co.uk", "www.bbc.co.uk"],
   },
 };
 
