@@ -71,7 +71,6 @@ app.use("/api/football", analyzeResultsRoutes);
 app.use("/api/football", historyRoutes);
 app.use("/api/markdown", markdownToHtmlRoutes);
 app.use("/api/upload", fileUploaderRoutes);
-app.use("/api/generativeAI", formatArtcielsRoutes);
 app.use("/api/twitter", getTweetsRoutes);
 app.use("/api/twitter", callbackRoutes);
 
