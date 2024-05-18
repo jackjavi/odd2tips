@@ -32,6 +32,8 @@ import requestCounterRoutes from "./routes/requestCounterRoute.mjs";
 import checkAuthRoutes from "./routes/checkAuthRoutes.mjs";
 import socketHandler from "./sockets/socketHandler.mjs";
 import chatRoutes from "./routes/chatRoutes.mjs";
+import appRoutes from "./routes/index.mjs";
+
 const allowedOrigins = [
   "https://www.odd2tips.com",
   "https://odd2tips.com",
@@ -49,7 +51,7 @@ const io = new Server(server);
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
-connectDatabase();
+appRoutes(app);
 app.use("/api/auth", authRoutes);
 app.use("/", googleAuth);
 app.use("/api", AppController);
@@ -85,5 +87,6 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 8888;
 app.listen(PORT, () => {
+  connectDatabase();
   console.log(`Server listening on port ${PORT}`);
 });
