@@ -3,6 +3,7 @@ import {
   getAllPosts,
   getPostBySlug,
   getAllPostsTest,
+  getPostsByToday,
   getPostBySlugTest,
   fetchAndModifyBlogPosts,
   convertContentToMarkdown,
@@ -16,5 +17,6 @@ router.get("/posts-test", getAllPostsTest);
 router.get("/posts-test/:slug", getPostBySlugTest);
 router.get("/fetch-modify-posts", fetchAndModifyBlogPosts);
 router.get("/convert-content-to-markdown", convertContentToMarkdown);
+router.get("/posts-today-test", getPostsByToday);
 
 export default router;
