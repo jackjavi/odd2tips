@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import MatchResults from "./MatchResults";
 import Navbar from "@/app/Components/Navbar";
