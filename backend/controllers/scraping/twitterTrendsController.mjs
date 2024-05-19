@@ -22,6 +22,7 @@ const scrapeTrends24 = async (req, res) => {
     for (const { country, url } of urls) {
       await page.goto(url, {
         waitUntil: "networkidle2",
+        timeout: 120000,
       });
 
       const trends = await page.evaluate(() => {
