@@ -11,13 +11,16 @@ const scrapeTrends24 = async (req, res) => {
     });
 
     const trends = await page.evaluate(() => {
-      const trendCard = Array.from(
-        document.querySelectorAll(".trend-card")
-      ).find(
-        (card) =>
-          card.querySelector(".trend-card__time")?.innerText.trim() ===
-          "1 hour ago"
-      );
+      const trendCards = Array.from(document.querySelectorAll(".trend-card"));
+      let trendCard = trendCards.find((card) => {
+        const timeText = card
+          .querySelector(".trend-card__time")
+          ?.innerText.trim();
+        return (
+          timeText === "1 hour ago" ||
+          /^(?:[1-5]?[0-9] minutes ago)$/.test(timeText)
+        );
+      });
 
       if (trendCard) {
         return Array.from(
@@ -43,7 +46,9 @@ const scrapeTrends24 = async (req, res) => {
 
       res.status(200).json({ message: "Trends saved successfully", trends });
     } else {
-      res.status(200).json({ message: "No trends found for 1 hour ago" });
+      res.status(200).json({
+        message: "No trends found for 1 hour ago or within the last hour",
+      });
     }
   } catch (error) {
     console.error("Error scraping Trends24:", error);
