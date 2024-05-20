@@ -21,7 +21,7 @@ const createRoom = async (req, res) => {
 
 const getAllRooms = async (req, res) => {
   try {
-    const rooms = await Room.find();
+    const rooms = await Room.find().sort({ createdAt: -1 });
     res.status(200).json(rooms);
   } catch (error) {
     res.status(500).json({ message: error.message });
