@@ -38,3 +38,14 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     return null;
   }
 }
+
+export async function deletePostBySlug(slug: string): Promise<boolean> {
+  try {
+    const headers = getAuthorizationHeader();
+    await axios.delete(`/api/blog/posts-test/${slug}`, { headers });
+    return true;
+  } catch (error) {
+    console.error(`Error deleting post by slug (${slug}):`, error);
+    return false;
+  }
+}

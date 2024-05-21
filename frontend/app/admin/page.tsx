@@ -8,6 +8,7 @@ import AnalyzeResults from "./AnalyzeResults";
 import AllocateFixtures from "./AllocateFixtures";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import GameList from "./GameList";
 
 const AdminPage: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const AdminPage: React.FC = () => {
         <CreateHistory />
         <StorePredictzResults />
         <AnalyzeResults />
+        <GameList />
       </main>
       <Footer />
     </div>

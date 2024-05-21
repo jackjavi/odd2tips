@@ -4,6 +4,7 @@ import {
   getPostBySlug,
   getAllPostsTest,
   getPostsByToday,
+  deletePostBySlugTest,
   getPostBySlugTest,
   fetchAndModifyBlogPosts,
   convertContentToMarkdown,
@@ -18,5 +19,6 @@ router.get("/posts-test/:slug", getPostBySlugTest);
 router.get("/fetch-modify-posts", fetchAndModifyBlogPosts);
 router.get("/convert-content-to-markdown", convertContentToMarkdown);
 router.get("/posts-today-test", getPostsByToday);
+router.delete("/posts-test/:slug", deletePostBySlugTest);
 
 export default router;
