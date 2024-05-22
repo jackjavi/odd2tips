@@ -47,7 +47,7 @@ const Navbar = () => {
     <>
       <Link
         href="/"
-        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]   transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]   transition-all ease-in-out duration-200 font-semibold md:text-lg" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Home
@@ -55,7 +55,7 @@ const Navbar = () => {
       <Link
         href="/rooms"
         scroll={false}
-        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-medium md:text-lg" // Style changes here
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-semibold md:text-lg" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Tipster Rooms
@@ -63,7 +63,7 @@ const Navbar = () => {
       <Link
         href="/betslip"
         scroll={false}
-        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-medium md:text-lg"
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-semibold md:text-lg"
         onClick={() => setIsModalOpen(false)}
       >
         Betslip
@@ -71,7 +71,7 @@ const Navbar = () => {
       <Link
         href="/blog"
         scroll={false}
-        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-medium md:text-lg"
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-semibold md:text-lg"
         onClick={() => setIsModalOpen(false)}
       >
         News
@@ -143,7 +143,10 @@ const Navbar = () => {
             }`}
             style={{
               marginTop: `calc(10vh + 1rem)`,
-              backgroundImage: "url('/logo.png')",
+              backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('/logo.png')`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
             }}
           >
             {navLinks}
