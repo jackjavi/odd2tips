@@ -139,7 +139,7 @@ const getRandomAndDeleteFromTwitterDB = async (req, res) => {
 
     await TwitterDB.deleteOne({ _id: randomPost._id });
 
-    res.json(randomPost);
+    res.json([randomPost]);
   } catch (error) {
     console.error(error);
     res
