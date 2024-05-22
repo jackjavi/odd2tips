@@ -8,6 +8,7 @@ const twitterDBSchema = new mongoose.Schema({
   imageUrls: [String],
   formattedContent: String,
   excerpt: String,
+  slug: String,
 });
 
 const twitterDB = mongoose.model("twitterDB", twitterDBSchema);
