@@ -5,6 +5,8 @@ import Result from "../models/Result.mjs";
 import Fixtures from "../models/Fixtures.mjs";
 import Prediction from "../models/Prediction.mjs";
 import PredictzResults from "../models/PredictzResults.mjs";
+import BlogPostTest from "../models/BlogPostTest.mjs";
+import fs from "fs";
 
 const fetchFootballResults = async (req, res) => {
   try {
@@ -439,6 +441,54 @@ const scrapeBBCSport = async (req, res) => {
   }
 };
 
+const scrapeLegaSerieA = async (req, res) => {
+  let browser;
+  try {
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto("https://www.legaseriea.it/en/latest", {
+      waitUntil: "networkidle2",
+    });
+
+    const articles = await page.evaluate(() => {
+      const articleElements = document.querySelectorAll(
+        ".hm-grid-news-wall-main a, .hm-block-grid-3 a, .hm-block-grid-2 a"
+      );
+      const articles = [];
+
+      articleElements.forEach((element) => {
+        const headline =
+          element.querySelector("h5") || element.querySelector("p.black");
+        const link = element.getAttribute("href");
+
+        if (headline && link) {
+          let articleLink = link.startsWith("/")
+            ? `https://www.legaseriea.it${link}`
+            : link;
+          articles.push({
+            headline: headline.textContent.trim(),
+            link: articleLink,
+          });
+        }
+      });
+
+      return articles;
+    });
+
+    fs.writeFileSync("articles.json", JSON.stringify({ articles }, null, 2));
+    res.status(200).json({ articles });
+  } catch (error) {
+    console.error("Error scraping Lega Serie A:", error);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch data", error: error.message });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
 const scrapeBBCArticles = async (req, res) => {
   let browser;
   try {
@@ -450,33 +500,203 @@ const scrapeBBCArticles = async (req, res) => {
     browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     let extractedData = [];
+
     for (const article of articles) {
       if (article.link.includes("/articles/")) {
+        // Check if the article title exists in the database
+        const existingArticle = await BlogPostTest.findOne({
+          title: article.headline,
+        });
+
+        if (!existingArticle) {
+          await page.goto(article.link, { waitUntil: "networkidle2" });
+
+          const articleData = await page.evaluate(() => {
+            const articleWrapper = document.querySelector(".e1nh2i2l3");
+            if (!articleWrapper) {
+              return null;
+            }
+
+            const title = articleWrapper.querySelector("h1").innerHTML;
+            const timestamp = articleWrapper.querySelector("time").innerText;
+            const contentBlocks = articleWrapper.querySelectorAll(
+              ".ssrcss-uf6wea-RichTextComponentWrapper p"
+            );
+            const content = Array.from(contentBlocks)
+              .map((block) => block.innerText)
+              .join("\n");
+            const imageElements = articleWrapper.querySelectorAll(
+              ".ssrcss-xza2yt-ComponentWrapper img"
+            );
+            const imageUrls = Array.from(imageElements).map((img) => img.src);
+
+            return { title, timestamp, content, imageUrls };
+          });
+
+          if (articleData) {
+            extractedData.push(articleData);
+          }
+        } else {
+          console.log(
+            `Article titled "${article.headline}" already exists in the database. Skipping...`
+          );
+        }
+      }
+    }
+
+    // Write extracted data to fullArticles.json
+    fs.writeFileSync(
+      "./fullArticles.json",
+      JSON.stringify(extractedData, null, 2)
+    );
+
+    res.status(200).json(extractedData);
+  } catch (error) {
+    console.error("Error scraping articles:", error);
+    res.status(500).json({ error: "Internal server error" });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
+const scrapeBBCLiveArticles = async (req, res) => {
+  let browser;
+  try {
+    // Read articles from articles.json file
+    const rawData = fs.readFileSync("./articles.json");
+    const articlesStructure = JSON.parse(rawData);
+    const articles = articlesStructure.articles;
+
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    let extractedData = [];
+
+    for (const article of articles) {
+      if (article.link.includes("/live/")) {
+        // Check if the article title exists in the database
+        const existingArticle = await BlogPostTest.findOne({
+          slug: article.headline.replace(/\s+/g, "-"),
+        });
+
+        if (!existingArticle) {
+          await page.goto(article.link, { waitUntil: "networkidle2" });
+
+          const articleData = await page.evaluate(() => {
+            const articleWrapper = document.querySelector(".e1nh2i2l3");
+            if (!articleWrapper) {
+              return null;
+            }
+
+            const title = articleWrapper.querySelector(
+              ".ssrcss-1xjjfut-BoldText.e5tfeyi3"
+            ).innerHTML;
+            console.log(title);
+            const timestamp = new Date().toLocaleString();
+            console.log(timestamp);
+            const contentBlocks = articleWrapper.querySelectorAll(
+              ".ssrcss-5rhf4g-RichTextComponentWrapper p"
+            );
+            console.log(contentBlocks);
+            const content = Array.from(contentBlocks)
+              .map((block) => block.innerText)
+              .join("\n");
+            const imageElements = articleWrapper.querySelectorAll(
+              ".ssrcss-1pyuwv1-ComponentWrapper img"
+            );
+            const imageUrls = Array.from(imageElements).map((img) => img.src);
+
+            return { title, timestamp, content, imageUrls };
+          });
+
+          if (articleData) {
+            extractedData.push(articleData);
+          }
+        } else {
+          console.log(
+            `Article titled "${article.headline}" already exists in the database. Skipping...`
+          );
+        }
+      }
+    }
+
+    // Write extracted data to fullArticles.json
+    fs.writeFileSync(
+      "./fullArticles.json",
+      JSON.stringify(extractedData, null, 2)
+    );
+
+    res.status(200).json(extractedData);
+  } catch (error) {
+    console.error("Error scraping live articles:", error);
+    res.status(500).json({ error: "Internal server error" });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
+const scrapeSERIEAArticles = async (req, res) => {
+  let browser;
+  try {
+    // Read articles from articles.json file
+    const rawData = fs.readFileSync("./articles.json");
+    const articlesStructure = JSON.parse(rawData);
+    const articles = articlesStructure.articles;
+
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    let extractedData = [];
+
+    for (const article of articles) {
+      // Check if the article title exists in the database
+      const existingArticle = await BlogPostTest.findOne({
+        title: article.headline,
+      });
+
+      if (!existingArticle) {
         await page.goto(article.link, { waitUntil: "networkidle2" });
 
         const articleData = await page.evaluate(() => {
-          const articleWrapper = document.querySelector(".e1nh2i2l3");
+          const articleWrapper = document.querySelector(".hm-container-post");
           if (!articleWrapper) {
             return null;
           }
 
-          const title = articleWrapper.querySelector("h1").innerHTML;
-          const timestamp = articleWrapper.querySelector("time").innerText;
-          const contentBlocks = articleWrapper.querySelectorAll(
-            ".ssrcss-uf6wea-RichTextComponentWrapper p"
+          const titleElement = document.querySelector(
+            ".hm-gradient .container-fluid .content .title-post"
           );
+          const title = titleElement ? titleElement.textContent.trim() : null;
+
+          const contentBlocks =
+            articleWrapper.querySelectorAll(".hm-content-text p");
           const content = Array.from(contentBlocks)
             .map((block) => block.innerText)
             .join("\n");
-          const imageElements = articleWrapper.querySelectorAll(
-            ".ssrcss-xza2yt-ComponentWrapper img"
-          );
-          const imageUrls = Array.from(imageElements).map((img) => img.src);
+          const header = document.querySelector(".hm-header-compact");
+          const imgElement = header.querySelector("img");
+          const imageUrl = imgElement ? imgElement.src : null;
 
-          return { title, timestamp, content, imageUrls };
+          const imageUrls = [];
+
+          if (imageUrl) {
+            imageUrls.push(imageUrl);
+          }
+
+          console.log(imageUrls);
+
+          return { title, content, imageUrls };
         });
 
-        extractedData.push(articleData);
+        if (articleData) {
+          extractedData.push(articleData);
+        }
+      } else {
+        console.log(
+          `Article titled "${article.headline}" already exists in the database. Skipping...`
+        );
       }
     }
 
@@ -503,8 +723,10 @@ const cleanData = (req, res) => {
     const rawData = fs.readFileSync("./fullArticles.json", "utf8");
     const articles = JSON.parse(rawData);
 
-    // Cleaned articles array
-    const cleanedArticles = articles.map(cleanArticle);
+    // Filter and clean articles
+    const cleanedArticles = articles
+      .filter((article) => article.imageUrls && article.imageUrls.length > 0) // Remove articles with empty imageUrls array
+      .map(cleanArticle);
 
     // Write cleaned data to a new file (optional)
     fs.writeFileSync(
@@ -515,6 +737,7 @@ const cleanData = (req, res) => {
     return res.status(200).json(cleanedArticles);
   } catch (error) {
     console.error("Error cleaning data:", error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -528,7 +751,7 @@ function cleanArticle(article) {
   const content = article.content.replace(/<[^>]*>/g, ""); // Remove HTML tags
 
   return {
-    title: `${title}`,
+    title: title,
     timestamp: article.timestamp,
     content: content,
     imageUrls: article.imageUrls,
@@ -541,4 +764,10 @@ export {
   fetchFootballNews,
   scrapePredictions,
   fetchPredictzResults,
+  scrapeBBCSport,
+  scrapeBBCArticles,
+  scrapeSERIEAArticles,
+  cleanData,
+  scrapeBBCLiveArticles,
+  scrapeLegaSerieA,
 };

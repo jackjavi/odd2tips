@@ -4,6 +4,12 @@ import {
   fetchFootballNews,
   fetchFootballResults,
   scrapePredictions,
+  scrapeBBCSport,
+  scrapeBBCArticles,
+  scrapeBBCLiveArticles,
+  cleanData,
+  scrapeLegaSerieA,
+  scrapeSERIEAArticles,
 } from "../controllers/scrapedDataController.mjs";
 import isAppAdmin from "../middleware/isAppAdmin.mjs";
 
@@ -13,5 +19,11 @@ router.get("/results", fetchFootballResults);
 router.get("/fixtures", fetchFootballFixtures);
 router.get("/news", fetchFootballNews);
 router.get("/predictions", scrapePredictions);
+router.get("/bbc-sport", scrapeBBCSport);
+router.get("/bbc-articles", scrapeBBCArticles);
+router.get("/bbc-live-articles", scrapeBBCLiveArticles);
+router.get("/clean", cleanData);
+router.get("/serieA", scrapeLegaSerieA);
+router.get("/serieA-articles", scrapeSERIEAArticles);
 
 export default router;
