@@ -8,6 +8,8 @@ import {
   getPostBySlugTest,
   fetchAndModifyBlogPosts,
   convertContentToMarkdown,
+  addToTwitterDB,
+  getRandomAndDeleteFromTwitterDB,
 } from "../controllers/blogController.mjs";
 
 const router = express.Router();
@@ -20,5 +22,7 @@ router.get("/fetch-modify-posts", fetchAndModifyBlogPosts);
 router.get("/convert-content-to-markdown", convertContentToMarkdown);
 router.get("/posts-today-test", getPostsByToday);
 router.delete("/posts-test/:slug", deletePostBySlugTest);
+router.post("/add-to-twitter-db", addToTwitterDB);
+router.get("/random-post", getRandomAndDeleteFromTwitterDB);
 
 export default router;
