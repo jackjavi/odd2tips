@@ -638,6 +638,115 @@ const scrapeBBCLiveArticles = async (req, res) => {
   }
 };
 
+const scrapeBundesligaArticles = async (req, res) => {
+  let browser;
+  try {
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto("https://www.bundesliga.com/en/bundesliga/news", {
+      waitUntil: "networkidle2",
+    });
+
+    const baseUrl = "https://www.bundesliga.com";
+
+    const articles = await page.evaluate((baseUrl) => {
+      return Array.from(
+        document.querySelectorAll("dfl-editorial-teaser a")
+      ).map((article) => ({
+        title: article.querySelector(".body h2")
+          ? article.querySelector(".body h2").textContent.trim()
+          : null,
+        link: article.href.startsWith("/")
+          ? baseUrl + article.href
+          : article.href,
+      }));
+    }, baseUrl);
+
+    // Write articles to articles.json
+    fs.writeFileSync(
+      "./articles.json",
+      JSON.stringify(articles, null, 2),
+      "utf-8"
+    );
+
+    res.status(200).json(articles);
+  } catch (error) {
+    console.error("Error scraping Bundesliga articles:", error);
+    res.status(500).json({ error: "Internal server error" });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
+const scrapeBundesligaFullArticles = async (req, res) => {
+  let browser;
+  try {
+    // Read articles.json
+    const articlesData = fs.readFileSync("./articles.json", "utf-8");
+    const articles = JSON.parse(articlesData);
+
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+
+    // Loop through each article and scrape additional data
+    for (const article of articles) {
+      await page.goto(article.link, {
+        waitUntil: "networkidle2",
+      });
+
+      const articleContent = await page.evaluate(() => {
+        const baseurl = window.location.origin;
+
+        const articleElement = document.querySelector(
+          "article.bl-article.container.web.ng-star-inserted"
+        );
+        if (!articleElement) return { content: "", fileUrls: [] };
+        const imageUrls = Array.from(
+          document.querySelectorAll("dfl-media-wrapper picture source")
+        )
+          .map((source) => source.srcset)
+          .filter((url) => url.includes("750"))
+          .map((url) => url.split("?")[0]);
+
+        // Capture all paragraphs within the article
+        const contentParagraphs = Array.from(
+          articleElement.querySelectorAll("p")
+        ).map((p) => p.textContent.trim());
+        const content = contentParagraphs.join("\n");
+
+        return {
+          content,
+          imageUrls,
+        };
+      });
+
+      article.imageUrls = articleContent.imageUrls;
+      article.content = articleContent.content;
+    }
+
+    // Save the updated articles to FullArticles.json
+    fs.writeFileSync(
+      "./fullArticles.json",
+      JSON.stringify(articles, null, 2),
+      "utf-8"
+    );
+
+    console.log("Articles scraped and saved successfully.");
+    res
+      .status(200)
+      .json({ message: "Articles scraped and saved successfully." });
+  } catch (error) {
+    console.error("Error scraping full articles:", error);
+    res.status(500).json({ error: "Internal server error" });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
 const scrapeSERIEAArticles = async (req, res) => {
   let browser;
   try {
@@ -769,5 +878,7 @@ export {
   scrapeSERIEAArticles,
   cleanData,
   scrapeBBCLiveArticles,
+  scrapeBundesligaArticles,
+  scrapeBundesligaFullArticles,
   scrapeLegaSerieA,
 };

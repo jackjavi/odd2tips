@@ -8,6 +8,8 @@ import {
   scrapeBBCArticles,
   scrapeBBCLiveArticles,
   cleanData,
+  scrapeBundesligaArticles,
+  scrapeBundesligaFullArticles,
   scrapeLegaSerieA,
   scrapeSERIEAArticles,
 } from "../controllers/scrapedDataController.mjs";
@@ -23,6 +25,8 @@ router.get("/bbc-sport", scrapeBBCSport);
 router.get("/bbc-articles", scrapeBBCArticles);
 router.get("/bbc-live-articles", scrapeBBCLiveArticles);
 router.get("/clean", cleanData);
+router.get("/bundesliga-articles", scrapeBundesligaArticles);
+router.get("/bundesliga-full-articles", scrapeBundesligaFullArticles);
 router.get("/serieA", scrapeLegaSerieA);
 router.get("/serieA-articles", scrapeSERIEAArticles);
 
