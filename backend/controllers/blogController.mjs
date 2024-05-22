@@ -1,5 +1,6 @@
 import BlogPost from "../models/BlogPost.mjs";
 import BlogPostTest from "../models/BlogPostTest.mjs";
+import TwitterDB from "../models/TwitterDB.mjs";
 import markdownIt from "markdown-it";
 
 const getAllPosts = async (req, res) => {
@@ -42,6 +43,20 @@ const getPostsByToday = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error fetching posts" });
+  }
+};
+
+const addToTwitterDB = async (req, res) => {
+  try {
+    const { post } = req.body;
+
+    const newPost = new TwitterDB(post);
+    const resp = await newPost.save();
+    console.log(resp);
+    res.status(201).json({ message: "Post added to TwitterDB successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error adding post to TwitterDB" });
   }
 };
 
@@ -110,6 +125,29 @@ const fetchAndModifyBlogPosts = async (req, res) => {
   }
 };
 
+const getRandomAndDeleteFromTwitterDB = async (req, res) => {
+  try {
+    const posts = await TwitterDB.find();
+    if (posts.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No posts available in TwitterDB" });
+    }
+
+    const randomIndex = Math.floor(Math.random() * posts.length);
+    const randomPost = posts[randomIndex];
+
+    await TwitterDB.deleteOne({ _id: randomPost._id });
+
+    res.json(randomPost);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error fetching and deleting post from TwitterDB" });
+  }
+};
+
 const convertContentToMarkdown = async (req, res) => {
   const md = new markdownIt();
   try {
@@ -139,4 +177,6 @@ export {
   fetchAndModifyBlogPosts,
   convertContentToMarkdown,
   deletePostBySlugTest,
+  addToTwitterDB,
+  getRandomAndDeleteFromTwitterDB,
 };

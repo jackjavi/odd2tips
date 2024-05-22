@@ -49,3 +49,14 @@ export async function deletePostBySlug(slug: string): Promise<boolean> {
     return false;
   }
 }
+
+export async function addToTwitterDB(post: Post): Promise<boolean> {
+  try {
+    const headers = getAuthorizationHeader();
+    await axios.post(`/api/blog/add-to-twitter-db`, { post }, { headers });
+    return true;
+  } catch (error) {
+    console.error(`Error adding post to Twitter DB:`, error);
+    return false;
+  }
+}

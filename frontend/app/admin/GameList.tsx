@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Post } from "@/interfaces/post";
-import { getAllPosts, deletePostBySlug } from "@/lib/api";
+import { getAllPosts, deletePostBySlug, addToTwitterDB } from "@/lib/api";
 
 export default function GameList() {
   const [allPosts, setAllPosts] = useState<Post[]>([]);
@@ -25,6 +25,15 @@ export default function GameList() {
     }
   };
 
+  const handleAddToTwitterDB = async (post: Post) => {
+    const success = await addToTwitterDB(post);
+    if (success) {
+      alert(`Post added to Twitter DB: ${post.title}`);
+    } else {
+      console.error("Failed to add the post to Twitter DB");
+    }
+  };
+
   return (
     <div className="bg-[whitesmoke]">
       <div className="container mx-auto py-10">
@@ -43,12 +52,20 @@ export default function GameList() {
               <p className="text-gray-600 mt-2">
                 {new Date(post.date).toLocaleDateString()}
               </p>
-              <button
-                onClick={() => deletePost(post.slug)}
-                className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
-              >
-                Delete
-              </button>
+              <div className="flex space-x-4 mt-4">
+                <button
+                  onClick={() => deletePost(post.slug)}
+                  className="px-4 py-2 bg-red-500 text-white rounded"
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={() => handleAddToTwitterDB(post)}
+                  className="px-4 py-2 bg-blue-500 text-white rounded"
+                >
+                  Add to Twitter DB
+                </button>
+              </div>
             </div>
           ))
         ) : (
