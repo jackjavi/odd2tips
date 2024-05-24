@@ -1,25 +1,12 @@
 import axios from "axios";
 import { Post } from "@/interfaces/post";
 
-function getAuthorizationHeader() {
-  const tokenString = localStorage.getItem("token");
-  if (!tokenString) {
-    return undefined;
-  }
-
-  try {
-    const token = JSON.parse(tokenString);
-    return { Authorization: `Bearer ${token}` };
-  } catch (error) {
-    console.error("Error parsing token:", error);
-    return undefined;
-  }
-}
+// const BASE_URL = "http://localhost:8888";
+const BASE_URL = "https://odd2tips.onrender.com";
 
 export async function getAllPosts(): Promise<Post[]> {
   try {
-    const headers = getAuthorizationHeader();
-    const response = await axios.get(`/api/blog/posts-test`);
+    const response = await axios.get(`${BASE_URL}/api/blog/posts-test`);
 
     return response.data;
   } catch (error) {
@@ -30,8 +17,7 @@ export async function getAllPosts(): Promise<Post[]> {
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    const headers = getAuthorizationHeader();
-    const response = await axios.get(`/api/blog/posts-test/${slug}`);
+    const response = await axios.get(`${BASE_URL}/api/blog/posts-test/${slug}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching post by slug (${slug}):`, error);
@@ -41,8 +27,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
 export async function deletePostBySlug(slug: string): Promise<boolean> {
   try {
-    const headers = getAuthorizationHeader();
-    await axios.delete(`/api/blog/posts-test/${slug}`, { headers });
+    await axios.delete(`${BASE_URL}/api/blog/posts-test/${slug}`);
     return true;
   } catch (error) {
     console.error(`Error deleting post by slug (${slug}):`, error);
@@ -52,8 +37,7 @@ export async function deletePostBySlug(slug: string): Promise<boolean> {
 
 export async function addToTwitterDB(post: Post): Promise<boolean> {
   try {
-    const headers = getAuthorizationHeader();
-    await axios.post(`/api/blog/add-to-twitter-db`, { post }, { headers });
+    await axios.post(`${BASE_URL}/api/blog/add-to-twitter-db`, { post });
     return true;
   } catch (error) {
     console.error(`Error adding post to Twitter DB:`, error);

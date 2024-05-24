@@ -22,6 +22,7 @@ const getAllPostsTest = async (req, res) => {
     res.status(500).json({ message: "Error fetching posts" });
   }
 };
+
 const getPostsByToday = async (req, res) => {
   try {
     const today = new Date();
@@ -43,6 +44,32 @@ const getPostsByToday = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error fetching posts" });
+  }
+};
+
+const getPostsByLimit = async (req, res) => {
+  const limit = 10;
+  const page = parseInt(req.query.page) || 1;
+
+  const offset = (page - 1) * limit;
+
+  try {
+    const posts = await BlogPostTest.find()
+      .sort({ createdAt: -1 })
+      .skip(offset)
+      .limit(limit);
+
+    const totalPosts = await BlogPostTest.countDocuments();
+
+    const hasMore = posts.length === limit && offset + limit < totalPosts;
+
+    res.json({
+      posts,
+      hasMore,
+    });
+  } catch (error) {
+    console.error("Failed to fetch posts:", error);
+    res.status(500).json({ message: "Failed to fetch posts" });
   }
 };
 
@@ -173,6 +200,7 @@ export {
   getPostBySlug,
   getAllPostsTest,
   getPostsByToday,
+  getPostsByLimit,
   getPostBySlugTest,
   fetchAndModifyBlogPosts,
   convertContentToMarkdown,
