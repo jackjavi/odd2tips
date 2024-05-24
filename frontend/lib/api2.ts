@@ -1,10 +1,10 @@
 import { Post } from "@/interfaces/post";
 
-// const BASE_URL = "http://localhost:8888";
-const BASE_URL = "https://odd2tips.onrender.com";
+const BASE_URL = "http://localhost:8888";
+// const BASE_URL = "https://odd2tips.onrender.com";
 
 export async function getAllPosts() {
-  const res = await fetch(`${BASE_URL}/api/blog/posts-limit?page=3`);
+  const res = await fetch(`${BASE_URL}/api/blog/posts-test`);
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
