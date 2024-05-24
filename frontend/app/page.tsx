@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import { FaArrowRotateRight } from "react-icons/fa6";
 import Chat from "./Components/Chat";
@@ -18,17 +16,8 @@ import BetSlipPromotion from "@/app/Components/BetSlipPromotion";
 import RandomGameData from "@/app/Components/RandomGameData";
 import { GoogleTagManager } from "@next/third-parties/google";
 
-const Home = () => {
-  const [allPosts, setAllPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const posts = await getAllPosts();
-      setAllPosts(posts);
-    };
-
-    fetchPosts();
-  }, []);
+const Home = async () => {
+  const allPosts = await getAllPosts();
 
   const heroPost = allPosts.length > 0 ? allPosts[0] : null;
   return (
@@ -43,21 +32,7 @@ const Home = () => {
         {heroPost && (
           <Container>
             <div className="py-8 ">
-              <HeroPost
-                title={heroPost.title}
-                coverImagePath={heroPost.coverImagePath}
-                date={new Date(heroPost.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-                excerpt={heroPost.excerpt}
-                markdown={heroPost.markdown}
-                content={heroPost.content}
-                authorName={heroPost.authorName}
-                authorImagePath={heroPost.authorImagePath}
-                slug={heroPost.slug}
-              />
+              <HeroPost post={heroPost} />
               <div className="">
                 <Link
                   className="text-teal-500 flex flex-col items-center gap-4 md:py-24"

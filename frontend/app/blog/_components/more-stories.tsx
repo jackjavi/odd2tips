@@ -2,11 +2,7 @@ import React from "react";
 import { Post } from "@/interfaces/post";
 import { PostPreview } from "./post-preview";
 
-type Props = {
-  posts: Post[];
-};
-
-export function MoreStories({ posts }: Props) {
+export function MoreStories({ posts }: { posts: Post[] }) {
   return (
     <section className="py-4">
       <h2 className="text-2xl md:text-4xl font-bold tracking-tighter leading-tight text-teal-600 py-4">
