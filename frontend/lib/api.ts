@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Post } from "@/interfaces/post";
+import { Room } from "@/interfaces/room";
 
 // const BASE_URL = "http://localhost:8888";
 const BASE_URL = "https://odd2tips.onrender.com";
@@ -42,5 +43,17 @@ export async function addToTwitterDB(post: Post): Promise<boolean> {
   } catch (error) {
     console.error(`Error adding post to Twitter DB:`, error);
     return false;
+  }
+}
+
+export async function fetchRooms(): Promise<Room[]> {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/rooms/get`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch rooms:", error);
+    return [];
   }
 }

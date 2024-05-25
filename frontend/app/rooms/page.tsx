@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import CreateRoomLink from "../Components/CreateRoomLink";
-import GetRooms from "../Components/getRooms";
+import GetRooms from "./GetRooms";
 import Footer from "../Components/Footer";
 import { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
