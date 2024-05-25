@@ -1,62 +1,50 @@
 [
   { "country": "Ghana", "url": "https://trends24.in/ghana/" },
+  { "country": "Nigeria", "url": "https://trends24.in/nigeria/" },
 
   { "country": "Australia", "url": "https://trends24.in/australia/" },
+  { "country": "South Africa", "url": "https://trends24.in/south-africa/" },
 
   { "country": "Canada", "url": "https://trends24.in/canada/" },
 
   { "country": "United Kingdom", "url": "https://trends24.in/united-kingdom/" },
 
   { "country": "Ireland", "url": "https://trends24.in/ireland/" },
-
-  { "country": "India", "url": "https://trends24.in/india/" },
+  { "country": "Nigeria", "url": "https://trends24.in/nigeria/" },
 
   { "country": "Kenya", "url": "https://trends24.in/kenya/" },
+  { "country": "South Africa", "url": "https://trends24.in/south-africa/" },
 
   { "country": "New Zealand", "url": "https://trends24.in/new-zealand/" },
 
   { "country": "Malaysia", "url": "https://trends24.in/malaysia/" },
+  { "country": "Kenya", "url": "https://trends24.in/kenya/" },
 
   { "country": "Netherlands", "url": "https://trends24.in/netherlands/" },
 
   { "country": "Nigeria", "url": "https://trends24.in/nigeria/" },
+  { "country": "Kenya", "url": "https://trends24.in/kenya/" },
 
   { "country": "Philippines", "url": "https://trends24.in/philippines/" },
+  { "country": "Nigeria", "url": "https://trends24.in/nigeria/" },
 
   { "country": "Singapore", "url": "https://trends24.in/singapore/" },
 
   { "country": "South Africa", "url": "https://trends24.in/south-africa/" },
+  { "country": "Kenya", "url": "https://trends24.in/kenya/" },
 
   { "country": "United States", "url": "https://trends24.in/united-states/" },
+  { "country": "South Africa", "url": "https://trends24.in/south-africa/" },
 
   { "country": "Worldwide", "url": "https://trends24.in/worldwide/" },
-
-  {
-    "country": "United Arab Emirates",
-    "url": "https://trends24.in/united-arab-emirates/"
-  },
-
-  { "country": "Saudi Arabia", "url": "https://trends24.in/saudi-arabia/" },
-
-  { "country": "Qatar", "url": "https://trends24.in/qatar/" },
-
-  { "country": "Oman", "url": "https://trends24.in/oman/" },
-
-  { "country": "Kuwait", "url": "https://trends24.in/kuwait/" },
-
-  { "country": "Bahrain", "url": "https://trends24.in/bahrain/" },
-
-  { "country": "Egypt", "url": "https://trends24.in/egypt/" },
-
-  { "country": "Jordan", "url": "https://trends24.in/jordan/" },
-
-  { "country": "Lebanon", "url": "https://trends24.in/lebanon/" },
-
-  { "country": "Iraq", "url": "https://trends24.in/iraq/" },
+  { "country": "Kenya", "url": "https://trends24.in/kenya/" },
 
   { "country": "Nigeria", "url": "https://trends24.in/nigeria/" },
 
   { "country": "South Africa", "url": "https://trends24.in/south-africa/" },
+  { "country": "Kenya", "url": "https://trends24.in/kenya/" },
 
-  { "country": "United States", "url": "https://trends24.in/united-states/" }
+  { "country": "United States", "url": "https://trends24.in/united-states/" },
+  { "country": "Nigeria", "url": "https://trends24.in/nigeria/" },
+  { "country": "South Africa", "url": "https://trends24.in/south-africa/" }
 ]
