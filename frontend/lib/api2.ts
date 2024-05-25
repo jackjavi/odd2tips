@@ -12,14 +12,14 @@ export async function getAllPosts() {
 }
 
 export async function deletePostBySlug(slug: string) {
-  const res = await fetch(`${BASE_URL}/api/blog/posts/${slug}`, {
+  const res = await fetch(`${BASE_URL}/api/blog/posts-test/${slug}`, {
     method: "DELETE",
   });
   return res.ok;
 }
 
 export async function addToTwitterDB(post: Post) {
-  const res = await fetch(`${BASE_URL}/api/twitter-db`, {
+  const res = await fetch(`${BASE_URL}/api/blog/add-to-twitter-db`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
