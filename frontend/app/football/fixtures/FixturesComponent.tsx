@@ -1,33 +1,8 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { fetchFixtures } from "../../utils/football";
-import Loading from "@/app/Components/Loading";
-import { Fixture } from "@/interfaces/Fixture";
 
-const FixturesComponent: React.FC = () => {
-  const [fixtures, setFixtures] = useState<Fixture[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchFixtures()
-      .then((data) => {
-        setFixtures(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <Loading />;
-  if (error)
-    return (
-      <div className="text-center text-lg text-red-500">Error: {error}</div>
-    );
-
+const FixturesComponent: React.FC = async () => {
+  const fixtures = await fetchFixtures();
   return (
     <div className="bg-[whitesmoke] shadow-lg rounded-lg p-5 mx-auto my-6 max-w-4xl">
       <h1 className="text-center text-3xl font-bold text-[#5e17eb] mb-4">
