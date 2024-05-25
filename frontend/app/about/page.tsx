@@ -12,8 +12,8 @@ const About: React.FC = () => {
           <p className="mb-4">
             <strong>Odd2Tips</strong> stands out as a versatile platform
             tailored for both seasoned tipsters and betting enthusiasts alike.
-            It features specialized rooms called{" "}
-            <strong>"Tipster Rooms"</strong> designed to foster connections
+            It features specialized rooms called
+            <strong>Tipster Rooms</strong> designed to foster connections
             between tipsters and their audience, enabling a vibrant community
             interaction, effective marketing of betting insights, and
             streamlined creation, management, and downloading of betslips.
