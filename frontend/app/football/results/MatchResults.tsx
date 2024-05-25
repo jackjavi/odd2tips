@@ -6,21 +6,6 @@ interface TeamInfo {
   score: number;
 }
 
-interface Result {
-  date: string;
-  league: string;
-  teamOne: TeamInfo;
-  teamTwo: TeamInfo;
-}
-interface MatchResultProps {
-  results: {
-    date: string;
-    league: string;
-    teamOne: { name: string; score: number };
-    teamTwo: { name: string; score: number };
-  }[];
-}
-
 const MatchResults: React.FC = async () => {
   const results = await fetchResults();
 
