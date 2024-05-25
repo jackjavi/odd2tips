@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Post } from "@/interfaces/post";
-import { deletePostBySlug, addToTwitterDB } from "@/lib/api2";
+import { deletePostBySlug, addToTwitterDB } from "@/lib/api";
 
 interface PostListProps {
   posts: Post[];
