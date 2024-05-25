@@ -492,7 +492,6 @@ const scrapeLegaSerieA = async (req, res) => {
 const scrapeBBCArticles = async (req, res) => {
   let browser;
   try {
-    // Read articles from articles.json file
     const rawData = fs.readFileSync("./articles.json");
     const articlesStructure = JSON.parse(rawData);
     const articles = articlesStructure.articles;
@@ -503,7 +502,6 @@ const scrapeBBCArticles = async (req, res) => {
 
     for (const article of articles) {
       if (article.link.includes("/articles/")) {
-        // Check if the article title exists in the database
         const existingArticle = await BlogPostTest.findOne({
           title: article.headline,
         });
@@ -683,15 +681,23 @@ const scrapeBundesligaArticles = async (req, res) => {
 const scrapeBundesligaFullArticles = async (req, res) => {
   let browser;
   try {
-    // Read articles.json
     const articlesData = fs.readFileSync("./articles.json", "utf-8");
     const articles = JSON.parse(articlesData);
 
     browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
-    // Loop through each article and scrape additional data
     for (const article of articles) {
+      const existingArticle = await BlogPostTest.findOne({
+        title: article.title,
+      });
+
+      if (existingArticle) {
+        console.log(
+          `Article titled "${article.title}" already exists in the database. Skipping...`
+        );
+        continue;
+      }
       await page.goto(article.link, {
         waitUntil: "networkidle2",
       });
@@ -710,7 +716,6 @@ const scrapeBundesligaFullArticles = async (req, res) => {
           .filter((url) => url.includes("750"))
           .map((url) => url.split("?")[0]);
 
-        // Capture all paragraphs within the article
         const contentParagraphs = Array.from(
           articleElement.querySelectorAll("p")
         ).map((p) => p.textContent.trim());
@@ -726,7 +731,6 @@ const scrapeBundesligaFullArticles = async (req, res) => {
       article.content = articleContent.content;
     }
 
-    // Save the updated articles to FullArticles.json
     fs.writeFileSync(
       "./fullArticles.json",
       JSON.stringify(articles, null, 2),
@@ -750,7 +754,6 @@ const scrapeBundesligaFullArticles = async (req, res) => {
 const scrapeSERIEAArticles = async (req, res) => {
   let browser;
   try {
-    // Read articles from articles.json file
     const rawData = fs.readFileSync("./articles.json");
     const articlesStructure = JSON.parse(rawData);
     const articles = articlesStructure.articles;
@@ -760,7 +763,6 @@ const scrapeSERIEAArticles = async (req, res) => {
     let extractedData = [];
 
     for (const article of articles) {
-      // Check if the article title exists in the database
       const existingArticle = await BlogPostTest.findOne({
         title: article.headline,
       });
