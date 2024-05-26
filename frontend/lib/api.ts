@@ -7,7 +7,9 @@ const BASE_URL = "https://odd2tips.onrender.com";
 
 export async function getAllPosts(): Promise<Post[]> {
   try {
-    const response = await axios.get(`${BASE_URL}/api/blog/posts-test`);
+    const response = await axios.get(
+      `${BASE_URL}/api/blog/posts-test?timestamp=${new Date().getTime()}`
+    );
 
     return response.data;
   } catch (error) {
@@ -18,7 +20,9 @@ export async function getAllPosts(): Promise<Post[]> {
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    const response = await axios.get(`${BASE_URL}/api/blog/posts-test/${slug}`);
+    const response = await axios.get(
+      `${BASE_URL}/api/blog/posts-test/${slug}?timestamp=${new Date().getTime()}`
+    );
     return response.data;
   } catch (error) {
     console.error(`Error fetching post by slug (${slug}):`, error);
@@ -48,9 +52,12 @@ export async function addToTwitterDB(post: Post): Promise<boolean> {
 
 export async function fetchRooms(): Promise<Room[]> {
   try {
-    const response = await axios.get(`${BASE_URL}/api/rooms/get`, {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      `${BASE_URL}/api/rooms/get?timestamp=${new Date().getTime()}`,
+      {
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Failed to fetch rooms:", error);

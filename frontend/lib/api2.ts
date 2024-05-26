@@ -4,7 +4,9 @@ import { Post } from "@/interfaces/post";
 const BASE_URL = "https://odd2tips.onrender.com";
 
 export async function getAllPosts() {
-  const res = await fetch(`${BASE_URL}/api/blog/posts-test`);
+  const res = await fetch(`${BASE_URL}/api/blog/posts-test`, {
+    cache: "no-store",
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
