@@ -1,14 +1,18 @@
-import { useParams } from "next/navigation";
+import React from "react";
 import Container from "@/app/blog/_components/container";
 import { PostBody } from "@/app/blog/_components/post-body";
 import { PostHeader } from "@/app/blog/_components/post-header";
-import { getPostBySlug } from "@/lib/api";
-import { Post as PostType } from "@/interfaces/post";
-import Loading from "@/app/Components/Loading";
+import { Post } from "@/interfaces/post";
+interface PostComponentProps {
+  title: string;
+  coverImagePath: string;
+  date: string;
+  authorName: string;
+  authorImagePath: string;
+  markdown: string;
+}
 
-const PostsComponent = ({ post }) => {
-  const content = post.markdown;
-
+const PostsComponent = ({ post }: { post: Post }) => {
   return (
     <Container>
       <article className="pb-32 pt-4">
@@ -25,7 +29,7 @@ const PostsComponent = ({ post }) => {
             picture: post.authorImagePath || "/logo.png",
           }}
         />
-        <PostBody content={content} />
+        <PostBody content={post.markdown} />
       </article>
     </Container>
   );

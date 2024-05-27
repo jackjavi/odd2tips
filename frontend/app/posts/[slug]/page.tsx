@@ -18,6 +18,10 @@ interface Post {
   slug: string;
 }
 
+interface Params {
+  slug: string;
+}
+
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
   const BASE_URL = process.env.BASE_API_URL;
@@ -30,7 +34,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const PostPage = async ({ params }) => {
+const PostPage = async (params: Params) => {
   const { slug } = params;
   const post = await getPostBySlug(slug);
 
