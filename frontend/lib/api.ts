@@ -2,13 +2,18 @@ import axios from "axios";
 import { Post } from "@/interfaces/post";
 import { Room } from "@/interfaces/room";
 
-// const BASE_URL = "http://localhost:8888";
-const BASE_URL = "https://odd2tips.onrender.com";
+const BASE_URL = "http://localhost:8888";
+// const BASE_URL = "https://odd2tips.onrender.com";
 
 export async function getAllPosts(): Promise<Post[]> {
   try {
     const response = await axios.get(
-      `${BASE_URL}/api/blog/posts-test?timestamp=${new Date().getTime()}`
+      `${BASE_URL}/api/blog/posts-test?timestamp=${new Date().getTime()}`,
+      {
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      }
     );
 
     return response.data;
@@ -18,10 +23,32 @@ export async function getAllPosts(): Promise<Post[]> {
   }
 }
 
+export async function getAllPostSlugs(): Promise<string[]> {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/api/blog/posts-test-slugs?timestamp=${new Date().getTime()}`,
+      {
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching post slugs:", error);
+    return [];
+  }
+}
+
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
     const response = await axios.get(
-      `${BASE_URL}/api/blog/posts-test/${slug}?timestamp=${new Date().getTime()}`
+      `${BASE_URL}/api/blog/posts-test/${slug}?timestamp=${new Date().getTime()}`,
+      {
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      }
     );
     return response.data;
   } catch (error) {
@@ -32,7 +59,11 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
 export async function deletePostBySlug(slug: string): Promise<boolean> {
   try {
-    await axios.delete(`${BASE_URL}/api/blog/posts-test/${slug}`);
+    await axios.delete(`${BASE_URL}/api/blog/posts-test/${slug}`, {
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    });
     return true;
   } catch (error) {
     console.error(`Error deleting post by slug (${slug}):`, error);
