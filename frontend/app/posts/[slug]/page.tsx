@@ -1,6 +1,7 @@
 import Header from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
 import PostComponent from "./PostsComponent.tsx";
+import { getPostBySlug } from "@/lib/api";
 import { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
 
@@ -13,13 +14,40 @@ export const metadata: Metadata = {
   ],
 };
 
-const PostPage = () => {
+interface Post {
+  slug: string;
+}
+
+interface Params {
+  slug: string;
+}
+
+// Return a list of `params` to populate the [slug] dynamic segment
+export async function generateStaticParams() {
+  const BASE_URL = process.env.BASE_API_URL;
+  const posts = await fetch(`${BASE_URL}/api/blog/posts-test-slugs`).then(
+    (res) => res.json()
+  );
+
+  return posts.map((post: Post) => ({
+    slug: post,
+  }));
+}
+
+const PostPage = async (params: Params) => {
+  const { slug } = params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return <div>&quot;Post not found&quot;</div>;
+  }
+
   return (
     <div className="bg-[whitesmoke]">
       <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Header />
       <main>
-        <PostComponent />
+        <PostComponent post={post} />
       </main>
       <Footer />
     </div>
