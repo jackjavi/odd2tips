@@ -23,6 +23,17 @@ const getAllPostsTest = async (req, res) => {
   }
 };
 
+const getAllPostsTestSlugs = async (req, res) => {
+  try {
+    const posts = await BlogPostTest.find().sort({ date: -1 });
+    const slugs = posts.map((post) => post.slug);
+    res.json(slugs);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching posts" });
+  }
+};
+
 const getPostsByToday = async (req, res) => {
   try {
     const today = new Date();
@@ -199,6 +210,7 @@ export {
   getAllPosts,
   getPostBySlug,
   getAllPostsTest,
+  getAllPostsTestSlugs,
   getPostsByToday,
   getPostsByLimit,
   getPostBySlugTest,

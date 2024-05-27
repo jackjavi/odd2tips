@@ -3,6 +3,7 @@ import {
   getAllPosts,
   getPostBySlug,
   getAllPostsTest,
+  getAllPostsTestSlugs,
   getPostsByToday,
   getPostsByLimit,
   deletePostBySlugTest,
@@ -18,6 +19,7 @@ const router = express.Router();
 router.get("/posts", getAllPosts);
 router.get("/posts/:slug", getPostBySlug);
 router.get("/posts-test", getAllPostsTest);
+router.get("/posts-test-slugs", getAllPostsTestSlugs);
 router.get("/posts-limit", getPostsByLimit);
 router.get("/posts-test/:slug", getPostBySlugTest);
 router.get("/fetch-modify-posts", fetchAndModifyBlogPosts);
