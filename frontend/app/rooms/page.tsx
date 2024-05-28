@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const GetRoomPage: React.FC = () => {
   return (
-    <>
+    <div className="bg-[whitesmoke]">
       <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <main className="relative min-h-screen md:min-h-screen bg-[whitesmoke]">
         <Navbar />
@@ -29,7 +29,7 @@ const GetRoomPage: React.FC = () => {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

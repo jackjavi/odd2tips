@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${roboto_mono.variable} ${montserrat.variable} ${playfair_display.variable}  text-[#e2e8f0] antialiased font-montserrat bg-gradient-to-r from-slate-500 to-slate-900 `}
+      className={`${inter.variable} ${roboto_mono.variable} ${montserrat.variable} ${playfair_display.variable}  text-[#e2e8f0] antialiased font-montserrat bg-[whitesmoke] `}
     >
       <body>{children}</body>
     </html>

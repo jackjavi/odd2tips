@@ -76,6 +76,38 @@ const Navbar = () => {
       >
         News
       </Link>
+      <Link
+        href="/about"
+        scroll={false}
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-semibold md:text-lg"
+        onClick={() => setIsModalOpen(false)}
+      >
+        About Us
+      </Link>
+      <Link
+        href="/contact"
+        scroll={false}
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-semibold md:text-lg"
+        onClick={() => setIsModalOpen(false)}
+      >
+        Contact Us
+      </Link>
+      <Link
+        href="/terms-of-service"
+        scroll={false}
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-semibold md:text-lg"
+        onClick={() => setIsModalOpen(false)}
+      >
+        Terms of Service
+      </Link>
+      <Link
+        href="/policy"
+        scroll={false}
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-semibold md:text-lg"
+        onClick={() => setIsModalOpen(false)}
+      >
+        Privacy Policy
+      </Link>
 
       {isAuthenticated ? (
         <button
@@ -114,7 +146,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className=" bg-[whitesmoke] p-4 relative flex flex-col justify-center items-center h-[20vh]  mx-auto">
+    <nav className=" bg-[whitesmoke] p-4 relative flex flex-col justify-center items-center h-[30vh] md:px-[10vw]  mx-auto">
       <div className=" mx-auto flex justify-between items-center h-[50%] shadow md:shadow-lg w-full">
         <div>
           <Link href="/">
