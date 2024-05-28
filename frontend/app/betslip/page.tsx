@@ -5,6 +5,14 @@ import BetSlipDownload from "@/app/Components/BetSlipDownload";
 import CreateDownloadBanner from "@/app/Components/CreateDownloadBanner";
 import Footer from "@/app/Components/Footer";
 import { Metadata } from "next";
+import Head from "next/head";
+
+<Head>
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5525111710806386"
+  ></script>
+</Head>;
 
 export const metadata: Metadata = {
   title: "Create, Customize & Download BetSlips for free Instantly",
