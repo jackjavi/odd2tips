@@ -96,10 +96,10 @@ const RoomComponent: React.FC = () => {
   );
 
   return (
-    <>
+    <div className="bg-[whitesmoke]">
       <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Navbar />
-      <main className="flex flex-col md:flex-row min-h-[80vh] md:h-[80vh] bg-[whitesmoke] w-full">
+      <main className="flex flex-col md:flex-row min-h-[80vh] md:h-[80vh] bg-[whitesmoke] w-[90vw] md:w-[80vw] mx-auto">
         {/* Navigation Section */}
         <div className="w-full md:w-1/3 p-4 bg-gray-50 overflow-y-auto">
           {/*<section
@@ -220,7 +220,7 @@ const RoomComponent: React.FC = () => {
         )}
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
