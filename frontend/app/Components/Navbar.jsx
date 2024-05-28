@@ -161,14 +161,14 @@ const Navbar = () => {
         </div>
         <button
           onClick={toggleModal}
-          className="md:hidden z-30 text-teal-500 focus:outline-none"
+          className="2xl:hidden z-30 text-teal-500 focus:outline-none"
         >
           <IoIosMenu size={45} />
         </button>
         {/* Modal for small screens */}
         {isModalOpen && (
           <div
-            className={`fixed top-0 right-0 md:hidden w-3/4 bg-white text-black p-4 rounded-md shadow-lg z-20 transition-transform duration-300 ease-in-out ${
+            className={`fixed top-0 right-0 2xl:hidden w-3/4 bg-white text-black p-4 rounded-md shadow-lg z-20 transition-transform duration-300 ease-in-out ${
               isModalOpen
                 ? "translate-x-0 bg-cover bg-no-repeat bg-center"
                 : "translate-x-full"
@@ -185,7 +185,7 @@ const Navbar = () => {
           </div>
         )}
         {/* Static display for larger screens */}
-        <div className="hidden md:flex md:items-center md:justify-center md:space-x-4 md:pr-4">
+        <div className="hidden 2xl:flex 2xl:items-center 2xl:justify-center 2xl:space-x-4 2xl:pr-4">
           {navLinks}
         </div>
       </div>
