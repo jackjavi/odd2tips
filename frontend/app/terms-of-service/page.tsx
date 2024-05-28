@@ -2,6 +2,14 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import Link from "next/link";
+import Head from "next/head";
+
+<Head>
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5525111710806386"
+  ></script>
+</Head>;
 
 const TermsOfService: React.FC = () => {
   return (

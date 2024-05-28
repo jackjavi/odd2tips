@@ -15,6 +15,14 @@ import AboutSection from "@/app/Components/AboutSection";
 import BetSlipPromotion from "@/app/Components/BetSlipPromotion";
 import RandomGameData from "@/app/Components/RandomGameData";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Head from "next/head";
+
+<Head>
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5525111710806386"
+  ></script>
+</Head>;
 
 const Home = async () => {
   const allPosts = await getAllPosts();

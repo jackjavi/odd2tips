@@ -7,6 +7,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Head from "next/head";
+
+<Head>
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5525111710806386"
+  ></script>
+</Head>;
 
 export default function Register() {
   const [email, setEmail] = useState("");

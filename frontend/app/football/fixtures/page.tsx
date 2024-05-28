@@ -3,6 +3,14 @@ import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
 import { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Head from "next/head";
+
+<Head>
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5525111710806386"
+  ></script>
+</Head>;
 
 export const metadata: Metadata = {
   title:
