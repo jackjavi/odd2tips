@@ -4,15 +4,7 @@ import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
 import { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
-import Head from "next/head";
-
-<Head>
-  <script
-    type="text/javascript"
-    async
-    src="//pl23425064.highcpmgate.com/eb/5c/12/eb5c12854223758b1c37d433598047c3.js"
-  ></script>
-</Head>;
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title:
@@ -35,6 +27,11 @@ const ResultsPage: React.FC = () => {
         </div>
       </main>
       <Footer />
+      <Script
+        type="text/javascript"
+        async
+        src="//pl23425064.highcpmgate.com/eb/5c/12/eb5c12854223758b1c37d433598047c3.js"
+      />
     </div>
   );
 };
