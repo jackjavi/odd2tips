@@ -20,13 +20,13 @@ export const metadata: Metadata = {
 
 const CreateRoomPage: React.FC = () => {
   return (
-    <>
+    <div className="bg-[whitesmoke]">
       <Navbar />
 
       <CreateDownloadBanner />
 
       <main className="min-h-screen bg-[whitesmoke] text-teal-500 px-[10%] mx-auto  flex flex-col md:flex-row gap-8">
-        <div className="py-10 md:w-1/2 w-full md:flex md:flex-col md:items-center md:justify-center">
+        <div className="py-10 md:w-1/2 w-full md:flex md:flex-col md:items-center pt-[5%]">
           <BetSlipDownload />
         </div>
         <div className="py-10 md:w-1/2">
@@ -35,7 +35,7 @@ const CreateRoomPage: React.FC = () => {
         <div className="py-10 bg-teal-600 md:hidden"></div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -78,7 +78,7 @@ const RandomGameData: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow rounded-lg overflow-hidden">
+    <div className="w-[90vw] md:w-[80vw] px-4 mx-auto bg-slate-800 shadow rounded-lg overflow-hidden">
       <h2 className="md:text-3xl text-xl font-bold text-center text-teal-600 mt-8 mb-6">
         RANDOMLY FEATURED TIPSTER
       </h2>
@@ -103,7 +103,7 @@ const RandomGameData: React.FC = () => {
                 <p className="text-teal-500 mb-2">{game.date}</p>
                 <div className="md:grid md:grid-cols-3 gap-4 my-2 flex flex-col">
                   <div className="col-span-1 flex flex-col items-center">
-                    <h4 className="text-md text-black font-semibold">
+                    <h4 className="text-md text-white font-semibold">
                       {game.homeTeam}
                     </h4>
                     <div className="flex justify-center">
@@ -124,12 +124,12 @@ const RandomGameData: React.FC = () => {
                     </div>
                   </div>
                   <div className="col-span-1 flex justify-center items-center">
-                    <p className="text-gray-500">
+                    <p className="text-gray-300">
                       Prediction: {game.prediction}
                     </p>
                   </div>
                   <div className="col-span-1 flex flex-col items-center">
-                    <h4 className="text-md text-black font-semibold">
+                    <h4 className="text-md text-white font-semibold">
                       {game.awayTeam}
                     </h4>
                     <div className="flex justify-center">

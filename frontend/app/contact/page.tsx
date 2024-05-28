@@ -4,15 +4,15 @@ import Footer from "../Components/Footer";
 
 const Contact: React.FC = () => {
   return (
-    <>
+    <div className="bg-[whitesmoke]">
       <Navbar />
-      <div className="w-full h-full  bg-gray-200 text-gray-700 py-24">
+      <div className="max-w-4xl mx-auto rounded-lg  h-full  bg-gray-200 text-gray-700 py-24">
         <div className="flex flex-col p-4 justify-center max-w-screen-lg mx-auto h-full">
           <div className="pb-8 flex flex-col justify-center items-center">
-            <p className="text-3xl sm:text-5xl font-valera font-bold inline">
+            <p className="text-3xl sm:text-5xl font-Inter font-bold inline text-teal-600">
               Contact
             </p>
-            <p className="py-6" text-1xl font-lora>
+            <p className="py-6 text-1xl font-playfair text-slate-800">
               Submit the form below to get in touch with us
             </p>
           </div>
@@ -42,7 +42,7 @@ const Contact: React.FC = () => {
                 className="p-2 bg-gray-700 text-[whitesmoke] border-2 rounded-md focus:outline-none"
               ></textarea>
 
-              <button className="text-[whitesmoke] bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300">
+              <button className="text-[whitesmoke] bg-teal-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300">
                 Let&apos;s talk
               </button>
             </form>
@@ -50,7 +50,7 @@ const Contact: React.FC = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

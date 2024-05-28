@@ -1,10 +1,11 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Link from "next/link";
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <>
+    <div className="bg-[whitesmoke]">
       <Navbar />
       <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg text-slate-600">
@@ -96,16 +97,22 @@ const PrivacyPolicy: React.FC = () => {
             us:
           </p>
           <ul className="list-disc list-inside mb-4">
-            <li>By email: your-email@example.com</li>
+            <li>
+              <Link href="/">
+                <span className="underline">By Email</span>{" "}
+              </Link>
+            </li>
             <li>
               By visiting this page on our website:
-              your-website-contact-page-url
+              <Link href="/">
+                <span className="underline">Odd2tips</span>{" "}
+              </Link>
             </li>
           </ul>
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
