@@ -7,6 +7,7 @@ import {
 import type { Metadata } from "next";
 import { HOME_OG_IMAGE_URL } from "@/lib/constants";
 import "./globals.css";
+import GoogleAdsense from "./utils/googleAdsense";
 
 export const metadata: Metadata = {
   title: {
@@ -58,6 +59,7 @@ export default function RootLayout({
       className={`${inter.variable} ${roboto_mono.variable} ${montserrat.variable} ${playfair_display.variable}  text-[#e2e8f0] antialiased font-montserrat bg-[whitesmoke] `}
     >
       <body>{children}</body>
+      <GoogleAdsense pId="5525111710806386" />
     </html>
   );
 }
