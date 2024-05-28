@@ -72,15 +72,15 @@ const TermsOfService: React.FC = () => {
           <p className="mb-4">
             Certain parts of this website offer the opportunity for users to
             post and exchange opinions, information, material, and data
-            ('Comments'). Odd2Tips does not screen, edit, publish or review
-            Comments prior to their appearance on the website and Comments do
-            not reflect the views or opinions of Odd2Tips, its agents, or
-            affiliates. Comments reflect the view and opinion of the person who
-            posts such view or opinion. To the extent permitted by applicable
-            laws, Odd2Tips shall not be responsible or liable for the Comments
-            or for any loss cost, liability, damages, or expenses caused and or
-            suffered as a result of any use of and/or posting of and/or
-            appearance of the Comments on this website.
+            (&apos;Comments&apos;). Odd2Tips does not screen, edit, publish or
+            review Comments prior to their appearance on the website and
+            Comments do not reflect the views or opinions of Odd2Tips, its
+            agents, or affiliates. Comments reflect the view and opinion of the
+            person who posts such view or opinion. To the extent permitted by
+            applicable laws, Odd2Tips shall not be responsible or liable for the
+            Comments or for any loss cost, liability, damages, or expenses
+            caused and or suffered as a result of any use of and/or posting of
+            and/or appearance of the Comments on this website.
           </p>
 
           <h2 className="text-2xl font-bold mt-6 mb-4">
@@ -110,7 +110,7 @@ const TermsOfService: React.FC = () => {
             to other website information so long as the link: (a) is not in any
             way misleading; (b) does not falsely imply sponsorship, endorsement,
             or approval of the linking party and its products or services; and
-            (c) fits within the context of the linking party's site.
+            (c) fits within the context of the linking party&apos;s site.
           </p>
 
           <h2 className="text-2xl font-bold mt-6 mb-4">Content Liability</h2>
