@@ -14,8 +14,8 @@ import Head from "next/head";
 
 <Head>
   <script
-    async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5525111710806386"
+    type="text/javascript"
+    src="//pl23425064.highcpmgate.com/eb/5c/12/eb5c12854223758b1c37d433598047c3.js"
   ></script>
 </Head>;
 
