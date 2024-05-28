@@ -6,6 +6,7 @@ import Footer from "../../Components/Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -60,10 +61,10 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div className="bg-[whitesmoke]">
       <Navbar />
-      <div className="flex h-full">
-        <div className="flex flex-col justify-center w-full md:w-1/2 p-12 text-white gap-4 bg-gradient-to-r from-slate-500 to-slate-900">
+      <div className="flex min-h-screen w-[90vw] md:w-[80vw] mx-auto">
+        <div className="flex flex-col justify-center w-full md:w-1/2 p-12 text-white gap-4 bg-slate-800">
           <div className="max-w-md mx-auto">
             <h1 className="text-3xl font-semibold text-center mb-8 text-blue-200 font-playfair">
               Login
@@ -110,6 +111,36 @@ export default function Login() {
                 Login
               </button>
             </form>
+            <p className="text-center text-gray-300 text-sm mt-4">
+              Don't have an account?{" "}
+              <Link
+                href="/register"
+                scroll={false}
+                className="text-teal-500 hover:underline"
+              >
+                Register here
+              </Link>
+              .
+            </p>
+            <p className="text-center text-gray-300 text-sm mt-4">
+              By logging in, you agree to our{" "}
+              <Link
+                href="/terms-of-service"
+                scroll={false}
+                className="text-teal-500 hover:underline"
+              >
+                terms of service
+              </Link>{" "}
+              and that you have read our{" "}
+              <Link
+                href="/policy"
+                scroll={false}
+                className="text-teal-500 hover:underline"
+              >
+                privacy policy
+              </Link>
+              .
+            </p>
           </div>
           <div className="flex items-center justify-center  py-2">
             <div className="border-t border-slate-500 w-[10%]" />
@@ -118,7 +149,6 @@ export default function Login() {
             </span>
             <div className="border-t border-slate-500 w-[10%]" />
           </div>
-
           <div className="flex justify-center items-center">
             <GoogleSignInButton onClick={handleGoogleLogin} />
           </div>
@@ -130,6 +160,6 @@ export default function Login() {
         ></div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

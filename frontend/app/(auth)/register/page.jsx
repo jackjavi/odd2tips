@@ -6,6 +6,7 @@ import Footer from "../../Components/Footer";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -53,10 +54,10 @@ export default function Register() {
   };
 
   return (
-    <>
+    <div className="bg-[whitesmoke]">
       <Navbar />
-      <div className="flex min-h-screen ">
-        <div className="flex flex-col justify-center gap-4 w-full md:w-1/2 p-12 bg-gradient-to-r from-slate-500 to-slate-900 text-white">
+      <div className="flex min-h-screen w-[90vw] md:w-[80vw] mx-auto">
+        <div className="flex flex-col justify-center gap-4 w-full md:w-1/2 p-12 bg-slate-800">
           <div className="max-w-md mx-auto">
             <h1 className="text-3xl font-semibold text-center text-blue-200 mb-8 font-playfair">
               Register
@@ -68,7 +69,7 @@ export default function Register() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block mb-2 text-sm  text-gray-300 font-semibold"
+                  className="block mb-2 text-sm text-gray-300 font-semibold"
                 >
                   Name
                 </label>
@@ -79,13 +80,13 @@ export default function Register() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Name"
                   required
-                  className="p-2 w-full rounded-md text-gray-700 "
+                  className="p-2 w-full rounded-md text-gray-700"
                 />
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm  text-gray-300 font-semibold"
+                  className="block mb-2 text-sm text-gray-300 font-semibold"
                 >
                   Email
                 </label>
@@ -96,13 +97,13 @@ export default function Register() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   required
-                  className="p-2 w-full rounded-md text-gray-700 "
+                  className="p-2 w-full rounded-md text-gray-700"
                 />
               </div>
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm  text-gray-300 font-semibold"
+                  className="block mb-2 text-sm text-gray-300 font-semibold"
                 >
                   Password
                 </label>
@@ -113,7 +114,7 @@ export default function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                   required
-                  className="p-2 w-full rounded-md text-gray-700 "
+                  className="p-2 w-full rounded-md text-gray-700"
                 />
               </div>
               <div>
@@ -128,12 +129,7 @@ export default function Register() {
                   type="file"
                   onChange={handleFileChange}
                   name="profilePicture"
-                  className="block w-full text-sm text-gray-500
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-md file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-violet-50 file:text-violet-700
-                    hover:file:bg-violet-100"
+                  className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
                 />
               </div>
               <button
@@ -143,26 +139,54 @@ export default function Register() {
                 Register
               </button>
             </form>
+            <p className="text-center text-gray-300 text-sm mt-4">
+              By clicking Register, you agree to our{" "}
+              <Link
+                href="/terms-of-service"
+                scroll={false}
+                className="text-teal-500 hover:underline"
+              >
+                terms of service
+              </Link>{" "}
+              and that you have read our{" "}
+              <Link
+                href="/policy"
+                scroll={false}
+                className="text-teal-500 hover:underline"
+              >
+                privacy policy
+              </Link>
+              .
+            </p>
+            <p className="text-center text-gray-300 text-sm mt-4">
+              Already registered?{" "}
+              <Link
+                href="/login"
+                scroll={false}
+                className="text-teal-500 hover:underline"
+              >
+                Login here
+              </Link>
+              .
+            </p>
           </div>
-          <div className="flex items-center justify-center  py-2">
+          <div className="flex items-center justify-center py-2">
             <div className="border-t border-slate-500 w-[10%]" />
-            <span className="px-4 text-sm font-montserrat text-[whitesmoke] ">
+            <span className="px-4 text-sm font-montserrat text-[whitesmoke]">
               or
             </span>
             <div className="border-t border-slate-500 w-[10%]" />
           </div>
-
           <div className="flex justify-center items-center">
             <GoogleSignInButton onClick={handleGoogleLogin} />
           </div>
         </div>
-
         <div
           className="w-1/2 bg-cover bg-no-repeat bg-center hidden md:block"
           style={{ backgroundImage: "url('/football_bg.jpg')" }}
         ></div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

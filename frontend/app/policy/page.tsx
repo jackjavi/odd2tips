@@ -98,7 +98,7 @@ const PrivacyPolicy: React.FC = () => {
           </p>
           <ul className="list-disc list-inside mb-4">
             <li>
-              <Link href="/">
+              <Link href="/contact">
                 <span className="underline">By Email</span>{" "}
               </Link>
             </li>
