@@ -19,8 +19,8 @@ const GetRoomPage: React.FC = () => {
   return (
     <div className="bg-[whitesmoke]">
       <GoogleTagManager gtmId="G-T2RQ49FPP3" />
-      <main className="relative min-h-screen md:min-h-screen bg-[whitesmoke]">
-        <Navbar />
+      <Navbar />
+      <main className="relative min-h-screen md:min-h-screen bg-[whitesmoke] w-[90vw] md:w-[80vw] mx-auto">
         {/*<div className="absolute top-36 right-4 md:top-56 md:right-8">
           <CreateRoomLink />
   </div>*/}
