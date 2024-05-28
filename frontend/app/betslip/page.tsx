@@ -5,15 +5,7 @@ import BetSlipDownload from "@/app/Components/BetSlipDownload";
 import CreateDownloadBanner from "@/app/Components/CreateDownloadBanner";
 import Footer from "@/app/Components/Footer";
 import { Metadata } from "next";
-import Head from "next/head";
-
-<Head>
-  <script
-    type="text/javascript"
-    async
-    src="//pl23425064.highcpmgate.com/eb/5c/12/eb5c12854223758b1c37d433598047c3.js"
-  ></script>
-</Head>;
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Create, Customize & Download BetSlips for free Instantly",
@@ -44,6 +36,11 @@ const CreateRoomPage: React.FC = () => {
         <div className="py-10 bg-teal-600 md:hidden"></div>
       </main>
       <Footer />
+      <Script
+        type="text/javascript"
+        async
+        src="//pl23425064.highcpmgate.com/eb/5c/12/eb5c12854223758b1c37d433598047c3.js"
+      />
     </div>
   );
 };
