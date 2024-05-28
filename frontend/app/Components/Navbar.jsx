@@ -47,7 +47,7 @@ const Navbar = () => {
     <>
       <Link
         href="/"
-        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]   transition-all ease-in-out duration-200 font-semibold md:text-lg" // Style changes here
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]   transition-all ease-in-out duration-200 font-semibold md:text-md" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Home
@@ -55,7 +55,7 @@ const Navbar = () => {
       <Link
         href="/rooms"
         scroll={false}
-        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-semibold md:text-lg" // Style changes here
+        className="block px-4 py-2 text-teal-500 md:text-teal-600 hover:text-[#5e17eb]  transition-all ease-in-out duration-200 font-semibold md:text-md" // Style changes here
         onClick={() => setIsModalOpen(false)}
       >
         Tipster Rooms
