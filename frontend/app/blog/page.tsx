@@ -4,15 +4,7 @@ import Fetch from "@/app/blog/_components/fetch";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Metadata } from "next";
-import Head from "next/head";
-
-<Head>
-  <script
-    type="text/javascript"
-    async
-    src="//pl23425064.highcpmgate.com/eb/5c/12/eb5c12854223758b1c37d433598047c3.js"
-  ></script>
-</Head>;
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Football latest trending news",
@@ -34,6 +26,16 @@ export default function Index() {
         </Container>
       </main>
       <Footer />
+      <Script
+        type="text/javascript"
+        async
+        src="//pl23425064.highcpmgate.com/eb/5c/12/eb5c12854223758b1c37d433598047c3.js"
+      />
+      <Script
+        type="text/javascript"
+        async
+        src="//pl23430474.highcpmgate.com/d4/db/06/d4db06bc86d5410193a1ac45bef7482a.js"
+      />
     </div>
   );
 }
