@@ -1,5 +1,5 @@
 import cloudinary from "../utils/cloudinaryConfig.mjs";
-import BlogPost from "../models/BlogPost.mjs";
+import BlogPost from "../models/BlogPostTest.mjs";
 
 const handleFileUpload = async (req, res) => {
   try {
