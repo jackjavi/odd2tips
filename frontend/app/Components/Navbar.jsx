@@ -147,7 +147,7 @@ const Navbar = () => {
 
   return (
     <nav className=" bg-[whitesmoke] p-4 relative flex flex-col justify-center items-center h-[30vh] md:px-[10vw]  mx-auto">
-      <div className=" mx-auto flex justify-between items-center h-[50%] shadow md:shadow-lg w-full">
+      <div className=" mx-auto flex justify-between items-center h-[45%] shadow md:shadow-lg w-full">
         <div>
           <Link href="/">
             <Image
