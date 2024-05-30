@@ -3,6 +3,7 @@ import {
   createRoom,
   getAllRooms,
   getRoomByTitle,
+  slugifyRooms,
 } from "../controllers/roomController.mjs";
 import authenticate from "../middleware/authenticate.mjs";
 
@@ -13,5 +14,7 @@ router.post("/create", authenticate, createRoom);
 router.get("/get", getAllRooms);
 
 router.get("/get/:title", getRoomByTitle);
+
+router.get("/slugify", slugifyRooms);
 
 export default router;

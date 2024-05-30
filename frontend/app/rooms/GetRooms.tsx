@@ -31,6 +31,7 @@ const RoomsList: React.FC = async () => {
               roomId={room._id}
               adminId={room.adminId}
               roomTitle={room.title}
+              roomSlug={room.slug}
             />
           </div>
         ))}

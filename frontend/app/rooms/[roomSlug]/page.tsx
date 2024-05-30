@@ -103,49 +103,6 @@ const RoomComponent: React.FC = () => {
       <main className="flex flex-col md:flex-row min-h-[80vh] md:h-[80vh] bg-[whitesmoke] w-[90vw] md:w-[80vw] mx-auto">
         {/* Navigation Section */}
         <div className="w-full md:w-1/3 p-4 bg-gray-50 overflow-y-auto">
-          {/*<section
-            id="stats"
-            className="mb-6 p-4 bg-white shadow-lg rounded-lg"
-          >
-            <h2 className="text-2xl font-bold text-[#5e17eb]mb-3">
-              Stats - Winning Record
-            </h2>
-            <button
-              onClick={() => handleButtonClick("Stats")}
-              className="px-4 py-2 bg-[#5e17eb] text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
-            >
-              View Stats
-            </button>
-  </section>*/}
-
-          {/*<section
-            id="about"
-            className="mb-6 p-4 bg-white shadow-lg rounded-lg"
-          >
-            <h2 className="text-2xl font-bold text-[#5e17eb] mb-3">About</h2>
-            <button
-              onClick={() => handleButtonClick("About")}
-              className="px-4 py-2 bg-[#5e17eb] text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
-            >
-              Learn More
-            </button>
-</section>*/}
-
-          {/*<section
-            id="social-links"
-            className="mb-6 p-4 bg-white shadow-lg rounded-lg"
-          >
-            <h2 className="text-2xl font-bold text-[#5e17eb] mb-3">
-              Room Social Links
-            </h2>
-            <button
-              onClick={() => handleButtonClick("SocialLinks")}
-              className="px-4 py-2 bg-[#5e17eb] text-white rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
-            >
-              Explore
-            </button>
-  </section>*/}
-
           <section
             id="todays-tip"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
@@ -160,21 +117,6 @@ const RoomComponent: React.FC = () => {
               Discover
             </button>
           </section>
-
-          {/*<section
-            id="future-tips"
-            className="mb-6 p-4 bg-white shadow-lg rounded-lg"
-          >
-            <h2 className="text-2xl font-bold text-teal-700 mb-3">
-              Unlock Future Tips
-            </h2>
-            <button
-              onClick={() => handleButtonClick("FutureTips")}
-              className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
-            >
-              Unlock
-            </button>
-</section>*/}
           <section
             id="history"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
