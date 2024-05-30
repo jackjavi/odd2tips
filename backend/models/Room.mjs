@@ -1,5 +1,15 @@
 import mongoose from "mongoose";
 
+function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-")
+    .trim();
+}
+
 const roomSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -35,6 +45,17 @@ const roomSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  slug: {
+    type: String,
+    unique: true,
+  },
+});
+
+roomSchema.pre("save", function (next) {
+  if (this.isModified("title") || !this.slug) {
+    this.slug = slugify(this.title);
+  }
+  next();
 });
 
 const Room = mongoose.model("Room", roomSchema);
