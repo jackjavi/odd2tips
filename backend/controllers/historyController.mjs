@@ -94,4 +94,31 @@ const getHistory = async (req, res) => {
   }
 };
 
-export { createHistory, getHistory };
+const getTodayHistory = async (req, res) => {
+  let yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const date = formatDate(yesterday);
+
+  try {
+    const history = await History.find({ date });
+
+    if (history.length === 0) {
+      res.status(200).json([]);
+      return;
+    }
+
+    let roomTitles = [];
+    for (const record of history) {
+      if (record.status === "WON") {
+        const room = await Room.findById(record.roomId);
+        roomTitles.push(room.title);
+      }
+    }
+    res.status(200).json(roomTitles);
+  } catch (error) {
+    console.error("Error getting history:", error);
+    res.status(500).json({ message: "Failed to fetch history" });
+  }
+};
+
+export { createHistory, getHistory, getTodayHistory };
