@@ -6,4 +6,5 @@ export type Room = {
   adminId: string;
   members: string[];
   createdAt: string;
+  slug: string;
 };
