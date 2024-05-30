@@ -15,15 +15,21 @@ const getYesterdayHistory = async (req, res) => {
       return;
     }
 
-    let roomTitles = [];
+    let roomsData = [];
     for (const record of history) {
       if (record.status === "WON") {
         const room = await Room.findById(record.roomId);
-        roomTitles.push(room.title);
+
+        roomsData.push({
+          title: room.title,
+          roomId: room._id,
+          adminId: room.adminId,
+          slug: room.slug,
+        });
       }
     }
 
-    const message = generateCelebratoryMessage(roomTitles);
+    const message = generateCelebratoryMessage(roomsData);
 
     res.status(200).json({ message });
   } catch (error) {
@@ -32,14 +38,17 @@ const getYesterdayHistory = async (req, res) => {
   }
 };
 
-const generateCelebratoryMessage = (roomTitles) => {
+const generateCelebratoryMessage = (roomsData) => {
   let message =
     "THE FOLLOWING ROOMS WON YESTERDAY.\n\nLET'S CONGRATULATE ALL THE WINNERS:\n\n";
-  roomTitles.forEach((title) => {
-    message += `${title} - 🔗 https://www.odd2tips.com/rooms/${title}\n`;
+  roomsData.forEach(({ title, roomId, adminId, slug }) => {
+    const url = `https://www.odd2tips.com/rooms/${slug}?roomId=${roomId}`;
+    message += `${title} - 🔗 ${url}\n`;
   });
   message += "\n🎈🎉🎊🎈🎉🎊";
   return message;
 };
+
+// https://www.odd2tips.com/rooms/league-of-champions-?roomId=663b536c43ce48e99acb6ea3&adminId=661f9e53a8cbd4dee8e6b58a&roomTitle=LEAGUE%20OF%20CHAMPIONS%20%F0%9F%8F%86&roomSlug=league-of-champions-
 
 export { getYesterdayHistory };
