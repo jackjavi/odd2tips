@@ -102,7 +102,7 @@ const RoomComponent: React.FC = () => {
       <Navbar />
       <main className="flex flex-col md:flex-row min-h-[80vh] md:h-[80vh] bg-[whitesmoke] w-[90vw] md:w-[80vw] mx-auto">
         {/* Navigation Section */}
-        <div className="w-full md:w-1/3 p-4 bg-gray-50 overflow-y-auto">
+        <div className="w-full md:w-2/3 mx-auto p-4 bg-gray-50 overflow-y-auto">
           <section
             id="todays-tip"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
@@ -110,24 +110,18 @@ const RoomComponent: React.FC = () => {
             <h2 className="text-2xl font-bold text-teal-700 mb-3">
               Today&apos;s Tip
             </h2>
-            <button
-              onClick={() => handleButtonClick("TodaysTip")}
-              className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
-            >
-              Discover
-            </button>
+            <Daily2Odds
+              roomId={roomId}
+              roomTitle={roomTitle}
+              adminId={adminId}
+            />
           </section>
           <section
             id="history"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
           >
             <h2 className="text-2xl font-bold text-teal-700 mb-3">History</h2>
-            <button
-              onClick={() => handleButtonClick("history")}
-              className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
-            >
-              View
-            </button>
+            <History roomId={roomId} />
           </section>
 
           <section
