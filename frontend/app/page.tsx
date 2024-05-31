@@ -28,25 +28,23 @@ const Home = async () => {
         <Navbar />
 
         <AboutSection />
-        <div className="hidden md:block">
-          <Script id="at-options" async type="text/javascript">
-            {`
+
+        <Script id="at-options" async type="text/javascript">
+          {`
                 atOptions = {
-		'key' : '2dabe3185b612d80da202034aadc18ab',
+		'key' : '5eda95eea4bf5e9bdaa095194a9167d2',
 		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
+		'height' : 250,
+		'width' : 300,
 		'params' : {}
-                };
               `}
-          </Script>
-          <Script
-            id="invoke-script"
-            async
-            type="text/javascript"
-            src="//www.topcreativeformat.com/2dabe3185b612d80da202034aadc18ab/invoke.js"
-          />
-        </div>
+        </Script>
+        <Script
+          id="invoke-script"
+          async
+          type="text/javascript"
+          src="//www.topcreativeformat.com/5eda95eea4bf5e9bdaa095194a9167d2/invoke.js"
+        />
 
         <BetSlipPromotion />
 
