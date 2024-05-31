@@ -29,7 +29,7 @@ const Home = async () => {
 
         <AboutSection />
         <div className="hidden md:block">
-          <Script id="at-options" type="text/javascript">
+          <Script id="at-options" async type="text/javascript">
             {`
                 atOptions = {
 		'key' : '2dabe3185b612d80da202034aadc18ab',
@@ -42,6 +42,7 @@ const Home = async () => {
           </Script>
           <Script
             id="invoke-script"
+            async
             type="text/javascript"
             src="//www.topcreativeformat.com/2dabe3185b612d80da202034aadc18ab/invoke.js"
           />
