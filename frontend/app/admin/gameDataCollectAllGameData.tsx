@@ -6,7 +6,7 @@ const GameDataCollectAllGameData: React.FC = async () => {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto bg-white shadow rounded overflow-hidden">
+      <div className="w-[90vw] md:w-[80vw] mx-auto bg-white shadow rounded overflow-hidden">
         {games.length === 0 ? (
           <div className="p-6 text-center text-lg font-medium text-gray-500">
             No games available. Please check back later.
@@ -42,9 +42,13 @@ const GameDataCollectAllGameData: React.FC = async () => {
                       ))}
                     </div>
                   </div>
-                  <div className="col-span-1 flex justify-center items-center">
+                  <div className="col-span-1 flex flex-col justify-center items-center gap-4">
                     <p className="text-gray-500">
-                      Prediction: {game.prediction}
+                      Prediction:{" "}
+                      <span className="font-bold">{game.prediction}</span>
+                    </p>
+                    <p className="text-gray-500">
+                      Status: <span className="font-bold">{game.status}</span>
                     </p>
                   </div>
                   <div className="col-span-1 flex flex-col items-center">
