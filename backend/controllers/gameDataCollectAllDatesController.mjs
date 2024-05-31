@@ -19,7 +19,7 @@ const getGameDataAllDates = async (req, res) => {
 
 const getGameDataAllGameData = async (req, res) => {
   try {
-    const gameData = await GameData.find({});
+    const gameData = await GameData.find({}).sort({ createdAt: -1 });
 
     res.json(gameData);
   } catch (error) {
