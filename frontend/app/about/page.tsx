@@ -7,7 +7,7 @@ const About: React.FC = () => {
   return (
     <div className="bg-[whitesmoke]">
       <Navbar />
-      <div className="md:h-[75vh] h-full bg-gray-100 py-8 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+      <div className="md:min-h-[75vh] h-full bg-gray-100 py-8 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
         <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg text-slate-600 md:text-2xl">
           <h1 className="text-3xl md:text-5xl font-bold mb-6 text-teal-500 text-center">
             About Us
