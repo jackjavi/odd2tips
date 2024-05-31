@@ -32,10 +32,10 @@ const Home = async () => {
         <Script id="at-options" async type="text/javascript">
           {`
                 atOptions = {
-		'key' : '5eda95eea4bf5e9bdaa095194a9167d2',
+		'key' : '723b664118b08c769b06bf59157e1566',
 		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
+		'height' : 50,
+		'width' : 320,
 		'params' : {}
               `}
         </Script>
@@ -43,7 +43,7 @@ const Home = async () => {
           id="invoke-script"
           async
           type="text/javascript"
-          src="//www.topcreativeformat.com/5eda95eea4bf5e9bdaa095194a9167d2/invoke.js"
+          src="//www.topcreativeformat.com/723b664118b08c769b06bf59157e1566/invoke.js"
         />
 
         <BetSlipPromotion />
