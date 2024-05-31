@@ -9,6 +9,7 @@ import AllocateFixtures from "./AllocateFixtures";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import GameList from "./GameList";
+import GameDataCollectAllGameData from "./gameDataCollectAllGameData";
 
 const AdminPage: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const AdminPage: React.FC = () => {
         <StorePredictzResults />
         <AnalyzeResults />
         <GameList />
+        <GameDataCollectAllGameData />
       </main>
       <Footer />
     </div>

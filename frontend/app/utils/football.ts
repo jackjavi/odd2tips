@@ -1,6 +1,7 @@
 import { Fixture } from "../../interfaces/Fixture";
 import { Result } from "../../interfaces/Result";
 import { Prediction } from "../../interfaces/Prediction";
+import { GameData } from "../../interfaces/gameData";
 
 // const BASE_URL = "http://localhost:8888";
 const BASE_URL = "https://odd2tips.onrender.com";
@@ -112,6 +113,21 @@ export async function allocateFixturesToRooms(): Promise<void> {
     if (!response.ok) {
       throw new Error("Failed to allocate fixtures to rooms");
     }
+  } catch (error) {
+    console.error("Error allocating fixtures to rooms:", error);
+    throw error;
+  }
+}
+
+export async function gameDataCollectAllGames(): Promise<GameData[]> {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/games/gameDataCollectAllGameData`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to allocate fixtures to rooms");
+    }
+    return response.json();
   } catch (error) {
     console.error("Error allocating fixtures to rooms:", error);
     throw error;
