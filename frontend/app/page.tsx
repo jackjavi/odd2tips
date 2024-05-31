@@ -28,7 +28,22 @@ const Home = async () => {
         <Navbar />
 
         <AboutSection />
-        
+        <Script id="at-options" type="text/javascript">
+          {`
+                atOptions = {
+		'key' : '2dabe3185b612d80da202034aadc18ab',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+                };
+              `}
+        </Script>
+        <Script
+          id="invoke-script"
+          type="text/javascript"
+          src="//www.topcreativeformat.com/2dabe3185b612d80da202034aadc18ab/invoke.js"
+        />
         <BetSlipPromotion />
 
         {heroPost && (
