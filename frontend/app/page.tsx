@@ -30,21 +30,21 @@ const Home = async () => {
         <AboutSection />
 
         <div className="w-[100vw]">
-          <Script id="at-options" async type="text/javascript">
+          <Script id="at-options" type="text/javascript">
             {`
                 atOptions = {
-		'key' : '2dabe3185b612d80da202034aadc18ab',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
+                  'key': 'a380aa0446bb0566a47b4ac5c08afff0',
+                  'format': 'iframe',
+                  'height': 300,
+                  'width': 160,
+                  'params': {}
+                };
               `}
           </Script>
           <Script
             id="invoke-script"
-            async
             type="text/javascript"
-            src="//www.topcreativeformat.com/2dabe3185b612d80da202034aadc18ab/invoke.js"
+            src="//www.topcreativeformat.com/a380aa0446bb0566a47b4ac5c08afff0/invoke.js"
           />
         </div>
 
