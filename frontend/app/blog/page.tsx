@@ -26,7 +26,11 @@ export default function Index() {
         </Container>
       </main>
       <Footer />
-
+      <Script
+        type="text/javascript"
+        async
+        src="//pl23425064.highcpmgate.com/eb/5c/12/eb5c12854223758b1c37d433598047c3.js"
+      />
       <Script
         type="text/javascript"
         async
