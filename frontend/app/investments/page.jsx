@@ -89,16 +89,6 @@ const page = () => {
         </div>
       </main>
       <Footer />
-      <Script
-        type="text/javascript"
-        async
-        src="//pl23425064.highcpmgate.com/eb/5c/12/eb5c12854223758b1c37d433598047c3.js"
-      />
-      <Script
-        type="text/javascript"
-        async
-        src="//pl23430474.highcpmgate.com/d4/db/06/d4db06bc86d5410193a1ac45bef7482a.js"
-      />
     </>
   );
 };
