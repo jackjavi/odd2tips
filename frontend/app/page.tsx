@@ -29,6 +29,25 @@ const Home = async () => {
 
         <AboutSection />
 
+        <div className="w-[100vw]">
+          <Script id="at-options" type="text/javascript">
+            {`
+                atOptions = {
+                  'key': 'a380aa0446bb0566a47b4ac5c08afff0',
+                  'format': 'iframe',
+                  'height': 300,
+                  'width': 160,
+                  'params': {}
+                };
+              `}
+          </Script>
+          <Script
+            id="invoke-script"
+            type="text/javascript"
+            src="//www.topcreativeformat.com/a380aa0446bb0566a47b4ac5c08afff0/invoke.js"
+          />
+        </div>
+
         <BetSlipPromotion />
 
         {heroPost && (
