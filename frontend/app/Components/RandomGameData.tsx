@@ -82,7 +82,7 @@ const RandomGameData: React.FC = () => {
       <h2 className="md:text-3xl text-xl font-bold text-center text-teal-600 mt-8 mb-6">
         RANDOMLY FEATURED TIPSTER
       </h2>
-      <h3 className="md:text-lg text-md font-bold text-center text-gray-800 mb-6 font-playfair">
+      <h3 className="md:text-lg text-md font-bold text-center text-teal-800 mb-6 font-playfair">
         Tipster Room - {games[0] && games[0].roomTitle}
       </h3>
       {games.length === 0 ? (
