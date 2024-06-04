@@ -4,6 +4,14 @@ import GameData from "../models/GameData.mjs";
 import { formatDate } from "../utils/dateUtils.mjs";
 
 const getPredictions = async (req, res) => {
+  let shuffledPredictions;
+  let selectedPredictions;
+
+  let firstRoomPredictions;
+  let secondRoomPredictions;
+  let thirdRoomPredictions;
+  let fourthRoomPredictions;
+  let fifthRoomPredictions;
   try {
     const today = new Date();
     const dateString = formatDate(today);
@@ -14,18 +22,24 @@ const getPredictions = async (req, res) => {
     });
 
     if (predictions.length < 10) {
-      console.error("Not enough predictions available.");
-      return;
+      shuffledPredictions = predictions.sort(() => 0.5 - Math.random());
+      selectedPredictions = shuffledPredictions;
+
+      firstRoomPredictions = selectedPredictions.slice(0, 1);
+      secondRoomPredictions = selectedPredictions.slice(1, 2);
+      thirdRoomPredictions = selectedPredictions.slice(2, 3);
+      fourthRoomPredictions = selectedPredictions.slice(3, 4);
+      fifthRoomPredictions = selectedPredictions.slice(4, 5);
+    } else {
+      shuffledPredictions = predictions.sort(() => 0.5 - Math.random());
+      selectedPredictions = shuffledPredictions.slice(0, 13);
+
+      firstRoomPredictions = selectedPredictions.slice(0, 2);
+      secondRoomPredictions = selectedPredictions.slice(3, 6);
+      thirdRoomPredictions = selectedPredictions.slice(7, 8);
+      fourthRoomPredictions = selectedPredictions.slice(9, 11);
+      fifthRoomPredictions = selectedPredictions.slice(12, 13);
     }
-
-    const shuffledPredictions = predictions.sort(() => 0.5 - Math.random());
-    const selectedPredictions = shuffledPredictions.slice(0, 13);
-
-    const firstRoomPredictions = selectedPredictions.slice(0, 2);
-    const secondRoomPredictions = selectedPredictions.slice(3, 6);
-    const thirdRoomPredictions = selectedPredictions.slice(7, 8);
-    const fourthRoomPredictions = selectedPredictions.slice(9, 11);
-    const fifthRoomPredictions = selectedPredictions.slice(12, 13);
 
     const firstRoomId = new mongoose.Types.ObjectId("6618dbf5ad0eed6ed54294b6");
     const secondRoomId = new mongoose.Types.ObjectId(

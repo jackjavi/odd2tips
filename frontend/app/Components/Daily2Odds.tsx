@@ -110,7 +110,9 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
                 <p className="text-gray-500">{game.date}</p>
                 <div className="md:grid md:grid-cols-3 gap-4 my-2 flex flex-col">
                   <div className="col-span-1 flex flex-col items-center">
-                    <h4 className="text-md font-semibold">{game.homeTeam}</h4>
+                    <h4 className="text-md font-semibold text-teal-700">
+                      {game.homeTeam}
+                    </h4>
                     <div className="flex justify-center">
                       {game.last5home.map((result, index) => (
                         <span
@@ -134,7 +136,9 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
                     </p>
                   </div>
                   <div className="col-span-1 flex flex-col items-center">
-                    <h4 className="text-md font-semibold">{game.awayTeam}</h4>
+                    <h4 className="text-md font-semibold text-teal-700">
+                      {game.awayTeam}
+                    </h4>
                     <div className="flex justify-center">
                       {game.last5away.map((result, index) => (
                         <span
