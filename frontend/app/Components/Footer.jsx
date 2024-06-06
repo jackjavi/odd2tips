@@ -12,7 +12,7 @@ import { BsTwitterX } from "react-icons/bs";
 const Footer = () => {
   return (
     <div className="bg-[whitesmoke]  py-20 w-[90vw] mx-auto md:w-[80vw] md:h-[100vh] flex flex-col items-center justify-center ">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mx-auto h-[90%] bg-slate-800 rounded-lg shadow md:text-lg">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mx-auto h-[90%] bg-slate-800 shadow md:text-lg">
         {/* About Section */}
         <div className="flex flex-col text-slate-200 md:pt-[45%] items-center">
           <Image src="/logo.png" alt="Logo-SVG" width={100} height={100} />

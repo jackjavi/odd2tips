@@ -54,12 +54,6 @@ const PostPage = async ({ params }: Params) => {
         <PostComponent post={post} />
       </main>
       <Footer />
-
-      <Script
-        type="text/javascript"
-        async
-        src="//pl23430474.highcpmgate.com/d4/db/06/d4db06bc86d5410193a1ac45bef7482a.js"
-      />
     </div>
   );
 };

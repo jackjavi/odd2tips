@@ -24,36 +24,20 @@ const getGameData = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch game data" });
   }
 };
+
+// modified to fetch today games
 const getRandomGameData = async (req, res) => {
   const today = new Date();
   const todayFormatted = formatDate(today);
 
   try {
-    const randomGameData = await GameData.aggregate([
-      { $match: { date: todayFormatted } },
-      { $sample: { size: 1 } },
-    ]);
+    const randomGameData = await GameData.find({ date: todayFormatted });
 
     if (!randomGameData.length) {
       return res.status(404).json({ message: "No game data found for today." });
     }
 
-    const roomId = randomGameData[0].roomId;
-
-    const roomTitle = await Room.findOne({ _id: roomId });
-
-    const gameData = await GameData.find({ roomId, date: todayFormatted });
-    if (!gameData.length) {
-      return res.status(404).json({});
-    }
-    const updatedGameData = gameData.map((game) => {
-      return {
-        ...game._doc,
-        roomTitle: roomTitle.title,
-      };
-    });
-
-    res.json(updatedGameData);
+    res.json(randomGameData);
   } catch (error) {
     console.error("Error getting game data:", error);
     res.status(500).json({ message: "Failed to fetch game data" });
