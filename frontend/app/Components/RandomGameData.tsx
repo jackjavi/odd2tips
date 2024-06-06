@@ -78,7 +78,7 @@ const RandomGameData: React.FC = () => {
   }
 
   return (
-    <div className="w-[90vw] md:w-[80vw] px-4 my-8 mx-auto bg-slate-800 shadow  overflow-hidden">
+    <div className="w-full md:w-[80vw] px-4  mx-auto bg-slate-800 shadow  overflow-hidden">
       <h2 className="md:text-3xl text-xl font-bold text-center text-teal-600 mt-8 mb-6">
         FREE TIPS TODAY
       </h2>
@@ -167,9 +167,9 @@ const RandomGameData: React.FC = () => {
               </div>
             ))}
 
-          <div className="p-4 text-center text-lg font-bold text-teal-500">
+          {/*<div className="p-4 text-center text-lg font-bold text-teal-500">
             Total Odds: {totalOdds.toFixed(2)}
-          </div>
+                        </div>*/}
         </>
       )}
     </div>
