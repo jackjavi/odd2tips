@@ -78,13 +78,19 @@ const RandomGameData: React.FC = () => {
   }
 
   return (
-    <div className="w-[90vw] md:w-[80vw] px-4 mx-auto bg-slate-800 shadow rounded-lg overflow-hidden">
+    <div className="w-[90vw] md:w-[80vw] px-4 mb-8 mx-auto bg-slate-800 shadow  overflow-hidden">
       <h2 className="md:text-3xl text-xl font-bold text-center text-teal-600 mt-8 mb-6">
-        RANDOMLY FEATURED TIPSTER
+        FREE TIPS TODAY
       </h2>
-      <h3 className="md:text-lg text-md font-bold text-center text-teal-800 mb-6 font-playfair">
-        Tipster Room - {games[0] && games[0].roomTitle}
-      </h3>
+      <p className="text-center text-slate-600 mb-5">
+        {new Date().toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </p>
+
       {games.length === 0 ? (
         <div className="p-6 text-center text-lg font-medium text-teal-500">
           No games available. Please check back later.

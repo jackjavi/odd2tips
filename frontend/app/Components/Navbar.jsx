@@ -147,7 +147,7 @@ const Navbar = () => {
 
   return (
     <nav className=" bg-[whitesmoke] p-4 relative flex flex-col justify-center items-center h-[30vh] md:px-[10vw]  mx-auto">
-      <div className=" mx-auto flex justify-between items-center h-[45%] shadow md:shadow-lg w-full">
+      <div className=" mx-auto flex justify-between items-center h-[45%] shadow md:shadow-lg w-full bg-slate-800">
         <div>
           <Link href="/">
             <Image
@@ -189,7 +189,7 @@ const Navbar = () => {
           {navLinks}
         </div>
       </div>
-      <div className="bg-teal-600 text-[whitesmoke]  font-extrabold text-sm md:text-md 3xl:text-lg flex justify-around items-center flex-wrap  overflow-scroll  h-[50%] w-full">
+      <div className="bg-teal-600 text-[whitesmoke]  font-extrabold text-sm md:text-md 3xl:text-lg flex justify-around items-center flex-wrap    h-[50%] w-full">
         <Link href="/rooms">
           <span>Predictions</span>
         </Link>
