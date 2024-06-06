@@ -146,7 +146,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className=" bg-[whitesmoke] p-4 relative flex flex-col justify-center items-center h-[30vh] md:px-[10vw]  mx-auto">
+    <nav className=" bg-slate-800 pb-4 relative flex flex-col justify-center items-center h-[30vh] md:px-[10vw]  mx-auto">
       <div className=" mx-auto flex justify-between items-center h-[45%] shadow md:shadow-lg w-full bg-slate-800">
         <div>
           <Link href="/">
@@ -191,21 +191,21 @@ const Navbar = () => {
       </div>
       <div className="bg-teal-600 text-[whitesmoke]  font-extrabold text-sm md:text-md 3xl:text-lg flex justify-around items-center flex-wrap    h-[50%] w-full">
         <Link href="/rooms">
-          <span>Predictions</span>
+          <span className="p-2">Predictions</span>
         </Link>
         <Link href="/football/fixtures">
-          <span>Fixtures</span>
+          <span className="p-2">Fixtures</span>
         </Link>
         <Link href="/football/results">
-          <span>Results</span>
+          <span className="p-2">Results</span>
         </Link>
         <Link href="/blog">
-          <span>Latest News</span>
+          <span className="p-2">Latest News</span>
         </Link>
         <Link href="/betslip">
-          <span>Create Betslip</span>
+          <span className="p-2">Create Betslip</span>
         </Link>
-        <Link
+        {/*<Link
           onClick={() =>
             alert(
               "Not available currently, subscribe to our newsletter to get updates on the same."
@@ -214,7 +214,7 @@ const Navbar = () => {
           href="#"
         >
           <span>Become our Top Tipster</span>
-        </Link>
+        </Link>*/}
       </div>
     </nav>
   );
