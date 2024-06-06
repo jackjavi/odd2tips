@@ -16,6 +16,7 @@ import BetSlipPromotion from "@/app/Components/BetSlipPromotion";
 import RandomGameData from "@/app/Components/RandomGameData";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
+export const dynamicParams = true;
 
 const Home = async () => {
   const allPosts = await getAllPosts();
