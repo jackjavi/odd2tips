@@ -11,6 +11,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { FaLock } from "react-icons/fa";
 import { Metadata } from "next";
 import Script from "next/script";
+export const dynamicParams = true;
 
 {
   /*export const metadata: Metadata = {

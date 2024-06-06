@@ -6,6 +6,7 @@ import Footer from "../Components/Footer";
 import { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
+export const dynamicParams = true;
 
 export const metadata: Metadata = {
   title: "Expert Football Predictions & Betslips & Football News",
