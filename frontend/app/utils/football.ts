@@ -133,3 +133,16 @@ export async function gameDataCollectAllGames(): Promise<GameData[]> {
     throw error;
   }
 }
+
+export async function fetchRandomGameData(): Promise<GameData[]> {
+  try {
+    const response = await fetch(`${BASE_URL}/api/games/randomGameData`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch random game data");
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching random game data:", error);
+    throw error;
+  }
+}
