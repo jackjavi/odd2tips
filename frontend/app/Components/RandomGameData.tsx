@@ -1,81 +1,8 @@
-"use client";
+import React from "react";
+import { fetchRandomGameData } from "../utils/football";
 
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Loading from "./Loading";
-interface GameData {
-  _id: string;
-  gameTitle: string;
-  homeTeam: string;
-  awayTeam: string;
-  prediction: string;
-  last5home: string[];
-  last5away: string[];
-  homeOdd: string;
-  drawOdd: string;
-  awayOdd: string;
-  countryName: string;
-  roomId: string;
-  date: string;
-  status: string;
-  roomTitle: string;
-}
-
-const RandomGameData: React.FC = () => {
-  const [games, setGames] = useState<GameData[]>([]);
-  const [totalOdds, setTotalOdds] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const { data } = await axios.get<GameData[]>(
-          `/api/games/randomGameData`
-        );
-
-        setGames(data);
-        calculateTotalOdds(data);
-      } catch (error) {
-        console.error("Failed to fetch games:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchGames();
-  }, []);
-
-  const calculateTotalOdds = (games: GameData[]) => {
-    let newTotalOdds = 1;
-    games.forEach((game) => {
-      switch (game.prediction) {
-        case "Home win":
-          if (parseFloat(game.homeOdd) !== 0) {
-            newTotalOdds *= parseFloat(game.homeOdd);
-          }
-          break;
-        case "Away win":
-          if (parseFloat(game.awayOdd) !== 0) {
-            newTotalOdds *= parseFloat(game.awayOdd);
-          }
-          break;
-        case "Draw":
-          if (parseFloat(game.drawOdd) !== 0) {
-            newTotalOdds *= parseFloat(game.drawOdd);
-          }
-          break;
-        default:
-          break;
-      }
-    });
-    setTotalOdds(newTotalOdds);
-  };
-
-  if (loading) return <Loading />;
-
-  if (games.length === 0) {
-    return <></>;
-  }
+const RandomGameData: React.FC = async () => {
+  const games = await fetchRandomGameData();
 
   return (
     <div className="w-full md:w-[80vw] px-4  mx-auto bg-slate-800 shadow  overflow-hidden">
