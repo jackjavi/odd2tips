@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Script from "next/script";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -63,6 +64,7 @@ export default function Login() {
 
   return (
     <div className="bg-[whitesmoke]">
+      <GoogleTagManager gtmId="G-2242Y4EH8R" />
       <Navbar />
       <div className="flex min-h-screen w-[90vw] md:w-[80vw] mx-auto">
         <div className="flex flex-col justify-center w-full md:w-1/2 p-12 text-white gap-4 bg-slate-800">

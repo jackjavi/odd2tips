@@ -6,6 +6,7 @@ import CreateDownloadBanner from "@/app/Components/CreateDownloadBanner";
 import Footer from "@/app/Components/Footer";
 import { Metadata } from "next";
 import Script from "next/script";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: "Create, Customize & Download BetSlips for free Instantly",
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
 const CreateRoomPage: React.FC = () => {
   return (
     <div className="bg-[whitesmoke]">
+      <GoogleTagManager gtmId="G-2242Y4EH8R" />
       <Navbar />
 
       <CreateDownloadBanner />
