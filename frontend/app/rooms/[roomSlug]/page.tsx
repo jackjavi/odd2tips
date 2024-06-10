@@ -99,7 +99,7 @@ const RoomComponent: React.FC = () => {
 
   return (
     <div className="bg-[whitesmoke]">
-      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
+      <GoogleTagManager gtmId="G-2242Y4EH8R" />
       <Navbar />
       <main className="flex flex-col md:flex-row h-full bg-[whitesmoke] w-[90vw] md:w-[80vw] mx-auto">
         {/* Navigation Section */}

@@ -48,7 +48,7 @@ const PostPage = async ({ params }: Params) => {
 
   return (
     <div className="bg-[whitesmoke]">
-      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
+      <GoogleTagManager gtmId="G-2242Y4EH8R" />
       <Header />
       <main>
         <PostComponent post={post} />

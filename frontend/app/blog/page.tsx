@@ -5,6 +5,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Metadata } from "next";
 import Script from "next/script";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: "Football latest trending news",
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function Index() {
   return (
     <div className="bg-[whitesmoke]">
+      <GoogleTagManager gtmId="G-2242Y4EH8R" />
       <Navbar />
       <main>
         <Container>

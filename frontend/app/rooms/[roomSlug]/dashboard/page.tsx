@@ -14,7 +14,7 @@ const AdminPage: React.FC = () => {
   return (
     <>
       {" "}
-      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
+      <GoogleTagManager gtmId="G-2242Y4EH8R" />
       <Navbar />{" "}
       <main className=" mx-auto my-10 container">
         <div className="flex md:flex-row flex-col">
