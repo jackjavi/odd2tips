@@ -29,9 +29,9 @@ interface Params {
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
   const BASE_URL = process.env.BASE_API_URL;
-  const posts = await fetch(`${BASE_URL}/api/blog/posts-test-slugs`).then(
-    (res) => res.json()
-  );
+  const posts = await fetch(`${BASE_URL}/api/blog/posts-test-slugs`, {
+    cache: "no-store",
+  }).then((res) => res.json());
 
   return posts.map((post: Post) => ({
     slug: post,
