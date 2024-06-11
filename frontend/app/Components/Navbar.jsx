@@ -147,6 +147,13 @@ const Navbar = () => {
 
   return (
     <nav className=" bg-slate-800 pb-4 relative flex flex-col justify-center items-center h-[30vh] md:px-[10vw]  mx-auto">
+      <p className="bg-orange-600 w-full text-center text-sm md:text-md animate-bounce">
+        🎉🔥 Get Ready to Win Big! Join the Weekly Top Tipster Challenge and Bag
+        Cash Prizes Every Week! 🔥🎉{" "}
+        <Link href="/announcements">
+          <span className="underline">click</span>
+        </Link>
+      </p>
       <div className=" mx-auto flex justify-between items-center h-[45%] shadow md:shadow-lg w-full bg-slate-800">
         <div>
           <Link href="/">
