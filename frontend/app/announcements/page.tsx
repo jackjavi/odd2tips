@@ -43,22 +43,23 @@ const Announcements: React.FC = () => {
             together for a chance to win cash prizes every week! 🏆💰
           </p>
           <p className="mb-4">
-            Here’s how it works: Each day, tipsters submit their football odds
-            of between 1.95 and 2.5. If you’re confident, you can even go above
-            2.5! However, odds below 1.95 won’t be accepted. This is a fair and
-            exciting way to showcase your expertise and claim the title of Top
-            Tipster. 📊⚽
+            Here&apos;s how it works: Each day, tipsters submit their football
+            odds of between 1.95 and 2.5. If you&apos;re confident, you can even
+            go above 2.5! However, odds below 1.95 won&apos;t be accepted. This
+            is a fair and exciting way to showcase your expertise and claim the
+            title of Top Tipster. 📊⚽
           </p>
           <p className="mb-4">
             Transparency is our cornerstone. Every registered tipster's history
             is available in our dedicated history section, ensuring fair play
-            and a level playing field for all. Whether you’re a seasoned pro or
-            a passionate newcomer, this competition is open to everyone.
+            and a level playing field for all. Whether you&apos;re a seasoned
+            pro or a passionate newcomer, this competition is open to everyone.
           </p>
           <p className="mb-4">
             The first round kicks off from June 21, 2024, to June 28, 2024.
-            Ready to get started? Simply provide us with your email, and we’ll
-            send you all the details you need to join the fun and start winning!
+            Ready to get started? Simply provide us with your email, and
+            we&apos;ll send you all the details you need to join the fun and
+            start winning!
           </p>
           <p className="mb-4 text-xl font-bold text-green-500">
             Join us and become part of a vibrant, supportive community where
