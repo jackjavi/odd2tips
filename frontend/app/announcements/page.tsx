@@ -6,6 +6,7 @@ import Footer from "../Components/Footer";
 import Script from "next/script";
 import { GoogleTagManager } from "@next/third-parties/google";
 import axios from "axios";
+import { YouTubeEmbed } from "@next/third-parties/google";
 
 const Announcements: React.FC = () => {
   const [name, setName] = useState("");
@@ -30,9 +31,15 @@ const Announcements: React.FC = () => {
     <div className="bg-[whitesmoke]">
       <GoogleTagManager gtmId="G-2242Y4EH8R" />
       <Navbar />
+
       <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8 font-Inter">
         <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg text-slate-600">
-          <h1 className=" w-full text-center text-md md:text-lg animate-bounce text-teal-800">
+          <YouTubeEmbed
+            videoid="BwQnZrroAM0"
+            height={400}
+            params="controls=0"
+          />
+          <h1 className=" w-full text-center text-md md:text-lg animate-bounce text-teal-800 pt-4">
             🎉🔥 Get Ready to Win Big! Join the Weekly Top Tipster Challenge and
             Bag Cash Prizes Every Week! 🔥🎉
           </h1>
