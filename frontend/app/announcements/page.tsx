@@ -50,10 +50,11 @@ const Announcements: React.FC = () => {
             title of Top Tipster. 📊⚽
           </p>
           <p className="mb-4">
-            Transparency is our cornerstone. Every registered tipster's history
-            is available in our dedicated history section, ensuring fair play
-            and a level playing field for all. Whether you&apos;re a seasoned
-            pro or a passionate newcomer, this competition is open to everyone.
+            Transparency is our cornerstone. Every registered tipster&apos;s
+            history is available in our dedicated history section, ensuring fair
+            play and a level playing field for all. Whether you&apos;re a
+            seasoned pro or a passionate newcomer, this competition is open to
+            everyone.
           </p>
           <p className="mb-4">
             The first round kicks off from June 21, 2024, to June 28, 2024.
