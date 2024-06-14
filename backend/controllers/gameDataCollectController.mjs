@@ -34,7 +34,7 @@ const getRandomGameData = async (req, res) => {
     const randomGameData = await GameData.find({ date: todayFormatted });
 
     if (!randomGameData.length) {
-      return res.status(404).json({ message: "No game data found for today." });
+      return res.status(404).json({});
     }
 
     res.json(randomGameData);

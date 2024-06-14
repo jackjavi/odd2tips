@@ -2,7 +2,7 @@ import React from "react";
 import { fetchRandomGameData } from "../utils/football";
 
 const RandomGameData: React.FC = async () => {
-  const games = await fetchRandomGameData();
+  const games = (await fetchRandomGameData()) || [];
 
   return (
     <>
