@@ -8,9 +8,12 @@ const BASE_URL = "https://odd2tips.onrender.com";
 
 export async function fetchFixtures(): Promise<Fixture[]> {
   try {
-    const response = await fetch(`${BASE_URL}/api/football/fixtures`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/football/fixtures?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch fixtures");
     }
@@ -23,9 +26,12 @@ export async function fetchFixtures(): Promise<Fixture[]> {
 
 export async function fetchResults(): Promise<Result[]> {
   try {
-    const response = await fetch(`${BASE_URL}/api/football/get-results`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/football/get-results?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch results");
     }
@@ -38,9 +44,12 @@ export async function fetchResults(): Promise<Result[]> {
 
 export async function fetchScrapedFixtures(): Promise<Fixture[]> {
   try {
-    const response = await fetch(`${BASE_URL}/api/scrapedData/fixtures`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/scrapedData/fixtures?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch scraped fixtures");
     }
@@ -53,9 +62,12 @@ export async function fetchScrapedFixtures(): Promise<Fixture[]> {
 
 export async function fetchScrapedResults(): Promise<Result[]> {
   try {
-    const response = await fetch(`${BASE_URL}/api/scrapedData/results`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/scrapedData/results?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch scraped results");
     }
@@ -68,9 +80,12 @@ export async function fetchScrapedResults(): Promise<Result[]> {
 
 export async function fetchScrapedPredictions(): Promise<Prediction[]> {
   try {
-    const response = await fetch(`${BASE_URL}/api/scrapedData/predictions`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/scrapedData/predictions?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch scraped predictions");
     }
@@ -83,9 +98,12 @@ export async function fetchScrapedPredictions(): Promise<Prediction[]> {
 
 export async function createRoomHistory(): Promise<void> {
   try {
-    const response = await fetch(`${BASE_URL}/api/football/create-history`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/football/create-history?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to create room history");
     }
@@ -97,9 +115,12 @@ export async function createRoomHistory(): Promise<void> {
 
 export async function fetchPredictzResults(): Promise<void> {
   try {
-    const response = await fetch(`${BASE_URL}/api/football/results-predictz`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/football/results-predictz?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch predictz results");
     }
@@ -111,9 +132,12 @@ export async function fetchPredictzResults(): Promise<void> {
 
 export async function analyzeFootballResults(): Promise<void> {
   try {
-    const response = await fetch(`${BASE_URL}/api/football/analyze-results`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/football/analyze-results?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to analyze results");
     }
@@ -125,9 +149,12 @@ export async function analyzeFootballResults(): Promise<void> {
 
 export async function allocateFixturesToRooms(): Promise<void> {
   try {
-    const response = await fetch(`${BASE_URL}/api/football/predictz`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/football/predictz?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to allocate fixtures to rooms");
     }
@@ -140,7 +167,7 @@ export async function allocateFixturesToRooms(): Promise<void> {
 export async function gameDataCollectAllGames(): Promise<GameData[]> {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/games/gameDataCollectAllGameData`,
+      `${BASE_URL}/api/games/gameDataCollectAllGameData?timestamp=${new Date().getTime()}`,
       { cache: "no-store" }
     );
     if (!response.ok) {
@@ -155,9 +182,12 @@ export async function gameDataCollectAllGames(): Promise<GameData[]> {
 
 export async function fetchRandomGameData(): Promise<GameData[]> {
   try {
-    const response = await fetch(`${BASE_URL}/api/games/randomGameData`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/games/randomGameData?timestamp=${new Date().getTime()}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch random game data");
     }
