@@ -6,6 +6,7 @@ import Footer from "../Components/Footer";
 import { Metadata } from "next";
 import Script from "next/script";
 import { GoogleTagManager } from "@next/third-parties/google";
+export const dynamicParams = true;
 
 export const metadata: Metadata = {
   title: "Football latest trending news",
@@ -23,6 +24,7 @@ export default function Index() {
       <Navbar />
       <main>
         <Container>
+          p
           <Intro />
           <Fetch />
         </Container>
