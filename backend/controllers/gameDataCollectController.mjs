@@ -34,10 +34,10 @@ const getRandomGameData = async (req, res) => {
     const randomGameData = await GameData.find({ date: todayFormatted });
 
     if (!randomGameData.length) {
-      return res.status(404).json({});
+      return res.status(200).json([]);
     }
 
-    res.json(randomGameData);
+    res.status(200).json(randomGameData);
   } catch (error) {
     console.error("Error getting game data:", error);
     res.status(500).json({ message: "Failed to fetch game data" });
