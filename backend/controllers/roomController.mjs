@@ -92,8 +92,7 @@ const slugifyRooms = async (req, res) => {
 
 const isFollowing = async (req, res) => {
   try {
-    const { userId } = req.params;
-    const { roomId } = req.query;
+    const { roomId, userId } = req.query;
 
     const room = await Room.findById(roomId);
     if (!room) {
