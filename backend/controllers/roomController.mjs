@@ -29,6 +29,24 @@ const createRoom = async (req, res) => {
   }
 };
 
+const updateRoomMembers = async (req, res) => {
+  try {
+    const { roomId, userId } = req.body;
+
+    const room = await Room.findById(roomId);
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    room.members.push(userId);
+    await room.save();
+
+    res.status(200).json(room);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getAllRooms = async (req, res) => {
   try {
     const rooms = await Room.find().sort({ createdAt: -1 });
@@ -71,4 +89,10 @@ const slugifyRooms = async (req, res) => {
   }
 };
 
-export { createRoom, getAllRooms, getRoomByTitle, slugifyRooms };
+export {
+  createRoom,
+  getAllRooms,
+  getRoomByTitle,
+  slugifyRooms,
+  updateRoomMembers,
+};

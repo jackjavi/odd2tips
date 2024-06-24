@@ -19,7 +19,7 @@ const RoomsList: React.FC = async () => {
             <h3 className="md:text-xl text-md font-bold text-[whitesmoke]">
               {room.title}
             </h3>
-            <p className="text-gray-400 mt-2 md:h-[15vh] h-[10vh] overflow-scroll text-sm md:text-lg">
+            <p className="text-gray-400 mt-2 md:h-[15vh] h-[10vh] overflow-scroll md:overflow-hidden text-sm md:text-lg">
               {room.description}
             </p>
             <div className="mt-2">

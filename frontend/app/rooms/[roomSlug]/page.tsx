@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Daily2Odds from "@/app/Components/Daily2Odds";
+import RoomTitleComponent from "./RoomTitle";
 import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
 import History from "./History";
@@ -27,6 +28,7 @@ export const dynamicParams = true;
 const RoomComponent: React.FC = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const [isUserAdmin, setIsUserAdmin] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const router = useRouter();
   const { roomSlug } = useParams();
   const searchParams = useSearchParams();
@@ -52,6 +54,7 @@ const RoomComponent: React.FC = () => {
           currentUserId = response.data.user.userId;
         }
 
+        setUserId(currentUserId);
         setIsUserAdmin(currentUserId === adminId);
       } catch (error) {
         console.error("Error checking auth status:", error);
@@ -103,7 +106,9 @@ const RoomComponent: React.FC = () => {
       <Navbar />
       <main className="flex flex-col md:flex-row h-full bg-[whitesmoke] w-[90vw] md:w-[80vw] mx-auto">
         {/* Navigation Section */}
+
         <div className="w-full md:w-2/3 mx-auto p-4 bg-gray-50 overflow-y-auto">
+          <RoomTitleComponent roomTitle={roomTitle || "Room"} userId={userId} />
           <section
             id="todays-tip"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
