@@ -19,8 +19,8 @@ router.get("/get/:title", getRoomByTitle);
 
 router.get("/slugify", slugifyRooms);
 
-router.put("/updateMembers/:id", authenticate, updateRoomMembers);
+router.put("/updateMembers", authenticate, updateRoomMembers);
 
-router.get("/isFollowing/:userId", isFollowing);
+router.get("/isFollowing", isFollowing);
 
 export default router;
