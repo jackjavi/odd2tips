@@ -1,5 +1,6 @@
 import Room from "../models/Room.mjs";
 import User from "../models/User.mjs";
+import mongoose from "mongoose";
 
 function slugify(text) {
   return text
@@ -33,8 +34,11 @@ const createRoom = async (req, res) => {
 const updateRoomMembers = async (req, res) => {
   try {
     const { roomId, userId } = req.query;
+    console.log(roomId, userId);
 
-    const room = await Room.findById(roomId);
+    const objectId = new mongoose.Types.ObjectId(userId);
+
+    const room = await Room.find({ _id: objectId });
     if (!room) {
       return res.status(404).json({ message: "Room not found" });
     }
@@ -94,7 +98,9 @@ const isFollowing = async (req, res) => {
   try {
     const { roomId, userId } = req.query;
 
-    const room = await Room.findById(roomId);
+    const objectId = new mongoose.Types.ObjectId(roomId);
+
+    const room = await Room.find({ _id: objectId });
     if (!room) {
       return res.status(404).json({ message: "Room not found" });
     }
@@ -104,7 +110,9 @@ const isFollowing = async (req, res) => {
       return res.status(200).json({ isFollowing });
     }
 
-    const profile = await User.findById(userId).select(
+    const userIdObject = new mongoose.Types.ObjectId(userId);
+
+    const profile = await User.findById(userIdObject).select(
       "name email profilePicture"
     );
 
