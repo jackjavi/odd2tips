@@ -42,7 +42,7 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
   const handleFollow = async () => {
     if (userId) {
       try {
-        await axios.put(`api/rooms/updateMembers/${userId}`, {
+        await axios.post(`api/rooms/updateMembers/${userId}`, {
           roomId: roomId,
         });
 
