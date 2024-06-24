@@ -5,6 +5,7 @@ import {
   getAllRooms,
   getRoomByTitle,
   slugifyRooms,
+  isFollowing,
 } from "../controllers/roomController.mjs";
 import authenticate from "../middleware/authenticate.mjs";
 
@@ -19,5 +20,7 @@ router.get("/get/:title", getRoomByTitle);
 router.get("/slugify", slugifyRooms);
 
 router.put("/updateMembers/:id", authenticate, updateRoomMembers);
+
+router.get("/isFollowing/:userId", isFollowing);
 
 export default router;

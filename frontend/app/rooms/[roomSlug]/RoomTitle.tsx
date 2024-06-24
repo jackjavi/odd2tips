@@ -7,11 +7,13 @@ import { FaUserCircle } from "react-icons/fa";
 interface RoomTitleComponentProps {
   roomTitle: string;
   userId: string | null;
+  roomId: string;
 }
 
 const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
   roomTitle,
   userId,
+  roomId,
 }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [userProfile, setUserProfile] = useState<{
@@ -23,7 +25,9 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
     const checkFollowingStatus = async () => {
       if (userId) {
         try {
-          const response = await axios.get(`/api/following/${userId}`);
+          const response = await axios.get(
+            `/api/following/${userId}?roomId=${roomId}`
+          );
           setIsFollowing(response.data.isFollowing);
           setUserProfile(response.data.profile);
         } catch (error) {
@@ -38,7 +42,10 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
   const handleFollow = async () => {
     if (userId) {
       try {
-        await axios.put(`api/rooms/updateMembers/${userId}`);
+        await axios.put(`api/rooms/updateMembers/${userId}`, {
+          roomId: roomId,
+        });
+
         setIsFollowing(true);
       } catch (error) {
         console.error("Error following the room:", error);

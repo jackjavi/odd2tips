@@ -108,7 +108,11 @@ const RoomComponent: React.FC = () => {
         {/* Navigation Section */}
 
         <div className="w-full md:w-2/3 mx-auto p-4 bg-gray-50 overflow-y-auto">
-          <RoomTitleComponent roomTitle={roomTitle || "Room"} userId={userId} />
+          <RoomTitleComponent
+            roomTitle={roomTitle || "Room"}
+            userId={userId}
+            roomId={roomId || ""}
+          />
           <section
             id="todays-tip"
             className="mb-6 p-4 bg-white shadow-lg rounded-lg"
