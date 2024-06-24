@@ -37,7 +37,7 @@ const updateRoomMembers = async (req, res) => {
 
     const objectId = new mongoose.Types.ObjectId(roomId);
 
-    const room = await Room.find({ _id: objectId });
+    const room = await Room.findById(objectId);
     if (!room) {
       return res.status(404).json({ message: "Room not found" });
     }
@@ -102,7 +102,7 @@ const isFollowing = async (req, res) => {
 
     const objectId = new mongoose.Types.ObjectId(roomId);
 
-    const room = await Room.find({ _id: objectId });
+    const room = await Room.findBYId(objectId);
     if (!room) {
       return res.status(404).json({ message: "Room not found" });
     }
