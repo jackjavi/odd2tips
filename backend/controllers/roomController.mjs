@@ -1,4 +1,5 @@
 import Room from "../models/Room.mjs";
+import User from "../models/User.mjs";
 
 function slugify(text) {
   return text
@@ -89,10 +90,36 @@ const slugifyRooms = async (req, res) => {
   }
 };
 
+const isFollowing = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { roomId } = req.query;
+
+    const room = await Room.findById(roomId);
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    const isFollowing = room.members.includes(userId);
+    if (!isFollowing) {
+      return res.status(200).json({ isFollowing });
+    }
+
+    const profile = await User.findById(userId).select(
+      "name email profilePicture"
+    );
+
+    res.status(200).json({ isFollowing, profile });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export {
   createRoom,
   getAllRooms,
   getRoomByTitle,
   slugifyRooms,
   updateRoomMembers,
+  isFollowing,
 };
