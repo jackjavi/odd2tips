@@ -63,7 +63,7 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
       <h1>Members: {members}</h1>
       {isFollowing && userProfile ? (
         <div className="flex items-center space-x-4">
-          if(userProfile.profilePicture){" "}
+          {/*if(userProfile.profilePicture){" "}
           {
             <Image
               src={userProfile.profilePicture}
@@ -73,7 +73,7 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
               className="rounded-full"
             />
           }{" "}
-          else {<FaUserCircle className="text-3xl text-gray-500" />}
+        else {<FaUserCircle className="text-3xl text-gray-500" />}*/}
           <div>
             <p className="text-lg font-semibold">{userProfile.name}</p>
             <p className="text-sm text-gray-500">{userProfile.email}</p>
