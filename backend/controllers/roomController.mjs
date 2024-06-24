@@ -32,7 +32,7 @@ const createRoom = async (req, res) => {
 
 const updateRoomMembers = async (req, res) => {
   try {
-    const { roomId, userId } = req.body;
+    const { roomId, userId } = req.query;
 
     const room = await Room.findById(roomId);
     if (!room) {
