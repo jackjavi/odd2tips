@@ -37,7 +37,7 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
     };
 
     checkFollowingStatus();
-  }, [userId]);
+  }, [userId, isFollowing]);
 
   const handleFollow = async () => {
     if (userId) {
@@ -51,7 +51,7 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
         console.error("Error following the room:", error);
       }
     } else {
-      alert("Please log in OR sign up to follow this room.");
+      alert("Please sign up and log in to follow this room.");
     }
   };
 
