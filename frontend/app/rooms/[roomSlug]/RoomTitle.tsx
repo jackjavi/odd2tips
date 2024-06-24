@@ -60,7 +60,7 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
   return (
     <div className="bg-white shadow-md rounded-lg p-4 flex md:flex flex-col justify-between items-center mb-8">
       <h1 className="text-2xl font-bold text-teal-700">{roomTitle}</h1>
-      <h1>Members: {members}</h1>
+      <h1 className="text-teal-700">Members: {members}</h1>
       {isFollowing && userProfile ? (
         <div className="flex items-center space-x-4">
           {/*if(userProfile.profilePicture){" "}
