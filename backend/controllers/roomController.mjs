@@ -44,6 +44,12 @@ const updateRoomMembers = async (req, res) => {
 
     const userIdObject = new mongoose.Types.ObjectId(userId);
 
+    // check if user is already a member
+    const isMember = room.members.includes(userIdObject);
+    if (isMember) {
+      return res.status(200).json(room);
+    }
+
     room.members.push(userIdObject);
     await room.save();
 
