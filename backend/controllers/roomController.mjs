@@ -34,7 +34,6 @@ const createRoom = async (req, res) => {
 const updateRoomMembers = async (req, res) => {
   try {
     const { roomId, userId } = req.query;
-    console.log(roomId, userId);
 
     const objectId = new mongoose.Types.ObjectId(roomId);
 
@@ -43,7 +42,9 @@ const updateRoomMembers = async (req, res) => {
       return res.status(404).json({ message: "Room not found" });
     }
 
-    room.members.push();
+    const userIdObject = new mongoose.Types.ObjectId(userId);
+
+    room.members.push(userIdObject);
     await room.save();
 
     res.status(200).json(room);
