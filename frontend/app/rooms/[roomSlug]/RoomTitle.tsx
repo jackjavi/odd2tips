@@ -43,7 +43,7 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
     if (userId) {
       try {
         await axios.put(
-          `api/rooms/updateMembers?userId=${userId}&roomId=${roomId}`
+          `/api/rooms/updateMembers?userId=${userId}&roomId=${roomId}`
         );
 
         setIsFollowing(true);
