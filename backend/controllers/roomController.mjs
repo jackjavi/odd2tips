@@ -112,10 +112,11 @@ const isFollowing = async (req, res) => {
     if (!room) {
       return res.status(404).json({ message: "Room not found" });
     }
+    const numMembers = room.members.length;
 
     const isFollowing = room.members.includes(userId);
     if (!isFollowing) {
-      return res.status(200).json({ isFollowing });
+      return res.status(200).json({ isFollowing, members: numMembers });
     }
 
     const userIdObject = new mongoose.Types.ObjectId(userId);
@@ -124,7 +125,7 @@ const isFollowing = async (req, res) => {
       "name email profilePicture"
     );
 
-    res.status(200).json({ isFollowing, profile });
+    res.status(200).json({ isFollowing, profile, members: numMembers });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
