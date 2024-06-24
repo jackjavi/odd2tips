@@ -19,7 +19,7 @@ router.get("/get/:title", getRoomByTitle);
 
 router.get("/slugify", slugifyRooms);
 
-router.get("/updateMembers", authenticate, updateRoomMembers);
+router.get("/updateMembers", updateRoomMembers);
 
 router.get("/isFollowing", isFollowing);
 
