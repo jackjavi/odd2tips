@@ -42,9 +42,9 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
   const handleFollow = async () => {
     if (userId) {
       try {
-        await axios.put(`api/rooms/updateMembers/${userId}`, {
-          roomId: roomId,
-        });
+        await axios.put(
+          `api/rooms/updateMembers?userId=${userId}&roomId=${roomId}`
+        );
 
         setIsFollowing(true);
       } catch (error) {
