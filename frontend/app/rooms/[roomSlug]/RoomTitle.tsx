@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
+import Image from "next/image";
 
 interface RoomTitleComponentProps {
   roomTitle: string;
@@ -19,20 +20,21 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
   const [userProfile, setUserProfile] = useState<{
     name: string;
     email: string;
+    profilePicture: string;
   } | null>(null);
+  const [members, setMembers] = useState<string[] | null>(null);
 
   useEffect(() => {
     const checkFollowingStatus = async () => {
-      if (userId) {
-        try {
-          const response = await axios.get(
-            `/api/rooms/isFollowing?userId=${userId}&roomId=${roomId}`
-          );
-          setIsFollowing(response.data.isFollowing);
-          setUserProfile(response.data.profile);
-        } catch (error) {
-          console.error("Error checking following status:", error);
-        }
+      try {
+        const response = await axios.get(
+          `/api/rooms/isFollowing?userId=${userId}&roomId=${roomId}`
+        );
+        setIsFollowing(response.data.isFollowing);
+        setUserProfile(response.data.profile);
+        setMembers(response.data.members);
+      } catch (error) {
+        console.error("Error checking following status:", error);
       }
     };
 
@@ -58,9 +60,20 @@ const RoomTitleComponent: React.FC<RoomTitleComponentProps> = ({
   return (
     <div className="bg-white shadow-md rounded-lg p-4 flex md:flex flex-col justify-between items-center mb-8">
       <h1 className="text-2xl font-bold text-teal-700">{roomTitle}</h1>
+      <h1>Members: {members}</h1>
       {isFollowing && userProfile ? (
         <div className="flex items-center space-x-4">
-          <FaUserCircle className="text-3xl text-gray-500" />
+          if(userProfile.profilePicture){" "}
+          {
+            <Image
+              src={userProfile.profilePicture}
+              alt="Profile Picture"
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+          }{" "}
+          else {<FaUserCircle className="text-3xl text-gray-500" />}
           <div>
             <p className="text-lg font-semibold">{userProfile.name}</p>
             <p className="text-sm text-gray-500">{userProfile.email}</p>
