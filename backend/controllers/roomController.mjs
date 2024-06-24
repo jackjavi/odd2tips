@@ -49,6 +49,7 @@ const updateRoomMembers = async (req, res) => {
 
     res.status(200).json(room);
   } catch (error) {
+    console.log(error.message + " from updateRoomMembers");
     res.status(500).json({ message: error.message });
   }
 };
