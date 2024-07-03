@@ -4,13 +4,12 @@ import { HeroPost } from "@/app/blog/_components/hero-post";
 import { MoreStories } from "@/app/blog/_components/more-stories";
 export const dynamicParams = true;
 
-const Fetch: React.FC = async () => {
-  const allPosts = await getAllPosts();
+interface FetchProps {
+  heroPost: Post;
+  morePosts: Post[];
+}
 
-  const heroPost = allPosts[0] || {};
-  console.log("heroPost", heroPost);
-  const morePosts = allPosts.length > 1 ? allPosts.slice(1) : [];
-
+const Fetch = async ({ heroPost, morePosts }: FetchProps) => {
   return (
     <>
       <HeroPost post={heroPost} />
