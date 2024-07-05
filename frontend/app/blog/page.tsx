@@ -8,6 +8,7 @@ import { Post } from "@/interfaces/post";
 import { Metadata } from "next";
 import Script from "next/script";
 import { GoogleTagManager } from "@next/third-parties/google";
+export const dynamicParams = true;
 
 export const metadata: Metadata = {
   title: "Football latest trending news",
