@@ -57,7 +57,7 @@ export default function Register() {
 
   return (
     <div className="bg-[whitesmoke]">
-      <GoogleTagManager gtmId="G-2242Y4EH8R" />
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Navbar />
       <div className="flex min-h-screen w-[90vw] md:w-[80vw] mx-auto">
         <div className="flex flex-col justify-center gap-4 w-full md:w-1/2 p-12 bg-slate-800">

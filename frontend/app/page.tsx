@@ -24,7 +24,7 @@ const Home = async () => {
   const heroPost = allPosts.length > 0 ? allPosts[0] : null;
   return (
     <>
-      <GoogleTagManager gtmId="G-2242Y4EH8R" />
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <div className="bg-[whitesmoke] ">
         <Navbar />
 
