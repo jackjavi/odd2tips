@@ -25,7 +25,7 @@ const Index = async () => {
   const morePosts: Post[] = allPosts.length > 1 ? allPosts.slice(1) : [];
   return (
     <div className="bg-[whitesmoke]">
-      <GoogleTagManager gtmId="G-2242Y4EH8R" />
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Navbar />
       <main>
         <Container>

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const FixturesPage: React.FC = () => {
   return (
     <div className="bg-[whitesmoke]">
-      <GoogleTagManager gtmId="G-2242Y4EH8R" />
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Navbar />
       <main mx-auto>
         <div className="md:w-2/3">

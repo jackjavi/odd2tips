@@ -8,7 +8,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 const TermsOfService: React.FC = () => {
   return (
     <div className="bg-[whitesmoke]">
-      <GoogleTagManager gtmId="G-2242Y4EH8R" />
+      <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Navbar />
       <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg text-slate-600">
