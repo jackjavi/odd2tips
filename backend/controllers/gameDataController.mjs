@@ -1,5 +1,6 @@
 import GameData from "../models/GameDataRooms.mjs";
 import { formatDate } from "../utils/dateUtils.mjs";
+import mongoose from "mongoose";
 
 const createGameData = async (req, res) => {
   try {
