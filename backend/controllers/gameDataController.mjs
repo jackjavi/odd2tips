@@ -7,7 +7,7 @@ const createGameData = async (req, res) => {
     const { roomId, ...rest } = req.body;
 
     const newGameData = new GameData({
-      roomId: mongoose.Types.ObjectId(roomId),
+      roomId: new mongoose.Types.ObjectId(roomId),
       ...rest,
     });
     const savedGameData = await newGameData.save();
