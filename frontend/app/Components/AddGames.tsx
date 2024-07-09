@@ -89,6 +89,23 @@ const AddGames: React.FC = () => {
             onChange={handleChange}
           />
         </div>
+        <div>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="startTime"
+          >
+            Date
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="startTime"
+            type="datetime-local"
+            placeholder="Select start time"
+            name="startTime"
+            value={formData.date}
+            onChange={handleChange}
+          />
+        </div>
 
         {/* Home Team Input */}
         <div className="mb-4">

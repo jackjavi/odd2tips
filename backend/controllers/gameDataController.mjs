@@ -1,12 +1,15 @@
 import GameData from "../models/GameDataRooms.mjs";
+import { formatDate } from "../utils/dateUtils.mjs";
 
 const createGameData = async (req, res) => {
   try {
-    const gameData = new GameData(req.body);
-    await gameData.save();
-    res.status(201).json(gameData);
+    req.body.date = formatDate(req.body.date);
+    const newGameData = new GameData(req.body);
+    const savedGameData = await newGameData.save();
+    res.status(201).json(savedGameData);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.error("Error creating game data:", error);
+    res.status(500).json({ message: "Failed to create game data" });
   }
 };
 
