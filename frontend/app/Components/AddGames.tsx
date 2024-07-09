@@ -55,6 +55,10 @@ const AddGames: React.FC = () => {
     }
 
     const date = new Date(formData.date);
+
+    // Format the date to "yyyy-MM-ddThh:mm"
+    const formattedDate = date.toISOString().slice(0, 16);
+
     const utcDate = new Date(
       Date.UTC(
         date.getFullYear(),
