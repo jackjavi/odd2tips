@@ -12,10 +12,8 @@ interface GameData {
   prediction: string;
   roomId: string;
   date?: string;
-  odds: string[];
+  odd: string[];
   countryName: string;
-  last5home: string[];
-  last5away: string[];
 }
 
 const AddGames: React.FC = () => {
@@ -28,10 +26,8 @@ const AddGames: React.FC = () => {
     prediction: "",
     roomId: "",
     date: "",
-    odds: [],
+    odd: [],
     countryName: "",
-    last5home: [],
-    last5away: [],
   });
 
   const searchParams = useSearchParams();
@@ -167,7 +163,7 @@ const AddGames: React.FC = () => {
             name="odd"
             min="0.01"
             step="0.01"
-            value={formData.odds}
+            value={formData.odd}
             onChange={handleChange}
           />
         </div>

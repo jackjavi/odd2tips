@@ -1,3 +1,4 @@
+import GameDataRooms from "../models/GameDataRooms.mjs";
 import GameData from "../models/GameData.mjs";
 import Room from "../models/Room.mjs";
 import { formatDate } from "../utils/dateUtils.mjs";
@@ -9,7 +10,7 @@ const getGameData = async (req, res) => {
   const { roomId } = req.query;
 
   try {
-    const gameData = await GameData.find({
+    const gameData = await GameDataRooms.find({
       date: todayFormatted,
       roomId: roomId,
     });
