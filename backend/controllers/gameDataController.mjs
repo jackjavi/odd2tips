@@ -3,7 +3,12 @@ import { formatDate } from "../utils/dateUtils.mjs";
 
 const createGameData = async (req, res) => {
   try {
-    const newGameData = new GameData(req.body);
+    const { roomId, ...rest } = req.body;
+
+    const newGameData = new GameData({
+      roomId: mongoose.Types.ObjectId(roomId),
+      ...rest,
+    });
     const savedGameData = await newGameData.save();
     res.status(201).json(savedGameData);
   } catch (error) {
