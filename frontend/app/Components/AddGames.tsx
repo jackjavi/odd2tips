@@ -74,13 +74,15 @@ const AddGames: React.FC = () => {
       date: formattedDate,
     }));
 
-    const safeRoomId = typeof roomId === "string" ? roomId : "";
+    // const safeRoomId = typeof roomId === "string" ? roomId : "";
 
     try {
-      setFormData((prevData) => ({
+      {
+        /* setFormData((prevData) => ({
         ...prevData,
         roomId: safeRoomId,
-      }));
+      })); */
+      }
 
       const response = await axios.post(`/api/games/gameData`, formData);
 
