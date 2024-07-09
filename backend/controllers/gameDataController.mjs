@@ -1,4 +1,4 @@
-import GameData from "../models/GameData.mjs";
+import GameData from "../models/GameDataRooms.mjs";
 
 const createGameData = async (req, res) => {
   try {
