@@ -11,7 +11,7 @@ interface GameData {
   awayTeam: string;
   prediction: string;
   roomId: string;
-  date: string;
+  date?: string;
   odd: string[];
   countryName: string;
 }
@@ -102,7 +102,7 @@ const AddGames: React.FC = () => {
             id="startTime"
             type="datetime-local"
             placeholder="Select start time"
-            name="startTime"
+            name="date"
             value={formData.date}
             onChange={handleChange}
           />
