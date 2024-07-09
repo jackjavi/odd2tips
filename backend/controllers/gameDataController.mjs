@@ -3,7 +3,6 @@ import { formatDate } from "../utils/dateUtils.mjs";
 
 const createGameData = async (req, res) => {
   try {
-    req.body.date = formatDate(req.body.date);
     const newGameData = new GameData(req.body);
     const savedGameData = await newGameData.save();
     res.status(201).json(savedGameData);

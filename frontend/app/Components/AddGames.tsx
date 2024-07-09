@@ -71,7 +71,7 @@ const AddGames: React.FC = () => {
 
     setFormData((prevData) => ({
       ...prevData,
-      date: utcDate.toISOString(),
+      date: formattedDate,
     }));
 
     const safeRoomId = typeof roomId === "string" ? roomId : "";
