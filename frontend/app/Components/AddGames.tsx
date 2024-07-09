@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { useParams, useSearchParams, useRouter } from "next/navigation";
+import { set } from "date-fns";
 
 interface GameData {
   gameTitle: string;
@@ -47,6 +48,27 @@ const AddGames: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!formData.date) {
+      alert("Please enter a valid date and time for the start time.");
+      return;
+    }
+
+    const date = new Date(formData.date);
+    const utcDate = new Date(
+      Date.UTC(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        date.getHours(),
+        date.getMinutes()
+      )
+    );
+
+    setFormData((prevData) => ({
+      ...prevData,
+      date: utcDate.toISOString(),
+    }));
 
     const safeRoomId = typeof roomId === "string" ? roomId : "";
 
