@@ -205,16 +205,16 @@ const Navbar = () => {
         <Link href="/betslip">
           <span className="p-2">Create Betslip</span>
         </Link>
-        {/*<Link
+        <Link
           onClick={() =>
             alert(
               "Not available currently, subscribe to our newsletter to get updates on the same."
             )
           }
-          href="#"
+          href="/rooms/create"
         >
-          <span>Become our Top Tipster</span>
-        </Link>*/}
+          <span>Own Room</span>
+        </Link>
       </div>
     </nav>
   );
