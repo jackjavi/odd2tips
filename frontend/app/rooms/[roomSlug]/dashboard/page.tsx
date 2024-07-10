@@ -16,8 +16,8 @@ const AdminPage: React.FC = () => {
       {" "}
       <GoogleTagManager gtmId="G-2242Y4EH8R" />
       <Navbar />{" "}
-      <main className=" mx-auto my-10 container">
-        <div className="flex md:flex-row flex-col w-[80vw] md:w-[90vw] gap-8">
+      <main className=" mx-auto my-10 ">
+        <div className="flex md:flex-row flex-col w-[80vw] md:w-[90vw] gap-8 mx-auto">
           <div className="md:w-1/3">
             <AddGames />
           </div>
