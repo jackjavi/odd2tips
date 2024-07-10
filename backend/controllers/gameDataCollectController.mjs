@@ -5,13 +5,17 @@ import { formatDate } from "../utils/dateUtils.mjs";
 
 const getGameData = async (req, res) => {
   const today = new Date();
-  const todayFormatted = formatDate(today); // "Wednesday, May 1st, 2024"
+  const startOfDay = new Date(today.setHours(0, 0, 0, 0));
+  const endOfDay = new Date(today.setHours(23, 59, 59, 999));
 
   const { roomId } = req.query;
 
   try {
     const gameData = await GameDataRooms.find({
-      date: todayFormatted,
+      date: {
+        $gte: startOfDay,
+        $lt: endOfDay,
+      },
       roomId: roomId,
     });
 
