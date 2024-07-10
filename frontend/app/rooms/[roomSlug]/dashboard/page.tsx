@@ -18,10 +18,10 @@ const AdminPage: React.FC = () => {
       <Navbar />{" "}
       <main className=" mx-auto my-10 ">
         <div className="flex md:flex-row flex-col w-[80vw] md:w-[90vw] gap-8 mx-auto">
-          <div className="md:w-1/3">
+          <div className="md:w-1/4">
             <AddGames />
           </div>
-          <div className="md:w-2/3">
+          <div className="md:w-1/2">
             <EditGames />
           </div>
         </div>
