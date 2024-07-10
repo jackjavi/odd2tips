@@ -11,7 +11,7 @@ interface GameData {
   homeTeam: string;
   awayTeam: string;
   prediction: string;
-  roomId: string;
+  roomId: string | null;
   date?: string;
   odd: string[];
   countryName: string;
@@ -71,18 +71,16 @@ const AddGames: React.FC = () => {
 
     setFormData((prevData) => ({
       ...prevData,
-      date: formattedDate,
+      roomId: roomId,
     }));
 
-    // const safeRoomId = typeof roomId === "string" ? roomId : "";
+    const safeRoomId = typeof roomId === "string" ? roomId : "";
 
     try {
-      {
-        /* setFormData((prevData) => ({
+      setFormData((prevData) => ({
         ...prevData,
         roomId: safeRoomId,
-      })); */
-      }
+      }));
 
       const response = await axios.post(`/api/games/gameData`, formData);
 
