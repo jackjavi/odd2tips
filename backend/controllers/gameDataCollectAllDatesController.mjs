@@ -5,7 +5,7 @@ const getGameDataAllDates = async (req, res) => {
   const { roomId } = req.query;
 
   try {
-    const gameData = await GameData.find({
+    const gameData = await GameDataRooms.find({
       roomId: roomId,
     });
 
