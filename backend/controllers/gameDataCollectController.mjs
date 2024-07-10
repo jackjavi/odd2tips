@@ -5,8 +5,9 @@ import { formatDate } from "../utils/dateUtils.mjs";
 
 const getGameData = async (req, res) => {
   const today = new Date();
-  const startOfDay = new Date(today.setHours(0, 0, 0, 0));
-  const endOfDay = new Date(today.setHours(23, 59, 59, 999));
+  const startOfDay = new Date(today.setHours(0, 0));
+  const endOfDay = new Date(today.setHours(23, 59));
+  console.log("startOfDay", startOfDay);
 
   const { roomId } = req.query;
 
