@@ -68,13 +68,23 @@ export default function Login() {
       <Navbar />
       <div className="flex min-h-screen w-[90vw] md:w-[80vw] mx-auto">
         <div className="flex flex-col justify-center w-full md:w-1/2 p-12 text-white gap-4 bg-slate-800">
+          <h1 className="text-3xl font-semibold text-center mb-8 text-blue-200 font-playfair">
+            Login
+          </h1>
+          {error && (
+            <p className="bg-red-100 text-red-500 p-3 rounded">{error}</p>
+          )}
+          <div className="flex justify-center items-center">
+            <GoogleSignInButton onClick={handleGoogleLogin} />
+          </div>
+          <div className="flex items-center justify-center  py-2">
+            <div className="border-t border-slate-500 w-[10%]" />
+            <span className="px-4 text-sm font-montserrat text-[whitesmoke] ">
+              or
+            </span>
+            <div className="border-t border-slate-500 w-[10%]" />
+          </div>
           <div className="max-w-md mx-auto">
-            <h1 className="text-3xl font-semibold text-center mb-8 text-blue-200 font-playfair">
-              Login
-            </h1>
-            {error && (
-              <p className="bg-red-100 text-red-500 p-3 rounded">{error}</p>
-            )}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold">
@@ -144,16 +154,6 @@ export default function Login() {
               </Link>
               .
             </p>
-          </div>
-          <div className="flex items-center justify-center  py-2">
-            <div className="border-t border-slate-500 w-[10%]" />
-            <span className="px-4 text-sm font-montserrat text-[whitesmoke] ">
-              or
-            </span>
-            <div className="border-t border-slate-500 w-[10%]" />
-          </div>
-          <div className="flex justify-center items-center">
-            <GoogleSignInButton onClick={handleGoogleLogin} />
           </div>
         </div>
 
