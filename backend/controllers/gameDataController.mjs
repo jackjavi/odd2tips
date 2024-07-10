@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 const createGameData = async (req, res) => {
   try {
     const { roomId, ...rest } = req.body;
+    console.log("req.body", req.body);
 
     const newGameData = new GameData({
       roomId: new mongoose.Types.ObjectId(roomId),
