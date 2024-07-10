@@ -68,6 +68,17 @@ export default function Register() {
             {error && (
               <p className="bg-red-100 text-red-500 p-3 rounded">{error}</p>
             )}
+
+            <div className="flex justify-center items-center">
+              <GoogleSignInButton onClick={handleGoogleLogin} />
+            </div>
+            <div className="flex items-center justify-center py-2">
+              <div className="border-t border-slate-500 w-[10%]" />
+              <span className="px-4 text-sm font-montserrat text-[whitesmoke]">
+                or
+              </span>
+              <div className="border-t border-slate-500 w-[10%]" />
+            </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
@@ -172,16 +183,6 @@ export default function Register() {
               </Link>
               .
             </p>
-          </div>
-          <div className="flex items-center justify-center py-2">
-            <div className="border-t border-slate-500 w-[10%]" />
-            <span className="px-4 text-sm font-montserrat text-[whitesmoke]">
-              or
-            </span>
-            <div className="border-t border-slate-500 w-[10%]" />
-          </div>
-          <div className="flex justify-center items-center">
-            <GoogleSignInButton onClick={handleGoogleLogin} />
           </div>
         </div>
         <div
