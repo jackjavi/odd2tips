@@ -1,4 +1,5 @@
 import GameData from "../models/GameData.mjs";
+import GameDataRooms from "../models/GameDataRooms.mjs";
 
 const getGameDataAllDates = async (req, res) => {
   const { roomId } = req.query;
@@ -19,7 +20,7 @@ const getGameDataAllDates = async (req, res) => {
 
 const getGameDataAllGameData = async (req, res) => {
   try {
-    const gameData = await GameData.find({}).sort({ createdAt: -1 });
+    const gameData = await GameDataRooms.find({}).sort({ createdAt: -1 });
 
     res.json(gameData);
   } catch (error) {
