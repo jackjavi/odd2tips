@@ -205,14 +205,7 @@ const Navbar = () => {
         <Link href="/betslip">
           <span className="p-2">Create Betslip</span>
         </Link>
-        <Link
-          onClick={() =>
-            alert(
-              "Not available currently, subscribe to our newsletter to get updates on the same."
-            )
-          }
-          href="/rooms/create"
-        >
+        <Link href="/rooms/create">
           <span>Own Room</span>
         </Link>
       </div>
