@@ -6,6 +6,8 @@ import Footer from "../Components/Footer";
 import { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
+import { fetchRooms } from "@/lib/api";
+import { Room } from "@/interfaces/room";
 export const dynamicParams = true;
 
 export const metadata: Metadata = {
@@ -17,7 +19,8 @@ export const metadata: Metadata = {
   ],
 };
 
-const GetRoomPage: React.FC = () => {
+const GetRoomPage: React.FC = async () => {
+  const rooms: Room[] = await fetchRooms();
   return (
     <div className="bg-[whitesmoke]">
       <GoogleTagManager gtmId="G-T2RQ49FPP3" />
@@ -27,7 +30,7 @@ const GetRoomPage: React.FC = () => {
           <CreateRoomLink />
   </div>*/}
         <div className="flex flex-col items-center justify-center py-10">
-          <GetRooms />
+          <GetRooms rooms={rooms} />
         </div>
       </main>
       <Footer />
