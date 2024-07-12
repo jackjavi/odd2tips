@@ -1,5 +1,6 @@
 import React from "react";
 import VisitRoomButton from "./VisitRoomButton";
+import ShareRoomButton from "./ShareRoomButton";
 import { Room } from "@/interfaces/room";
 
 const RoomsList = async ({ rooms }: { rooms: Room[] }) => {
@@ -25,12 +26,15 @@ const RoomsList = async ({ rooms }: { rooms: Room[] }) => {
                 {room.privacy.toUpperCase()}
               </span>
             </div>
-            <VisitRoomButton
-              roomId={room._id}
-              adminId={room.adminId}
-              roomTitle={room.title}
-              roomSlug={room.slug}
-            />
+            <div className="flex items-center justify-between">
+              <VisitRoomButton
+                roomId={room._id}
+                adminId={room.adminId}
+                roomTitle={room.title}
+                roomSlug={room.slug}
+              />
+              <ShareRoomButton roomId={room._id} roomSlug={room.slug} />
+            </div>
           </div>
         ))}
       </div>
