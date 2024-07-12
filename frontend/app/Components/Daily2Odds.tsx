@@ -75,8 +75,11 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
     <>
       <div
         ref={ref}
-        className="max-w-4xl mx-auto bg-white shadow rounded overflow-hidden"
+        className="max-w-4xl mx-auto bg-slate-800 shadow rounded overflow-hidden"
       >
+        <div className="p-4 bg-teal-950 text-white text-center text-lg font-semibold">
+          <h2>{roomTitle}</h2>
+        </div>
         {games.length === 0 ? (
           <div className="p-6 text-center text-lg font-medium text-gray-500">
             No games available. Please check back later.
@@ -112,7 +115,7 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
                 </div>
               </div>
             ))}
-            <div className="p-4 text-center text-lg text-teal-950">
+            <div className="p-4 text-center text-lg text-[whitesmoke]">
               Total Odds: {totalOdds.toFixed(2)}
             </div>
           </>
