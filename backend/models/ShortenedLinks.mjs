@@ -4,6 +4,7 @@ const shortenedLinkSchema = new mongoose.Schema(
   {
     originalUrl: { type: String, required: true },
     shortUrl: { type: String, required: true, unique: true },
+    active: { type: Boolean, default: true },
   },
   { timestamps: true }
 );
