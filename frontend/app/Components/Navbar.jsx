@@ -189,7 +189,7 @@ const Navbar = () => {
           {navLinks}
         </div>
       </div>
-      <div className="bg-teal-600 text-[whitesmoke]  font-extrabold text-sm md:text-md 3xl:text-lg flex justify-around items-center flex-wrap    h-[50%] w-full">
+      <div className="bg-teal-600 text-[whitesmoke]  font-extrabold text-sm md:text-md 3xl:text-lg flex justify-around items-center flex-wrap    h-[50%] w-[95%] md:w-full">
         <Link href="/rooms">
           <span className="p-2">Predictions</span>
         </Link>
