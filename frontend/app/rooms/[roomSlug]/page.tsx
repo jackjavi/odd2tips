@@ -105,7 +105,7 @@ const RoomComponent: React.FC = () => {
     <div className="bg-[whitesmoke]">
       <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <Navbar />
-      <main className="flex flex-col md:flex-row h-full bg-[whitesmoke] w-[90vw] md:w-[80vw] mx-auto">
+      <main className="flex flex-col md:flex-row h-full bg-[whitesmoke] gap-8 py-8 w-[90vw] md:w-[80vw] mx-auto">
         {/* Navigation Section */}
 
         <div className="w-full md:w-2/3 mx-auto p-4 bg-gray-50 overflow-y-auto">
@@ -166,8 +166,9 @@ const RoomComponent: React.FC = () => {
             <History roomId={roomId} />
           </Modal>
         )}
+        <Chat />
       </main>
-      <Chat />
+
       <Footer />
     </div>
   );

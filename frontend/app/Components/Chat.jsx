@@ -85,7 +85,7 @@ const Chat = () => {
     <>
       {showLoginModal && <LoginModal onClose={handleModalClose} />}
 
-      <div className="flex flex-col h-screen max-w-lg mx-auto rounded-lg shadow overflow-hidden border border-gray-200">
+      <div className="flex flex-col h-screen w-full  mx-auto rounded-lg shadow overflow-hidden border border-gray-200">
         <div className="bg-gradient-to-r from-blue-600 to-teal-400 p-4 text-white font-semibold flex justify-between items-center">
           <span>Fan Zone</span>
           <div className="flex items-center bg-white text-blue-800 rounded-full px-3 py-1 text-xs font-bold">
