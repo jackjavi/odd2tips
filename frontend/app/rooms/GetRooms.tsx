@@ -1,10 +1,8 @@
 import React from "react";
-import { fetchRooms } from "@/lib/api";
 import VisitRoomButton from "./VisitRoomButton";
+import { Room } from "@/interfaces/room";
 
-const RoomsList: React.FC = async () => {
-  const rooms = await fetchRooms();
-
+const RoomsList = async ({ rooms }: { rooms: Room[] }) => {
   return (
     <div className="container mx-auto p-4 h-full">
       <h2 className="text-2xl font-semibold mb-4 text-teal-800">
