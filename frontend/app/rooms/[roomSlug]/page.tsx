@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Daily2Odds from "@/app/Components/Daily2Odds";
+import Chat from "@/app/Components/Chat";
 import RoomTitleComponent from "./RoomTitle";
 import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
@@ -166,6 +167,7 @@ const RoomComponent: React.FC = () => {
           </Modal>
         )}
       </main>
+      <Chat />
       <Footer />
     </div>
   );
