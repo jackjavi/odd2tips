@@ -73,7 +73,10 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
 
   return (
     <>
-      <div className="max-w-4xl mx-auto bg-white shadow rounded overflow-hidden">
+      <div
+        ref={ref}
+        className="max-w-4xl mx-auto bg-white shadow rounded overflow-hidden"
+      >
         {games.length === 0 ? (
           <div className="p-6 text-center text-lg font-medium text-gray-500">
             No games available. Please check back later.
@@ -82,7 +85,6 @@ const Daily2Odds: React.FC<Daily2OddsProps> = ({
           <>
             {games.map((game) => (
               <div
-                ref={ref}
                 key={game._id}
                 className="p-4 border-b border-gray-200 last:border-b-0"
               >
