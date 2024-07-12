@@ -3,14 +3,25 @@ import crypto from "crypto";
 
 const createShortenedLink = async (req, res) => {
   const { originalUrl } = req.body;
-  let shortUrl = crypto.randomBytes(4).toString("hex");
-  shortUrl = "tipster/" + shortUrl;
 
   try {
+    const existingLink = await ShortenedLink.findOne({
+      originalUrl,
+      active: true,
+    });
+
+    if (existingLink) {
+      return res.status(200).json({ shortUrl: existingLink.shortUrl });
+    }
+
+    let shortUrl = crypto.randomBytes(4).toString("hex");
+    shortUrl = "tipster/" + shortUrl;
+
     const newShortenedLink = new ShortenedLink({
       originalUrl,
       shortUrl,
     });
+
     await newShortenedLink.save();
     res.status(201).json({ shortUrl });
   } catch (error) {
