@@ -33,7 +33,12 @@ const RoomsList = async ({ rooms }: { rooms: Room[] }) => {
                 roomTitle={room.title}
                 roomSlug={room.slug}
               />
-              <ShareRoomButton roomId={room._id} roomSlug={room.slug} />
+              <ShareRoomButton
+                roomId={room._id}
+                roomSlug={room.slug}
+                adminId={room.adminId}
+                roomTitle={room.title}
+              />
             </div>
           </div>
         ))}

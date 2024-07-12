@@ -6,11 +6,15 @@ import axios from "axios";
 interface ShareRoomButtonProps {
   roomId: string;
   roomSlug: string;
+  adminId: string;
+  roomTitle: string;
 }
 
 const ShareRoomButton: React.FC<ShareRoomButtonProps> = ({
   roomId,
   roomSlug,
+  adminId,
+  roomTitle,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [shortenedUrl, setShortenedUrl] = useState("");
@@ -19,7 +23,7 @@ const ShareRoomButton: React.FC<ShareRoomButtonProps> = ({
     const currentUrl = window.location.origin;
     const roomUrl = `${currentUrl}/rooms/${encodeURIComponent(
       roomSlug
-    )}?roomId=${roomId}`;
+    )}?roomId=${roomId}&roomTitle=${roomTitle}&adminId=${adminId}`;
 
     try {
       const response = await axios.post("/api/shortenedLinks", {
