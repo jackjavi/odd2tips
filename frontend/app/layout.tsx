@@ -8,6 +8,14 @@ import type { Metadata } from "next";
 import { HOME_OG_IMAGE_URL } from "@/lib/constants";
 import "./globals.css";
 
+export const dynamic = "auto";
+export const dynamicParams = true;
+export const revalidate = false;
+export const fetchCache = "auto";
+export const runtime = "nodejs";
+export const preferredRegion = "auto";
+export const maxDuration = 5;
+
 export const metadata: Metadata = {
   title: {
     template: "%s | Expert Football Predictions & Betslips & Football News",
