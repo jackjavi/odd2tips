@@ -3,6 +3,7 @@ import {
   createRoom,
   updateRoomMembers,
   getAllRooms,
+  getRandomRoom,
   getRoomByTitle,
   slugifyRooms,
   isFollowing,
@@ -14,6 +15,8 @@ const router = express.Router();
 router.post("/create", authenticate, createRoom);
 
 router.get("/get", getAllRooms);
+
+router.get("/getRandom", getRandomRoom);
 
 router.get("/get/:title", getRoomByTitle);
 
