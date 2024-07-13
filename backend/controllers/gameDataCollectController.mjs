@@ -36,7 +36,11 @@ const getRandomGameData = async (req, res) => {
   const todayFormatted = formatDate(today);
 
   try {
-    const randomGameData = await GameData.find({ date: todayFormatted });
+    // const randomGameData = await GameData.find({ date: todayFormatted });
+    const randomGameData = await GameData.aggregate([
+      { $match: { date: todayFormatted } },
+      { $sample: { size: 3 } },
+    ]);
 
     if (!randomGameData.length) {
       return res.status(200).json([]);
