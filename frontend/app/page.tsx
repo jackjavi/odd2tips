@@ -13,8 +13,11 @@ import Container from "@/app/blog/_components/container";
 import Investments from "@/app/Components/investmentsPlay";
 import AboutSection from "@/app/Components/AboutSection";
 import BetSlipPromotion from "@/app/Components/BetSlipPromotion";
+import RoomsPromotion from "./Components/RoomsPromotion";
 import RandomGameData from "@/app/Components/RandomGameData";
 import { GoogleTagManager } from "@next/third-parties/google";
+import RandomRooms from "@/app/Components/RandomRooms";
+import { YouTubeEmbed } from "@next/third-parties/google";
 import Script from "next/script";
 export const dynamicParams = true;
 
@@ -27,6 +30,14 @@ const Home = async () => {
       <GoogleTagManager gtmId="G-T2RQ49FPP3" />
       <div className="bg-[whitesmoke] ">
         <Navbar />
+        <div className="flex flex-col md:flex-row md:container mx-auto">
+          <div className="w-full md:w-1/2">
+            <RandomRooms />
+          </div>
+          <div className="w-full md:w-1/2">
+            <RoomsPromotion />
+          </div>
+        </div>
 
         <RandomGameData />
 

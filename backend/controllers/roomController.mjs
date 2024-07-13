@@ -69,6 +69,15 @@ const getAllRooms = async (req, res) => {
   }
 };
 
+const getRandomRoom = async (req, res) => {
+  try {
+    const room = await Room.aggregate([{ $sample: { size: 2 } }]);
+    res.status(200).json(room);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getRoomByTitle = async (req, res) => {
   try {
     const { title } = req.params;
@@ -134,6 +143,7 @@ const isFollowing = async (req, res) => {
 export {
   createRoom,
   getAllRooms,
+  getRandomRoom,
   getRoomByTitle,
   slugifyRooms,
   updateRoomMembers,
