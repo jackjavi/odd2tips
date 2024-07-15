@@ -18,6 +18,7 @@ const BetSlipLS: React.FC = () => {
     awayTeam: "",
     prediction: "",
     odd: 0,
+    status: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,6 +77,7 @@ const BetSlipLS: React.FC = () => {
         awayTeam: "",
         prediction: "",
         odd: 0,
+        status: "",
       });
     } catch (error) {
       console.error("Failed to submit form:", error);
