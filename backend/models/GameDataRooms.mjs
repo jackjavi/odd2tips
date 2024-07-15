@@ -14,6 +14,7 @@ const gameDataRoomsSchema = new mongoose.Schema(
       ref: "Room",
       required: true,
     },
+    status: { type: String, default: "pending" },
     countryName: String,
     date: String,
   },

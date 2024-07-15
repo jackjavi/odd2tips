@@ -7,4 +7,5 @@ export type GameData = {
   awayTeam: string;
   prediction: string;
   odd: number;
+  status: string;
 };
