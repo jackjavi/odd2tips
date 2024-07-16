@@ -4,8 +4,8 @@ import { Prediction } from "../../interfaces/Prediction";
 import { GameData } from "../../interfaces/gameData";
 import { GameData as GameDataLS } from "../../interfaces/gameDataLS";
 
-const BASE_URL = "http://localhost:8888";
-// const BASE_URL = "https://odd2tips.onrender.com";
+// const BASE_URL = "http://localhost:8888";
+const BASE_URL = "https://odd2tips.onrender.com";
 
 export async function fetchFixtures(): Promise<Fixture[]> {
   try {
