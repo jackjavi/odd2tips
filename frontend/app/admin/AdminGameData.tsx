@@ -1,8 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
-import { GameData } from "@/interfaces/gameDataLS";
 import axios from "axios";
+
+type GameData = {
+  _id: string;
+  gameTitle: string;
+  predictionType: string;
+  startTime: string;
+  homeTeam: string;
+  awayTeam: string;
+  prediction: string;
+  odd: number;
+  status: string;
+};
 
 const AdminGameData = ({ games }: { games: GameData[] }) => {
   const [gameStatus, setGameStatus] = useState(
