@@ -2,9 +2,10 @@ import { Fixture } from "../../interfaces/Fixture";
 import { Result } from "../../interfaces/Result";
 import { Prediction } from "../../interfaces/Prediction";
 import { GameData } from "../../interfaces/gameData";
+import { GameData as GameDataLS } from "../../interfaces/gameDataLS";
 
-// const BASE_URL = "http://localhost:8888";
-const BASE_URL = "https://odd2tips.onrender.com";
+const BASE_URL = "http://localhost:8888";
+// const BASE_URL = "https://odd2tips.onrender.com";
 
 export async function fetchFixtures(): Promise<Fixture[]> {
   try {
@@ -164,7 +165,7 @@ export async function allocateFixturesToRooms(): Promise<void> {
   }
 }
 
-export async function gameDataCollectAllGames(): Promise<GameData[]> {
+export async function gameDataCollectAllGames() {
   try {
     const response = await fetch(
       `${BASE_URL}/api/games/gameDataCollectAllGameData?timestamp=${new Date().getTime()}`,
