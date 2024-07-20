@@ -75,7 +75,7 @@ app.use("/api/upload", fileUploaderRoutes);
 app.use("/api/generativeAI", formatArtcielsRoutes);
 
 import authenticate from "./middleware/authenticate.mjs";
-app.use("/api/games", authenticate, gameDataRoutes);
+app.use("/api/games", gameDataRoutes);
 
 app.use("/api/auth", authenticate, checkAuthRoutes);
 

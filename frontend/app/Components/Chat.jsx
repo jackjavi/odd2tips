@@ -147,7 +147,7 @@ const Chat = () => {
                     </span>
                   )}
                 </div>
-                <div className="px-2 pb-2 text-gray-600">{msg.content}</div>
+                <div className="px-2 pb-2 text-white">{msg.content}</div>
               </li>
             ))}
 
