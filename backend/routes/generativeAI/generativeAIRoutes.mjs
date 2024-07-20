@@ -2,12 +2,11 @@ import express from "express";
 import {
   addImageUrlsAndSaveToDatabase,
   saveJsonArticles,
-  formatArticles,
 } from "../../controllers/generativeAI/generativeAIController.mjs";
 
 const router = express.Router();
 
-router.get("/format-articles", formatArticles);
+// router.get("/format-articles", formatArticles);
 router.get("/add-image-urls", addImageUrlsAndSaveToDatabase);
 router.get("/save-mongo", saveJsonArticles);
 

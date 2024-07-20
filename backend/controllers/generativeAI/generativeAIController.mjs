@@ -1,12 +1,13 @@
 import fs from "fs";
-import GenerativeAIService from "../../services/generativeAIService.mjs";
+// import GenerativeAIService from "../../services/generativeAIService.mjs";
 import BlogPostTest from "../../models/BlogPostTest.mjs";
 
-const generativeAIService = new GenerativeAIService();
+// const generativeAIService = new GenerativeAIService();
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const formatArticles = async (req, res) => {
+{
+  /* const formatArticles = async (req, res) => {
   try {
     const rawData = fs.readFileSync("cleanedArticles.json", "utf8");
     const articles = JSON.parse(rawData);
@@ -41,7 +42,8 @@ const formatArticles = async (req, res) => {
     console.error("Error formatting articles:", error);
     res.status(500).json({ message: "Error formatting articles" });
   }
-};
+}; */
+}
 
 const addImageUrlsAndSaveToDatabase = async (req, res) => {
   try {
