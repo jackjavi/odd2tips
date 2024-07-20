@@ -154,4 +154,4 @@ const saveJsonArticles = async (req, res) => {
   }
 };
 
-export { formatArticles, addImageUrlsAndSaveToDatabase, saveJsonArticles };
+export { addImageUrlsAndSaveToDatabase, saveJsonArticles };
