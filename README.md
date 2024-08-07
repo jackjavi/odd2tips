@@ -1,6 +1,6 @@
 # Odd2Tips
 
-Odd2Tips is a platform tailored for both seasoned tipsters and betting enthusiasts. It offers specialized rooms called 'Tipster Rooms' for community interaction and effective marketing of betting insights. Users can create, customize, download, and share betslips without registration and access up-to-the-minute football news. The platform features predictions from five tipsters, providing daily insights for football enthusiasts and betting fans.
+Odd2Tips is a platform tailored for both seasoned tipsters and betting enthusiasts. It offers specialized rooms called 'Tipster Rooms' for community interaction and effective marketing of betting insights. Users can create, customize, download, and share betslips without registration and access up-to-the-minute football news. The platform features predictions from tipsters, providing daily insights for football enthusiasts and betting fans.
 
 ## Features
 
