@@ -4,7 +4,6 @@ import path from "path";
 import TwitterTrends from "../../models/TwitterTrends.mjs";
 
 const scrapeTrends24 = async (req, res) => {
-  // Read and parse countries.json file
   const countriesData = JSON.parse(fs.readFileSync("./countries.json", "utf8"));
 
   let browser;
@@ -18,7 +17,6 @@ const scrapeTrends24 = async (req, res) => {
     let selectedCountry;
 
     while (trends.length === 0 && attempts < maxAttempts) {
-      // Select a random country URL
       const randomCountry =
         countriesData[Math.floor(Math.random() * countriesData.length)];
       selectedCountry = randomCountry.country;
@@ -36,31 +34,17 @@ const scrapeTrends24 = async (req, res) => {
       });
 
       trends = await page.evaluate(() => {
-        const trendCards = Array.from(document.querySelectorAll(".trend-card"));
-        let trendCard = trendCards.find((card) => {
-          const timeText = card
-            .querySelector(".trend-card__time")
-            ?.innerText.trim();
-          return (
-            timeText === "few minutes ago" ||
-            timeText === "1 hour ago" ||
-            "2 hours ago" ||
-            "3 hours ago" ||
-            "4 hours ago" ||
-            "5 hours ago" ||
-            /^(?:[1-5]?[0-9] minutes ago)$/.test(timeText)
-          );
-        });
+        const trendContainer = document.querySelector(
+          ".trend-data-container .tabs-container #timeline .list-container"
+        );
+        if (!trendContainer) return [];
 
-        if (trendCard) {
-          return Array.from(
-            trendCard.querySelectorAll("ol.trend-card__list li a")
-          ).map((anchor) => ({
-            title: anchor.innerText.trim(),
-            url: anchor.href,
-          }));
-        }
-        return [];
+        return Array.from(
+          trendContainer.querySelectorAll("li .trend-name a")
+        ).map((anchor) => ({
+          title: anchor.innerText.trim(),
+          url: anchor.href,
+        }));
       });
 
       attempts++;
@@ -68,10 +52,8 @@ const scrapeTrends24 = async (req, res) => {
 
     if (trends.length > 0) {
       console.log(`Saving trends for ${selectedCountry}:`, trends);
-      // Delete existing data for the country
       await TwitterTrends.deleteMany({ country: selectedCountry });
 
-      // Save new trends data
       const newTrends = new TwitterTrends({
         country: selectedCountry,
         timestamp: new Date(),
@@ -99,4 +81,27 @@ const scrapeTrends24 = async (req, res) => {
   }
 };
 
-export { scrapeTrends24 };
+const scrapeTrends24Test = async (req, res) => {
+  let browser;
+  try {
+    browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+
+    await page.goto("https://trends24.in/", {
+      waitUntil: "networkidle2",
+      timeout: 60000,
+    });
+
+    const html = await page.content();
+    res.status(200).send(html);
+  } catch (error) {
+    console.error("Error scraping Trends24:", error);
+    res.status(500).json({ message: "Error scraping Trends24" });
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+};
+
+export { scrapeTrends24, scrapeTrends24Test };
