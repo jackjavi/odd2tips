@@ -30,7 +30,7 @@ const Home = async () => {
       <GoogleTagManager gtmId="G-2242Y4EH8R" />
       <div className="bg-[whitesmoke] ">
         <Navbar />
-        <div className="flex flex-col md:flex-row md:container mx-auto">
+        <div className="flex flex-col md:flex-row w-full md:w-[80vw] mx-auto">
           <div className="w-full md:w-1/2">
             <RandomRooms />
           </div>
