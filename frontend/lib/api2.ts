@@ -1,6 +1,6 @@
 import { Post } from "@/interfaces/post";
 
-//const BASE_URL = "http://localhost:8888";
+// const BASE_URL = "http://localhost:8888";
 const BASE_URL = "https://odd2tips-0f9x.onrender.com";
 
 export async function getAllPosts() {
