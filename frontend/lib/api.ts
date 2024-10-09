@@ -3,7 +3,7 @@ import { Post } from "@/interfaces/post";
 import { Room } from "@/interfaces/room";
 
 // const BASE_URL = "http://localhost:8888";
-const BASE_URL = "https://odd2tips.onrender.com";
+const BASE_URL = "https://odd2tips-0f9x.onrender.com";
 
 export async function getAllPosts(): Promise<Post[]> {
   try {
