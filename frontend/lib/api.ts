@@ -8,7 +8,7 @@ const BASE_URL = "https://odd2tips-0f9x.onrender.com";
 export async function getAllPosts(): Promise<Post[]> {
   try {
     const response = await axios.get(
-      `${BASE_URL}/api/blog/posts-test?timestamp=${new Date().getTime()}`,
+      `${BASE_URL}/api/blog/posts-limit?timestamp=${new Date().getTime()}`,
       {
         headers: {
           "Cache-Control": "no-store",
