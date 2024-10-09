@@ -5,18 +5,18 @@ const nextConfig = {
       {
         source: "/api/:path*",
         // destination: "http://localhost:8888/api/:path*",
-        destination: "https://odd2tips.onrender.com/api/:path*",
+        destination: "https://odd2tips-0f9x.onrender.com/api/:path*",
       },
       {
         source: "/auth/:path*",
         // destination: "http://localhost:8888/auth/:path*",
-        destination: "https://odd2tips.onrender.com/auth/:path*",
+        destination: "https://odd2tips-0f9x.onrender.com/auth/:path*",
       },
 
       {
         source: "/sockets/:path*",
         // destination: "http://localhost:8888/:path*",
-        destination: "https://odd2tips.onrender.com/:path*",
+        destination: "https://odd2tips-0f9x.onrender.com/:path*",
       },
     ];
   },
