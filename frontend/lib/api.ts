@@ -13,6 +13,7 @@ export async function getAllPosts(): Promise<Post[]> {
         headers: {
           "Cache-Control": "no-store",
         },
+        timeout: 90000,
       }
     );
 
@@ -31,6 +32,7 @@ export async function getAllPostSlugs(): Promise<string[]> {
         headers: {
           "Cache-Control": "no-store",
         },
+        timeout: 90000,
       }
     );
     return response.data;
@@ -48,6 +50,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
         headers: {
           "Cache-Control": "no-store",
         },
+        timeout: 90000,
       }
     );
     return response.data;
@@ -63,6 +66,7 @@ export async function deletePostBySlug(slug: string): Promise<boolean> {
       headers: {
         "Cache-Control": "no-store",
       },
+      timeout: 90000,
     });
     return true;
   } catch (error) {
@@ -87,6 +91,7 @@ export async function fetchRooms(): Promise<Room[]> {
       `${BASE_URL}/api/rooms/get?timestamp=${new Date().getTime()}`,
       {
         withCredentials: true,
+        timeout: 10000,
       }
     );
     return response.data;
@@ -102,6 +107,7 @@ export async function fetchRandomRoom(): Promise<Room[]> {
       `${BASE_URL}/api/rooms/getRandom?timestamp=${new Date().getTime()}`,
       {
         withCredentials: true,
+        timeout: 10000,
       }
     );
     return response.data;
